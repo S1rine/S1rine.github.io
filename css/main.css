@@ -15,6 +15,10 @@ body a {
 body a:hover {
   color: #1abc9c;
 }
+::selection {
+  background: #5caef3;
+  color: #fff;
+}
 .hover-with-bg {
   display: inline-block;
   padding: 0.45rem;
@@ -83,6 +87,9 @@ body a:hover {
 }
 .navbar-brand {
   font-family: comic;
+}
+.navbar-collapse {
+  font-family: 'Microsoft YaHei UI';
 }
 .top-nav-collapse {
   background-color: #495057;
@@ -510,6 +517,24 @@ h6::before {
   margin: -8rem auto 1rem;
   max-width: 10rem;
   z-index: 3;
+}
+.about-avatar img.z-depth-1 {
+  webkit-transition: 1.4s all;
+  moz-transition: 1.4s all;
+  ms-transition: 1.4s all;
+  transition: 1.4s all;
+}
+.about-avatar img.z-depth-1:hover {
+  background-color: #55dae1;
+  webkit-transform: rotate(360deg) scale(1.1);
+  moz-transform: rotate(360deg) scale(1.1);
+  ms-transform: rotate(360deg) scale(1.1);
+  transform: rotate(360deg) scale(1.1);
+  box-shadow: 2px 2px 4px #888 !important;
+}
+.about-avatar~div p.h3 {
+  font-family: Againts;
+  font-size: 50px;
 }
 .category-tree-list {
   font-size: 1rem;

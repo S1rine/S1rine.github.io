@@ -16,9 +16,9 @@
 ]]></content>
   </entry>
   <entry>
-    <title>CSS小tip</title>
+    <title>CSStip</title>
     <url>/2019/10/27/css%E5%B0%8Ftip/</url>
-    <content><![CDATA[<h1 id="一些关于CSS的小tip"><a href="#一些关于CSS的小tip" class="headerlink" title="一些关于CSS的小tip"></a>一些关于CSS的小tip</h1><ul>
+    <content><![CDATA[<h1 id="一些关于CSS的tip"><a href="#一些关于CSS的tip" class="headerlink" title="一些关于CSS的tip"></a>一些关于CSS的tip</h1><ul>
 <li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code></li>
 <li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code></li>
 <li>气泡的制作<br><img src="/2019/10/27/css%E5%B0%8Ftip/bubble.png" srcset="/img/loading.gif" alt="bubble"></li>
