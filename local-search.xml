@@ -16,5 +16,59 @@
   
   
   
+  <entry>
+    <title>CSS小tip</title>
+    <link href="undefined2019/10/27/css%E5%B0%8Ftip/"/>
+    <url>2019/10/27/css%E5%B0%8Ftip/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一些关于CSS的小tip"><a href="#一些关于CSS的小tip" class="headerlink" title="一些关于CSS的小tip"></a>一些关于CSS的小tip</h1><ul><li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code></li><li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code></li><li>气泡的制作<br><img src="/2019/10/27/css%E5%B0%8Ftip/bubble.png" srcset="/img/loading.gif" alt="bubble"></li></ul><a id="more"></a><pre><code class="html">&lt;div class=&quot;bubble&quot;&gt;    &lt;div class=&quot;triangle common&quot;&gt;&lt;/div&gt;    &lt;div class=&quot;cover common&quot;&gt;&lt;/div&gt;     &lt;!-- 用来覆盖的倒三角 --&gt;&lt;/div&gt;</code></pre><pre><code class="css">.bubble {    width: 200px;     height: 50px;     border: 5px solid #FFB5BF;     position: relative;}.common {    width: 0;     height: 0;     position: absolute;        /* 使用绝对定位 */    left: 50%;    transform: translate(-50%, 0);    /* 水平居中 */}.triangle {    bottom: -20px;    border-top: 20px solid #FFB5BF;    border-right: 20px solid transparent;    border-left: 20px solid transparent;}.cover {    bottom: -13px;    border-top: 20px solid #94E8FF;    border-right: 20px solid transparent;    border-left: 20px solid transparent;}</code></pre><ul><li><code>loading</code> 效果制作利用 <code>CSS3</code> 的动画<pre><code class="html">&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;</code></pre><pre><code class="css">.loading {  width: 50px;  height: 50px;  display: inline-block;  border: 5px solid #ddd;  border-left-color: #FFB5BF;  border-radius: 50%; }</code></pre><pre><code class="css">.loading {  animation: loading-animation 1.2s linear infinite;}@keyframes loading-animation {  0% {    transform: rotate(0deg);  }  100% {    transform: rotate(360deg);  }}</code></pre></li><li>行级元素的高度取决于文体字体大小。</li><li>文字隐藏的方法:<ul><li><code>height: 0</code>+<code>pading</code>撑出背景图片，然后设置<code>overflow: hidden</code></li><li><code>text-indent: -10000</code></li><li>将文字包入<code>span</code>元素中，然后<code>display: none</code></li></ul></li><li><code>a</code> 标签的样式需要遵守 <code>link</code> <code>visited</code> <code>hover</code> <code>active</code> 顺序，并且在 <code>href</code> 不填入值的时候， <code>a:link</code> 不起作用。</li><li>浏览器将标签间的换行空白渲染为一个空格导致部分元素间出现间隙解决方法：<ul><li>编写页面时不换行。</li><li>容器的 <code>font-size</code> 设置为 <code>0</code>.</li><li>我们需要将li内的字符间隔设为默认。<pre><code class="css">.wrap ul{letter-spacing: -4px;}</code></pre>之后记得设置li内字符间隔<pre><code class="css">.wrap ul li{letter-spacing: normal;}</code></pre></li></ul></li><li>div里嵌套了 <code>img</code> 底部会出现白边<ul><li>因为 <code>img</code> 默认是按基线 <code>(baseline)</code> 对齐的。</li><li>要去掉空格可以使用 <code>vertical-align: bottom</code> 或将 <code>img</code> 标签变为块级元素。</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css</tag>
+      
+      <tag>notes</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>for循环添加事件监听</title>
+    <link href="undefined2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/"/>
+    <url>2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="for循环添加事件监听"><a href="#for循环添加事件监听" class="headerlink" title="for循环添加事件监听"></a>for循环添加事件监听</h1><blockquote><p>在写某个需求时，想要做点击按钮动态添加样式表示选中的效果，在写js代码的时候遇到了疑问点。</p></blockquote><p><img src="/2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/for%E5%BE%AA%E7%8E%AF.png" srcset="/img/loading.gif" alt="页面"></p><p>页面如上所示，头部的三个按钮在点击后永远只会对最后一个按钮进行样式添加或移除。</p><pre><code class="javascript">var chooseArea = document.getElementsByClassName(&quot;choose-area&quot;)[0];for(var i=0;i&lt;chooseArea.children.length;i++){    console.log(chooseArea.children);    var child = chooseArea.children[i];    child.onclick=(function(){        console.log(child);        if(child.className==&quot;&quot;)            child.className=&quot;active&quot;;    })}</code></pre><p>此处先拿出主要的代码(此时的已经是不完整+乱改版本)，部分打印代码为调试时编写。<br>查了一下百度，大概了解到是 <code>onclick</code> 或是添加事件监听一类都不是即时运行。而内部会调用外部的变量，在 <code>click</code> 事件的函数运行时，i早已自增至最大值，所以永远指向最后一个元素。此处的解决方法是闭包。(我终于知道闭包的作用了…)</p><p>修改后的代码(依然有待改进，时间未定)：</p><pre><code class="javascript">var chooseArea = document.getElementsByClassName(&quot;choose-area&quot;)[0];for(var i=0;i&lt;chooseArea.children.length;i++){    console.log(chooseArea.children);    var child = chooseArea.children[i];    (function run(child,i){            child.onclick = function () {                if (child.className == &quot;&quot;)                    child.className = &quot;active&quot;;                else {                    child.className=&quot;&quot;;                }                for(var j=0;j&lt;chooseArea.children.length;j++){                    if(i==j){                        continue;                    }                    else{                        chooseArea.children[j].className=&quot;&quot;;                    }                }            };        })(child,i);</code></pre><p>闭包都解决不了的我可真是个菜鸡…(lll￢ω￢)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>notes</tag>
+      
+      <tag>js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
