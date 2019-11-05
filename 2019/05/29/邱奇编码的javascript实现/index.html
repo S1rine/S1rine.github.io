@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>CSStip ~ Drowning me</title>
+  <title>邱奇编码的javascript实现 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -104,7 +104,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                CSStip
+                邱奇编码的javascript实现
               
             </span>
 
@@ -113,7 +113,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期日, 十月 27日 2019, 12:46 下午
+                  星期三, 五月 29日 2019, 3:04 下午
                 </p>
               
 
@@ -122,7 +122,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    440 字
+                    817 字
                   </span>&nbsp;
                 
 
@@ -130,7 +130,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      4 分钟
                   </span>&nbsp;
                 
 
@@ -163,85 +163,299 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="一些关于CSS的tip"><a href="#一些关于CSS的tip" class="headerlink" title="一些关于CSS的tip"></a>一些关于CSS的tip</h1><ul>
-<li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code></li>
-<li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code></li>
-<li>气泡的制作<br><img src="/2019/10/27/css%E5%B0%8Ftip/bubble.png" srcset="/img/loading.gif" alt="bubble"></li>
-</ul>
-<a id="more"></a>
-<pre><code class="html">&lt;div class=&quot;bubble&quot;&gt;
-    &lt;div class=&quot;triangle common&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;cover common&quot;&gt;&lt;/div&gt;     &lt;!-- 用来覆盖的倒三角 --&gt;
-&lt;/div&gt;</code></pre>
-<pre><code class="css">.bubble {
-    width: 200px; 
-    height: 50px; 
-    border: 5px solid #FFB5BF; 
-    position: relative;
+            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="加减乘"><a href="#加减乘" class="headerlink" title="加减乘"></a>加减乘</h3><p>在<a href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023021250770016" target="_blank" rel="noopener">廖雪峰老师的网站</a>看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。</p>
+<h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><pre><code class="javascript">&#39;use strict&#39;;
+
+// 定义数字0:
+var zero = function (f) {
+    return function (x) {
+        return x;
+    }
+};
+
+// 定义数字1:
+var one = function (f) {
+    return function (x) {
+        return f(x);
+    }
+};
+
+// 定义加法:
+function add(n, m) {
+    return function (f) {
+        return function (x) {
+            return m(f)(n(f)(x));
+        }
+    }
 }
-.common {
-    width: 0; 
-    height: 0; 
-    position: absolute;        /* 使用绝对定位 */
-    left: 50%;
-    transform: translate(-50%, 0);    /* 水平居中 */
+// 计算数字2 = 1 + 1:
+var two = add(one, one);
+
+// 计算数字3 = 1 + 2:
+var three = add(one, two);
+
+// 计算数字5 = 2 + 3:
+var five = add(two, three);
+
+// 你说它是3就是3，你说它是5就是5，你怎么证明？
+
+// 呵呵，看这里:
+
+// 给3传一个函数,会打印3次:
+(three(function () {
+    console.log(&#39;print 3 times&#39;);
+}))();
+
+// 给5传一个函数,会打印5次:
+(five(function () {
+    console.log(&#39;print 5 times&#39;);
+}))();
+
+// 继续接着玩一会...</code></pre>
+<p>加法其实比较好理解，关于减法部分在网上搜索了很久。找到的代码比较难理解。</p>
+<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><pre><code class="javascript">var ZERO = function (f){
+    return function (z){
+        return z;
+    }
+};
+
+var ADD1 = function (n){
+    return function (f){
+        return function (z){
+            return f(n(f)(z));
+        }
+    }
+};
+
+var pred = function(n){
+    return function(action){
+        return function(x){
+            var fx = function(g){
+                return function(h){
+                    return h(g(action));
+                };
+            };
+            return n(fx)(function(u){
+                return x;
+            })(function(u){
+                return u;
+            });
+        };
+    };
+};
+var TWO = pred(THREE)=function(action){
+    return function(x){
+        return THREE(function(g){
+            return function(h){
+                return h(g(action));
+            };
+        };)(function(u){
+            return x;
+        })(function(u){
+            return u;
+        });
+    };
+};
+TWO(action)(x)=function(x){
+    return THREE(function(g){
+        return function(h){
+            return h(g(action));
+        };
+    };)(function(u){
+        return x;
+    })(function(u){
+        return u;
+    });
+}(x)=THREE(function(g){
+    return function(h){
+        return h(g(action));
+    };
+})(function(u){
+    return x;
+})(function(u){
+    return u;
+})
+var SUB1 = function (n){
+    return function (f){
+        return function(z){
+            return ((n (function(g){
+                return (function(h){
+                    return h(g(f));
+                })
+            })){
+                return (function(u){
+                    return z;
+                }))(function (u){
+                    return u;
+                })
+            }
+        }
+    }
+};
+var ONE = ADD1(ZERO);
+var TWO = ADD1(ONE);
+var THREE = ADD1(TWO);
+(TWO(function(){
+    console.log(&#39;1&#39;);
+}))();
+(THREE(function(){
+    alert(&#39;2&#39;);
+}))();
+THREE = function(f){
+    return function(x){
+        return f(f(ONE(f)(x)));
+    };
+};
+THREE(f) = function(x){
+    return f(f(ONE(f)(x)));
+};
+TWO = pred(THREE) = function(action){
+    return function(x){
+        return THREE(function(g){
+            return function(h){
+                return h(g(action));
+            };
+        })(function(u){
+            return x;
+        })(function(u){
+            return u;
+        });
+    };
 }
-.triangle {
-    bottom: -20px;
-    border-top: 20px solid #FFB5BF;
-    border-right: 20px solid transparent;
-    border-left: 20px solid transparent;
+TWO(action) = function(x){
+    return THREE(function(g){
+        return function(h){
+            return h(g(action));
+        };
+    })(function(u){
+        return x;
+    })(function(u){
+        return u;
+    });
 }
-.cover {
-    bottom: -13px;
-    border-top: 20px solid #94E8FF;
-    border-right: 20px solid transparent;
-    border-left: 20px solid transparent;
+TWO(action)(x) = THREE(function(g){
+    return function(h){
+        return h(g(action));
+    };
+})(function(u){
+    return x;
+})(function(u){
+    return u;
+})
+/*function(g){
+    return function(h){
+        return h(g(action));
+    };
+}=f
+f(x)=function(g){
+    return function(h){
+        return h(g(action));
+    };
+}(x)=function(h){
+    return h(x(action));
+}
+function(h){
+    return h(x(action));
+}(x)=x(x(action))
+f(f(ONE(f)(x)))(g)
+f(f(f(x)))(g)
+f(f(x))(g)
+*/
+TWO(action)(x) = function(x){
+    return f(f(ONE(f)(x)));
+}(function(u){
+    return x;
+})(function(u){
+    return u;
+})
+= f(f(ONE(f)(function(u){
+    return x;
+})))(function(u){
+    return u;
+})
+= f(f(f(function(u){
+    return x;
+})))(function (u){
+    return u;
+})
+=f(f(function(h){
+    return h(function(u){
+        return x;
+    }(action));
+}))(function (u){
+    return u;
+})
+=f(function(h){
+    return h(function(h){
+        return h(function(u){
+            return x;
+        }(action));
+    }(action));
+})(function (u){
+    return u;
+})
+= function(h){
+    return h(function(h){
+        return h(function(h){
+            return h(function(u){
+                return x;
+            }(action));
+        }(action));
+    }(action));
+}(function (u){
+    return u;
+})
+= function(u){
+    return u;
+}(function(h){
+        return h(function(h){
+            return h(function(u){
+                return x;
+            }(action));
+        }(action));
+    }(action))
+= function(h){
+        return h(function(h){
+            return h(function(u){
+                return x;
+            }(action));
+        }(action));
+    }(action)
+= action(function(h){
+            return h(function(u){
+                return x;
+            }(action));
+        }(action))
+= action(action(function(u){
+                return x;
+            }(action)))
+= action(action(x));
+TWO = function(f){
+    return function(x){
+        return f(ONE(f)(x));
+    }
+}
+ONE(f)(x)=f(ZERO(f)(x))=f(x);
+ONE = function(f){
+    return function(x){
+        return f(ZERO(f)(x));
+    }
 }</code></pre>
-<ul>
-<li><code>loading</code> 效果制作利用 <code>CSS3</code> 的动画<pre><code class="html">&lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;</code></pre>
-<pre><code class="css">.loading {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  border: 5px solid #ddd;
-  border-left-color: #FFB5BF;
-  border-radius: 50%; 
-}</code></pre>
-<pre><code class="css">.loading {
-  animation: loading-animation 1.2s linear infinite;
+<p>其实到最后算出结果我也没绕出弯来🙃</p>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><pre><code class="javascript">function multi(n, m) {    
+    return function (f) {
+        return function (x) {
+            return m(n(f))(x);
+        }
+    }
 }
-@keyframes loading-animation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}</code></pre>
-</li>
-<li>行级元素的高度取决于文体字体大小。</li>
-<li>文字隐藏的方法:<ul>
-<li><code>height: 0</code>+<code>pading</code>撑出背景图片，然后设置<code>overflow: hidden</code></li>
-<li><code>text-indent: -10000</code></li>
-<li>将文字包入<code>span</code>元素中，然后<code>display: none</code></li>
-</ul>
-</li>
-<li><code>a</code> 标签的样式需要遵守 <code>link</code> <code>visited</code> <code>hover</code> <code>active</code> 顺序，并且在 <code>href</code> 不填入值的时候， <code>a:link</code> 不起作用。</li>
-<li>浏览器将标签间的换行空白渲染为一个空格导致部分元素间出现间隙解决方法：<ul>
-<li>编写页面时不换行。</li>
-<li>容器的 <code>font-size</code> 设置为 <code>0</code>.</li>
-<li>我们需要将li内的字符间隔设为默认。<pre><code class="css">.wrap ul{letter-spacing: -4px;}</code></pre>
-之后记得设置li内字符间隔<pre><code class="css">.wrap ul li{letter-spacing: normal;}</code></pre>
-</li>
-</ul>
-</li>
-<li>div里嵌套了 <code>img</code> 底部会出现白边<ul>
-<li>因为 <code>img</code> 默认是按基线 <code>(baseline)</code> 对齐的。</li>
-<li>要去掉空格可以使用 <code>vertical-align: bottom</code> 或将 <code>img</code> 标签变为块级元素。</li>
-</ul>
-</li>
-</ul>
+//test six
+var  six = multi(three,two);
+(multi(function () {
+    console.log(&#39;print 6 times&#39;);
+}))();
+</code></pre>
+<p>大佬们果然都很喜欢挑战自己(lll￢ω￢)</p>
 
             <hr>
           </div>
@@ -261,9 +475,9 @@
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/css">css</a>
-                
                   <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+                  <a class="hover-with-bg" href="/tags/js">js</a>
                 
               </span>
             

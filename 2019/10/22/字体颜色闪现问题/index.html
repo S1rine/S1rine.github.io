@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>关于 ~ Drowning me</title>
+  <title>字体颜色闪现问题 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/banner/banner1.png')no-repeat center center;
+         style="background: url('/img/banner/bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -104,10 +104,45 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                关于
+                字体颜色闪现问题
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 十月 22日 2019, 8:33 早上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    403 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -119,48 +154,101 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="text-center">
-  <p class="h3">Ying</p>
-  <p><a href="#me" id="me">学生</a> / <a href="#me">前端摸爬滚打</a> / <a href="#me">小人物</a></p>
-  
-    
-    
-    <a href="https://github.com/Severu5"
-       class="h4 ">
-      <i class="fab fa-github" aria-hidden="true"></i>
       
-    </a>
-    &nbsp;&nbsp;
-  
-    
-    
-</div>
-<div class="mt-5 markdown-body">
-  <blockquote>
-<p>南方某不知名高校就读</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="transition属性页面加载a元素字体颜色闪现问题"><a href="#transition属性页面加载a元素字体颜色闪现问题" class="headerlink" title="transition属性页面加载a元素字体颜色闪现问题"></a>transition属性页面加载a元素字体颜色闪现问题</h3><blockquote>
+<p>在写需求的时候，对 <code>index.html</code> 页面的按钮做了 <code>transition</code> 效果来使样式展示更平滑。</p>
 </blockquote>
+<p>代码如下：</p>
+<pre><code class="css">.main-area li a {
+    display: block;
+    width: 100%;
+    line-height: 54px;
+    transition: background-color .5s ease,
+    color .5s ease;
+}
+.main-area li a:hover {
+    background: #3399FF;
+    color: #fff;
+}</code></pre>
+<p>然后发现想要的效果确实可以做到，<strong>但是</strong>每次打开页面的时候都可以看到a元素的字体颜色从 <em>各种奇怪的颜色</em> 闪现为设定的颜色。</p>
+<p>研究了一会儿，看到 <code>transition</code> 的一个属性：</p>
+<pre><code class="css">transition-property : none | all | [&lt;IDENT&gt;][&#39;,&#39;&lt;IDENT&gt;]* ;</code></pre>
+<p><code>transition-property</code> 是用来指定当元素其中一个属性改变时执行 <code>transition</code> 效果，其中 <code>none</code> 没有属性改变；<code>all</code> 所有属性都改变，它也是默认值；<code>indent</code> 可以填写元素属性名。</p>
+<blockquote>
+<p>👆以上来自某教程网站</p>
+</blockquote>
+<p>然后打开 F12 看了一下 对应位置的 <code>a</code> 元素的所有 <code>color</code> 属性。</p>
+<p><img src="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/transition.png" srcset="/img/loading.gif" alt="transition"><br>就可以看到在重置样式表 <code>reset.css</code> 中的 <code>color</code> 设置为继承值。<br>取消这个样式，就可以看到 <code>a</code> 的 <code>color</code> 变为我们看到的闪现前的颜色。<br><img src="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/transition1.png" srcset="/img/loading.gif" alt="transition1"><br><img src="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/transition2.png" srcset="/img/loading.gif" alt="transition2"></p>
+<p>按我的理解也就是，浏览器记住了这个覆盖过程，然后把它展示为动画效果，那我们应该要想办法把这个覆盖 <code>a</code> 默认颜色的过程提前到 <code>transition</code> 没有记住的时候。</p>
+<p>我的做法是在 <code>head</code> 标签中写入 <code>style</code> 直接覆盖 <code>a</code> 的 <code>color</code> 属性。</p>
+<p>其余解决方法待后续研究。<del>大概不会有后续</del></p>
 
-</div>
-
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/css">css</a>
+                
+                  <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -234,6 +322,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
 
 
 

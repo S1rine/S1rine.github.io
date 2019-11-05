@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>关于 ~ Drowning me</title>
+  <title>CSS继承 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/banner/banner1.png')no-repeat center center;
+         style="background: url('/img/banner/bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -104,10 +104,45 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                关于
+                CSS继承
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期二, 十月 22日 2019, 8:17 早上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    190 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -119,48 +154,99 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="text-center">
-  <p class="h3">Ying</p>
-  <p><a href="#me" id="me">学生</a> / <a href="#me">前端摸爬滚打</a> / <a href="#me">小人物</a></p>
-  
-    
-    
-    <a href="https://github.com/Severu5"
-       class="h4 ">
-      <i class="fab fa-github" aria-hidden="true"></i>
       
-    </a>
-    &nbsp;&nbsp;
-  
-    
-    
-</div>
-<div class="mt-5 markdown-body">
-  <blockquote>
-<p>南方某不知名高校就读</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h2><blockquote>
+<p>一开始记录在 <code>Onenote</code> 中的笔记复制都是直接图片形式。所以我先复制到记事本再转到 <code>markdown</code>。🙃</p>
 </blockquote>
+<h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><p>在阅读《CSS权威指南》过程中，在继承这一模块发现了选择器权重的一些内容。</p>
+<p><strong>继承得到的值没有特殊性，权重弱于0特殊性(通配符)</strong></p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;style&gt;
+            * {color:gray;}
+            h1#page-title {color:black;}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+            &lt;h1 id=&quot;page-title&quot;&gt;Meerkat &lt;em&gt;Central&lt;/em&gt;&lt;/h1&gt;
+        &lt;p&gt;
+            Welcome to the best place on the web for meerkat information!
+        &lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><img src="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/pic.png" srcset="/img/loading.gif" alt="演示"></p>
+<h2 id="👇图片形式"><a href="#👇图片形式" class="headerlink" title="👇图片形式"></a>👇图片形式</h2><p><del>糊的妈都不认识</del></p>
+<p><img src="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/1.jpg" srcset="/img/loading.gif" alt><br><img src="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/2.jpg" srcset="/img/loading.gif" alt><br><img src="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/3.jpg" srcset="/img/loading.gif" alt></p>
 
-</div>
-
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/css">css</a>
+                
+                  <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -234,6 +320,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
 
 
 

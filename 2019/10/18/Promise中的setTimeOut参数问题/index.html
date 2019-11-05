@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>关于 ~ Drowning me</title>
+  <title>Promise中的setTimeOut参数问题 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/banner/banner1.png')no-repeat center center;
+         style="background: url('/img/banner/bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -104,10 +104,45 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                关于
+                Promise中的setTimeOut参数问题
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期五, 十月 18日 2019, 8:56 早上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    448 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -119,48 +154,163 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="text-center">
-  <p class="h3">Ying</p>
-  <p><a href="#me" id="me">学生</a> / <a href="#me">前端摸爬滚打</a> / <a href="#me">小人物</a></p>
-  
-    
-    
-    <a href="https://github.com/Severu5"
-       class="h4 ">
-      <i class="fab fa-github" aria-hidden="true"></i>
       
-    </a>
-    &nbsp;&nbsp;
-  
-    
-    
-</div>
-<div class="mt-5 markdown-body">
-  <blockquote>
-<p>南方某不知名高校就读</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="Promise中的setTimeOut参数问题"><a href="#Promise中的setTimeOut参数问题" class="headerlink" title="Promise中的setTimeOut参数问题"></a>Promise中的setTimeOut参数问题</h3><blockquote>
+<p>在看 <a href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023024413276544" target="_blank" rel="noopener">廖雪峰的 <code>javascript</code> 教程的 Promise </a> 一节看到一个疑问点。</p>
 </blockquote>
+<p>关于Promise的异步执行，其中一个示例代码中看到了setTimeOut的第三个参数。</p>
+<p>代码如下:</p>
+<pre><code class="javascript">&#39;use strict&#39;;
 
-</div>
+var logging = document.getElementById(&#39;test-promise2-log&#39;);
+while (logging.children.length &gt; 1) {
+    logging.removeChild(logging.children[logging.children.length - 1]);
+}
 
-              </div>
-            </div>
+function log(s) {
+    var p = document.createElement(&#39;p&#39;);
+    p.innerHTML = s;
+    logging.appendChild(p);
+}
+// 0.5秒后返回input*input的计算结果:
+function multiply(input) {
+    return new Promise(function (resolve, reject) {
+        log(&#39;calculating &#39; + input + &#39; x &#39; + input + &#39;...&#39;);
+        setTimeout(resolve, 500, input * input);
+    });
+}
+
+// 0.5秒后返回input+input的计算结果:
+function add(input) {
+    return new Promise(function (resolve, reject) {
+        log(&#39;calculating &#39; + input + &#39; + &#39; + input + &#39;...&#39;);
+        setTimeout(resolve, 500, input + input);
+    });
+}
+
+var p = new Promise(function (resolve, reject) {
+    log(&#39;start new Promise...&#39;);
+    resolve(123);
+});
+
+p.then(multiply)
+ .then(add)
+ .then(multiply)
+ .then(add)
+ .then(function (result) {
+    log(&#39;Got value: &#39; + result);
+});</code></pre>
+<p>在讲 <code>input*input</code> 和 <code>input+input</code> 作为第三个参数传入为第一个参数函数的参数时，输出结果可以做到延时。</p>
+<p>但如果我将代码修改为直接作为第一个 <code>resove</code> 的参数传入，就无法做到延时的效果。</p>
+<p>代码如下：</p>
+<pre><code class="javascript">&#39;use strict&#39;;
+
+var logging = document.getElementById(&#39;test-promise2-log&#39;);
+while (logging.children.length &gt; 1) {
+    logging.removeChild(logging.children[logging.children.length - 1]);
+}
+
+function log(s) {
+    var p = document.createElement(&#39;p&#39;);
+    p.innerHTML = s;
+    logging.appendChild(p);
+}
+// 0.5秒后返回input*input的计算结果:
+function multiply(input) {
+    return new Promise(function (resolve, reject) {
+        log(&#39;calculating &#39; + input + &#39; x &#39; + input + &#39;...&#39;);
+        setTimeout(resolve(input*input), 500);
+    });
+}
+
+// 0.5秒后返回input+input的计算结果:
+function add(input) {
+    return new Promise(function (resolve, reject) {
+        log(&#39;calculating &#39; + input + &#39; + &#39; + input + &#39;...&#39;);
+        setTimeout(resolve(input+input), 500);
+    });
+}
+
+var p = new Promise(function (resolve, reject) {
+    log(&#39;start new Promise...&#39;);
+    resolve(123);
+});
+
+p.then(multiply)
+ .then(add)
+ .then(multiply)
+ .then(add)
+ .then(function (result) {
+    log(&#39;Got value: &#39; + result);
+});</code></pre>
+<p>应该是因为异步一类的原因，待整理。</p>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+                  <a class="hover-with-bg" href="/tags/js">js</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -234,6 +384,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
 
 
 

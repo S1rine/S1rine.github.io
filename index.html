@@ -211,6 +211,126 @@ margin 值的百分比是相对于父元素的 width
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/" target="_self">
+          <img src="/img/cover-small/css.png" srcset="/img/loading.gif" alt="字体颜色闪现问题" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/">
+        <p class="h4 index-header">字体颜色闪现问题</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">📃正文transition属性页面加载a元素字体颜色闪现问题
+在写需求的时候，对 index.html 页面的按钮做了 transition 效果来使样式展示更平滑。
+
+代码如下：
+.main-area li a {
+    display: block;
+    width: 100%;
+    line-height: 54px;
+    transition: background-color .5s ease,
+    color .5s ease;
+}
+.main-area li a:hover {
+    background: #3399FF;
+    color: #fff;
+}
+然后发现想要的效果确实可以做到，但是每次打开页面的时候都可以看到a元素的字体颜色从 各种奇怪的颜色 闪现为设定的颜色。
+研究了一会儿，看到 transition 的一个属性：
+transition-property : none | all | [&lt;IDENT&gt;][&#39;,&#39;&lt;IDENT&gt;]* ;
+transition-property 是用来指定当元素其</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-22&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/css">css</a>&nbsp;
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/" target="_self">
+          <img src="/img/cover-small/css.png" srcset="/img/loading.gif" alt="CSS继承" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/">
+        <p class="h4 index-header">CSS继承</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">🤪碎碎念
+一开始记录在 Onenote 中的笔记复制都是直接图片形式。所以我先复制到记事本再转到 markdown。🙃
+
+📃正文在阅读《CSS权威指南》过程中，在继承这一模块发现了选择器权重的一些内容。
+继承得到的值没有特殊性，权重弱于0特殊性(通配符)
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;style&gt;
+            * {color:gray;}
+            h1#page-title {color:black;}
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+            &lt;h1 id=&quot;page-title&quot;&gt;Meerkat &lt;em&gt;Central&lt;/em&</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-22&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/css">css</a>&nbsp;
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" target="_self">
           <img src="/img/cover-small/js.png" srcset="/img/loading.gif" alt="for循环添加事件监听" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -246,6 +366,250 @@ for(var i=0;i&lt;chooseArea.children.length;i++){
       <div>
         
           <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+            <a href="/tags/js">js</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/10/18/Promise%E4%B8%AD%E7%9A%84setTimeOut%E5%8F%82%E6%95%B0%E9%97%AE%E9%A2%98/" target="_self">
+          <img src="/img/cover-small/js.png" srcset="/img/loading.gif" alt="Promise中的setTimeOut参数问题" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/10/18/Promise%E4%B8%AD%E7%9A%84setTimeOut%E5%8F%82%E6%95%B0%E9%97%AE%E9%A2%98/">
+        <p class="h4 index-header">Promise中的setTimeOut参数问题</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">📃正文Promise中的setTimeOut参数问题
+在看 廖雪峰的 javascript 教程的 Promise  一节看到一个疑问点。
+
+关于Promise的异步执行，其中一个示例代码中看到了setTimeOut的第三个参数。
+代码如下:
+&#39;use strict&#39;;
+
+var logging = document.getElementById(&#39;test-promise2-log&#39;);
+while (logging.children.length &gt; 1) {
+    logging.removeChild(logging.children[logging.children.length - 1]);
+}
+
+function log(s) {
+    var p = document.createElement(&#39;p&#39;);
+    p.innerHTML = s;
+    logging.appendChild(p);
+}
+// 0.5秒后返回input*input的计算结果:
+function multiply(input)</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-18&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+            <a href="/tags/js">js</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/05/CSS%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8/" target="_self">
+          <img src="/img/cover-small/css.png" srcset="/img/loading.gif" alt="CSS伪类选择器" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/05/CSS%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8/">
+        <p class="h4 index-header">CSS伪类选择器</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">📃正文选择第一个子元素在阅读《CSS权威指南》的过程中，读到关于伪类选择器时的“选择第一个子元素”部分，发现对于伪类 :first-child 存在误解。
+&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;style&gt;
+            p:first-child { font-weight: bold; }
+            li:first-child { text-transform: uppercase; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+            &lt;div&gt;
+            &lt;p&gt;These are the necessary step:&lt;/p&gt;
+          </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-05&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/css">css</a>&nbsp;
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/" target="_self">
+          <img src="/img/cover-small/css.png" srcset="/img/loading.gif" alt="font-face远程问题" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/">
+        <p class="h4 index-header">font-face远程问题</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">📃正文在阅读 Head First HTML与CSS 第2版过程中，在增加字体和颜色样式部分学习到为页面增加Web字体。其中运用了 @font-face 功能，照示例所写是失败的。
+@font-face {
+        font-family: &quot;Emblema One&quot;;
+        src: url(&quot;https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.woff&quot;) format(&#39;woff&#39;), 
+             url(&quot;https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.ttf&quot;) format(&#39;truetype&#39;);
+}
+//url后的format是后来加的，测试后并无效果。
+h1 {
+  font-family:     &quot;Emblema One&quot;, sans</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/css">css</a>&nbsp;
+          
+            <a href="/tags/notes">notes</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/05/29/%E9%82%B1%E5%A5%87%E7%BC%96%E7%A0%81%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/" target="_self">
+          <img src="/img/cover-small/js.png" srcset="/img/loading.gif" alt="邱奇编码的javascript实现" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/05/29/%E9%82%B1%E5%A5%87%E7%BC%96%E7%A0%81%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/">
+        <p class="h4 index-header">邱奇编码的javascript实现</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">📃正文加减乘在廖雪峰老师的网站看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。
+加法&#39;use strict&#39;;
+
+// 定义数字0:
+var zero = function (f) {
+    return function (x) {
+        return x;
+    }
+};
+
+// 定义数字1:
+var one = function (f) {
+    return function (x) {
+        return f(x);
+    }
+};
+
+// 定义加法:
+function add(n, m) {
+    return function (f) {
+        return function (x) {
+            return m(f)(n(f)(x));
+        }
+    }
+}
+// 计算数字2 = 1 + 1:
+var two = add(one, one);
+
+// 计算数字3 = 1 + 2:
+var three = add(one, two);
+
+// 计算数字5 = 2 + 3:
+v</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-29&nbsp;&nbsp;
         
         
           <i class="iconfont icon-inbox"></i>
@@ -376,7 +740,7 @@ for(var i=0;i&lt;chooseArea.children.length;i++){
   <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      $('pre').addClass('prettyprint  linenums');
+      $('pre').addClass('prettyprint  ');
       prettyPrint();
     })
   </script>

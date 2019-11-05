@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>关于 ~ Drowning me</title>
+  <title>CSS伪类选择器 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/banner/banner1.png')no-repeat center center;
+         style="background: url('/img/banner/bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -104,10 +104,45 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                关于
+                CSS伪类选择器
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期三, 六月 5日 2019, 6:16 晚上
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    245 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -119,48 +154,102 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="text-center">
-  <p class="h3">Ying</p>
-  <p><a href="#me" id="me">学生</a> / <a href="#me">前端摸爬滚打</a> / <a href="#me">小人物</a></p>
-  
-    
-    
-    <a href="https://github.com/Severu5"
-       class="h4 ">
-      <i class="fab fa-github" aria-hidden="true"></i>
       
-    </a>
-    &nbsp;&nbsp;
-  
-    
-    
-</div>
-<div class="mt-5 markdown-body">
-  <blockquote>
-<p>南方某不知名高校就读</p>
-</blockquote>
 
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="选择第一个子元素"><a href="#选择第一个子元素" class="headerlink" title="选择第一个子元素"></a>选择第一个子元素</h3><p>在阅读《CSS权威指南》的过程中，读到关于伪类选择器时的“选择第一个子元素”部分，发现对于伪类 :first-child 存在误解。</p>
+<pre><code class="html">&lt;!doctype html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;test&lt;/title&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;style&gt;
+            p:first-child { font-weight: bold; }
+            li:first-child { text-transform: uppercase; }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+            &lt;div&gt;
+            &lt;p&gt;These are the necessary step:&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;Insert key&lt;/li&gt;
+                &lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
+                &lt;li&gt;Push accelerator&lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;p&gt; Do &lt;em&gt;not&lt;/em&gt; push the brake at the same time as the accelerator.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>之前是将 p:first-child 理解为第一个p元素，阅读后发现其真实含义为某元素第一个子元素的所有p元素。</p>
+<p><img src="/2019/06/05/CSS%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8/pic1.png" srcset="/img/loading.gif" alt="演示"></p>
+<p><strong>伪类的实质为符合:后的要求的元素。</strong></p>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/css">css</a>
+                
+                  <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -234,6 +323,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
 
 
 

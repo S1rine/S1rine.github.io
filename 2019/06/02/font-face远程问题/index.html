@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="Zhang">
   <meta name="keywords" content="">
-  <title>关于 ~ Drowning me</title>
+  <title>font-face远程问题 ~ Drowning me</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -36,7 +36,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -96,7 +96,7 @@
 </nav>
 
     <div class="view intro-2" id="background"
-         style="background: url('/img/banner/banner1.png')no-repeat center center;
+         style="background: url('/img/banner/bg.jpg')no-repeat center center;
            background-size: cover;
            background-attachment: fixed;">
       <div class="full-bg-img">
@@ -104,10 +104,45 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                关于
+                font-face远程问题
               
             </span>
 
+            
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  星期日, 六月 2日 2019, 11:38 中午
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    221 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      1 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -119,48 +154,101 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.jpg"
-                   class="img-fluid z-depth-1 rounded-circle"
-                   alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="text-center">
-  <p class="h3">Ying</p>
-  <p><a href="#me" id="me">学生</a> / <a href="#me">前端摸爬滚打</a> / <a href="#me">小人物</a></p>
-  
-    
-    
-    <a href="https://github.com/Severu5"
-       class="h4 ">
-      <i class="fab fa-github" aria-hidden="true"></i>
       
-    </a>
-    &nbsp;&nbsp;
-  
-    
-    
-</div>
-<div class="mt-5 markdown-body">
-  <blockquote>
-<p>南方某不知名高校就读</p>
-</blockquote>
 
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><p>在阅读 <code>Head First HTML与CSS</code> 第2版过程中，在增加字体和颜色样式部分学习到为页面增加Web字体。<br>其中运用了 <code>@font-face</code> 功能，照示例所写是失败的。</p>
+<pre><code class="css">@font-face {
+        font-family: &quot;Emblema One&quot;;
+        src: url(&quot;https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.woff&quot;) format(&#39;woff&#39;), 
+             url(&quot;https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.ttf&quot;) format(&#39;truetype&#39;);
+}
+//url后的format是后来加的，测试后并无效果。
+h1 {
+  font-family:     &quot;Emblema One&quot;, sans-serif;
+  font-size:       220%;
+}</code></pre>
+<p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic1.png" srcset="/img/loading.gif" alt="演示"></p>
+<p>如图所示，会显示请求字体失败。<br>但是如果字体是存储在本地的，则成功。</p>
+<pre><code class="css">@font-face {
+        font-family: &quot;Emblema One&quot;;
+        src: url(&quot;EmblemaOne-Regular.woff&quot;), 
+             url(&quot;EmblemaOne-Regular.ttf&quot;);
+}
+h1 {
+  font-family:     &quot;Emblema One&quot;, sans-serif;
+  font-size:       220%;
+}</code></pre>
+<p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic2.png" srcset="/img/loading.gif" alt="演示"></p>
+<p>除此之外，有实验利用在线字体库“有字库”也可以成功</p>
+<p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic3.png" srcset="/img/loading.gif" alt="演示"></p>
+<p>照它的要求进行设置可以成功</p>
+<p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic4.png" srcset="/img/loading.gif" alt="演示"></p>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/css">css</a>
+                
+                  <a class="hover-with-bg" href="/tags/notes">notes</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -234,6 +322,11 @@
   <script src="/js/lazyload.js" ></script>
 
 
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
 
 
 
