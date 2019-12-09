@@ -1,676 +1,712 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 
 
 
+  
 
 
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon-128x128.ico">
-  <link rel="icon" type="image/png" href="/img/favicon-128x128.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="description" content="">
-  <meta name="author" content="Zhang">
-  <meta name="keywords" content="">
-  <title>邱奇编码的javascript实现 ~ Drowning me</title>
-
-  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
 
-  <link rel="stylesheet" href="/lib/prettify/myself.min.css"  >
 
-<link rel="stylesheet" href="/css/main.css"  >
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
-  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="notes,js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="📃正文加减乘在廖雪峰老师的网站看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。 加法">
+<meta name="keywords" content="notes,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="邱奇编码的javascript实现">
+<meta property="og:url" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;05&#x2F;29&#x2F;%E9%82%B1%E5%A5%87%E7%BC%96%E7%A0%81%E7%9A%84javascript%E5%AE%9E%E7%8E%B0&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="📃正文加减乘在廖雪峰老师的网站看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。 加法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-29T07:04:00.000Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Severu5.github.io/2019/05/29/邱奇编码的javascript实现/"/>
+
+
+
+
+
+  <title>邱奇编码的javascript实现 | Drowning me</title>
+  
+
+
+
+
+
+
 
 
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Drowning me</strong>&nbsp;</a>
+  
+  
+    
+  
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">关于</a>
-          </li>
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">沉没</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
 
-    <div class="view intro-2" id="background"
-         style="background: url('/img/banner/bg.jpg')no-repeat center center;
-           background-size: cover;
-           background-attachment: fixed;">
-      <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Severu5.github.io/2019/05/29/%E9%82%B1%E5%A5%87%E7%BC%96%E7%A0%81%E7%9A%84javascript%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">邱奇编码的javascript实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-                邱奇编码的javascript实现
+                <span class="post-meta-item-text">发表于</span>
               
-            </span>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T15:04:00+08:00">
+                2019-05-29
+              </time>
+            
 
             
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期三, 五月 29日 2019, 3:04 下午
-                </p>
-              
 
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    817 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      4 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
             
-          </div>
+          </span>
 
           
-        </div>
-      </div>
-    </div>
-  </header>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
 
-  <main>
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
     
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="加减乘"><a href="#加减乘" class="headerlink" title="加减乘"></a>加减乘</h3><p>在<a href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023021250770016" target="_blank" rel="noopener">廖雪峰老师的网站</a>看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。</p>
-<h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><pre><code class="javascript">&#39;use strict&#39;;
-
-// 定义数字0:
-var zero = function (f) {
-    return function (x) {
-        return x;
-    }
-};
-
-// 定义数字1:
-var one = function (f) {
-    return function (x) {
-        return f(x);
-    }
-};
-
-// 定义加法:
-function add(n, m) {
-    return function (f) {
-        return function (x) {
-            return m(f)(n(f)(x));
-        }
-    }
-}
-// 计算数字2 = 1 + 1:
-var two = add(one, one);
-
-// 计算数字3 = 1 + 2:
-var three = add(one, two);
-
-// 计算数字5 = 2 + 3:
-var five = add(two, three);
-
-// 你说它是3就是3，你说它是5就是5，你怎么证明？
-
-// 呵呵，看这里:
-
-// 给3传一个函数,会打印3次:
-(three(function () {
-    console.log(&#39;print 3 times&#39;);
-}))();
-
-// 给5传一个函数,会打印5次:
-(five(function () {
-    console.log(&#39;print 5 times&#39;);
-}))();
-
-// 继续接着玩一会...</code></pre>
+      
+        <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="加减乘"><a href="#加减乘" class="headerlink" title="加减乘"></a>加减乘</h3><p>在<a href="https://www.liaoxuefeng.com/wiki/1022910821149312/1023021250770016" target="_blank" rel="noopener">廖雪峰老师的网站</a>看到了闭包内容，其中的脑洞大开部分就是关于邱奇编码的加法。</p>
+<h4 id="加法"><a href="#加法" class="headerlink" title="加法"></a>加法</h4><a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义数字0:</span></span><br><span class="line"><span class="keyword">var</span> zero = <span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义数字1:</span></span><br><span class="line"><span class="keyword">var</span> one = <span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> f(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义加法:</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n, m</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> m(f)(n(f)(x));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 计算数字2 = 1 + 1:</span></span><br><span class="line"><span class="keyword">var</span> two = add(one, one);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算数字3 = 1 + 2:</span></span><br><span class="line"><span class="keyword">var</span> three = add(one, two);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算数字5 = 2 + 3:</span></span><br><span class="line"><span class="keyword">var</span> five = add(two, three);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你说它是3就是3，你说它是5就是5，你怎么证明？</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 呵呵，看这里:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 给3传一个函数,会打印3次:</span></span><br><span class="line">(three(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'print 3 times'</span>);</span><br><span class="line">&#125;))();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 给5传一个函数,会打印5次:</span></span><br><span class="line">(five(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'print 5 times'</span>);</span><br><span class="line">&#125;))();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继续接着玩一会...</span></span><br></pre></td></tr></table></figure>
 <p>加法其实比较好理解，关于减法部分在网上搜索了很久。找到的代码比较难理解。</p>
-<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><pre><code class="javascript">var ZERO = function (f){
-    return function (z){
-        return z;
-    }
-};
-
-var ADD1 = function (n){
-    return function (f){
-        return function (z){
-            return f(n(f)(z));
-        }
-    }
-};
-
-var pred = function(n){
-    return function(action){
-        return function(x){
-            var fx = function(g){
-                return function(h){
-                    return h(g(action));
-                };
-            };
-            return n(fx)(function(u){
-                return x;
-            })(function(u){
-                return u;
-            });
-        };
-    };
-};
-var TWO = pred(THREE)=function(action){
-    return function(x){
-        return THREE(function(g){
-            return function(h){
-                return h(g(action));
-            };
-        };)(function(u){
-            return x;
-        })(function(u){
-            return u;
-        });
-    };
-};
-TWO(action)(x)=function(x){
-    return THREE(function(g){
-        return function(h){
-            return h(g(action));
-        };
-    };)(function(u){
-        return x;
-    })(function(u){
-        return u;
-    });
-}(x)=THREE(function(g){
-    return function(h){
-        return h(g(action));
-    };
-})(function(u){
-    return x;
-})(function(u){
-    return u;
-})
-var SUB1 = function (n){
-    return function (f){
-        return function(z){
-            return ((n (function(g){
-                return (function(h){
-                    return h(g(f));
-                })
-            })){
-                return (function(u){
-                    return z;
-                }))(function (u){
-                    return u;
-                })
-            }
-        }
-    }
-};
-var ONE = ADD1(ZERO);
-var TWO = ADD1(ONE);
-var THREE = ADD1(TWO);
-(TWO(function(){
-    console.log(&#39;1&#39;);
-}))();
-(THREE(function(){
-    alert(&#39;2&#39;);
-}))();
-THREE = function(f){
-    return function(x){
-        return f(f(ONE(f)(x)));
-    };
-};
-THREE(f) = function(x){
-    return f(f(ONE(f)(x)));
-};
-TWO = pred(THREE) = function(action){
-    return function(x){
-        return THREE(function(g){
-            return function(h){
-                return h(g(action));
-            };
-        })(function(u){
-            return x;
-        })(function(u){
-            return u;
-        });
-    };
-}
-TWO(action) = function(x){
-    return THREE(function(g){
-        return function(h){
-            return h(g(action));
-        };
-    })(function(u){
-        return x;
-    })(function(u){
-        return u;
-    });
-}
-TWO(action)(x) = THREE(function(g){
-    return function(h){
-        return h(g(action));
-    };
-})(function(u){
-    return x;
-})(function(u){
-    return u;
-})
-/*function(g){
-    return function(h){
-        return h(g(action));
-    };
-}=f
-f(x)=function(g){
-    return function(h){
-        return h(g(action));
-    };
-}(x)=function(h){
-    return h(x(action));
-}
-function(h){
-    return h(x(action));
-}(x)=x(x(action))
-f(f(ONE(f)(x)))(g)
-f(f(f(x)))(g)
-f(f(x))(g)
-*/
-TWO(action)(x) = function(x){
-    return f(f(ONE(f)(x)));
-}(function(u){
-    return x;
-})(function(u){
-    return u;
-})
-= f(f(ONE(f)(function(u){
-    return x;
-})))(function(u){
-    return u;
-})
-= f(f(f(function(u){
-    return x;
-})))(function (u){
-    return u;
-})
-=f(f(function(h){
-    return h(function(u){
-        return x;
-    }(action));
-}))(function (u){
-    return u;
-})
-=f(function(h){
-    return h(function(h){
-        return h(function(u){
-            return x;
-        }(action));
-    }(action));
-})(function (u){
-    return u;
-})
-= function(h){
-    return h(function(h){
-        return h(function(h){
-            return h(function(u){
-                return x;
-            }(action));
-        }(action));
-    }(action));
-}(function (u){
-    return u;
-})
-= function(u){
-    return u;
-}(function(h){
-        return h(function(h){
-            return h(function(u){
-                return x;
-            }(action));
-        }(action));
-    }(action))
-= function(h){
-        return h(function(h){
-            return h(function(u){
-                return x;
-            }(action));
-        }(action));
-    }(action)
-= action(function(h){
-            return h(function(u){
-                return x;
-            }(action));
-        }(action))
-= action(action(function(u){
-                return x;
-            }(action)))
-= action(action(x));
-TWO = function(f){
-    return function(x){
-        return f(ONE(f)(x));
-    }
-}
-ONE(f)(x)=f(ZERO(f)(x))=f(x);
-ONE = function(f){
-    return function(x){
-        return f(ZERO(f)(x));
-    }
-}</code></pre>
+<h4 id="减法"><a href="#减法" class="headerlink" title="减法"></a>减法</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ZERO = <span class="function"><span class="keyword">function</span> (<span class="params">f</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">z</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> z;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ADD1 = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">f</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">z</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> f(n(f)(z));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pred = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> fx = <span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> h(g(action));</span><br><span class="line">				&#125;;</span><br><span class="line">			&#125;;</span><br><span class="line">			<span class="keyword">return</span> n(fx)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> u;</span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> TWO = pred(THREE)=<span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> h(g(action));</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> u;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">TWO(action)(x)=<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(g(action));</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> u;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;(x)=THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(g(action));</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">var</span> SUB1 = <span class="function"><span class="keyword">function</span> (<span class="params">n</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">f</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">z</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> ((n (<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> h(g(f));</span><br><span class="line">				&#125;)</span><br><span class="line">			&#125;))&#123;</span><br><span class="line">				<span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> z;</span><br><span class="line">				&#125;))(<span class="function"><span class="keyword">function</span> (<span class="params">u</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> u;</span><br><span class="line">				&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> ONE = ADD1(ZERO);</span><br><span class="line"><span class="keyword">var</span> TWO = ADD1(ONE);</span><br><span class="line"><span class="keyword">var</span> THREE = ADD1(TWO);</span><br><span class="line">(TWO(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'1'</span>);</span><br><span class="line">&#125;))();</span><br><span class="line">(THREE(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">'2'</span>);</span><br><span class="line">&#125;))();</span><br><span class="line">THREE = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> f(f(ONE(f)(x)));</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">THREE(f) = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> f(f(ONE(f)(x)));</span><br><span class="line">&#125;;</span><br><span class="line">TWO = pred(THREE) = <span class="function"><span class="keyword">function</span>(<span class="params">action</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> h(g(action));</span><br><span class="line">			&#125;;</span><br><span class="line">		&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> u;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line">TWO(action) = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(g(action));</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> u;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">TWO(action)(x) = THREE(<span class="function"><span class="keyword">function</span>(<span class="params">g</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(g(action));</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*function(g)&#123;</span></span><br><span class="line"><span class="comment">	return function(h)&#123;</span></span><br><span class="line"><span class="comment">		return h(g(action));</span></span><br><span class="line"><span class="comment">	&#125;;</span></span><br><span class="line"><span class="comment">&#125;=f</span></span><br><span class="line"><span class="comment">f(x)=function(g)&#123;</span></span><br><span class="line"><span class="comment">	return function(h)&#123;</span></span><br><span class="line"><span class="comment">		return h(g(action));</span></span><br><span class="line"><span class="comment">	&#125;;</span></span><br><span class="line"><span class="comment">&#125;(x)=function(h)&#123;</span></span><br><span class="line"><span class="comment">	return h(x(action));</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">function(h)&#123;</span></span><br><span class="line"><span class="comment">	return h(x(action));</span></span><br><span class="line"><span class="comment">&#125;(x)=x(x(action))</span></span><br><span class="line"><span class="comment">f(f(ONE(f)(x)))(g)</span></span><br><span class="line"><span class="comment">f(f(f(x)))(g)</span></span><br><span class="line"><span class="comment">f(f(x))(g)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">TWO(action)(x) = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> f(f(ONE(f)(x)));</span><br><span class="line">&#125;(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">= f(f(ONE(f)(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;)))(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">= f(f(f(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;)))(<span class="function"><span class="keyword">function</span> (<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">=f(f(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;(action));</span><br><span class="line">&#125;))(<span class="function"><span class="keyword">function</span> (<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">=f(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> x;</span><br><span class="line">		&#125;(action));</span><br><span class="line">	&#125;(action));</span><br><span class="line">&#125;)(<span class="function"><span class="keyword">function</span> (<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">= <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;(action));</span><br><span class="line">		&#125;(action));</span><br><span class="line">	&#125;(action));</span><br><span class="line">&#125;(<span class="function"><span class="keyword">function</span> (<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;)</span><br><span class="line">= <span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;(action));</span><br><span class="line">		&#125;(action));</span><br><span class="line">	&#125;(action))</span><br><span class="line">= <span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;(action));</span><br><span class="line">		&#125;(action));</span><br><span class="line">	&#125;(action)</span><br><span class="line">= action(<span class="function"><span class="keyword">function</span>(<span class="params">h</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> h(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;(action));</span><br><span class="line">		&#125;(action))</span><br><span class="line">= action(action(<span class="function"><span class="keyword">function</span>(<span class="params">u</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;(action)))</span><br><span class="line">= action(action(x));</span><br><span class="line">TWO = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> f(ONE(f)(x));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">ONE(f)(x)=f(ZERO(f)(x))=f(x);</span><br><span class="line">ONE = <span class="function"><span class="keyword">function</span>(<span class="params">f</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> f(ZERO(f)(x));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其实到最后算出结果我也没绕出弯来🙃</p>
-<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><pre><code class="javascript">function multi(n, m) {    
-    return function (f) {
-        return function (x) {
-            return m(n(f))(x);
-        }
-    }
-}
-//test six
-var  six = multi(three,two);
-(multi(function () {
-    console.log(&#39;print 6 times&#39;);
-}))();
-</code></pre>
+<h4 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">multi</span>(<span class="params">n, m</span>) </span>&#123;    </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">f</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> m(n(f))(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//test six</span></span><br><span class="line"><span class="keyword">var</span>  six = multi(three,two);</span><br><span class="line">(multi(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'print 6 times'</span>);</span><br><span class="line">&#125;))();</span><br></pre></td></tr></table></figure>
+
 <p>大佬们果然都很喜欢挑战自己(lll￢ω￢)</p>
 
-            <hr>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+          
+            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
           </div>
-          <br>
-          <div>
-            <p>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/notes">notes</a>
-                
-                  <a class="hover-with-bg" href="/tags/js">js</a>
-                
-              </span>
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              <a href="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/" rel="prev" title="font-face远程问题">
+                font-face远程问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
-      </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
   </div>
 
-    </div>
-  </div>
-</div>
 
-<!-- custom -->
+          </div>
+          
 
 
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-
-    
-  </div>
-</div>
-
-    
-  </main>
+          
 
   
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
-    </a>
-  
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+
+
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-number">1.</span> <span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加减乘"><span class="nav-number">1.1.</span> <span class="nav-text">加减乘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加法"><span class="nav-number">1.1.1.</span> <span class="nav-text">加法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减法"><span class="nav-number">1.1.2.</span> <span class="nav-text">减法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乘法"><span class="nav-number">1.1.3.</span> <span class="nav-text">乘法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang</span>
+
+  
 </div>
-  
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
-    <br>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.8k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
 
     
-  
-    <!-- 不蒜子统计PV -->
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
-          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
-    
-    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
-            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
-  
-  <br>
-
-
 
     
 
   </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script src="/lib/jquery/jquery.min.js" ></script>
-<script src="/lib/popper/popper.min.js" ></script>
-<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
-
-
-  <script src="/js/lazyload.js" ></script>
-
-
-
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
-
-
-  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
-
-
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-<!-- Plugins -->
-
 
   
 
-  
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
-  
 
-  
+
+
+
+
+
+
 
   
 
 
 
 
-  <script src="/lib/prettify/prettify.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint  ');
-      prettyPrint();
-    })
-  </script>
-
-
-
-
-
-  <script src="/lib/anchor/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "false",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      getSearchFile(path);
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
-  <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
-      function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
@@ -678,5 +714,123 @@ var  six = multi(three,two);
 
 
 
-</body>
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

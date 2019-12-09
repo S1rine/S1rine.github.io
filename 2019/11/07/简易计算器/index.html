@@ -1,371 +1,489 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 
 
 
+  
 
 
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon-128x128.ico">
-  <link rel="icon" type="image/png" href="/img/favicon-128x128.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="description" content="">
-  <meta name="author" content="Zhang">
-  <meta name="keywords" content="">
-  <title>简易计算器 ~ Drowning me</title>
-
-  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
 
-  <link rel="stylesheet" href="/lib/prettify/myself.min.css"  >
 
-<link rel="stylesheet" href="/css/main.css"  >
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
-  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css,notes,js,html," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简易计算器制作+优化过程🤪碎碎念 其实学了蛮久 js 的，但是一直没有尝试过用 js 去动手写一些小东西。碰巧在某个学习平台看到了计算器的制作，顺手记录一下。">
+<meta name="keywords" content="css,notes,js,html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简易计算器">
+<meta property="og:url" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="简易计算器制作+优化过程🤪碎碎念 其实学了蛮久 js 的，但是一直没有尝试过用 js 去动手写一些小东西。碰巧在某个学习平台看到了计算器的制作，顺手记录一下。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A81.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A82.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A83.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A84.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A85.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A86.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A87.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A88.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A810.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A89.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A811.png">
+<meta property="og:updated_time" content="2019-11-07T07:10:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;11&#x2F;07&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8&#x2F;%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A81.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Severu5.github.io/2019/11/07/简易计算器/"/>
+
+
+
+
+
+  <title>简易计算器 | Drowning me</title>
+  
+
+
+
+
+
+
 
 
 </head>
 
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Drowning me</strong>&nbsp;</a>
+  
+  
+    
+  
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
-          </li>
-        
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">关于</a>
-          </li>
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">沉没</p>
+      
   </div>
 
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-</nav>
+<nav class="site-nav">
+  
 
-    <div class="view intro-2" id="background"
-         style="background: url('/img/banner/bg.jpg')no-repeat center center;
-           background-size: cover;
-           background-attachment: fixed;">
-      <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-                简易计算器
-              
-            </span>
-
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-              <br>
-              
-                <p class="mt-3">
-                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期四, 十一月 7日 2019, 3:10 下午
-                </p>
-              
-
-              <p>
-                
-                  
-                  &nbsp;<i class="far fa-chart-bar"></i>
-                  <span class="post-count">
-                    1.5k 字
-                  </span>&nbsp;
-                
-
-                
-                  
-                  &nbsp;<i class="far fa-clock"></i>
-                  <span class="post-count">
-                      7 分钟
-                  </span>&nbsp;
-                
-
-                
-                  <!-- 不蒜子统计文章PV -->
-                  
-                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
-                  <span id="busuanzi_container_page_pv">
-                    <span id="busuanzi_value_page_pv"></span> 次
-                  </span>&nbsp;
-                
-              </p>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="py-5 z-depth-3" id="board">
-        <div class="post-content mx-auto" id="post">
-          <div class="markdown-body">
-            <h1 id="简易计算器制作-优化过程"><a href="#简易计算器制作-优化过程" class="headerlink" title="简易计算器制作+优化过程"></a>简易计算器制作+优化过程</h1><h3 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h3><blockquote>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Severu5.github.io/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">简易计算器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T15:10:46+08:00">
+                2019-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简易计算器制作-优化过程"><a href="#简易计算器制作-优化过程" class="headerlink" title="简易计算器制作+优化过程"></a>简易计算器制作+优化过程</h1><h3 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h3><blockquote>
 <p>其实学了蛮久 <code>js</code> 的，但是一直没有尝试过用 <code>js</code> 去动手写一些小东西。<br>碰巧在某个学习平台看到了计算器的制作，顺手记录一下。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h3><p>简单到令人发指的初始简陋版本👇</p>
 <blockquote>
 <p>忘记粘源码了，第一部分全是图片真的很搞笑。</p>
 </blockquote>
-<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A81.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A81.png" alt></p>
 <p><code>js</code> 代码也是一样的粗糙随意。</p>
-<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A82.png" srcset="/img/loading.gif" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A83.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A82.png" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A83.png" alt></p>
 <p>效果演示：</p>
-<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A84.png" srcset="/img/loading.gif" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A85.png" srcset="/img/loading.gif" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A86.png" srcset="/img/loading.gif" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A87.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A84.png" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A85.png" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A86.png" alt><br><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A87.png" alt></p>
 <p>然后就是对 <code>js</code> 代码的优化。</p>
 <ol>
 <li><p>将重复代码抽出来包装成为独立的函数。</p>
-<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A88.png" srcset="/img/loading.gif" alt></p>
+<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A88.png" alt></p>
 </li>
 <li><p>将四个事件绑定集合到一个循环内完成。</p>
-<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A810.png" srcset="/img/loading.gif" alt></p>
+<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A810.png" alt></p>
 <blockquote>
 <p>顺便，我可真是个手误小能手。</p>
 </blockquote>
-<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A89.png" srcset="/img/loading.gif" alt></p>
+<p> <img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A89.png" alt></p>
 </li>
 </ol>
 <h3 id="💻美化版计算器-以下才是正文系列"><a href="#💻美化版计算器-以下才是正文系列" class="headerlink" title="💻美化版计算器(以下才是正文系列)"></a>💻美化版计算器<del>(以下才是正文系列)</del></h3><p>首先是 <code>html</code> 和 <code>css</code> 部分，差不多是照搬。</p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;./简易计算器&lt;/title&gt;
-        &lt;style&gt;
-            *{
-                border: none;
-                font-family: &#39;Open Sans&#39;, sans-serif;
-                margin: 0;
-                padding: 0;
-            }
-            h1{
-                color: #495678;
-                font-size: 30px;
-                margin-top: 20px;
-                padding-top: 50px;
-                display: block;
-                text-align: center;
-                text-decoration: none;
-            }
-            form{
-                background-color: #495678;
-                box-shadow: 4px 4px #3d4a65;
-                margin: 40px auto;
-                padding: 40px 0 30px 40px;
-                width: 280px;
-            }
-            .btn {
-                outline: none;
-                cursor: pointer;
-                font-size: 20px;
-                height: 45px;
-                margin: 5px 0 5px 10px;
-                width: 45px;
-            }
-            .btn:first-child {
-                margin: 5px 0 5px 10px;
-            }
-            .btn, #display, form {
-                border-radius: 25px;
-            }
-            #display {
-                outline: none;
-                background-color: #98d1dc;
-                box-shadow: inset 6px 6px 0px #3facc0;
-                color: #dededc;
-                font-size: 20px;
-                height: 47px;
-                text-align: right;
-                width: 115px;
-                padding-right: 10px;
-                margin-left: 5px;
-            }
-            .number {
-                background-color: #72778b;
-                box-shadow: 0 5px #5f6680;
-                color: #dededc;
-            }
-            .number:active {
-                box-shadow: 0 2px #5f6680;
-            }
-            .operator {
-                background: #dededc;
-                box-shadow: 0 5px #bebebe;
-                color: #72778b;
-            }
-            .operator:active {
-                box-shadow: 0 2px #bebebe;
-            }
-            .other {
-                background-color: #e3844c;
-                box-shadow: 0 5px #e76a3d;
-                color: #dededc;
-            }
-            .other:active {
-                box-shadow: 0 2px #e76a3d;
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;HTML, CSS, JavaScript 计算器&lt;/h1&gt;
-        &lt;form&gt;
-            &lt;input type=&quot;button&quot; id=&quot;clear&quot; class=&quot;btn other&quot; value=&quot;C&quot;&gt;
-            &lt;input type=&quot;button&quot; id=&quot;delete&quot; class=&quot;btn other&quot; value=&quot;D&quot;&gt;
-            &lt;input type=&quot;text&quot; id=&quot;display&quot;&gt;
-            &lt;br&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;7&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;8&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;9&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn operator toget&quot; value=&quot;+&quot;&gt;
-            &lt;br&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;4&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;5&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;6&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn operator toget&quot; value=&quot;*&quot;&gt;
-            &lt;br&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;1&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;2&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;3&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn operator toget&quot; value=&quot;-&quot;&gt;
-            &lt;br&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn number toget&quot; value=&quot;0&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn operator toget&quot; value=&quot;.&quot;&gt;
-            &lt;input type=&quot;button&quot; class=&quot;btn operator toget&quot; value=&quot;/&quot;&gt;
-            &lt;input type=&quot;button&quot; id=&quot;cal&quot; class=&quot;btn other&quot; value=&quot;=&quot;&gt;
-        &lt;/form&gt;
-        &lt;p id=&quot;time&quot; style=&quot;text-align:center&quot;&gt;&lt;/p&gt;
-        &lt;script src=&quot;./js/./简易计算器.js&quot;&gt;&lt;/script&gt;
-    &lt;/body&gt;
-&lt;/html&gt;</code></pre>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>./简易计算器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">			*&#123;</span><br><span class="line">				border: none;</span><br><span class="line">				font-family: 'Open Sans', sans-serif;</span><br><span class="line">				margin: 0;</span><br><span class="line">				padding: 0;</span><br><span class="line">			&#125;</span><br><span class="line">			h1&#123;</span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#495678</span>;</span></span><br><span class="line">				font-size: 30px;</span><br><span class="line">				margin-top: 20px;</span><br><span class="line">				padding-top: 50px;</span><br><span class="line">				display: block;</span><br><span class="line">				text-align: center;</span><br><span class="line">				text-decoration: none;</span><br><span class="line">			&#125;</span><br><span class="line">			form&#123;</span><br><span class="line"><span class="css">				<span class="selector-tag">background-color</span>: <span class="selector-id">#495678</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 4<span class="selector-tag">px</span> 4<span class="selector-tag">px</span> <span class="selector-id">#3d4a65</span>;</span></span><br><span class="line">				margin: 40px auto;</span><br><span class="line">				padding: 40px 0 30px 40px;</span><br><span class="line">				width: 280px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.btn</span> &#123;</span></span><br><span class="line">				outline: none;</span><br><span class="line">				cursor: pointer;</span><br><span class="line">				font-size: 20px;</span><br><span class="line">				height: 45px;</span><br><span class="line">				margin: 5px 0 5px 10px;</span><br><span class="line">				width: 45px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.btn</span><span class="selector-pseudo">:first-child</span> &#123;</span></span><br><span class="line">				margin: 5px 0 5px 10px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.btn</span>, <span class="selector-id">#display</span>, <span class="selector-tag">form</span> &#123;</span></span><br><span class="line">				border-radius: 25px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-id">#display</span> &#123;</span></span><br><span class="line">				outline: none;</span><br><span class="line"><span class="css">				<span class="selector-tag">background-color</span>: <span class="selector-id">#98d1dc</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: <span class="selector-tag">inset</span> 6<span class="selector-tag">px</span> 6<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-id">#3facc0</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#dededc</span>;</span></span><br><span class="line">				font-size: 20px;</span><br><span class="line">				height: 47px;</span><br><span class="line">				text-align: right;</span><br><span class="line">				width: 115px;</span><br><span class="line">				padding-right: 10px;</span><br><span class="line">				margin-left: 5px;</span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.number</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background-color</span>: <span class="selector-id">#72778b</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 5<span class="selector-tag">px</span> <span class="selector-id">#5f6680</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#dededc</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.number</span><span class="selector-pseudo">:active</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 2<span class="selector-tag">px</span> <span class="selector-id">#5f6680</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.operator</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background</span>: <span class="selector-id">#dededc</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 5<span class="selector-tag">px</span> <span class="selector-id">#bebebe</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#72778b</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.operator</span><span class="selector-pseudo">:active</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 2<span class="selector-tag">px</span> <span class="selector-id">#bebebe</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.other</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">background-color</span>: <span class="selector-id">#e3844c</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 5<span class="selector-tag">px</span> <span class="selector-id">#e76a3d</span>;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">color</span>: <span class="selector-id">#dededc</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line"><span class="css">			<span class="selector-class">.other</span><span class="selector-pseudo">:active</span> &#123;</span></span><br><span class="line"><span class="css">				<span class="selector-tag">box-shadow</span>: 0 2<span class="selector-tag">px</span> <span class="selector-id">#e76a3d</span>;</span></span><br><span class="line">			&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>HTML, CSS, JavaScript 计算器<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"clear"</span> <span class="attr">class</span>=<span class="string">"btn other"</span> <span class="attr">value</span>=<span class="string">"C"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"delete"</span> <span class="attr">class</span>=<span class="string">"btn other"</span> <span class="attr">value</span>=<span class="string">"D"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"display"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"7"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"8"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"9"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn operator toget"</span> <span class="attr">value</span>=<span class="string">"+"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"4"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"5"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"6"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn operator toget"</span> <span class="attr">value</span>=<span class="string">"*"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn operator toget"</span> <span class="attr">value</span>=<span class="string">"-"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn number toget"</span> <span class="attr">value</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn operator toget"</span> <span class="attr">value</span>=<span class="string">"."</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn operator toget"</span> <span class="attr">value</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"cal"</span> <span class="attr">class</span>=<span class="string">"btn other"</span> <span class="attr">value</span>=<span class="string">"="</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"time"</span> <span class="attr">style</span>=<span class="string">"text-align:center"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./js/./简易计算器.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>样式图：</p>
-<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A811.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A811.png" alt></p>
 <p>然后先是简单粗暴的 <code>js</code> 代码：</p>
-<pre><code class="javascript">//display框显示更改。
-function get(num){
-    var shownums = document.getElementById(&quot;display&quot;);
-    shownums.value+=num;
-}
-//清空显示函数
-function clear(){
-    var shownums = document.getElementById(&quot;display&quot;);
-    shownums.value=&quot;&quot;;
-}
-//删除一个输入函数
-function backspace(){
-    var shownums = document.getElementById(&quot;display&quot;);
-    shownums.value=shownums.value.substring(0,shownums.value.length-1);
-}
-//为所有 num 和 operator 的 button 添加点击监听事件
-var Btns = document.getElementsByClassName(&quot;toget&quot;)
-for(var i=0;i&lt;Btns.length;i++){
-    Btns[i].onclick=function(){
-        get(this.value);
-    }
-}</code></pre>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//display框显示更改。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> shownums = <span class="built_in">document</span>.getElementById(<span class="string">"display"</span>);</span><br><span class="line">	shownums.value+=num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//清空显示函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clear</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> shownums = <span class="built_in">document</span>.getElementById(<span class="string">"display"</span>);</span><br><span class="line">	shownums.value=<span class="string">""</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除一个输入函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">backspace</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> shownums = <span class="built_in">document</span>.getElementById(<span class="string">"display"</span>);</span><br><span class="line">	shownums.value=shownums.value.substring(<span class="number">0</span>,shownums.value.length<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//为所有 num 和 operator 的 button 添加点击监听事件</span></span><br><span class="line"><span class="keyword">var</span> Btns = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"toget"</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;Btns.length;i++)&#123;</span><br><span class="line">	Btns[i].onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">get</span>(this.value);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>首先是前面几个显示部分的函数，都很简单。不过我发现我老是忘记字符串是无法更改的，而且记不清数组和字符串各自的方法。</p>
-<pre><code class="javascript">//找到清除按钮绑定点击监听事件
-var clearBtn = document.getElementById(&quot;clear&quot;);
-clearBtn.onclick=clear;
-//删除一个输入的绑定监听
-var deleteBtn = document.getElementById(&quot;delete&quot;);
-deleteBtn.onclick=backspace;
-//计算结果的点击绑定监听
-var re = document.getElementById(&quot;cal&quot;);
-function calculates(){
-    var result=0;
-    result = document.getElementById(&quot;display&quot;).value;
-    document.getElementById(&quot;display&quot;).value=eval(result);
-}
-re.onclick=calculates;</code></pre>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//找到清除按钮绑定点击监听事件</span></span><br><span class="line"><span class="keyword">var</span> clearBtn = <span class="built_in">document</span>.getElementById(<span class="string">"clear"</span>);</span><br><span class="line">clearBtn.onclick=clear;</span><br><span class="line"><span class="comment">//删除一个输入的绑定监听</span></span><br><span class="line"><span class="keyword">var</span> deleteBtn = <span class="built_in">document</span>.getElementById(<span class="string">"delete"</span>);</span><br><span class="line">deleteBtn.onclick=backspace;</span><br><span class="line"><span class="comment">//计算结果的点击绑定监听</span></span><br><span class="line"><span class="keyword">var</span> re = <span class="built_in">document</span>.getElementById(<span class="string">"cal"</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calculates</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> result=<span class="number">0</span>;</span><br><span class="line">	result = <span class="built_in">document</span>.getElementById(<span class="string">"display"</span>).value;</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">"display"</span>).value=<span class="built_in">eval</span>(result);</span><br><span class="line">&#125;</span><br><span class="line">re.onclick=calculates;</span><br></pre></td></tr></table></figure>
+
 <p>然后到了这里，写着写着懵了一下。本来以为要摩拳擦掌自己写计算的函数，怎么怎么取符号，结果直接一个 <code>eval</code> 函数砸了上来。 emmmmm， 我一定是沉浸在写 <code>C</code> 的时候，很多东西都是自己动手去写。现在写别的语言，有了很多内置的函数很方便，但是我总不记得。</p>
-<pre><code class="javascript">//时间展示
-function showTime(){
-    var today = new Date();
-    var y = today.getFullYear();
-    var M = today.getMonth()+1;
-    var d = today.getDate();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m=checkTime(m);
-    s=checkTime(s);
-    var week=today.getDay();
-    var w = new Array(&quot;星期天&quot;,&quot;星期一&quot;,&quot;星期二&quot;,&quot;星期三&quot;,&quot;星期四&quot;,&quot;星期五&quot;,&quot;星期六&quot;);
-    document.getElementById(&quot;time&quot;).innerHTML=y+&quot;年&quot;+M+&quot;月&quot;+d+&quot;日&quot;+&quot;&lt;/br&gt;&quot;+h+&quot;:&quot;+m+&quot;:&quot;+s+&quot; &quot;+w[week];
-    setTimeout(&quot;showTime()&quot;,1000);
-}
-function checkTime(i){
-    if(i&lt;10){
-        i=&quot;0&quot;+i;
-    }
-    return i;
-}
-window.onload = function(){
-    showTime();
-}</code></pre>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//时间展示</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showTime</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> today = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">	<span class="keyword">var</span> y = today.getFullYear();</span><br><span class="line">	<span class="keyword">var</span> M = today.getMonth()+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">var</span> d = today.getDate();</span><br><span class="line">	<span class="keyword">var</span> h = today.getHours();</span><br><span class="line">	<span class="keyword">var</span> m = today.getMinutes();</span><br><span class="line">	<span class="keyword">var</span> s = today.getSeconds();</span><br><span class="line">	m=checkTime(m);</span><br><span class="line">	s=checkTime(s);</span><br><span class="line">	<span class="keyword">var</span> week=today.getDay();</span><br><span class="line">	<span class="keyword">var</span> w = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"星期天"</span>,<span class="string">"星期一"</span>,<span class="string">"星期二"</span>,<span class="string">"星期三"</span>,<span class="string">"星期四"</span>,<span class="string">"星期五"</span>,<span class="string">"星期六"</span>);</span><br><span class="line">	<span class="built_in">document</span>.getElementById(<span class="string">"time"</span>).innerHTML=y+<span class="string">"年"</span>+M+<span class="string">"月"</span>+d+<span class="string">"日"</span>+<span class="string">"&lt;/br&gt;"</span>+h+<span class="string">":"</span>+m+<span class="string">":"</span>+s+<span class="string">" "</span>+w[week];</span><br><span class="line">	setTimeout(<span class="string">"showTime()"</span>,<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkTime</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;<span class="number">10</span>)&#123;</span><br><span class="line">		i=<span class="string">"0"</span>+i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	showTime();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>然后是一个时间展示，这不禁让我想起了上周遇到的坑。<br><code>input</code> 中 <code>type</code> 为 <code>date</code> 的那个元素 <code>value</code> 值的接收是有格式要求的，比如日的数字就要求是两位数。</p>
 <p>我写了一个自动获取当天日期的函数，在我自己测试的时候，是在二十几号，都没有出现过问题。别人在四五号的时候一测，就遇到 <code>bug</code> 了。😂</p>
 <h3 id="💡总结"><a href="#💡总结" class="headerlink" title="💡总结"></a>💡总结</h3><p>一个简单的计算器就差不多是这样了。写完一看好像也没有什么特别的东西……唯一记得的大概是这个计算器的样式很好看， <code>eval</code> 让我眼前一亮(?)</p>
@@ -373,224 +491,275 @@ window.onload = function(){
 <p>顺便记一下，要去了解一下 <code>setTimeout</code> 和 <code>setInterval</code> 的异同。</p>
 </blockquote>
 
-            <hr>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
+          
+            <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+          
+            <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+          
+            <a href="/tags/html/" rel="tag"><i class="fa fa-tag"></i> html</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/04/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
-          <br>
-          <div>
-            <p>
-            
-              <span>
-                <i class="iconfont icon-inbox"></i>
-                
-                  <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF">前端</a>
-                  &nbsp;
-                
-              </span>&nbsp;&nbsp;
-            
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/css">css</a>
-                
-                  <a class="hover-with-bg" href="/tags/notes">notes</a>
-                
-                  <a class="hover-with-bg" href="/tags/js">js</a>
-                
-                  <a class="hover-with-bg" href="/tags/html">html</a>
-                
-              </span>
-            
-            </p>
-            
-              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
           </div>
         </div>
-      </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
-    <div class="d-none d-lg-block col-lg-2 toc-container">
-      
-  <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
-    <div id="tocbot"></div>
   </div>
 
-    </div>
-  </div>
-</div>
 
-<!-- custom -->
+          </div>
+          
 
 
-<!-- Comments -->
-<div class="col-lg-7 mx-auto nopadding-md">
-  <div class="container comments mx-auto" id="comments">
-    
-      <br><br>
-      
-      
-
-    
-  </div>
-</div>
-
-    
-  </main>
+          
 
   
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
-    </a>
-  
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+
+
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Zhang" />
+            
+              <p class="site-author-name" itemprop="name">Zhang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简易计算器制作-优化过程"><span class="nav-number">1.</span> <span class="nav-text">简易计算器制作+优化过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🤪碎碎念"><span class="nav-number">1.0.1.</span> <span class="nav-text">🤪碎碎念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#📃正文"><span class="nav-number">1.0.2.</span> <span class="nav-text">📃正文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#💻美化版计算器-以下才是正文系列"><span class="nav-number">1.0.3.</span> <span class="nav-text">💻美化版计算器(以下才是正文系列)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#💡总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">💡总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang</span>
+
+  
 </div>
-  
 
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
-    <br>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.8k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
 
     
-  
-    <!-- 不蒜子统计PV -->
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
-          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
-    
-    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
-            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
-  
-  <br>
-
-
 
     
 
   </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script src="/lib/jquery/jquery.min.js" ></script>
-<script src="/lib/popper/popper.min.js" ></script>
-<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
-
-
-  <script src="/js/lazyload.js" ></script>
-
-
-
-  
-    <script src="/lib/tocbot/tocbot.min.js" ></script>
-  
-  <script src="/js/post.js" ></script>
-
-
-
-  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
-
-
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-<!-- Plugins -->
-
 
   
 
-  
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
 
-  
 
-  
+
+
+
+
+
+
 
   
 
 
 
 
-  <script src="/lib/prettify/prettify.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint  ');
-      prettyPrint();
-    })
-  </script>
-
-
-
-
-
-  <script src="/lib/anchor/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "false",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      getSearchFile(path);
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
-  <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
-      function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
@@ -598,5 +767,123 @@ window.onload = function(){
 
 
 
-</body>
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
