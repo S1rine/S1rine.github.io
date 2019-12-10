@@ -1192,7 +1192,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a86bff;
+  background: #ff8fff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2843,6 +2843,9 @@ ul.breadcrumb li + li:last-child {
       font-weight: normal;
       font-style: normal;
    }
+body {
+  font-weight: 400;
+}
 .post {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -2852,6 +2855,10 @@ ul.breadcrumb li + li:last-child {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
   border-radius: 10px;
   color: #24292e;
+}
+.post-body {
+  font-size: 1em;
+  line-height: 1.25;
 }
 .post-block {
   border-radius: 10px;
@@ -2872,7 +2879,8 @@ code {
   padding: 0.1em 0.25em;
   color: #e9ecef;
   margin: 0 5px;
-  padding: 2px 5px;
+  padding: 0px 5px;
+  vertical-align: middle;
 }
 .post .post-block .post-body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -2909,7 +2917,26 @@ pre .attr {
 .post-body .highlight {
   padding: 3px 8px;
   border-radius: 5px;
+  margin: 15px 0;
 }
 .post-block + .post-block {
   border-radius: 10px;
+}
+.line {
+  color: #ccc;
+}
+pre .title {
+  color: #7ec699;
+}
+pre .keyword {
+  color: #cc99cd;
+}
+pre .string {
+  color: #f8c555;
+}
+pre .function {
+  color: #67cdcc;
+}
+pre .attribute {
+  color: #9cdcda;
 }

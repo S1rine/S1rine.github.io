@@ -47,18 +47,19 @@
   };
 </script>
 
-  <meta name="description" content="Vue 笔记 ①🤪碎碎念 说好假期再看 vue 的，结果还是没忍住哈…">
+  <meta name="description" content="Vue 笔记 ①🤪碎碎念 说好假期再看vue的，结果还是没忍住哈…">
 <meta name="keywords" content="notes,vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VueNote_1">
 <meta property="og:url" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;index.html">
 <meta property="og:site_name" content="Drowning me">
-<meta property="og:description" content="Vue 笔记 ①🤪碎碎念 说好假期再看 vue 的，结果还是没忍住哈…">
+<meta property="og:description" content="Vue 笔记 ①🤪碎碎念 说好假期再看vue的，结果还是没忍住哈…">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191209_220854.gif">
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;pic2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;pic1.png">
-<meta property="og:updated_time" content="2019-12-09T14:17:52.000Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191210_174526.gif">
+<meta property="og:updated_time" content="2019-12-09T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191209_220854.gif">
 
@@ -239,6 +240,13 @@
 
               <time title="创建时间：2019-12-09 22:17:52" itemprop="dateCreated datePublished" datetime="2019-12-09T22:17:52+08:00">2019-12-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-10 00:00:00" itemprop="dateModified" datetime="2019-12-10T00:00:00+08:00">2019-12-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -257,14 +265,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>298</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -277,18 +285,28 @@
 
       
         <h1 id="Vue-笔记-①"><a href="#Vue-笔记-①" class="headerlink" title="Vue 笔记 ①"></a>Vue 笔记 ①</h1><h3 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h3><blockquote>
-<p>说好假期再看 <code>vue</code> 的，结果还是没忍住哈…</p>
+<p>说好假期再看<code>vue</code>的，结果还是没忍住哈…</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="实现点击元素变色效果"><a href="#实现点击元素变色效果" class="headerlink" title="实现点击元素变色效果"></a>实现点击元素变色效果</h3><p><img src="/2019/12/09/VueNote-1/20191209_220854.gif" alt="效果演示"></p>
-<p>一开始的要求就是使用 <code>data</code> 的数组来做数据然后渲染列表并实现点击某个元素时，某个元素变色。</p>
+<p>一开始的要求就是使用<code>data</code>的数组来做数据然后渲染列表并实现点击某个元素时，某个元素变色。</p>
 <p>仔细思考一下，将过程拆分开。</p>
 <ol>
-<li>首先是使用 <code>v-for</code> 指令循环生成元素。</li>
-<li>然后考虑给每个元素绑定 <code>click</code> 事件。</li>
+<li>首先是使用<code>v-for</code>指令循环生成元素。</li>
+<li>然后考虑给每个元素绑定<code>click</code>事件。</li>
 <li>点击时给当前点击元素添加指定类名同时移除其他所有元素的类名。</li>
 </ol>
-<p>然后就开始蒙圈了，应该怎么给数组数据和类名动态对应呢？<br>纠结了半天，用了对象的方法<br><img src="/2019/12/09/VueNote-1/pic2.png" alt="对象数据解决"><br>然后兜兜转转半天看到别人的解决方法，瞬间感觉自己是个 <code>**</code> 。<br><img src="/2019/12/09/VueNote-1/pic1.png" alt="数组解决方法"><br>只需要一个记录当前应该高亮的索引值，渲染元素时作为类名是否添加的判断条件，然后点击事件中动态修改这个索引值就可以。</p>
+<p>然后就开始蒙圈了，应该怎么给数组数据和类名动态对应呢？<br>纠结了半天，用了对象的方法<br><img src="/2019/12/09/VueNote-1/pic2.png" alt="对象数据解决"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.red</span> &#123;</span></span><br><span class="line">    color: red;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">"index"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">"(value,key, index) in list"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">:class</span>=<span class="string">"value?'red':''"</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">click</span>=<span class="string">"handle(key)"</span>&gt;</span>&#123;&#123; key &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      list:&#123;</span><br><span class="line"><span class="actionscript">        <span class="string">'aaaaaaaaaa'</span>:<span class="literal">true</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'bbbbbbbbbbbb'</span>:<span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'cccccccccccccc'</span>:<span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'dddddddddddddddd'</span>:<span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'eeeeeeeeeeeeeeeeee'</span>:<span class="literal">false</span>,</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      handle(index)&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> list = <span class="keyword">this</span>.list;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> list)&#123;</span></span><br><span class="line"><span class="actionscript">          list[i]=<span class="literal">false</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="actionscript">        list[index]=<span class="literal">true</span>;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后兜兜转转半天看到别人的解决方法，瞬间感觉自己是个 <code>**</code> 。<br><img src="/2019/12/09/VueNote-1/pic1.png" alt="数组解决方法"></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.red</span> &#123;</span></span><br><span class="line">    color: red;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">"index"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">"(item, index) in list"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">:class</span>=<span class="string">"&#123;'red':currentIndex==index&#125;"</span> </span></span><br><span class="line"><span class="tag">    @<span class="attr">click</span>=<span class="string">"handle(index)"</span>&gt;</span>&#123;&#123; item &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line">      list:[</span><br><span class="line"><span class="actionscript">        <span class="string">'aaaaaaaaaa'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'bbbbbbbbbbbb'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'cccccccccccccc'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'dddddddddddddddd'</span>,</span></span><br><span class="line"><span class="actionscript">        <span class="string">'eeeeeeeeeeeeeeeeee'</span>,</span></span><br><span class="line">      ],</span><br><span class="line">      currentIndex: 0,</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      handle(index)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.currentIndex=index;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只需要一个记录当前应该高亮的索引值，渲染元素时作为类名是否添加的判断条件，然后点击事件中动态修改这个索引值就可以。</p>
+<h3 id="动态渲染的底层原理"><a href="#动态渲染的底层原理" class="headerlink" title="动态渲染的底层原理"></a>动态渲染的底层原理</h3><blockquote>
+<p>先给出一个小例子</p>
+</blockquote>
+<p><img src="/2019/12/09/VueNote-1/20191210_174526.gif" alt="演示"><br>例子很简单，就是根据<code>data</code>的一个<code>flag</code>值动态切换元素。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"flag"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"use-phone"</span>&gt;</span>用户手机号<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"use-phone"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"use-email"</span>&gt;</span>用户邮箱<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"use-email"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"flag=!flag;"</span>&gt;</span>切换类型<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="actionscript">      flag: <span class="literal">true</span>,</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>但是在切换的时候会注意到，输入的<code>value</code>值在元素切换的时候被保留了。<br>原因是<code>vue</code>底层的虚拟<code>dom</code>在更新时会比对新旧元素的改变，尽可能的减少修改的范围。<br>新旧元素除了<code>id</code>值以外都是相同的。因此，<code>input</code>组件的<code>value</code>值被保留。</p>
 
     </div>
 
@@ -371,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-笔记-①"><span class="nav-number">1.</span> <span class="nav-text">Vue 笔记 ①</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🤪碎碎念"><span class="nav-number">1.0.1.</span> <span class="nav-text">🤪碎碎念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-number">1.1.</span> <span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现点击元素变色效果"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现点击元素变色效果</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-笔记-①"><span class="nav-number">1.</span> <span class="nav-text">Vue 笔记 ①</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🤪碎碎念"><span class="nav-number">1.0.1.</span> <span class="nav-text">🤪碎碎念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-number">1.1.</span> <span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现点击元素变色效果"><span class="nav-number">1.1.1.</span> <span class="nav-text">实现点击元素变色效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态渲染的底层原理"><span class="nav-number">1.1.2.</span> <span class="nav-text">动态渲染的底层原理</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -496,24 +514,18 @@
 </div>
 
   
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">17k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
-  </div>
 
         
 

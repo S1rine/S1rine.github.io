@@ -279,10 +279,10 @@
       
         <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><p>在阅读 <code>Head First HTML与CSS</code> 第2版过程中，在增加字体和颜色样式部分学习到为页面增加Web字体。<br>其中运用了 <code>@font-face</code> 功能，照示例所写是失败的。</p>
 <a id="more"></a>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">        <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>;</span><br><span class="line">        <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.woff"</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>), </span><br><span class="line">             <span class="built_in">url</span>(<span class="string">"https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.ttf"</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>);</span><br><span class="line">&#125;</span><br><span class="line">//url后的format是后来加的，测试后并无效果。</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>:     <span class="string">"Emblema One"</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-size</span>:       <span class="number">220%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.woff"</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>), </span><br><span class="line">       <span class="built_in">url</span>(<span class="string">"https://wickedlysmart.com/hfhtmlcss/chapter8/journal/EmblemaOne-Regular.ttf"</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>);</span><br><span class="line">&#125;</span><br><span class="line">//url后的format是后来加的，测试后并无效果。</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">220%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic1.png" alt="演示"></p>
 <p>如图所示，会显示请求字体失败。<br>但是如果字体是存储在本地的，则成功。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">        <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>;</span><br><span class="line">        <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"EmblemaOne-Regular.woff"</span>), </span><br><span class="line">             <span class="built_in">url</span>(<span class="string">"EmblemaOne-Regular.ttf"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>:     <span class="string">"Emblema One"</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-size</span>:       <span class="number">220%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"EmblemaOne-Regular.woff"</span>), </span><br><span class="line">       <span class="built_in">url</span>(<span class="string">"EmblemaOne-Regular.ttf"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"Emblema One"</span>, sans-serif;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">220%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic2.png" alt="演示"></p>
 <p>除此之外，有实验利用在线字体库“有字库”也可以成功</p>
 <p><img src="/2019/06/02/font-face%E8%BF%9C%E7%A8%8B%E9%97%AE%E9%A2%98/pic3.png" alt="演示"></p>
@@ -498,24 +498,18 @@
 </div>
 
   
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">17k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
-  </div>
 
         
 

@@ -281,7 +281,7 @@
 </blockquote>
 <a id="more"></a>
 <p>代码如下：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.main-area</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">54px</span>;</span><br><span class="line">    <span class="attribute">transition</span>: background-color .<span class="number">5s</span> ease,</span><br><span class="line">    color .<span class="number">5s</span> ease;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main-area</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#3399FF</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.main-area</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">54px</span>;</span><br><span class="line">  <span class="attribute">transition</span>: background-color .<span class="number">5s</span> ease,</span><br><span class="line">  color .<span class="number">5s</span> ease;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main-area</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#3399FF</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后发现想要的效果确实可以做到，<strong>但是</strong>每次打开页面的时候都可以看到a元素的字体颜色从 <em>各种奇怪的颜色</em> 闪现为设定的颜色。</p>
 <p>研究了一会儿，看到 <code>transition</code> 的一个属性：</p>
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">transition-property : none | all | [&lt;IDENT&gt;][','&lt;IDENT&gt;]* ;</span><br></pre></td></tr></table></figure>
@@ -505,24 +505,18 @@
 </div>
 
   
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">17k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.6.0
-  </div>
 
         
 
