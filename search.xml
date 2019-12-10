@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>VueNote_1</title>
+    <url>/2019/12/09/VueNote-1/</url>
+    <content><![CDATA[<h1 id="Vue-笔记-①"><a href="#Vue-笔记-①" class="headerlink" title="Vue 笔记 ①"></a>Vue 笔记 ①</h1><h3 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h3><blockquote>
+<p>说好假期再看 <code>vue</code> 的，结果还是没忍住哈…</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="实现点击元素变色效果"><a href="#实现点击元素变色效果" class="headerlink" title="实现点击元素变色效果"></a>实现点击元素变色效果</h3><p><img src="/2019/12/09/VueNote-1/20191209_220854.gif" alt="效果演示"></p>
+<p>一开始的要求就是使用 <code>data</code> 的数组来做数据然后渲染列表并实现点击某个元素时，某个元素变色。</p>
+<p>仔细思考一下，将过程拆分开。</p>
+<ol>
+<li>首先是使用 <code>v-for</code> 指令循环生成元素。</li>
+<li>然后考虑给每个元素绑定 <code>click</code> 事件。</li>
+<li>点击时给当前点击元素添加指定类名同时移除其他所有元素的类名。</li>
+</ol>
+<p>然后就开始蒙圈了，应该怎么给数组数据和类名动态对应呢？<br>纠结了半天，用了对象的方法<br><img src="/2019/12/09/VueNote-1/pic2.png" alt="对象数据解决"><br>然后兜兜转转半天看到别人的解决方法，瞬间感觉自己是个 <code>**</code> 。<br><img src="/2019/12/09/VueNote-1/pic1.png" alt="数组解决方法"><br>只需要一个记录当前应该高亮的索引值，渲染元素时作为类名是否添加的判断条件，然后点击事件中动态修改这个索引值就可以。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简易计算器</title>
     <url>/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/</url>
     <content><![CDATA[<h1 id="简易计算器制作-优化过程"><a href="#简易计算器制作-优化过程" class="headerlink" title="简易计算器制作+优化过程"></a>简易计算器制作+优化过程</h1><h3 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h3><blockquote>
@@ -115,6 +140,12 @@
 </ul>
 </li>
 </ul>
+<ul>
+<li><p><code>line-height</code> 仅在值为纯数字时，才会使后代继承该比值，否则继承计算后的结果。</p>
+</li>
+<li><p><code>p</code> 元素不能包含 <code>div</code> 元素。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -158,11 +189,9 @@
   <entry>
     <title>CSS继承</title>
     <url>/2019/10/22/CSS%E7%BB%A7%E6%89%BF/</url>
-    <content><![CDATA[<h2 id="🤪碎碎念"><a href="#🤪碎碎念" class="headerlink" title="🤪碎碎念"></a>🤪碎碎念</h2><blockquote>
-<p>一开始记录在 <code>Onenote</code> 中的笔记复制都是直接图片形式。所以我先复制到记事本再转到 <code>markdown</code>。</p>
+    <content><![CDATA[<h2 id="🤪碎碎�"><a href="#🤪碎碎�" class="headerlink" title="🤪碎碎�"></a>🤪碎碎�</h2><blockquote>
+<p>��始记录在 <code>Onenote</code> 中的笔记复制都是直接图片形式。所以我先复制到记事本再转到 <code>markdown</code>�## 📃正文<br>在阅读�CSS权威指南》过程中，在继承这一模块发现了�择器权重的�些内容�<br>**继承得到的�没有特殊�，权重弱于 <code>0</code> 特殊性（通配符）</p>
 </blockquote>
-<h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><p>在阅读《CSS权威指南》过程中，在继承这一模块发现了选择器权重的一些内容。</p>
-<p>**继承得到的值没有特殊性，权重弱于 <code>0</code> 特殊性（通配符）</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">			* &#123;<span class="attribute">color</span>:gray;&#125;</span></span><br><span class="line"><span class="css">			<span class="selector-tag">h1</span><span class="selector-id">#page-title</span> &#123;<span class="attribute">color</span>:black;&#125;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"page-title"</span>&gt;</span>Meerkat <span class="tag">&lt;<span class="name">em</span>&gt;</span>Central<span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">			Welcome to the best place on the web for meerkat information!</span><br><span class="line">		<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><img src="/2019/10/22/CSS%E7%BB%A7%E6%89%BF/pic.png" alt="演示"></p>
 <a id="more"></a>
