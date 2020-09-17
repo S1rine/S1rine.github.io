@@ -48,7 +48,7 @@
 </script>
 
   <meta name="description" content="📃正文选择第一个子元素在阅读《CSS权威指南》的过程中，读到关于伪类选择器时的“选择第一个子元素”部分，发现对于伪类 :first-child 存在误解。">
-<meta name="keywords" content="notes,css">
+<meta name="keywords" content="css,notes">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS伪类选择器">
 <meta property="og:url" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;06&#x2F;05&#x2F;CSS%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8&#x2F;index.html">
@@ -276,7 +276,7 @@
       
         <h2 id="📃正文"><a href="#📃正文" class="headerlink" title="📃正文"></a>📃正文</h2><h3 id="选择第一个子元素"><a href="#选择第一个子元素" class="headerlink" title="选择第一个子元素"></a>选择第一个子元素</h3><p>在阅读《CSS权威指南》的过程中，读到关于伪类选择器时的“选择第一个子元素”部分，发现对于伪类 :first-child 存在误解。</p>
 <a id="more"></a>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">p</span><span class="selector-pseudo">:first-child</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123; <span class="attribute">text-transform</span>: uppercase; &#125;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>These are the necessary step:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Insert key<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Turn key <span class="tag">&lt;<span class="name">strong</span>&gt;</span>clockwise<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Push accelerator<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span> Do <span class="tag">&lt;<span class="name">em</span>&gt;</span>not<span class="tag">&lt;/<span class="name">em</span>&gt;</span> push the brake at the same time as the accelerator.</span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">p</span><span class="selector-pseudo">:first-child</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span></span><br><span class="line"><span class="css">      <span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123; <span class="attribute">text-transform</span>: uppercase; &#125;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>These are the necessary step:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Insert key<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Turn key <span class="tag">&lt;<span class="name">strong</span>&gt;</span>clockwise<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>Push accelerator<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span> Do <span class="tag">&lt;<span class="name">em</span>&gt;</span>not<span class="tag">&lt;/<span class="name">em</span>&gt;</span> push the brake at the same time as the accelerator.</span><br><span class="line">      <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>之前是将 p:first-child 理解为第一个p元素，阅读后发现其真实含义为某元素第一个子元素的所有p元素。</p>
 <p><img src="/2019/06/05/CSS%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8/pic1.png" alt="演示"></p>
@@ -290,8 +290,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
               <a href="/tags/css/" rel="tag"><i class="fa fa-tag"></i> css</a>
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
           </div>
 
         
@@ -366,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-number">1.</span> <span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择第一个子元素"><span class="nav-number">1.1.</span> <span class="nav-text">选择第一个子元素</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择第一个子元素"><span class="nav-text">选择第一个子元素</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,7 +382,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -425,8 +425,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -495,13 +495,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">20 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
 </div>
 
         
@@ -551,5 +551,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>

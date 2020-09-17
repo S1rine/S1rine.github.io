@@ -48,9 +48,9 @@
 </script>
 
   <meta name="description" content="Vue 笔记 ①🤪碎碎念 说好假期再看 vue 的，结果还是没忍住哈…">
-<meta name="keywords" content="vue,notes">
+<meta name="keywords" content="notes,vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VueNote_1">
+<meta property="og:title" content="VueNote-1">
 <meta property="og:url" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;index.html">
 <meta property="og:site_name" content="Drowning me">
 <meta property="og:description" content="Vue 笔记 ①🤪碎碎念 说好假期再看 vue 的，结果还是没忍住哈…">
@@ -60,7 +60,8 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;pic1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191210_174526.gif">
 <meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191210_192637.gif">
-<meta property="og:updated_time" content="2019-12-09T16:00:00.000Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20200304_173734.gif">
+<meta property="og:updated_time" content="2020-03-03T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;severu5.github.io&#x2F;2019&#x2F;12&#x2F;09&#x2F;VueNote-1&#x2F;20191209_220854.gif">
 
@@ -76,7 +77,7 @@
   };
 </script>
 
-  <title>VueNote_1 | Drowning me</title>
+  <title>VueNote-1 | Drowning me</title>
   
 
 
@@ -229,7 +230,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          VueNote_1
+          VueNote-1
         </h1>
 
         <div class="post-meta">
@@ -246,7 +247,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-10 00:00:00" itemprop="dateModified" datetime="2019-12-10T00:00:00+08:00">2019-12-10</time>
+                <time title="修改时间：2020-03-04 00:00:00" itemprop="dateModified" datetime="2020-03-04T00:00:00+08:00">2020-03-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,14 +267,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.5k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -307,7 +308,7 @@
 </blockquote>
 <p><img src="/2019/12/09/VueNote-1/20191210_174526.gif" alt="动态切换演示"><br>例子很简单，就是根据 <code>data</code> 的一个 <code>flag</code> 值动态切换元素。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">"flag"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"use-phone"</span>&gt;</span>用户手机号<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"use-phone"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"use-email"</span>&gt;</span>用户邮箱<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"use-email"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"flag=!flag;"</span>&gt;</span>切换类型<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="actionscript">      flag: <span class="literal">true</span>,</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>但是在切换的时候会注意到，输入的 <code>value</code> 值在元素切换的时候被保留了。<br>原因是 <code>vue</code> 底层的虚拟 <code>dom</code> 在更新时会比对新旧元素的改变，尽可能的减少修改的范围。<br>新旧元素除了 <code>id</code> 值以外都是相同的。因此， <code>input</code> 组件的 <code>value</code> 值被保留。<br>专业术语应该是 <code>input</code> 和 <code>label</code> 被复用</p>
+<p>但是在切换的时候会注意到，输入的 <code>value</code> 值在元素切换的时候被保留了。<br>原因是 <code>vue</code> 底层的虚拟 <code>dom</code> 在更新时会比对新旧元素的改变，尽可能的减少修改的范围。<br>新旧元素除了 <code>id</code> 值以外都是相同的。因此， <code>input</code> 组件的 <code>value</code> 值被保留。<br>专业术语应该是 <code>input</code> 和 <code>label</code> 被复用。</p>
 <h3 id="③-购物车实例"><a href="#③-购物车实例" class="headerlink" title="③ 购物车实例"></a>③ 购物车实例</h3><blockquote>
 <p>先给出演示<br><img src="/2019/12/09/VueNote-1/20191210_192637.gif" alt="购物车实例演示"></p>
 </blockquote>
@@ -321,6 +322,16 @@
 <li>使用 <code>for-of</code> 循环<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> totalPrice = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> item <span class="keyword">of</span> <span class="keyword">this</span>.books)&#123;</span><br><span class="line">  totalPrice += item.price * item.count;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> totalPrice;</span><br></pre></td></tr></table></figure></li>
 <li>使用高阶函数 <code>reduce</code></li>
 </ol>
+<h3 id="④-vue-双向绑定原理"><a href="#④-vue-双向绑定原理" class="headerlink" title="④ vue 双向绑定原理"></a>④ <code>vue</code> 双向绑定原理</h3><p><code>vue</code> 中的 <code>v-model</code> 指令实现了数据的双向绑定。我们可以通过另外两个指令来实现双向绑定。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">  &#123;&#123;message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="actionscript">      message: <span class="string">'a'</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/12/09/VueNote-1/20200304_173734.gif" alt="数据双向绑定演示"></p>
+<p><code>v-on</code> + <code>v-bind</code> 配合产生数据双向绑定效果。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">:value</span>=<span class="string">"message"</span> @<span class="attr">input</span>=<span class="string">"valueChange"</span>&gt;</span></span><br><span class="line">  &#123;&#123;message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">    el: <span class="string">'#app'</span>,</span></span><br><span class="line">    data: &#123;</span><br><span class="line"><span class="actionscript">      message: <span class="string">'a'</span></span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      valueChange(e)&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.message = e.target.value;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="⑤-vue-响应式注意点"><a href="#⑤-vue-响应式注意点" class="headerlink" title="⑤ vue 响应式注意点"></a>⑤ <code>vue</code> 响应式注意点</h3><p><code>vue</code> 实例中 <code>data</code> 中的数组响应式存在于七个方法中， <code>push</code> <code>pop</code> <code>splice</code> <code>shift</code> <code>unshift</code> <code>sort</code> <code>reverse</code> ，除此之外可以使用 <code>vue</code> 官方提供的 <code>set</code> <code>delete</code> 方法来响应式更新数组或对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Vue.set(state.info, <span class="string">'keyOrIndex'</span>, <span class="string">'value'</span>)</span><br><span class="line">Vue.delete(state.info, <span class="string">'keyOrIndex'</span>)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -330,8 +341,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
               <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+              <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
           </div>
 
         
@@ -343,7 +354,10 @@
     <a href="/2019/11/07/%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/" rel="prev" title="简易计算器">
       <i class="fa fa-chevron-left"></i> 简易计算器
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/12/VueNote-2/" rel="next" title="VueNote-2">
+      VueNote-2 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -403,7 +417,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-笔记-①"><span class="nav-number">1.</span> <span class="nav-text">Vue 笔记 ①</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🤪碎碎念"><span class="nav-number">1.0.1.</span> <span class="nav-text">🤪碎碎念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-number">1.1.</span> <span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①-实现点击元素变色效果"><span class="nav-number">1.1.1.</span> <span class="nav-text">① 实现点击元素变色效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②-动态切换渲染的底层原理"><span class="nav-number">1.1.2.</span> <span class="nav-text">② 动态切换渲染的底层原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#③-购物车实例"><span class="nav-number">1.1.3.</span> <span class="nav-text">③ 购物车实例</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue-笔记-①"><span class="nav-text">Vue 笔记 ①</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🤪碎碎念"><span class="nav-text">🤪碎碎念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#📃正文"><span class="nav-text">📃正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①-实现点击元素变色效果"><span class="nav-text">① 实现点击元素变色效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②-动态切换渲染的底层原理"><span class="nav-text">② 动态切换渲染的底层原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#③-购物车实例"><span class="nav-text">③ 购物车实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#④-vue-双向绑定原理"><span class="nav-text">④ vue 双向绑定原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#⑤-vue-响应式注意点"><span class="nav-text">⑤ vue 响应式注意点</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -419,7 +433,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -462,8 +476,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -532,13 +546,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">38k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">20 分钟</span>
+    <span title="站点阅读时长">34 分钟</span>
 </div>
 
         
@@ -588,5 +602,5 @@
 
   
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
 </html>
