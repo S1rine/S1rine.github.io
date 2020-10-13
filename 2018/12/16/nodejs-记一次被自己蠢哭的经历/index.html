@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            nodejs 记一次被自己蠢哭的经历 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/">nodejs 记一次被自己蠢哭的经历</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2018-12-16
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2018-12-16
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=nodejs 记一次被自己蠢哭的经历&url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=nodejs 记一次被自己蠢哭的经历&url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/&title=nodejs 记一次被自己蠢哭的经历" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=nodejs 记一次被自己蠢哭的经历&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/&text=nodejs 记一次被自己蠢哭的经历" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/js/ >js</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>2018.12.16 22:46 <strong>ES6学习中</strong></p>
+<blockquote>
+<p>Thejsway/chapter25</p>
+</blockquote>
+<p>被自己蠢哭了TT</p>
+<a id="more"></a>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> multer = <span class="built_in">require</span>(<span class="string">'multer'</span>);</span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"><span class="keyword">const</span> jsonParser = bodyParser.json();</span><br><span class="line"><span class="keyword">const</span> upload = multer();</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> articles = [</span><br><span class="line">  &#123;</span><br><span class="line">    id: <span class="number">1</span>,</span><br><span class="line">    title: <span class="string">'First article'</span>,</span><br><span class="line">    content: <span class="string">'Hello World!'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id: <span class="number">2</span>,</span><br><span class="line">    title: <span class="string">'Lorem ipsum'</span>,</span><br><span class="line">    content:</span><br><span class="line">      <span class="string">'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut hendrerit mauris ac porttitor accumsan. Nunc vitae pulvinar odio, auctor interdum dolor. Aenean sodales dui quis metus iaculis, hendrerit vulputate lorem vestibulum.'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id: <span class="number">3</span>,</span><br><span class="line">    title: <span class="string">'Lorem ipsum in French'</span>,</span><br><span class="line">    content:</span><br><span class="line">      <span class="string">'J’en dis autant de ceux qui, par mollesse d’esprit, c’est-à-dire par la crainte de la peine et de la douleur, manquent aux devoirs de la vie. Et il est très facile de rendre raison de ce que j’avance.'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.header(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">  res.header(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Origin, X-Requested-With, Content-Type, Accept'</span>);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line">app.post(<span class="string">'/api/cars'</span>, jsonParser, (request, response) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> cars = request.body;</span><br><span class="line">  response.send(<span class="string">`You sent me a list of cars: <span class="subst">$&#123;<span class="built_in">JSON</span>.stringify(cars)&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.post(<span class="string">'/animals'</span>, upload.array(), (request, response) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> name = request.body.name;</span><br><span class="line">  <span class="keyword">const</span> vote = request.body.strongest;</span><br><span class="line">  response.send(<span class="string">`Hello <span class="subst">$&#123;name&#125;</span>, you voted: <span class="subst">$&#123;vote&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.post(<span class="string">'/tshirt'</span>);</span><br><span class="line">app.get(<span class="string">'/hello'</span>, (request, response) =&gt; &#123;</span><br><span class="line">  response.sendFile(<span class="string">`<span class="subst">$&#123;__dirname&#125;</span>/views/hello.html`</span>);</span><br><span class="line">&#125;);</span><br><span class="line">app.get(<span class="string">'/api/articles'</span>, (request, response) =&gt; &#123;</span><br><span class="line">  response.json(articles);</span><br><span class="line">&#125;);</span><br><span class="line">app.use(express.static(<span class="string">'public'</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> listener = app.listen(process.env.PORT || <span class="number">3000</span>, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Your app is listening on port <span class="subst">$&#123;listener.address().port&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>一直无法达成 <strong>自己发送请求给自建的服务器</strong> 的代码效果。然而，控制台一直在提示缺少东西…… 只要调换顺序就可以了…… 呵=。=<br>还不清楚use的意义是啥…… 被自己蠢到没心情记录了…… 就这样把……</p>
+<p>又写了tshirt部分，然而，还是一头雾水了好久。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> travel = &#123;</span><br><span class="line">  name: <span class="string">'Sam'</span>,</span><br><span class="line">  countries: [</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'a'</span>, <span class="attr">year</span>: <span class="number">1</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'b'</span>, <span class="attr">year</span>: <span class="number">2</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">name</span>: <span class="string">'c'</span>, <span class="attr">year</span>: <span class="number">3</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Send data to the server</span></span><br><span class="line">fetch(<span class="string">'http://localhost:3000/api/countries'</span>, &#123;</span><br><span class="line">  method: <span class="string">'POST'</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    Accept: <span class="string">'application/json'</span>,</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  body: <span class="built_in">JSON</span>.stringify(travel)</span><br><span class="line">&#125;)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.text())</span><br><span class="line">  .then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(err.message);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">'/api/countries'</span>, jsonParser, (request, response) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> travel = request.body;</span><br><span class="line">  <span class="built_in">console</span>.log(travel);</span><br><span class="line">  <span class="comment">// const travel = JSON.stringify(request.body);</span></span><br><span class="line">  <span class="comment">// const name = JSON.stringify(request.body).name;</span></span><br><span class="line">  <span class="comment">// let a = JSON.stringify(request.body);</span></span><br><span class="line">  <span class="comment">// let travel = JSON.parse(a);</span></span><br><span class="line">  <span class="comment">// console.log(travel);</span></span><br><span class="line">  <span class="comment">// const name = travel.name;</span></span><br><span class="line">  <span class="comment">// console.log(name);</span></span><br><span class="line">  <span class="comment">// const length = travel.countries.length;</span></span><br><span class="line">  response.send(</span><br><span class="line">    <span class="string">`Your name is <span class="subst">$&#123;travel.name&#125;</span> and you visited <span class="subst">$&#123;travel.countries.length&#125;</span> countries. Keep traveling!`</span></span><br><span class="line">  );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>一开始直接定义 <code>name</code> 与 <code>countries</code> 但是会未定义。不知道为啥，在JSON的类型上纠结了很久。原先的写法( <code>key</code> 不加双引号 并且 <code>travel</code> 被我写成了 <code>Array</code> )似乎是有问题的。疯狂的修改之后最终谜之通过…… =。=改日再说</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2018/12/17/ProjectASocialNewsWebPageapp/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>ProjectASocialNewsWebPageapp</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2018/12/16/New-article/">
+        <span>New article</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2018/12/16/nodejs-%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%A2%AB%E8%87%AA%E5%B7%B1%E8%A0%A2%E5%93%AD%E7%9A%84%E7%BB%8F%E5%8E%86/" id="toc-header" class="mdui-ripple">文章目录</a>
+        
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020 
+        
+          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
+        
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

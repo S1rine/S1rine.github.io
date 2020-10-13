@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            ProjectASocialNewsWebPage | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2018/12/15/ProjectASocialNewsWebPage/">ProjectASocialNewsWebPage</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2018-12-15
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2018-12-15
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=ProjectASocialNewsWebPage&url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=ProjectASocialNewsWebPage&url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/&title=ProjectASocialNewsWebPage" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=ProjectASocialNewsWebPage&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2018/12/15/ProjectASocialNewsWebPage/&text=ProjectASocialNewsWebPage" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/js/ >js</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>2018.12.15 20:42 <strong>ES6学习中</strong></p>
+<blockquote>
+<p>Thejsway/chapter19 &lt;Project: a social news web page&gt;</p>
+</blockquote>
+<p>原题：</p>
+<h2 id="Project-a-social-news-web-page"><a href="#Project-a-social-news-web-page" class="headerlink" title="Project: a social news web page"></a>Project: a social news web page</h2><p>You know now enough JavaScript and DOM to go ahead and create interactive web pages for real!</p>
+<h3 id="Objective"><a href="#Objective" class="headerlink" title="Objective"></a>Objective</h3><p>This project builds upon the social news program you created previously. This time, the objective is to make a social news web page.<br>The general idea and page layout for this project are inspired by the <a href="https://www.discovermeteor.com/" target="_blank" rel="noopener">Discover Meteor book</a>‘s example application.</p>
+<h3 id="Functional-requirements"><a href="#Functional-requirements" class="headerlink" title="Functional requirements"></a>Functional requirements</h3><ul>
+<li>A link is defined by its title, its URL and its author (submitter).</li>
+<li>If a new link URL does not start with “http://“ or “https://“, “http://“ is automatically added at its beginning.</li>
+<li>The web page displays a list of at least three already existing links.</li>
+<li>A button exists for the user to submit a new link. When clicked, a form appears before the link list to input the new link properties (author, title and URL).</li>
+<li>In this form, all link fields are mandatory.</li>
+<li>When the new link is validated by the user, it is displayed at the top of the link list, replacing the form. A message indicates the success of the operation, then disappears after two seconds.</li>
+</ul>
+<h3 id="Technical-requirements"><a href="#Technical-requirements" class="headerlink" title="Technical requirements"></a>Technical requirements</h3><ul>
+<li><p>You should reuse any useful code from the previous project.</p>
+</li>
+<li><p>All your code should be correctly indented.</p>
+</li>
+<li><p>Names should be wisely chosen and adhere to the camelCase convention.</p>
+</li>
+<li><p>Code duplication should be avoided.</p>
+</li>
+</ul>
+<h3 id="Starter-code"><a href="#Starter-code" class="headerlink" title="Starter code"></a>Starter code</h3><p>Because this is first and foremost a JavaScript project, here is the complete HTML/CSS code of the web page. It is also online as a <a href="https://codepen.io/bpesquet/pen/pPyxLG/" target="_blank" rel="noopener">CodePen</a>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>My web page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 最新编译和缩小CSS --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"./css/first.css"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>A social news web page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"navbar navbar-default"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container-fluid"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-header"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"navbar-toggle collapsed"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">data-target</span>=<span class="string">"#bs-example-navbar-collapse-1"</span> <span class="attr">aria-expanded</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Toggle navigation<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"navbar-brand"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"glyphicon glyphicon-link"</span> <span class="attr">aria-hidden</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> PubLink<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"collapse navbar-collapse"</span> <span class="attr">id</span>=<span class="string">"bs-example-navbar-collapse-1"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"submitButton"</span> <span class="attr">class</span>=<span class="string">"btn btn-default navbar-btn"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"navbar-text navbar-right"</span>&gt;</span>A social news web page built with ❤ and JavaScript<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 存放动态内容 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./js/example.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- jQuery（Bootstrap的JavaScript插件所必需的）--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./js/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 包含所有已编译的插件(如下)，或者根据需要包含单个文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">4px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0.5px</span> solid;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#afaeae</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#inputbutton</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">hsl</span>(208, 62%, 40%);</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Main link element (&lt;div&gt; tag) */</span></span><br><span class="line"><span class="selector-class">.link</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: white;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Link title (&lt;a&gt; tag) */</span></span><br><span class="line"><span class="selector-class">.linkTitle</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#428bca</span>;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.linkTitle</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Link URL (&lt;span&gt; tag) */</span></span><br><span class="line"><span class="selector-class">.linkUrl</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Link headline containing title &amp; URL (&lt;h4&gt; tag) */</span></span><br><span class="line"><span class="selector-class">.linkHeadline</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* Link author (&lt;span&gt; tag) */</span></span><br><span class="line"><span class="selector-class">.linkAuthor</span> &#123;</span><br><span class="line">  <span class="attribute">font-weight</span>: normal;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">80%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.linkForm</span> &#123;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码做了适当更改。</p>
+<h3 id="Expected-result"><a href="#Expected-result" class="headerlink" title="Expected result"></a>Expected result</h3><p><img src="/2018/12/15/ProjectASocialNewsWebPage/image-20201013190336868.png" alt="image-20201013190336868"></p>
+<p><img src="/2018/12/15/ProjectASocialNewsWebPage/image-20201013190344372.png" alt="image-20201013190344372"></p>
+<p><img src="/2018/12/15/ProjectASocialNewsWebPage/image-20201013190352014.png" alt="image-20201013190352014"></p>
+<p><img src="/2018/12/15/ProjectASocialNewsWebPage/image-20201013190356227.png" alt="image-20201013190356227"></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><h4 id="1-编写函数-createlink-用于创建链接"><a href="#1-编写函数-createlink-用于创建链接" class="headerlink" title="1.编写函数  createlink()  用于创建链接"></a>1.编写函数  <code>createlink()</code>  用于创建链接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> createlink = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> linkform = <span class="built_in">document</span>.createElement(<span class="string">'form'</span>);</span><br><span class="line">  linkform.className = <span class="string">'linkForm'</span>;</span><br><span class="line">  <span class="keyword">const</span> input1 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input2 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input3 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input4 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  input1.style.width = <span class="string">'250px'</span>;</span><br><span class="line">  input2.style.width = <span class="string">'450px'</span>;</span><br><span class="line">  input3.style.width = <span class="string">'300px'</span>;</span><br><span class="line">  input4.style.width = <span class="string">'100px'</span>;</span><br><span class="line">  input1.type = <span class="string">'text'</span>;</span><br><span class="line">  input2.type = <span class="string">'text'</span>;</span><br><span class="line">  input3.type = <span class="string">'text'</span>;</span><br><span class="line">  input4.type = <span class="string">'submit'</span>;</span><br><span class="line">  input4.id = <span class="string">'inputbutton'</span>;</span><br><span class="line">  input4.value = <span class="string">'Add link'</span>;</span><br><span class="line">  linkform.appendChild(input1);</span><br><span class="line">  linkform.appendChild(input2);</span><br><span class="line">  linkform.appendChild(input3);</span><br><span class="line">  linkform.appendChild(input4);</span><br><span class="line">  <span class="comment">// const count = document.getElementsByClassName("link");</span></span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(linkform, <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).childNodes[<span class="number">0</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'submitButton'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> form = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'form'</span>);</span><br><span class="line">  <span class="keyword">if</span> (form.length === <span class="number">0</span>) &#123;</span><br><span class="line">    createlink();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>addEventListener()</code> 中的函数部分若加上括号，则直接调用该函数。体现在该网页上则是不用点击 <code>submit</code> 按钮就出现了创建链接的列表。部分初始化过程过于繁琐。有因未验证是否存在表单而导致多次点击按钮的情况下会出现多个表单。</p>
+<h4 id="2-文档加载过程中创建三个现有链接"><a href="#2-文档加载过程中创建三个现有链接" class="headerlink" title="2.文档加载过程中创建三个现有链接"></a>2.文档加载过程中创建三个现有链接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> links = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Hacker News'</span>,</span><br><span class="line">    url: <span class="string">'http://news.ycombinator.com'</span>,</span><br><span class="line">    author: <span class="string">'Baptiste'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Reddit'</span>,</span><br><span class="line">    url: <span class="string">'http://reddit.com'</span>,</span><br><span class="line">    author: <span class="string">'Thomas'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Boing Boing'</span>,</span><br><span class="line">    url: <span class="string">'http://bolingboling.net'</span>,</span><br><span class="line">    author: <span class="string">'Daniel'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> link <span class="keyword">of</span> links) &#123;</span><br><span class="line">    <span class="keyword">const</span> linkb = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">    <span class="keyword">const</span> linkheadling = <span class="built_in">document</span>.createElement(<span class="string">'h4'</span>);</span><br><span class="line">    <span class="keyword">const</span> linktitle = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">const</span> linkurl = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">    <span class="keyword">const</span> linkauthor = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">    linkb.className = <span class="string">'link'</span>;</span><br><span class="line">    linkheadling.className = <span class="string">'linkHeadline'</span>;</span><br><span class="line">    linktitle.className = <span class="string">'linkTitle'</span>;</span><br><span class="line">    linkurl.className = <span class="string">'linkUrl'</span>;</span><br><span class="line">    linkauthor.className = <span class="string">'linkAuthor'</span>;</span><br><span class="line">    linktitle.textContent = link.title;</span><br><span class="line">    linktitle.href = link.url;</span><br><span class="line">    linkurl.textContent = link.url;</span><br><span class="line">    linkauthor.textContent = <span class="string">'Submitted by '</span> + link.author;</span><br><span class="line">    linkheadling.appendChild(linktitle);</span><br><span class="line">    linkheadling.appendChild(linkurl);</span><br><span class="line">    linkb.appendChild(linkheadling);</span><br><span class="line">    linkb.appendChild(linkauthor);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(linkb);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>有粗心忘了加外包的 <code>div</code> 盒子</p>
+<h4 id="3-编写成功创建链接部分"><a href="#3-编写成功创建链接部分" class="headerlink" title="3.编写成功创建链接部分"></a>3.编写成功创建链接部分</h4><blockquote>
+<p>对上面代码进行部分改写</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> links = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Hacker News'</span>,</span><br><span class="line">    url: <span class="string">'http://news.ycombinator.com'</span>,</span><br><span class="line">    author: <span class="string">'Baptiste'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Reddit'</span>,</span><br><span class="line">    url: <span class="string">'http://reddit.com'</span>,</span><br><span class="line">    author: <span class="string">'Thomas'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Boing Boing'</span>,</span><br><span class="line">    url: <span class="string">'http://bolingboling.net'</span>,</span><br><span class="line">    author: <span class="string">'Daniel'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createmenu</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> linkb = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkheadling = <span class="built_in">document</span>.createElement(<span class="string">'h4'</span>);</span><br><span class="line">  <span class="keyword">const</span> linktitle = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkurl = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkauthor = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">  linkb.className = <span class="string">'link'</span>;</span><br><span class="line">  linkheadling.className = <span class="string">'linkHeadline'</span>;</span><br><span class="line">  linktitle.className = <span class="string">'linkTitle'</span>;</span><br><span class="line">  linkurl.className = <span class="string">'linkUrl'</span>;</span><br><span class="line">  linkauthor.className = <span class="string">'linkAuthor'</span>;</span><br><span class="line">  linktitle.textContent = link.title;</span><br><span class="line">  linktitle.href = link.url;</span><br><span class="line">  linkurl.textContent = link.url;</span><br><span class="line">  linkauthor.textContent = <span class="string">'Submitted by '</span> + link.author;</span><br><span class="line">  linkheadling.appendChild(linktitle);</span><br><span class="line">  linkheadling.appendChild(linkurl);</span><br><span class="line">  linkb.appendChild(linkheadling);</span><br><span class="line">  linkb.appendChild(linkauthor);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).appendChild(linkb);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> link <span class="keyword">of</span> links) &#123;</span><br><span class="line">    createmenu(link);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createsucceed</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> box = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  box.classname = <span class="string">'succeed'</span>;</span><br><span class="line">  box.textContent = <span class="string">`The link <span class="subst">$&#123;link.title&#125;</span> has been succesfully added!`</span>;</span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(box, <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).childNodes[<span class="number">0</span>]);</span><br><span class="line">  createmenu(link);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> createlink = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> linkform = <span class="built_in">document</span>.createElement(<span class="string">'form'</span>);</span><br><span class="line">  linkform.className = <span class="string">'linkForm'</span>;</span><br><span class="line">  <span class="keyword">const</span> input1 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input2 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input3 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input4 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  input1.style.width = <span class="string">'250px'</span>;</span><br><span class="line">  input2.style.width = <span class="string">'450px'</span>;</span><br><span class="line">  input3.style.width = <span class="string">'300px'</span>;</span><br><span class="line">  input4.style.width = <span class="string">'100px'</span>;</span><br><span class="line">  input1.type = <span class="string">'text'</span>;</span><br><span class="line">  input2.type = <span class="string">'text'</span>;</span><br><span class="line">  input3.type = <span class="string">'text'</span>;</span><br><span class="line">  input4.type = <span class="string">'submit'</span>;</span><br><span class="line">  input4.id = <span class="string">'inputbutton'</span>;</span><br><span class="line">  input4.value = <span class="string">'Add link'</span>;</span><br><span class="line">  input4.addEventListener(<span class="string">'submit'</span>, e =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> inputs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'input'</span>);</span><br><span class="line">    <span class="keyword">if</span> (!(inputs[<span class="number">1</span>].value.startsWith(<span class="string">'http://'</span>) || inputs[<span class="number">1</span>].value.startsWith(<span class="string">'https://'</span>))) &#123;</span><br><span class="line">      inputs[i].value = <span class="string">'http://'</span> + inputs[i].value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> link = &#123;</span><br><span class="line">      title: input[<span class="number">0</span>].value,</span><br><span class="line">      url: inputs[<span class="number">1</span>].value,</span><br><span class="line">      author: inputs[<span class="number">2</span>].value</span><br><span class="line">    &#125;;</span><br><span class="line">    links.push(link);</span><br><span class="line">    createsucceed(link);</span><br><span class="line">  &#125;);</span><br><span class="line">  linkform.appendChild(input1);</span><br><span class="line">  linkform.appendChild(input2);</span><br><span class="line">  linkform.appendChild(input3);</span><br><span class="line">  linkform.appendChild(input4);</span><br><span class="line">  <span class="comment">// const count = document.getElementsByClassName("link");</span></span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(linkform, <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).childNodes[<span class="number">0</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'submitButton'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> form = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'form'</span>);</span><br><span class="line">  <span class="keyword">if</span> (form.length === <span class="number">0</span>) &#123;</span><br><span class="line">    createlink();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>问题：无法出现成功提交的界面。并且新建的链接也不会显示。<br>将 <code>input4</code> 的 <code>addEventListener()</code> 事件更改为click 并阻止 <code>submit</code> 的默认行为 即可出现提示并创建新链接。新问题：提示的效果未达成，表单如何消失。</p>
+<p>部分代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formdata</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> inputs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">if</span> (!(inputs[<span class="number">1</span>].value.startsWith(<span class="string">'http://'</span>) || inputs[<span class="number">1</span>].value.startsWith(<span class="string">'https://'</span>))) &#123;</span><br><span class="line">    inputs[<span class="number">1</span>].value = <span class="string">'http://'</span> + inputs[<span class="number">1</span>].value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> alink = &#123;</span><br><span class="line">    title: inputs[<span class="number">0</span>].value,</span><br><span class="line">    url: inputs[<span class="number">1</span>].value,</span><br><span class="line">    author: inputs[<span class="number">2</span>].value</span><br><span class="line">  &#125;;</span><br><span class="line">  links.push(alink);</span><br><span class="line">  createsucceed(alink);</span><br><span class="line">&#125;</span><br><span class="line">input4.addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  formdata();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-编写两秒钟后提示的消失部分"><a href="#4-编写两秒钟后提示的消失部分" class="headerlink" title="4.编写两秒钟后提示的消失部分"></a>4.编写两秒钟后提示的消失部分</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> links = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Boing Boing'</span>,</span><br><span class="line">    url: <span class="string">'http://bolingboling.net'</span>,</span><br><span class="line">    author: <span class="string">'Daniel'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Reddit'</span>,</span><br><span class="line">    url: <span class="string">'http://reddit.com'</span>,</span><br><span class="line">    author: <span class="string">'Thomas'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'Hacker News'</span>,</span><br><span class="line">    url: <span class="string">'http://news.ycombinator.com'</span>,</span><br><span class="line">    author: <span class="string">'Baptiste'</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createmenu</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> linkb = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkheadling = <span class="built_in">document</span>.createElement(<span class="string">'h4'</span>);</span><br><span class="line">  <span class="keyword">const</span> linktitle = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkurl = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">  <span class="keyword">const</span> linkauthor = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line">  linkb.className = <span class="string">'link'</span>;</span><br><span class="line">  linkheadling.className = <span class="string">'linkHeadline'</span>;</span><br><span class="line">  linktitle.className = <span class="string">'linkTitle'</span>;</span><br><span class="line">  linkurl.className = <span class="string">'linkUrl'</span>;</span><br><span class="line">  linkauthor.className = <span class="string">'linkAuthor'</span>;</span><br><span class="line">  linktitle.textContent = link.title;</span><br><span class="line">  linktitle.href = link.url;</span><br><span class="line">  linkurl.textContent = link.url;</span><br><span class="line">  linkauthor.textContent = <span class="string">'Submitted by '</span> + link.author;</span><br><span class="line">  linkheadling.appendChild(linktitle);</span><br><span class="line">  linkheadling.appendChild(linkurl);</span><br><span class="line">  linkb.appendChild(linkheadling);</span><br><span class="line">  linkb.appendChild(linkauthor);</span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(linkb, <span class="built_in">document</span>.getElementsByClassName(<span class="string">'link'</span>)[<span class="number">0</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> link <span class="keyword">of</span> links) &#123;</span><br><span class="line">    createmenu(link);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createsucceed</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> box = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  <span class="keyword">const</span> pa = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">  box.id = <span class="string">'succeed'</span>;</span><br><span class="line">  pa.textContent = <span class="string">`The link <span class="subst">$&#123;link.title&#125;</span> has been succesfully added!`</span>;</span><br><span class="line">  box.appendChild(pa);</span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(box, <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).childNodes[<span class="number">0</span>]);</span><br><span class="line">  createmenu(link);</span><br><span class="line">  <span class="keyword">const</span> linkform = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'linkForm'</span>)[<span class="number">0</span>];</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).removeChild(linkform);</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> it = <span class="built_in">document</span>.getElementById(<span class="string">'succeed'</span>);</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).removeChild(it);</span><br><span class="line">  &#125;, <span class="number">2000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formdata</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> inputs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">if</span> (!(inputs[<span class="number">1</span>].value.startsWith(<span class="string">'http://'</span>) || inputs[<span class="number">1</span>].value.startsWith(<span class="string">'https://'</span>))) &#123;</span><br><span class="line">    inputs[<span class="number">1</span>].value = <span class="string">'http://'</span> + inputs[<span class="number">1</span>].value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> alink = &#123;</span><br><span class="line">    title: inputs[<span class="number">0</span>].value,</span><br><span class="line">    url: inputs[<span class="number">1</span>].value,</span><br><span class="line">    author: inputs[<span class="number">2</span>].value</span><br><span class="line">  &#125;;</span><br><span class="line">  links.push(alink);</span><br><span class="line">  createsucceed(alink);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> createlink = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> linkform = <span class="built_in">document</span>.createElement(<span class="string">'form'</span>);</span><br><span class="line">  linkform.className = <span class="string">'linkForm'</span>;</span><br><span class="line">  <span class="keyword">const</span> input1 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input2 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input3 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  <span class="keyword">const</span> input4 = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">  input1.style.width = <span class="string">'250px'</span>;</span><br><span class="line">  input2.style.width = <span class="string">'450px'</span>;</span><br><span class="line">  input3.style.width = <span class="string">'300px'</span>;</span><br><span class="line">  input4.style.width = <span class="string">'100px'</span>;</span><br><span class="line">  input1.type = <span class="string">'text'</span>;</span><br><span class="line">  input2.type = <span class="string">'text'</span>;</span><br><span class="line">  input3.type = <span class="string">'text'</span>;</span><br><span class="line">  input4.type = <span class="string">'submit'</span>;</span><br><span class="line">  input4.id = <span class="string">'inputbutton'</span>;</span><br><span class="line">  input4.value = <span class="string">'Add link'</span>;</span><br><span class="line">  input4.addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">    formdata();</span><br><span class="line">  &#125;);</span><br><span class="line">  linkform.appendChild(input1);</span><br><span class="line">  linkform.appendChild(input2);</span><br><span class="line">  linkform.appendChild(input3);</span><br><span class="line">  linkform.appendChild(input4);</span><br><span class="line">  <span class="built_in">document</span></span><br><span class="line">    .getElementById(<span class="string">'content'</span>)</span><br><span class="line">    .insertBefore(linkform, <span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).childNodes[<span class="number">0</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'submitButton'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> form = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'form'</span>);</span><br><span class="line">  <span class="keyword">if</span> (form.length === <span class="number">0</span>) &#123;</span><br><span class="line">    createlink();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>效果基本实现。遗留问题：部分代码重复且繁琐，但不知如何抽象出来。初始化页面所需时间太久，不知如何优化 =。=<br>勉强算完成 =。= (主要是累了)</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2018/12/16/Github-profile/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>Github profile</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2018/12/15/start-and-stop/">
+        <span>start and stop</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2018/12/15/ProjectASocialNewsWebPage/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-a-social-news-web-page"><span class="toc-number">1.</span> <span class="toc-text">Project: a social news web page</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Objective"><span class="toc-number">1.1.</span> <span class="toc-text">Objective</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functional-requirements"><span class="toc-number">1.2.</span> <span class="toc-text">Functional requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Technical-requirements"><span class="toc-number">1.3.</span> <span class="toc-text">Technical requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Starter-code"><span class="toc-number">1.4.</span> <span class="toc-text">Starter code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Expected-result"><span class="toc-number">1.5.</span> <span class="toc-text">Expected result</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-number">1.6.</span> <span class="toc-text">过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-编写函数-createlink-用于创建链接"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.编写函数  createlink()  用于创建链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-文档加载过程中创建三个现有链接"><span class="toc-number">1.6.2.</span> <span class="toc-text">2.文档加载过程中创建三个现有链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-编写成功创建链接部分"><span class="toc-number">1.6.3.</span> <span class="toc-text">3.编写成功创建链接部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-编写两秒钟后提示的消失部分"><span class="toc-number">1.6.4.</span> <span class="toc-text">4.编写两秒钟后提示的消失部分</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020 
+        
+          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
+        
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

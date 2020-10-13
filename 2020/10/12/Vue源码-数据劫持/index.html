@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            Vue源码 数据劫持 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/">Vue源码 数据劫持</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-12
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Vue源码 数据劫持&url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=Vue源码 数据劫持&url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/&title=Vue源码 数据劫持" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=Vue源码 数据劫持&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/&text=Vue源码 数据劫持" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/vue/ >vue</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <p>双向数据绑定是 <code>Vue</code> 的一大亮点和重点，这里讲解一下原理并且重写一遍。版本为 <code>2.x</code> 。</p>
+<a id="more"></a>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><code>Vue 2.x</code> 中的双向数据绑定原理来源于一个对象方法， <code>Object.defineProperty</code> ， 通过这个方法我们可以定义对象属性的 <code>getter</code> 和 <code>setter</code> ，于是我们可以在数据被重新设置(即调用 <code>setter</code> 时)进行视图更新等操作。</p>
+<h2 id="大致思路"><a href="#大致思路" class="headerlink" title="大致思路"></a>大致思路</h2><p>使用 <code>Vue</code> 时我们会引入 <code>vue</code> 的默认导出，这个默认导出是一个构造函数，我们利用这个构造函数创建一个 <code>vue</code> 实例，并传入我们的配置参数，例如管理的 <code>dom</code> 元素以及 <code>data</code> 等参数，虽然在一般开发中我们不会在根实例上挂载数据，但此处仅做一个简单还原。</p>
+<p>传入参数后，我们在构造函数内调用初始化函数，初始化操作一般为挂载配置项，初始化各种数据，例如 <code>data</code> , <code>computed</code> <code>props</code> 等。</p>
+<p>我们首先需要对<code>data</code> 做一层代理，因为在配置项中传入的 <code>data</code> 一般为函数，以防止组件复用时因为引用相同而数据混乱。并且在 <code>vue</code> 实例中无法直接访问到数据，我们把 <code>data</code> 挂载到实例上，并使用 <code>Object.defineProperty</code> 使得我们可以使用 <code>this</code> 直接访问到各项 <code>data</code> 。</p>
+<p>做完代理，我们需要对数据进行响应式处理，即观察数据项的修改。首先是 <code>data</code> 本身，我们抽出一个 <code>observe</code> 函数来进行观察操作，首先判断传入的观察对象的类型，如果不是引用类型其实没有观察的必要，因为普通类型的修改已经在父级做了观察，我们需要深层观察的是子对象、子数组、子对象子数组内部的引用类型等。</p>
+<p>如果是引用类型，我们初始化一个观察者来进行观察。在观察者内部，我们迭代传入的引用类型，对每个 <code>key</code> 和 <code>value</code> 做一个响应式处理，当访问当前对象的 <code>key</code> 属性时，我们返回 <code>value</code> 。此处可以做一些操作，例如收集依赖。当设置当前对象的时候，我们去修改 <code>value</code> 的值。需要注意的是，此处不能够直接去获取或者修改 <code>obj[key]</code> ( <code>obj</code> 指代做响应式处理的对象或数组)，因为我们正是对 <code>obj[key]</code> 做了观察，当我们观察到需要获取 <code>key</code> 属性时，<code>getter</code> 内部又是获取 <code>key</code> 属性，会造成死循环。<code>setter</code> 同理。</p>
+<p>数组无法直接做响应式处理，我们选择遍历数组，对每个元素单独观察。但此处又有一个问题，因为 <code>Object.defineProperty</code> 无法响应数组的变化，当我们修改了数组，例如增加了新的元素，新增的元素没有被观察，数组的修改也没有被观察到。那么我们就需要重新定义数组的修改方法，就是 <code>push</code> <code>pop</code> <code>sort</code> <code>splice</code> <code>shift</code> <code>unshift</code> <code>reverse</code> ，我们使用数组原型创建一个新的数组对象，重写这个数组对象上的七个方法，在方法内部还是依然执行原本的函数内容，但此处我们就可以增加一些自己的操作，例如视图刷新等。定义完这个数组对象后，我们将它赋值给需要被响应式处理的数组的原型，那么就单独影响了我们响应式的数组，而不对其余的普通数组产生影响。</p>
+<p>在这个过程中还有一些小点，就是每次对对象的值或是数组的元素观察时，我们需要注意这个元素是否也是一个引用类型，如果是的话，我们需要再对这个元素进行观察。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>首先配置一个 <code>webpack</code> 环境，下载 <code>webpack</code> <code>webpack-cli</code> <code>webpack-dev-server</code> 以及 <code>html-webpack-plugin</code> 。在项目根目录配置 <code>webpack.config.js</code> 。我们需要配置项目的入口，出口，插件，以及模块引入的规则。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// /webpack.config.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./src/index.js'</span>, <span class="comment">// 定义入口</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'index.js'</span>, <span class="comment">// 定义出口的文件名</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>) <span class="comment">// 定义出口路径</span></span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: path.resolve(__dirname, <span class="string">'public/index.html'</span>) <span class="comment">// 定义文件模板位置</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">  devtool: <span class="string">'source-map'</span>,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    <span class="comment">// 配置模块引入的规则，首先从 src 目录寻找，再去 node_modules 中寻找。</span></span><br><span class="line">    modules: [path.resolve(__dirname, <span class="string">'src'</span>), path.resolve(__dirname, <span class="string">'node_modules'</span>)]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>再来看入口文件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="comment">// 实例化 Vue</span></span><br><span class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: <span class="string">"Sirine' working time"</span>,</span><br><span class="line">      time: <span class="string">'2020-10-11'</span>,</span><br><span class="line">      info: &#123;</span><br><span class="line">        name: <span class="string">'zhao'</span>,</span><br><span class="line">        age: <span class="number">21</span>,</span><br><span class="line">        isGood: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      say: [</span><br><span class="line">        <span class="number">123</span>,</span><br><span class="line">        <span class="string">'456'</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          a: <span class="number">123</span>,</span><br><span class="line">          b: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">          c: &#123;</span><br><span class="line">            today: <span class="string">'is'</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>此处只是简单创建了实例。</p>
+<p>然后看 <code>vue</code> 文件夹。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/index.js</span></span><br><span class="line"><span class="keyword">import</span> initState <span class="keyword">from</span> <span class="string">'./init'</span>; <span class="comment">// 引入初始化数据的函数。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Vue</span>(<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// vue 的构造函数，初始化实例。</span></span><br><span class="line">  <span class="keyword">this</span>._init(options);</span><br><span class="line">&#125;</span><br><span class="line">Vue.prototype._init = <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 在原型上挂载初始化函数，将传入的参数挂载到实例上。</span></span><br><span class="line">  <span class="keyword">var</span> vm = <span class="keyword">this</span>;</span><br><span class="line">  vm.$options = options;</span><br><span class="line">  initState(vm); <span class="comment">// 调用初始化数据的函数。</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Vue;</span><br></pre></td></tr></table></figure>
+
+<p>接下来看 <code>initState</code> 这个函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/init.js</span></span><br><span class="line"><span class="keyword">import</span> observe <span class="keyword">from</span> <span class="string">'./observe'</span>;</span><br><span class="line"><span class="keyword">import</span> proxyData <span class="keyword">from</span> <span class="string">'./proxy'</span>;</span><br><span class="line"><span class="comment">// 引入观察函数和代理数据函数。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initState</span>(<span class="params">vm</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> options = vm.$options;</span><br><span class="line">  <span class="comment">// 首先取出 options</span></span><br><span class="line">  <span class="keyword">if</span> (options.data) &#123;</span><br><span class="line">    <span class="comment">// 判断参数中是否有 data ，有才执行初始化。</span></span><br><span class="line">    initData(vm);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initData</span>(<span class="params">vm</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> _data = vm.$options.data; <span class="comment">// 取出数据</span></span><br><span class="line">  _data = vm._data = <span class="keyword">typeof</span> _data === <span class="string">'function'</span> ? _data.call(vm) : _data || &#123;&#125;;</span><br><span class="line">  <span class="comment">// 将数据挂载到实例上，并且判断是否是函数，是的话调用它，否的话保持原样，并确保至少是一个对象。</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> _data) &#123;</span><br><span class="line">    <span class="comment">// 遍历 data 做一层代理。</span></span><br><span class="line">    proxyData(vm, <span class="string">'_data'</span>, key);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 观察这个 data</span></span><br><span class="line">  observe(_data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> initState;</span><br></pre></td></tr></table></figure>
+
+<p>首先看 <code>proxyData</code> 函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/proxy.js</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">proxyData</span>(<span class="params">data, target, key</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 传入的参数分别是做代理的对象，挂载的属性名，和当前的属性名</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(data, key, &#123;</span><br><span class="line">    <span class="keyword">get</span>() &#123;</span><br><span class="line">      <span class="comment">// 当我们获取 data[key] 时，实际上是从 data[target][key] 中获取。</span></span><br><span class="line">      <span class="keyword">return</span> data[target][key];</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(newVal) &#123;</span><br><span class="line">      <span class="comment">// 当我们设置 data[key] 时，实际上设置在了 data[target][key]。</span></span><br><span class="line">      data[target][key] = newVal;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> proxyData;</span><br></pre></td></tr></table></figure>
+
+<p>此处做一个解释，我们在 <code>initData</code> 中将 <code>options</code> 中的 <code>data</code> 挂载到了 <code>vm._data</code> 上，而我们想要直接调用 <code>vm.xxx</code> 来获取，但是 <code>vm</code> 上并没有这个属性，它实际上是在 <code>vm._data.xxx</code> 上，所以我们做一层代理，当访问 <code>vm.xxx</code> 时，我们返回 <code>vm._data.xxx</code> ，当设置 <code>vm.xxx = yyy</code> 时，实际上是执行了 <code>vm._data.xxx = yyy</code> 。</p>
+<p>然后再看 <code>observe</code> 函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/observe.js</span></span><br><span class="line"><span class="keyword">import</span> Observer <span class="keyword">from</span> <span class="string">'./observer'</span>; <span class="comment">// 引入实际的观察者</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observe</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> data !== <span class="string">'object'</span> || data === <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// 首先判断数据类型，如果不是引用类型，不需要再深入观察了。</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Observer(data); <span class="comment">// 否则，返回一个观察者实例。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> observe;</span><br></pre></td></tr></table></figure>
+
+<p>当我们想要深入观察时，都会调用 <code>observe</code> 函数，所以我们需要判断类型，原始类型已经在父级中被观察了，不需要继续深入。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/observer.js</span></span><br><span class="line"><span class="keyword">import</span> defineReactiveData <span class="keyword">from</span> <span class="string">'./reactive'</span>;</span><br><span class="line"><span class="keyword">import</span> observeArr <span class="keyword">from</span> <span class="string">'./observeArr'</span>;</span><br><span class="line"><span class="keyword">import</span> arrMethods <span class="keyword">from</span> <span class="string">'./array'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Observer</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(data)) &#123;</span><br><span class="line">    <span class="comment">// 判断数据是否为数组，是数组的话，给它赋予变异数组方法，再观察这个数组。</span></span><br><span class="line">    data.__proto__ = arrMethods;</span><br><span class="line">    observeArr(data); <span class="comment">// 观察数组的方法。</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 如果是对象的话。</span></span><br><span class="line">    <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(data); <span class="comment">// 遍历对象的键值</span></span><br><span class="line">    keys.forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> value = data[key]; <span class="comment">// 获取每个值</span></span><br><span class="line">      defineReactiveData(data, key, value);</span><br><span class="line">      <span class="comment">// 将对象，键名，键值传入响应式函数进行响应式绑定。</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Observer;</span><br></pre></td></tr></table></figure>
+
+<p>此处引入的函数较多，一个个看。</p>
+<p>先看对象部分，逻辑已经非常清晰，对这个对象的每个键值进行 <code>getter</code> <code>setter</code> 重写，我们需要先取出每个值形成闭包用来访问，否则会出现死循环问题。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/reactive.js</span></span><br><span class="line"><span class="keyword">import</span> observe <span class="keyword">from</span> <span class="string">'./observe'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactiveData</span>(<span class="params">data, key, value</span>) </span>&#123;</span><br><span class="line">  observe(value); <span class="comment">// 继续观察这个传入的值，可能需要深入观察。</span></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(data, key, &#123;</span><br><span class="line">    <span class="keyword">get</span>() &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'响应式 get'</span>, value);</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>(newVal) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'响应式 set'</span>, value, newVal);</span><br><span class="line">      <span class="keyword">if</span> (value === newVal) <span class="keyword">return</span>;</span><br><span class="line">      value = newVal;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineReactiveData;</span><br></pre></td></tr></table></figure>
+
+<p>依然是熟悉的自定义 <code>setter</code> 和 <code>getter</code> ，函数内部可以写入许多其余逻辑来进行其他操作。</p>
+<p>此处调用 <code>observe(value)</code> 是因为，<code>data[key]</code> 的值可能是数组和对象，它们的值是一个引用地址，不是覆盖的情况下无法监听到变化， 我们需要再次观察它，使用 <code>observe</code> 来判断，如果是引用类型会深入观察，不是的话就直接返回。</p>
+<p>谈完了对象，再来看数组。</p>
+<p><code>Object.defineProperty</code> 无法监听到数组的变化，所以我们需要遍历数组，进行单独的监听。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/observeArr.js</span></span><br><span class="line"><span class="keyword">import</span> observe <span class="keyword">from</span> <span class="string">'./observe'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observeArr</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    observe(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> observeArr;</span><br></pre></td></tr></table></figure>
+
+<p>而数组对于自身变化的方法我们需要进行重写，否则数组的修改没有办法监听。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// src/vue/array.js</span></span><br><span class="line"><span class="keyword">import</span> ARRAY_METHODS <span class="keyword">from</span> <span class="string">'./config'</span>;</span><br><span class="line"><span class="keyword">import</span> observe <span class="keyword">from</span> <span class="string">'./observe'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrayPrototype = <span class="built_in">Array</span>.prototype; <span class="comment">// 取出数组的原型对象</span></span><br><span class="line"><span class="keyword">var</span> arrMethods = <span class="built_in">Object</span>.create(arrayPrototype); <span class="comment">// 根据这个原型对象创建一个数组</span></span><br><span class="line"></span><br><span class="line">ARRAY_METHODS.forEach(<span class="function"><span class="params">m</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 遍历七个数组方法，对我们创建的这个数组上写入我们自定义的方法。</span></span><br><span class="line">  arrMethods[m] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> args = arrayPrototype.slice.call(<span class="built_in">arguments</span>); <span class="comment">// 转换传入的参数为数组。</span></span><br><span class="line">    <span class="keyword">var</span> result = arrayPrototype[m].apply(<span class="keyword">this</span>, args); <span class="comment">// 调用原本的方法。</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'动态修改数组'</span>, m);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> newItem; <span class="comment">// 此处用于监听新增的数据。</span></span><br><span class="line">    <span class="keyword">switch</span> (m) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'push'</span>:</span><br><span class="line">      <span class="keyword">case</span> <span class="string">'unshift'</span>:</span><br><span class="line">        newItem = args;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">// 如果是 push unshift 方法，只需要监听我们传入的参数即可。</span></span><br><span class="line">      <span class="keyword">case</span> <span class="string">'splice'</span>:</span><br><span class="line">        newItem = args.slice(<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">// 如果是 splice 方法，我们监听可能存在的第三个参数以及更多。</span></span><br><span class="line">      <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    newItem &amp;&amp; observe(newItem); <span class="comment">// 如果存在新的数据，我们进行监听。</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result; <span class="comment">// 将原本数组的返回指返回。</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> arrMethods;</span><br></pre></td></tr></table></figure>
+
+<p>到此差不多完成了简单的数据劫持，当我们动态修改这些数据的时候，会被监听到并且进行一些需要的操作。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-13/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>学习笔记 2020 10 13</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-12/">
+        <span>学习笔记 2020 10 12</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/12/Vue%E6%BA%90%E7%A0%81-%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#大致思路"><span class="toc-number">2.</span> <span class="toc-text">大致思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.</span> <span class="toc-text">代码实现</span></a></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020 
+        
+          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
+        
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

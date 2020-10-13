@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 11 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/">学习笔记 2020 10 11</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-11
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-11
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 11&url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 11&url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/&title=学习笔记 2020 10 11" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 11&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/&text=学习笔记 2020 10 11" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-11"><a href="#学习笔记-2020-10-11" class="headerlink" title="学习笔记 2020-10-11"></a>学习笔记 2020-10-11</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h3><h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><ol>
+<li><h5 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(colors.toString()); <span class="comment">// red,blue,green</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.valueOf()); <span class="comment">// ["red", "blue", "green"]</span></span><br><span class="line"><span class="built_in">console</span>.log(colors); <span class="comment">// ["red", "blue", "green"]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>toString</code> 方法本质是返回数组中每个值的等效字符串加逗号分隔拼接成的字符串</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> person1 = &#123;</span><br><span class="line">  toLocaleString () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Sirine'</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  toString () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Sirine'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person2 = &#123;</span><br><span class="line">  toLocaleString () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Severus'</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  toString () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'siruis'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> people = [person1, person2];</span><br><span class="line"><span class="built_in">console</span>.log(people); <span class="comment">// [&#123;…&#125;, &#123;…&#125;]</span></span><br><span class="line"><span class="built_in">console</span>.log(people.toString()); <span class="comment">// Sirine,siruis</span></span><br><span class="line"><span class="built_in">console</span>.log(people.toLocaleString()); <span class="comment">// Sirine,Severus</span></span><br></pre></td></tr></table></figure>
+
+<p>由上例可以看出，<code>toString</code> 方法调用自身的 <code>toString</code> 来转换，<code>toLocaleString</code> 调用自身的 <code>toLocaleString</code> 。</p>
+</li>
+<li><h5 id="栈方法"><a href="#栈方法" class="headerlink" title="栈方法"></a>栈方法</h5><p>后进先出的数据结构，数据的推入和删除只发生在栈顶。</p>
+<ul>
+<li><p><code>push</code></p>
+<p>接收任意数量的参数，将它们添加到数组末尾，返回数组的最新长度。</p>
+</li>
+<li><p><code>pop</code></p>
+<p>用于删除数组的最后一项，减少数组的长度，返回被删除的项。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="队列方法"><a href="#队列方法" class="headerlink" title="队列方法"></a>队列方法</h5><p>先进先出的数据结构，末尾添加数据，开头获取数据。</p>
+<ul>
+<li><p><code>shift</code></p>
+<p>返回被删除的项。</p>
+</li>
+<li><p><code>push</code></p>
+</li>
+<li><p><code>unshift</code></p>
+<p>与 <code>shift</code> 相反，在数组开头添加任意数量的值，返回新的数组长度。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="排序方法"><a href="#排序方法" class="headerlink" title="排序方法"></a>排序方法</h5><p>以下两个方法都返回调用的数组的引用。</p>
+<ul>
+<li><p><code>reverse</code></p>
+<p>反向排列数组。</p>
+</li>
+<li><p><code>sort</code></p>
+<p>排序数组。默认按照升序，每一项调用 <code>String</code> 转换，比较字符串决定顺序。也可以接受一个比较函数，函数的返回值决定每两个数比较的排序情况，返回负值代表第一个数排在第二个前面，返回 <code>0</code> 代表相等，返回正值代表第一个数排在第二个后面。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="操作方法"><a href="#操作方法" class="headerlink" title="操作方法"></a>操作方法</h5><ul>
+<li><p><code>concat</code></p>
+<p>在原有数组基础上创建一个新数组，将参数添加到数组末尾。不改变原数组。返回新数组。</p>
+<p><code>concat</code> 默认会打平数组参数，即传入的数组参数会被展开。设置数组的 <code>Symbol.isConcatSpreadable</code> 可以修改这个行为。如下例所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>];</span><br><span class="line"><span class="keyword">let</span> newColors = [<span class="string">"black"</span>, <span class="string">"brown"</span>];</span><br><span class="line"><span class="keyword">let</span> moreNewColors = &#123;</span><br><span class="line"> [<span class="built_in">Symbol</span>.isConcatSpreadable]: <span class="literal">true</span>,</span><br><span class="line"> length: <span class="number">2</span>,</span><br><span class="line"> <span class="number">0</span>: <span class="string">"pink"</span>,</span><br><span class="line"> <span class="number">1</span>: <span class="string">"cyan"</span></span><br><span class="line">&#125;;</span><br><span class="line">newColors[<span class="built_in">Symbol</span>.isConcatSpreadable] = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">// 强制不打平数组</span></span><br><span class="line"><span class="keyword">let</span> colors2 = colors.concat(<span class="string">"yellow"</span>, newColors);</span><br><span class="line"><span class="comment">// 强制打平类数组对象</span></span><br><span class="line"><span class="keyword">let</span> colors3 = colors.concat(moreNewColors);</span><br><span class="line"><span class="built_in">console</span>.log(colors); <span class="comment">// ["red", "green", "blue"]</span></span><br><span class="line"><span class="built_in">console</span>.log(colors2); <span class="comment">// ["red", "green", "blue", "yellow",["black", "brown"]]</span></span><br><span class="line"><span class="built_in">console</span>.log(colors3); <span class="comment">// ["red", "green", "blue", "pink", "cyan"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>slice</code></p>
+<p>接收一到二个参数，返回元素的开始索引和结束索引，若只提供了开始索引，会默认返回到数组末尾。返回的数组不包括结束索引(若存在)对应的元素。不影响原数组。这个函数的参数接受负值，代表从末尾开始。若结束位置小于开始位置，返回空数组。</p>
+</li>
+<li><p><code>splice</code></p>
+<p>有三种不同的使用方式，返回值为被删除的元素或是空数组。</p>
+<ul>
+<li><p>删除</p>
+<p>传递两个参数，删除的第一个元素位置以及删除的数量。</p>
+</li>
+<li><p>插入</p>
+<p>传递三个参数，开始位置，<code>0</code> 和插入的元素，不仅限于三个参数，多于三个的参数都会被看作用于插入的元素。</p>
+</li>
+<li><p>替换</p>
+<p>在删除的同时插入新元素，即插入的另一种模式，不再是删除 <code>0</code> 个元素。</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'blue'</span>];</span><br><span class="line"><span class="keyword">let</span> removed = colors.splice(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors); <span class="comment">// ["green", "blue"]</span></span><br><span class="line"><span class="built_in">console</span>.log(removed); <span class="comment">// ["red"]</span></span><br><span class="line"></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="string">'yellow'</span>, <span class="string">'orange'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors); <span class="comment">// ["green", "yellow", "orange", "blue"]</span></span><br><span class="line"><span class="built_in">console</span>.log(removed); <span class="comment">// []</span></span><br><span class="line"></span><br><span class="line">removed = colors.splice(<span class="number">1</span>, <span class="number">1</span>, <span class="string">'red'</span>, <span class="string">'purple'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(colors); <span class="comment">// ["green", "red", "purple", "orange", "blue"]</span></span><br><span class="line"><span class="built_in">console</span>.log(removed); <span class="comment">// ["yellow"]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="搜索和位置方法"><a href="#搜索和位置方法" class="headerlink" title="搜索和位置方法"></a>搜索和位置方法</h5><ul>
+<li><code>indexOf</code></li>
+<li><code>lastIndexOf</code></li>
+<li><code>includes</code></li>
+</ul>
+<p>上述三个方法都接收两个参数，要查找的元素和一个可选的起始位置。并且三个方法都是严格相等比较。</p>
+<p><code>indexOf</code> 和 <code>includes</code> 从数组前头开始搜索， <code>lastIndexOf</code> 从末尾开始搜索。<br><code>indexOf</code> 和 <code>lastIndeOf</code> 返回查找的位置或是 <code>-1</code> ， <code>includes</code> 返回 <code>true</code> 或 <code>false</code> 表示是否找到至少一个匹配的元素。</p>
+<ul>
+<li><p><code>find</code></p>
+</li>
+<li><p><code>findIndex</code></p>
+<p>上述两个方法接收断言函数和一个可选的断言函数内部 <code>this</code> 的值，断言函数接收三个参数，元素、索引和数组本身。断言函数返回真值，代表是否匹配。</p>
+<p><code>find</code> 返回第一个匹配的元素，<code>findIndex</code> 返回第一个匹配元素的索引。找到匹配项后，都不再继续搜索。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h5><p>以下方法都对数组每一项运行传入的函数。不改变原数组。</p>
+<ul>
+<li><p><code>every</code></p>
+<p>若每一项使得函数返回值都为 <code>true</code> , 那么这个方法返回 <code>true</code> 。</p>
+</li>
+<li><p><code>filter</code></p>
+<p>函数返回值为 <code>true</code> 的项组成一个数组返回。</p>
+</li>
+<li><p><code>forEach</code></p>
+<p>没有返回值，仅对每一项运行函数。</p>
+</li>
+<li><p><code>map</code></p>
+<p>返回每一项函数调用的结果构成的函数。</p>
+</li>
+<li><p><code>some</code></p>
+<p>有一项使得函数返回值为 <code>true</code> , 方法返回 <code>true</code> 。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><ol>
+<li><p><code>switch</code> 语句可以替代 <code>if</code> 判断，执行严格相等比较。</p>
+</li>
+<li><p><code>switch</code> 和 <code>case</code> 允许任意表达式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">switch</span> (+a) &#123;</span><br><span class="line">  <span class="keyword">case</span> b + <span class="number">1</span>:</span><br><span class="line">    alert(<span class="string">"this runs, because +a is 1, exactly equals b+1"</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    alert(<span class="string">"this doesn't run"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>case</code> 分组</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">switch</span> (a) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">    alert(<span class="string">'Right!'</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>: <span class="comment">// (*) 下面这两个 case 被分在一组</span></span><br><span class="line">  <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">    alert(<span class="string">'Wrong!'</span>);</span><br><span class="line">    alert(<span class="string">"Why don't you take a math class?"</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    alert(<span class="string">'The result is strange. Really.'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h3><ol>
+<li><p>将 <code>switch</code> 结构重写为 <code>if</code> 结构</p>
+<p>将下面 <code>switch</code> 结构的代码写成 <code>if..else</code> 结构：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">switch</span> (browser) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'Edge'</span>:</span><br><span class="line">    alert( <span class="string">"You've got the Edge!"</span> );</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">case</span> <span class="string">'Chrome'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'Firefox'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'Safari'</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="string">'Opera'</span>:</span><br><span class="line">    alert( <span class="string">'Okay we support these browsers too'</span> );</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    alert( <span class="string">'We hope that this page looks ok!'</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (browser === <span class="string">'Edge'</span>) &#123;</span><br><span class="line">  alert(<span class="string">"You've got the Edge!"</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (browser === <span class="string">'Chrome'</span></span><br><span class="line">  || browser === <span class="string">'Firefox'</span></span><br><span class="line">  || browser === <span class="string">'Safari'</span></span><br><span class="line">  || browser === <span class="string">'Opera'</span>) &#123;</span><br><span class="line">  alert( <span class="string">'Okay we support these browsers too'</span> );</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  alert( <span class="string">'We hope that this page looks ok!'</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将 <code>if</code> 结构重写为 <code>switch</code> 结构</p>
+<p>用 <code>switch</code> 重写以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = +prompt(<span class="string">'a?'</span>, <span class="string">''</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">  alert( <span class="number">0</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (a == <span class="number">1</span>) &#123;</span><br><span class="line">  alert( <span class="number">1</span> );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a == <span class="number">2</span> || a == <span class="number">3</span>) &#123;</span><br><span class="line">  alert( <span class="string">'2,3'</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = +prompt(<span class="string">'a?'</span>, <span class="string">''</span>);</span><br><span class="line"><span class="keyword">switch</span>(a) &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    alert(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    alert(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">  <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    alert(<span class="string">'2,3'</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h2 id="JavaScript-深入学习"><a href="#JavaScript-深入学习" class="headerlink" title="JavaScript 深入学习"></a>JavaScript 深入学习</h2><h3 id="错误类型"><a href="#错误类型" class="headerlink" title="错误类型"></a>错误类型</h3><ol>
+<li><h5 id="SyntaxError"><a href="#SyntaxError" class="headerlink" title="SyntaxError"></a>SyntaxError</h5><p>语法错误，例如变量名不规范不合法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="number">1</span> = <span class="number">1</span>; <span class="comment">// Uncaught SyntaxError: Unexpected number</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span> = <span class="number">2</span>; <span class="comment">// Uncaught SyntaxError: Invalid left-hand side in assignment</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="ReferenceError"><a href="#ReferenceError" class="headerlink" title="ReferenceError"></a>ReferenceError</h5><p>变量或函数未声明。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">a(); <span class="comment">// Uncaught ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="RangeError"><a href="#RangeError" class="headerlink" title="RangeError"></a>RangeError</h5><p>范围出错。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.length = <span class="number">-1</span>; <span class="comment">// Uncaught RangeError: Invalid array length</span></span><br><span class="line"><span class="keyword">let</span> num = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">66.66</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num.toFixed(<span class="number">-1</span>)); <span class="comment">// Uncaught RangeError: toFixed() digits argument must be between 0 and 100</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="TypeError"><a href="#TypeError" class="headerlink" title="TypeError"></a>TypeError</h5><p>类型错误。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">123</span>(); <span class="comment">// Uncaught TypeError: 123 is not a function</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="URIError"><a href="#URIError" class="headerlink" title="URIError"></a>URIError</h5><p>URI: uniform resource identifier 统一资源标识符</p>
+<p>URL: uniform resource locator 统一资源定位符</p>
+<p>URN: uniform resource name 统一资源名称</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="built_in">decodeURI</span>(<span class="string">'%abcde'</span>); <span class="comment">// Uncaught URIError: URI malformed at decodeURI (&lt;anonymous&gt;)</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="try-catch"><a href="#try-catch" class="headerlink" title="try catch"></a>try catch</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(jsonStr);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="comment">// 出现错误时捕获错误。</span></span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  <span class="comment">// 无论出错与否都会执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="throw"><a href="#throw" class="headerlink" title="throw"></a>throw</h3><p>手动抛出错误。</p>
+<h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><p>严格模式下 <code>with</code> <code>callee</code> <code>caller</code> 无法使用。</p>
+<p>函数内部的 <code>this</code> 默认值为 <code>undefined</code> 。需要显式指定。</p>
+<p>使用 <code>call</code> 这类方法改变 <code>this</code> 指向时，如果传入的是原始值，会被包装为包装类。</p>
+<p>函数的参数不允许重复。</p>
+<p>对象的键不允许重复，但不报错，只会默认覆盖。</p>
+<p><code>eval</code> 内存在一个作用域，外部无法访问内部变量。</p>
+<h2 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO-LIST"></a>TODO-LIST</h2><ul>
+<li><input disabled type="checkbox"> 想尝试一下 <code>hugo</code> 作为博客。</li>
+<li><input checked disabled type="checkbox"> 整理 18 年的笔记。</li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-12/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>学习笔记 2020 10 12</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/11/%E5%86%99%E7%BB%99%E4%B8%A4%E5%B9%B4%E5%89%8D%E7%9A%84%E8%87%AA%E5%B7%B1/">
+        <span>写给两年前的自己</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-11/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-11"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-11</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集合引用类型"><span class="toc-number">1.1.1.</span> <span class="toc-text">集合引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Array"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#转换方法"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">转换方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#栈方法"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">栈方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#队列方法"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">队列方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#排序方法"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text">排序方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#操作方法"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text">操作方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搜索和位置方法"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text">搜索和位置方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#迭代方法"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text">迭代方法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#switch-语句"><span class="toc-number">1.2.1.</span> <span class="toc-text">switch 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任务："><span class="toc-number">1.2.2.</span> <span class="toc-text">任务：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-深入学习"><span class="toc-number">1.3.</span> <span class="toc-text">JavaScript 深入学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误类型"><span class="toc-number">1.3.1.</span> <span class="toc-text">错误类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SyntaxError"><span class="toc-number">1.3.1.0.1.</span> <span class="toc-text">SyntaxError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ReferenceError"><span class="toc-number">1.3.1.0.2.</span> <span class="toc-text">ReferenceError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RangeError"><span class="toc-number">1.3.1.0.3.</span> <span class="toc-text">RangeError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TypeError"><span class="toc-number">1.3.1.0.4.</span> <span class="toc-text">TypeError</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#URIError"><span class="toc-number">1.3.1.0.5.</span> <span class="toc-text">URIError</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-catch"><span class="toc-number">1.3.2.</span> <span class="toc-text">try catch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw"><span class="toc-number">1.3.3.</span> <span class="toc-text">throw</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#严格模式"><span class="toc-number">1.3.4.</span> <span class="toc-text">严格模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO-LIST"><span class="toc-number">1.4.</span> <span class="toc-text">TODO-LIST</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020 
+        
+          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
+        
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

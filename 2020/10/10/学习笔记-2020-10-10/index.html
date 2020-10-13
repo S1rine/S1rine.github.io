@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 10 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/">学习笔记 2020 10 10</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-10
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-10
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 10&url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 10&url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/&title=学习笔记 2020 10 10" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 10&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/&text=学习笔记 2020 10 10" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-10"><a href="#学习笔记-2020-10-10" class="headerlink" title="学习笔记 2020-10-10"></a>学习笔记 2020-10-10</h1><blockquote>
+<p>决定从今天开始每天记录当日学习所得。</p>
+<a id="more"></a>
+</blockquote>
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h3><h4 id="1-Object"><a href="#1-Object" class="headerlink" title="1. Object"></a>1. Object</h4><p><code>Object</code> 是 <code>ECMAScript</code> 中最常用的类型之一。</p>
+<p>创建 <code>Object</code> 实例的方法：</p>
+<ul>
+<li><p>使用 <code>new</code> 操作符和 <code>Object</code> 构造函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">'Sirine'</span>;</span><br><span class="line">person.age = <span class="number">21</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用对象字面量方法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 推荐使用 ✔</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">21</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>对象中获取属性的方法：</p>
+<ul>
+<li><p>点语法</p>
+</li>
+<li><p>中括号语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person[<span class="string">"name"</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(person.name);</span><br><span class="line"><span class="comment">// 以上两种语法等价</span></span><br></pre></td></tr></table></figure>
+
+<p>但在使用中括号语法获取属性时可以传入变量或是包含空格等字符的键名。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> propertyName = <span class="string">'name'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person[propertyName]);</span><br><span class="line"><span class="comment">// === console.log(person['name']);</span></span><br><span class="line"><span class="comment">// 键名包含空格时必须使用中括号语法。</span></span><br><span class="line">person[<span class="string">'first name'</span>] = <span class="string">'Zhao'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">'first name'</span>]);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="2-Array"><a href="#2-Array" class="headerlink" title="2. Array"></a>2. Array</h4><p><code>ECMAScript</code> 中的数组十分自由，数组内元素的类型不受限制，大小也是动态的。</p>
+<p>创建数组的方法也是两种。</p>
+<ul>
+<li><p><code>Array</code> 构造函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="comment">// 创建一个长度为 0 的空数组。</span></span><br><span class="line"><span class="keyword">let</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">20</span>);</span><br><span class="line"><span class="comment">// 创建一个长度为 20 的空数组。</span></span><br><span class="line"><span class="keyword">let</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"red"</span>, <span class="string">"blue"</span>, <span class="string">"green"</span>);</span><br><span class="line"><span class="comment">// 创建一个长度为 3 ，包含 red blue green 三个字符串的数组。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组字面量</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'yellow'</span>];</span><br><span class="line">  <span class="comment">// 创建一个长度为3，包含 red blue green 三个字符串的数组。</span></span><br><span class="line"><span class="keyword">let</span> names = [];</span><br><span class="line">  <span class="comment">// 创建一个长度为 0 的空数组。</span></span><br><span class="line">  <span class="keyword">let</span> options = [,,,,,];</span><br><span class="line">  <span class="comment">// 创建一个长度为 5 的数组。空位元素为 `undefined`;</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> option <span class="keyword">of</span> options) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(option === <span class="literal">undefined</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// true * 5</span></span><br><span class="line">  <span class="comment">// 空位元素在 map join 等方法中会被跳过。</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p><code>ES6</code> 当中新增了两个创建数组的静态方法。</p>
+<ul>
+<li><p><code>Array.from</code></p>
+<p>这个方法可以将任何可迭代的结构例如类数组，转换为数组。</p>
+<p>可迭代结构举例：字符串、<code>Map</code> 实例， <code>Set</code> 实例，拥有 <code>[Symbol.iterator]</code> 方法的对象，函数的 <code>arguments</code> 对象， 携带有索引键值和 <code>length</code> 属性的对象。</p>
+<p>该方法的第一个参数为被转换的对象，第二个参数为映射函数，第三个参数为映射函数的 <code>this</code> 指向。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = <span class="built_in">Array</span>.from(a1, x =&gt; x**<span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> a3 = <span class="built_in">Array</span>.from(a1, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;<span class="keyword">return</span> x**<span class="keyword">this</span>.exponent&#125;, &#123;<span class="attr">exponent</span>: <span class="number">2</span>&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(a2); <span class="comment">// [1, 4, 9, 16]</span></span><br><span class="line"><span class="built_in">console</span>.log(a3); <span class="comment">// [1, 4, 9, 16]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Array.of</code></p>
+<p>用于替代 <code>Array.prototype.slice.call(arguments)</code> ，将传入的参数转换为数组。</p>
+</li>
+</ul>
+<p>数组的索引值可以动态修改，并且会直接影响到数组的长度。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> options = [<span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>];</span><br><span class="line">options.length = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(options);</span><br><span class="line"><span class="comment">// [10, 9, 8, 7, 6, 5, 4, empty × 3]</span></span><br><span class="line">options.length = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(options);</span><br><span class="line"><span class="comment">// [10, 9, 8]</span></span><br><span class="line">options[<span class="number">50</span>] = <span class="number">50</span>;</span><br><span class="line"><span class="built_in">console</span>.log(options);</span><br><span class="line"><span class="comment">// [10, 9, 8, empty × 47, 50]</span></span><br></pre></td></tr></table></figure>
+
+<p>在数组中访问不存在的元素(例如下标越界)的时候会返回 <code>undefined</code> 。前面也提到了被设置为 <code>empty</code> 的数组元素被访问时也是被当作 <code>undefined</code> 。</p>
+<p>数组最多可以包含的元素值为 <code>4 294 967 295</code> 。</p>
+<p>判断是否为数组的方法有：</p>
+<ul>
+<li><code>instanceof</code></li>
+<li><code>Array.isArray</code> </li>
+</ul>
+<p>两者的区别是 <code>instanceof</code> 的返回结果取决于 <code>Array</code> 构造函数(即是否为某个构造函数的实例)，而 <code>isArray</code> 只会判断是否为一个数组。</p>
+<p><code>Array</code> 新增的三个迭代器方法：</p>
+<ul>
+<li><p><code>keys()</code></p>
+<p>返回数组索引的迭代器。</p>
+</li>
+<li><p><code>values()</code></p>
+<p>返回数组元素的迭代器。</p>
+</li>
+<li><p><code>entries()</code></p>
+<p>返回索引值对的迭代器。</p>
+</li>
+</ul>
+<p>三个迭代器都可以通过 <code>Array.from</code> 转换为数组。也可以用于 <code>for of</code> 循环迭代。</p>
+<p><code>Array</code> 新增的复制和填充方法：</p>
+<ul>
+<li><p><code>copyWithin(insertIndex, copyIndex, lastIndex)</code></p>
+</li>
+<li><p><code>fill(arg, startIndex, lastIndex)</code></p>
+<p>两个方法的索引值都支持负值。</p>
+<p><code>copyWithin</code> 从 <code>copyIndex</code> 开始复制到 <code>lastIndex</code> 结束(可忽略)，复制到 <code>insertIndex</code> 位置。若忽略复制索引则全部复制。</p>
+<p><code>fill</code> 方法将第一个参数填充到 <code>startIndex</code> 开始到 <code>lastIndex</code> 前一个位置，若忽略索引值则整个数组进行填充。</p>
+<p>两个方法的操作都是对原有元素的覆盖。</p>
+</li>
+</ul>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="break-continue"><a href="#break-continue" class="headerlink" title="break/continue"></a>break/continue</h3><p>非表达式的语法结构不能与三元运算符一起使用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (i &gt; <span class="number">5</span>) &#123;</span><br><span class="line">  alert(i);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 没有问题</span></span><br><span class="line"></span><br><span class="line">(i &gt; <span class="number">5</span>) ? alert(i) : <span class="keyword">continue</span>; <span class="comment">// 语法错误</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="标签用法："><a href="#标签用法：" class="headerlink" title="标签用法："></a>标签用法：</h4><p>适用于多层循环嵌套跳出的场景。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">outer: <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (condition) <span class="keyword">break</span> outer; <span class="comment">// 若满足条件，则跳出至最外层。</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">alert(<span class="string">'Done!'</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="任务："><a href="#任务：" class="headerlink" title="任务："></a>任务：</h4><h5 id="1-最后一次循环的值"><a href="#1-最后一次循环的值" class="headerlink" title="1. 最后一次循环的值"></a>1. 最后一次循环的值</h5><p>此代码最后一次 <code>alert</code> 值是多少？为什么？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> (i) &#123;</span><br><span class="line">  alert( i-- );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案为 <code>1</code>  ，循环体内使用了后置自减，那么在弹出后才会对 <code>i</code> 自减，当 <code>i</code> 为 <code>1</code> 时，弹出显示，然后自减为 <code>0</code> , 再次判断循环条件，不符合，不再进入循环。</p>
+<h5 id="2-while-循环显示哪些值？"><a href="#2-while-循环显示哪些值？" class="headerlink" title="2. while 循环显示哪些值？"></a>2. while 循环显示哪些值？</h5><p>以下两个循环的 <code>alert</code> 值是否相同？</p>
+<ol>
+<li><p>前缀形式 <code>++i</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (++i &lt; <span class="number">5</span>) alert( i );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后缀形式 <code>i++</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i++ <span class="xml"><span class="tag">&lt; <span class="attr">5</span>) <span class="attr">alert</span>( <span class="attr">i</span> );</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>两个循环的 <code>alert</code> 值前四次相等，因为不管是前置还是后置，<code>i</code> 的自增都在条件判断处完成，对于 <code>alert</code> 不影响。</p>
+<p>但是自增的时间影响了循环执行的次数。</p>
+<p>因为第一个循环是自增后再判断，每次循环的 <code>i</code> 为 <code>1, 2, 3, 4, 5</code> , 第五次已经无法满足条件判断，不再进入循环，所以只打印了四次。</p>
+<p>第二个循环是自增前判断，判断时的 <code>i</code> 值依次为 <code>0, 1, 2, 3, 4, 5</code> ，因此该循环多了一次进入循环的机会，因为进入循环时 <code>i</code> 已经完成自增，所以打印的值依次为 <code>1, 2, 3, 4, 5</code> 。</p>
+<h5 id="3-for-循环显示哪些值？"><a href="#3-for-循环显示哪些值？" class="headerlink" title="3. for 循环显示哪些值？"></a>3. for 循环显示哪些值？</h5><p>两次循环 <code>alert</code> 值是否相同？</p>
+<ol>
+<li><p>后缀形式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) alert( i );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前缀形式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) alert( i );</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>两次循环显示的值完全相同，因为 <code>for</code> 循环的自增条件是单独执行，不与条件判断放置在一起。写成 <code>while</code> 循环就是类似于：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">5</span>)&#123;</span><br><span class="line">  alert(i);</span><br><span class="line">  i++;</span><br><span class="line">  <span class="comment">// or</span></span><br><span class="line">  ++i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如上所示，这样的自增无论是前置还是后置都没有影响。</p>
+<h5 id="4-使用-for-循环输出偶数"><a href="#4-使用-for-循环输出偶数" class="headerlink" title="4. 使用 for 循环输出偶数"></a>4. 使用 for 循环输出偶数</h5><p>使用 <code>for</code> 循环输出从 <code>2</code> 到 <code>10</code> 的偶数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="number">11</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (i % <span class="number">2</span> === <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2 4 6 8 10</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-使用-while-替换-for"><a href="#5-使用-while-替换-for" class="headerlink" title="5. 使用 while 替换 for"></a>5. 使用 while 替换 for</h5><p>重写代码，在保证不改变其行为的情况下，将 <code>for</code> 循环更改为 <code>while</code>（输出应保持不变）。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">  alert( <span class="string">`number <span class="subst">$&#123;i&#125;</span>!`</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(i &lt; <span class="number">3</span>) &#123;</span><br><span class="line">  alert( <span class="string">`number <span class="subst">$&#123;i&#125;</span>!`</span> );</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-重复输入，直到正确为止"><a href="#6-重复输入，直到正确为止" class="headerlink" title="6. 重复输入，直到正确为止"></a>6. 重复输入，直到正确为止</h5><p>编写一个提示用户输入大于 <code>100</code> 的数字的循环。如果用户输入其他数值 —— 请他重新输入。</p>
+<p>循环一直在请求一个数字，直到用户输入了一个大于 <code>100</code> 的数字、取消输入或输入了一个空行为止。</p>
+<p>在这我们假设用户只会输入数字。在本题目中，不需要对非数值输入进行特殊处理。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> input = prompt(<span class="string">'please input a number greater than 100!'</span>);</span><br><span class="line"><span class="keyword">while</span>(input &lt;= <span class="number">100</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (input === <span class="literal">null</span>) &#123;</span><br><span class="line">    alert(<span class="string">'input canceled.'</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (input === <span class="string">''</span>) &#123;</span><br><span class="line">    alert(<span class="string">'you enter a nothing.'</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  input = prompt(<span class="string">'please input a number greater than 100!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考解决方案：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> num;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  num = prompt(<span class="string">"Enter a number greater than 100?"</span>, <span class="number">0</span>);</span><br><span class="line">&#125; <span class="keyword">while</span> (num &lt;= <span class="number">100</span> &amp;&amp; num);</span><br></pre></td></tr></table></figure>
+
+<p>代码简洁，利用了 <code>do while</code> 循环的特性。</p>
+<h5 id="7-输出素数"><a href="#7-输出素数" class="headerlink" title="7. 输出素数"></a>7. 输出素数</h5><p>大于 <code>1</code> 且不能被除了 <code>1</code> 和它本身以外的任何数整除的整数叫做<a href="https://en.wikipedia.org/wiki/Prime_number" target="_blank" rel="noopener">素数</a>。</p>
+<p>换句话说，<code>n &gt; 1</code> 且不能被 <code>1</code> 和 <code>n</code> 以外的任何数整除的整数，被称为素数。</p>
+<p>例如，<code>5</code> 是素数，因为它不能被 <code>2</code>、<code>3</code> 和 <code>4</code> 整除，会产生余数。</p>
+<p><strong>写一个可以输出 <code>2</code> 到 <code>n</code> 之间的所有素数的代码。</strong></p>
+<p>当 <code>n = 10</code>，结果输出 <code>2、3、5、7</code>。</p>
+<p>P.S. 代码应适用于任何 <code>n</code>，而不是对任何固定值进行硬性调整。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> n = prompt(<span class="string">''</span>, <span class="number">2</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'the n invalid'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="built_in">Math</span>.ceil(<span class="built_in">Math</span>.sqrt(n));</span><br><span class="line">  <span class="keyword">while</span> (num &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n === num) &#123;</span><br><span class="line">      num--;</span><br><span class="line">      <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n % num === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    num--;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (isPrime(i)) arr.push(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="JavaScript-深入学习"><a href="#JavaScript-深入学习" class="headerlink" title="JavaScript 深入学习"></a>JavaScript 深入学习</h2><h3 id="手写数组原型方法"><a href="#手写数组原型方法" class="headerlink" title="手写数组原型方法"></a>手写数组原型方法</h3><h4 id="unshift-方法"><a href="#unshift-方法" class="headerlink" title="unshift 方法"></a>unshift 方法</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.myUnShift = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = <span class="built_in">arguments</span>.length;</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">this</span>.splice(i, <span class="number">0</span>, <span class="built_in">arguments</span>[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组元素按照字节长度排序"><a href="#数组元素按照字节长度排序" class="headerlink" title="数组元素按照字节长度排序"></a>数组元素按照字节长度排序</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBytes</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = str.length;</span><br><span class="line">  <span class="keyword">var</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str.charCodeAt(i) &gt; <span class="number">255</span>) len++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">'today'</span>, <span class="string">'今天'</span>, <span class="string">'ok'</span>, <span class="string">'haha'</span>, <span class="string">'you say 什么'</span>];</span><br><span class="line">arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getBytes(a) - getBytes(b);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="comment">//  ["ok", "今天", "haha", "today", "you say 什么"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="手写可以判断所有类型的-typeof-函数"><a href="#手写可以判断所有类型的-typeof-函数" class="headerlink" title="手写可以判断所有类型的 typeof 函数"></a>手写可以判断所有类型的 typeof 函数</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTypeof</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> type = <span class="keyword">typeof</span> arg;</span><br><span class="line">  <span class="keyword">var</span> toStr = <span class="built_in">Object</span>.prototype.toString;</span><br><span class="line">  <span class="keyword">if</span> (arg === <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'null'</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'object'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> toStr.call(arg).slice(<span class="number">8</span>, <span class="number">-1</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> type;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">myTypeof([]); <span class="comment">// "Array"</span></span><br><span class="line">myTypeof(&#123;&#125;); <span class="comment">// "Object"</span></span><br><span class="line">myTypeof(<span class="number">123</span>); <span class="comment">// "number"</span></span><br><span class="line">myTypeof(<span class="string">'123'</span>); <span class="comment">// "string"</span></span><br><span class="line">myTypeof(<span class="literal">false</span>); <span class="comment">// "boolean"</span></span><br><span class="line">myTypeof(<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">123</span>)); <span class="comment">// "Number"</span></span><br><span class="line">myTypeof(<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'123'</span>)); <span class="comment">// "String"</span></span><br><span class="line">myTypeof(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>)); <span class="comment">// "Boolean"</span></span><br><span class="line">myTypeof(<span class="literal">null</span>); <span class="comment">// "null"</span></span><br><span class="line">myTypeof(<span class="literal">undefined</span>); <span class="comment">// "undefined"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> len = <span class="keyword">this</span>.length;</span><br><span class="line">  <span class="keyword">var</span> i;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">    <span class="keyword">var</span> item = <span class="keyword">this</span>[i];</span><br><span class="line">    <span class="keyword">if</span> (newArr.indexOf(item) === <span class="number">-1</span>) &#123;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> test = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="string">'a'</span>, <span class="string">'a'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(test.unique());</span><br><span class="line"><span class="comment">// [1, 2, 3, 5, "a"]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newArr = [];</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> len = <span class="keyword">this</span>.length;</span><br><span class="line">  <span class="keyword">var</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> item = <span class="keyword">this</span>[i];</span><br><span class="line">    <span class="keyword">if</span> (!obj.hasOwnProperty(item)) &#123;</span><br><span class="line">      obj[item] = <span class="literal">true</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> test = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="string">'a'</span>, <span class="string">'a'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(test.unique());</span><br><span class="line"><span class="comment">// [1, 2, 3, 5, "a"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串去重"><a href="#字符串去重" class="headerlink" title="字符串去重"></a>字符串去重</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.unique = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> newStr = <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">  <span class="keyword">var</span> len = <span class="keyword">this</span>.length;</span><br><span class="line">  <span class="keyword">var</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(<span class="keyword">this</span>[i])) <span class="keyword">continue</span>;</span><br><span class="line">    obj[<span class="keyword">this</span>[i]] = <span class="literal">true</span>;</span><br><span class="line">    newStr += <span class="keyword">this</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newStr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'122132312341nfskdjfhhhrbbfjsdhfuke'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.unique());</span><br><span class="line"><span class="comment">// 1234nfskdjhrbue</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重复字符串中找出第一个不重复字符"><a href="#重复字符串中找出第一个不重复字符" class="headerlink" title="重复字符串中找出第一个不重复字符"></a>重复字符串中找出第一个不重复字符</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span> (<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> len = str.length;</span><br><span class="line">  <span class="keyword">var</span> i;</span><br><span class="line">  <span class="keyword">var</span> j;</span><br><span class="line">  <span class="keyword">var</span> flag;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">var</span> tmp1 = str[i];</span><br><span class="line">    <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="keyword">var</span> tmp2 = str[j];</span><br><span class="line">      <span class="keyword">if</span> (tmp1 === tmp2) &#123;</span><br><span class="line">        flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag === <span class="literal">true</span>) <span class="keyword">return</span> str[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">'12213a231234qqqqeuerhkrjbrkfmigrhiofjcrjef'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(find(str));</span><br><span class="line"><span class="comment">// a</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p>arguments 类型为 object</p>
+</li>
+<li><pre><code class="js"><span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span> <span class="title">a</span> (<span class="params"></span>) </span>{
+  <span class="built_in">console</span>.log(a);
+  <span class="built_in">console</span>.log(test);
+  <span class="built_in">console</span>.log(test.name);
+  <span class="built_in">console</span>.log(test === a);
+}
+a(); <span class="comment">// a is not defined</span>
+test();
+<span class="comment">// ƒ a() {</span>
+<span class="comment">//   console.log(a);</span>
+<span class="comment">//   console.log(test);</span>
+<span class="comment">//   console.log(test.name);</span>
+<span class="comment">//   console.log(test === a);</span>
+<span class="comment">// }</span>
+<span class="comment">// ƒ a() {</span>
+<span class="comment">//   console.log(a);</span>
+<span class="comment">//   console.log(test);</span>
+<span class="comment">//   console.log(test.name);</span>
+<span class="comment">//   console.log(test === a);</span>
+<span class="comment">// }</span>
+<span class="comment">// a</span>
+<span class="comment">// true</span></code></pre>
+</li>
+</ul>
+<h2 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO-LIST"></a>TODO-LIST</h2><ul>
+<li><input disabled type="checkbox"> 想尝试一下 <code>hugo</code> 作为博客。</li>
+</ul>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/11/%E5%86%99%E7%BB%99%E4%B8%A4%E5%B9%B4%E5%89%8D%E7%9A%84%E8%87%AA%E5%B7%B1/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>写给两年前的自己</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/06/07/VueNote-4/">
+        <span>VueNote-4</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-10/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-10"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-10</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集合引用类型"><span class="toc-number">1.1.1.</span> <span class="toc-text">集合引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Object"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1. Object</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Array"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2. Array</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#break-continue"><span class="toc-number">1.2.1.</span> <span class="toc-text">break/continue</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#标签用法："><span class="toc-number">1.2.1.1.</span> <span class="toc-text">标签用法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#任务："><span class="toc-number">1.2.1.2.</span> <span class="toc-text">任务：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-最后一次循环的值"><span class="toc-number">1.2.1.2.1.</span> <span class="toc-text">1. 最后一次循环的值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-while-循环显示哪些值？"><span class="toc-number">1.2.1.2.2.</span> <span class="toc-text">2. while 循环显示哪些值？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-for-循环显示哪些值？"><span class="toc-number">1.2.1.2.3.</span> <span class="toc-text">3. for 循环显示哪些值？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-使用-for-循环输出偶数"><span class="toc-number">1.2.1.2.4.</span> <span class="toc-text">4. 使用 for 循环输出偶数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-使用-while-替换-for"><span class="toc-number">1.2.1.2.5.</span> <span class="toc-text">5. 使用 while 替换 for</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-重复输入，直到正确为止"><span class="toc-number">1.2.1.2.6.</span> <span class="toc-text">6. 重复输入，直到正确为止</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-输出素数"><span class="toc-number">1.2.1.2.7.</span> <span class="toc-text">7. 输出素数</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-深入学习"><span class="toc-number">1.3.</span> <span class="toc-text">JavaScript 深入学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#手写数组原型方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">手写数组原型方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#unshift-方法"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">unshift 方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组元素按照字节长度排序"><span class="toc-number">1.3.2.</span> <span class="toc-text">数组元素按照字节长度排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写可以判断所有类型的-typeof-函数"><span class="toc-number">1.3.3.</span> <span class="toc-text">手写可以判断所有类型的 typeof 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">1.3.4.</span> <span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串去重"><span class="toc-number">1.3.5.</span> <span class="toc-text">字符串去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重复字符串中找出第一个不重复字符"><span class="toc-number">1.3.6.</span> <span class="toc-text">重复字符串中找出第一个不重复字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#知识点"><span class="toc-number">1.3.7.</span> <span class="toc-text">知识点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO-LIST"><span class="toc-number">1.4.</span> <span class="toc-text">TODO-LIST</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020 
+        
+          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
+        
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
