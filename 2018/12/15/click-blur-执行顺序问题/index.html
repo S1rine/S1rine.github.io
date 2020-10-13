@@ -204,7 +204,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2018-12-15
+      更新于:&nbsp;2020-10-13
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -277,10 +277,7 @@
 <p>Thejsway/chapter17 Coding time <code>&lt;Autocomplete&gt;</code></p>
 </blockquote>
 <p>原题：</p>
-<ul>
-<li><h2 id="Autocomplete"><a href="#Autocomplete" class="headerlink" title="Autocomplete"></a>Autocomplete</h2></li>
-</ul>
-<p>In this exercise, you’ll have to assist the user in selecting a country. As he enters the country name in an input box, the page shows a list of corresponding countries. Clicking on a suggested country replaces the value in the input box.</p>
+<h2 id="Autocomplete"><a href="#Autocomplete" class="headerlink" title="Autocomplete"></a>Autocomplete</h2><p>In this exercise, you’ll have to assist the user in selecting a country. As he enters the country name in an input box, the page shows a list of corresponding countries. Clicking on a suggested country replaces the value in the input box.</p>
 <blockquote>
 <p>To keep things simple, only countries starting with a “A” letter are taken into account.</p>
 </blockquote>
@@ -296,6 +293,12 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> countryList = [</span><br><span class="line">  <span class="string">"Afghanistan"</span>,</span><br><span class="line">  <span class="string">"Albania"</span>,</span><br><span class="line">  <span class="string">"Algeria"</span>,</span><br><span class="line">  <span class="string">"Andorra"</span>,</span><br><span class="line">  <span class="string">"Angola"</span>,</span><br><span class="line">  <span class="string">"Anguilla"</span>,</span><br><span class="line">  <span class="string">"Antarctica"</span>,</span><br><span class="line">  <span class="string">"Antigua-and-Barbuda"</span>,</span><br><span class="line">  <span class="string">"Argentina"</span>,</span><br><span class="line">  <span class="string">"Armenia"</span>,</span><br><span class="line">  <span class="string">"Aruba"</span>,</span><br><span class="line">  <span class="string">"Australia"</span>,</span><br><span class="line">  <span class="string">"Autria"</span>,</span><br><span class="line">  <span class="string">"Azerbaïjan"</span></span><br><span class="line">];</span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).style.display = <span class="string">"none"</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> some <span class="keyword">of</span> countryList)&#123;</span><br><span class="line">    <span class="keyword">const</span> newli = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</span><br><span class="line">    newli.textContent = some;</span><br><span class="line">    newli.style.listStyle = <span class="string">"none"</span>;</span><br><span class="line">    newli.style.display = <span class="string">"none"</span>;</span><br><span class="line">    newli.className = <span class="string">"suggestion"</span>;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).appendChild(newli);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).addEventListener(<span class="string">"click"</span>, e =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> neirong = e.target.textContent;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"country"</span>).value = neirong;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).style.display = <span class="string">"none"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"country"</span>).addEventListener(<span class="string">"input"</span>, e =&gt; &#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).style.display = <span class="string">"block"</span>;</span><br><span class="line">  <span class="keyword">const</span> input = e.target.value;</span><br><span class="line">  <span class="keyword">const</span> lists = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">const</span> one <span class="keyword">of</span> lists)&#123;</span><br><span class="line">    <span class="keyword">if</span>(one.textContent.startsWith(input))&#123;</span><br><span class="line">      one.style.display = <span class="string">"block"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      one.style.display = <span class="string">"none"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"country"</span>).addEventListener(<span class="string">"blur"</span>, e =&gt; &#123;</span><br><span class="line">  setTimeout(nonefun, <span class="string">"100"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nonefun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"suggestions"</span>).style.display = <span class="string">"none"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>效果基本实现，发现click 与blur存在顺序问题，若不设置延时，则click效果无法实现。<br>Click后执行而无法实现效果的原因暂时不知。<br>看到一篇相关文章: <a href="https://www.jb51.net/article/112086.htm" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="2020年的回顾"><a href="#2020年的回顾" class="headerlink" title="2020年的回顾"></a>2020年的回顾</h2><p>代码好像已经找不到了，尝试直接复现一下。不知道是不是漏了什么，笔记中的代码无法实现需要的效果。</p>
+<p>仔细看了看，是我输错了关键词……</p>
+<p>看了一下当时遇到的问题，其实最近也遇到了一次。</p>
+<p>当时的情况是 <code>A</code>  元素绑定了一个点击事件，需要对点击做出响应，而 <code>B</code> 元素(往往是与该元素相关联的元素)又会响应 <code>blur</code> 事件，在响应 <code>blur</code> 的时候会隐藏 <code>A</code> 元素。</p>
+<p>而点击 <code>A</code>元素就是 <code>B</code> 元素的 <code>blur</code> 事件，于是在 <code>A</code> 元素响应点击之前，就已经被隐藏了。</p>
+<p>因此我们需要在触发 <code>blur</code> 的地方延迟隐藏，让它可以先响应 <code>click</code> 事件。</p>
 
   </div>
   <!--文末结束语-->
@@ -325,7 +328,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2018/12/15/click-blur-%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E9%97%AE%E9%A2%98/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Autocomplete"><span class="toc-number">1.</span> <span class="toc-text">Autocomplete</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Autocomplete"><span class="toc-number">1.</span> <span class="toc-text">Autocomplete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020年的回顾"><span class="toc-number">2.</span> <span class="toc-text">2020年的回顾</span></a></li></ol>
       </li>
     </ul>
   </div>
@@ -337,37 +340,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>

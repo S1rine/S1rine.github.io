@@ -204,7 +204,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2019-10-19
+      更新于:&nbsp;2020-10-13
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -273,17 +273,26 @@
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
     <h1 id="for循环添加事件监听"><a href="#for循环添加事件监听" class="headerlink" title="for循环添加事件监听"></a>for循环添加事件监听</h1><blockquote>
-<p>在写某个需求时，想要做点击按钮动态添加样式表示选中的效果，在写js代码的时候遇到了疑问点。</p>
+<p>在写某个需求时，想要做点击按钮动态添加样式表示选中的效果，在写 <code>js</code> 代码的时候遇到了疑问点。</p>
 <a id="more"></a>
 </blockquote>
 <p><img src="/2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/for%E5%BE%AA%E7%8E%AF.png" alt="页面"></p>
 <p>页面如上所示，头部的三个按钮在点击后永远只会对最后一个按钮进行样式添加或移除。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> chooseArea = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"choose-area"</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;chooseArea.children.length;i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(chooseArea.children);</span><br><span class="line">  <span class="keyword">var</span> child = chooseArea.children[i];</span><br><span class="line">  child.onclick=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(child);</span><br><span class="line">  <span class="keyword">if</span>(child.className==<span class="string">""</span>)</span><br><span class="line">    child.className=<span class="string">"active"</span>;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此处先拿出主要的代码(此时的已经是不完整+乱改版本)，部分打印代码为调试时编写。<br>查了一下百度，大概了解到是 <code>onclick</code> 或是添加事件监听一类都不是即时运行。而内部会调用外部的变量，在 <code>click</code> 事件的函数运行时，i早已自增至最大值，所以永远指向最后一个元素。此处的解决方法是闭包。(我终于知道闭包的作用了…)</p>
+<p>此处先拿出主要的代码(此时的已经是不完整+乱改版本)，部分打印代码为调试时编写。<br>查了一下百度，大概了解到是 <code>onclick</code> 或是添加事件监听一类都不是即时运行。而内部会调用外部的变量，在 <code>click</code> 事件的函数运行时，<code>i</code> 早已自增至最大值，所以永远指向最后一个元素。此处的解决方法是闭包。(我终于知道闭包的作用了…)</p>
 <p>修改后的代码(依然有待改进，时间未定)：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> chooseArea = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"choose-area"</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;chooseArea.children.length;i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(chooseArea.children);</span><br><span class="line">  <span class="keyword">var</span> child = chooseArea.children[i];</span><br><span class="line">	(<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">child,i</span>)</span>&#123;</span><br><span class="line">	  child.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (child.className == <span class="string">""</span>)</span><br><span class="line">          child.className = <span class="string">"active"</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">          child.className=<span class="string">""</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;chooseArea.children.length;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==j)&#123;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">          chooseArea.children[j].className=<span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	  &#125;;</span><br><span class="line">	  &#125;)(child,i);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> chooseArea = <span class="built_in">document</span>.getElementsByClassName(<span class="string">"choose-area"</span>)[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;chooseArea.children.length;i++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(chooseArea.children);</span><br><span class="line">  <span class="keyword">var</span> child = chooseArea.children[i];</span><br><span class="line">	(<span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">child,i</span>)</span>&#123;</span><br><span class="line">	  child.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (child.className == <span class="string">""</span>)</span><br><span class="line">          child.className = <span class="string">"active"</span>;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">          child.className=<span class="string">""</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">var</span> j=<span class="number">0</span>;j&lt;chooseArea.children.length;j++)&#123;</span><br><span class="line">          <span class="keyword">if</span>(i==j)&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">else</span>&#123;</span><br><span class="line">            chooseArea.children[j].className=<span class="string">""</span>;</span><br><span class="line">          &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	  &#125;;</span><br><span class="line">	  &#125;)(child,i);</span><br></pre></td></tr></table></figure>
 
 <p>闭包都解决不了的我可真是个菜鸡…(lll￢ω￢)</p>
+<h2 id="2020-年的回顾"><a href="#2020-年的回顾" class="headerlink" title="2020 年的回顾"></a>2020 年的回顾</h2><p>这篇大概是最让我无奈的，现在我已经完全清楚笔记中记录的问题了。</p>
+<p>一个很普遍简单的需求，多个按钮，监听按钮的点击事件来切换选中状态。</p>
+<p>我们选择遍历按钮的 <code>dom</code> 类数组，如果仅仅采用 <code>ES5</code> 来完成，确实会遇到问题。</p>
+<p>原因在于 <code>var</code> 声明的局限性， <code>var</code> 不存在块级作用域，在 <code>for</code> 循环内部声明的所有变量的作用域都是高于块级的，所有块级内部共享同样的变量，所以最后我们能找到的 <code>i</code> 是循环结束的值，所有按钮的点击事件都是触发最后一个按钮的样式变化。</p>
+<p>此处的解决方法有：</p>
+<ul>
+<li>使用 <code>let</code> 声明块级作用域的变量。</li>
+<li>调用立即执行函数形成闭包，也就是形成函数作用域来保存每一个 <code>i</code>  。</li>
+</ul>
 
   </div>
   <!--文末结束语-->
@@ -318,7 +327,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2019/10/19/for%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#for循环添加事件监听"><span class="toc-number">1.</span> <span class="toc-text">for循环添加事件监听</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#for循环添加事件监听"><span class="toc-number">1.</span> <span class="toc-text">for循环添加事件监听</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-年的回顾"><span class="toc-number">1.1.</span> <span class="toc-text">2020 年的回顾</span></a></li></ol></li></ol>
       </li>
     </ul>
   </div>
@@ -330,37 +339,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>

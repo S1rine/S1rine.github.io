@@ -299,7 +299,7 @@
 <p>出现了打开即两个按钮都启用的状态。原因未知。<br>(似乎文件出了问题。注释掉所有的js代码依然两个按钮都启用，重开文件后解决)</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> balljump = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> weizhi = <span class="built_in">parseFloat</span>(getComputedStyle(ball).top);</span><br><span class="line">  <span class="keyword">if</span> (weizhi + ballheight &gt;= <span class="number">300</span> || weizhi &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    movement = -movement;</span><br><span class="line">  &#125;</span><br><span class="line">  ball.style.top = weizhi + movement + <span class="string">'px'</span>;</span><br><span class="line">  <span class="keyword">if</span> (tostart != <span class="number">0</span> || tostop != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tostart === <span class="number">1</span>) &#123;</span><br><span class="line">      tostart = <span class="number">0</span>;</span><br><span class="line">      animationId = requestAnimationFrame(balljump);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (tostop === <span class="number">1</span>) &#123;</span><br><span class="line">      tostop = <span class="number">0</span>;</span><br><span class="line">      cancelAnimationFrame(balljump);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    requestAnimationFrame(balljump);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> tostart = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> tostop = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> animationId = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> movement = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ball = <span class="built_in">document</span>.getElementById(<span class="string">'ball'</span>);</span><br><span class="line"><span class="keyword">const</span> ballheight = <span class="built_in">parseFloat</span>(getComputedStyle(ball).height);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'start'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  tostart = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (animationId === <span class="number">0</span>) &#123;</span><br><span class="line">    animationId = requestAnimationFrame(balljump);</span><br><span class="line">  &#125;</span><br><span class="line">  e.target.disabled = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'stop'</span>).disabled = <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'stop'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  tostop = <span class="number">1</span>;</span><br><span class="line">  e.target.disabled = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'start'</span>).disabled = <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>尝试改写，添加  tostop、tostart  变量来判断，将继续动画与停止动画判断放在了 <code>balljump()</code> 函数中。<br>结果：可以停止动画，但无法二次启动动画。原因未知。<br>在 <code>cancelAnimationFrame()</code> 函数之后重置 <code>animationId</code> 为 <code>0</code> 即可解决。</p>
+<p>尝试改写，添加  <code>tostop</code>、<code>tostart</code>  变量来判断，将继续动画与停止动画判断放在了 <code>balljump()</code> 函数中。<br>结果：可以停止动画，但无法二次启动动画。原因未知。<br>在 <code>cancelAnimationFrame()</code> 函数之后重置 <code>animationId</code> 为 <code>0</code> 即可解决。</p>
 <p>最终代码：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> balljump = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> weizhi = <span class="built_in">parseFloat</span>(getComputedStyle(ball).top);</span><br><span class="line">  <span class="keyword">if</span> (weizhi + ballheight &gt;= <span class="number">300</span> || weizhi &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    movement = -movement;</span><br><span class="line">  &#125;</span><br><span class="line">  ball.style.top = weizhi + movement + <span class="string">'px'</span>;</span><br><span class="line">  <span class="keyword">if</span> (tostart != <span class="number">0</span> || tostop != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (tostart === <span class="number">1</span>) &#123;</span><br><span class="line">      tostart = <span class="number">0</span>;</span><br><span class="line">      animationId = requestAnimationFrame(balljump);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (tostop === <span class="number">1</span>) &#123;</span><br><span class="line">      tostop = <span class="number">0</span>;</span><br><span class="line">      cancelAnimationFrame(balljump);</span><br><span class="line">      animationId = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    requestAnimationFrame(balljump);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> tostart = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> tostop = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> animationId = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> movement = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> ball = <span class="built_in">document</span>.getElementById(<span class="string">'ball'</span>);</span><br><span class="line"><span class="keyword">const</span> ballheight = <span class="built_in">parseFloat</span>(getComputedStyle(ball).height);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'start'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  tostart = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">if</span> (animationId === <span class="number">0</span>) &#123;</span><br><span class="line">    animationId = requestAnimationFrame(balljump);</span><br><span class="line">  &#125;</span><br><span class="line">  e.target.disabled = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'stop'</span>).disabled = <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'stop'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  tostop = <span class="number">1</span>;</span><br><span class="line">  e.target.disabled = <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'start'</span>).disabled = <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
@@ -350,37 +350,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>

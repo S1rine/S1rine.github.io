@@ -273,11 +273,12 @@
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
     <h1 id="一些关于CSS的tip"><a href="#一些关于CSS的tip" class="headerlink" title="一些关于CSS的tip"></a>一些关于CSS的tip</h1><ul>
-<li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code></li>
-<li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code></li>
+<li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code> 。</li>
+<li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code> 。</li>
 <li>气泡的制作<br><img src="/2019/10/27/css%E5%B0%8Ftip/bubble.png" alt="bubble"></li>
 </ul>
 <a id="more"></a>
+
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bubble"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"triangle common"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cover common"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>   <span class="comment">&lt;!-- 用来覆盖的倒三角 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.bubble</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>; </span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>; </span><br><span class="line">  <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="number">#FFB5BF</span>; </span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.common</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">0</span>; </span><br><span class="line">  <span class="attribute">height</span>: <span class="number">0</span>; </span><br><span class="line">  <span class="attribute">position</span>: absolute;      <span class="comment">/* 使用绝对定位 */</span></span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%, 0);  <span class="comment">/* 水平居中 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.triangle</span> &#123;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#FFB5BF</span>;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.cover</span> &#123;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">13px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">20px</span> solid <span class="number">#94E8FF</span>;</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">20px</span> solid transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -291,7 +292,7 @@
 <li>将文字包入<code>span</code>元素中，然后<code>display: none</code></li>
 </ul>
 </li>
-<li><code>a</code> 标签的样式需要遵守 <code>link</code> <code>visited</code> <code>hover</code> <code>active</code> 顺序，并且在 <code>href</code> 不填入值的时候， <code>a:link</code> 不起作用。</li>
+<li><code>a</code> 标签的样式需要遵守 <code>link</code> <code>visited</code> <code>hover</code> <code>active</code> 顺序，在 <code>href</code> 不填入值的时候， <code>a:link</code> 不起作用。</li>
 <li>浏览器将标签间的换行空白渲染为一个空格导致部分元素间出现间隙解决方法：<ul>
 <li>编写页面时不换行。</li>
 <li>容器的 <code>font-size</code> 设置为 <code>0</code>.</li>
@@ -357,37 +358,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>

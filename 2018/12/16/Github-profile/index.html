@@ -204,7 +204,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2018-12-16
+      更新于:&nbsp;2020-10-13
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -277,18 +277,21 @@
 <p>Thejsway/chapter22 Coding time <code>&lt;GitHub profile&gt;</code></p>
 </blockquote>
 <p>原题：</p>
-<h2 id="GitHub-profile"><a href="#GitHub-profile" class="headerlink" title="GitHub profile"></a>GitHub profile</h2><p>The ubiquitous code sharing platform <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>has a public API. The goal of this exercise is to display some information about a GitHub user, identified by his login. The API documentation is available <a href="https://developer.github.com/v3/users/" target="_blank" rel="noopener">here</a>.<br>Use this API to show the profile picture, name and website address of a GitHub user whose login is entered in a text box.</p>
+<h2 id="GitHub-profile"><a href="#GitHub-profile" class="headerlink" title="GitHub profile"></a>GitHub profile</h2><p>The ubiquitous code sharing platform <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> has a public API. The goal of this exercise is to display some information about a GitHub user, identified by his login. The API documentation is available <a href="https://developer.github.com/v3/users/" target="_blank" rel="noopener">here</a>.<br>Use this API to show the profile picture, name and website address of a GitHub user whose login is entered in a text box.</p>
 <p><img src="/2018/12/16/Github-profile/image-20201013191407437.png" alt="image-20201013191407437"></p>
 <p>You can test your code by using the GitHub logins of prominent JS community members like <code>brendaneich</code>  (JavaScript’s father),  <code>douglascrockford</code> or  <code>vjeux</code>  .<br>=。=好像有点难度。没有给什么提示，只给了官方教程(<del>然而并看不懂</del>)<br>于是百度<br>相关文章：<br><a href="https://www.jianshu.com/p/628a0747c492" target="_blank" rel="noopener">python爬取</a><br><a href="https://blog.csdn.net/qq_25537177/article/details/80528834" target="_blank" rel="noopener">貌似是js?</a><br>=。=费尽心思的我似乎写了出来</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> grabgithub = <span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">  fetch(<span class="string">'https://api.github.com/users/'</span> + name)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .then(<span class="function"><span class="params">users</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// for(const auser of users)&#123;</span></span><br><span class="line">      <span class="comment">// name = name.replace(/\s+/g,"").toLowerCase();</span></span><br><span class="line">      <span class="comment">// const username = auser.login.replace(/\s+/g,"").toLowerCase();</span></span><br><span class="line">      <span class="comment">// console.log(username);</span></span><br><span class="line">      <span class="comment">// if(name === username)&#123;</span></span><br><span class="line">      <span class="comment">// createinfo(auser);</span></span><br><span class="line">      <span class="comment">// &#125;</span></span><br><span class="line">      <span class="comment">// &#125;</span></span><br><span class="line">      createinfo(users);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(err.message);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createinfo</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> incon = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  incon.src = user.avatar_url;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="built_in">document</span>.createElement(<span class="string">'h1'</span>);</span><br><span class="line">  name.textContent = user.name;</span><br><span class="line">  <span class="keyword">const</span> address = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">  address.href = user.html_url;</span><br><span class="line">  address.textContent = user.html_url;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(incon);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(name);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(address);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'grabButton'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).childNodes;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> a <span class="keyword">of</span> div) &#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).removeChild(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'input'</span>).value;</span><br><span class="line">  grabgithub(input);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>注释部分为原代码，原先理解为在 <a href="https://api.github.com/users" target="_blank" rel="noopener">https://api.github.com/users</a> 查找信息，后来发现这个页面只有46个用户信息，仔细观察了一会儿 官方文档。发现应该是在 <a href="https://api.github.com/users/username" target="_blank" rel="noopener">https://api.github.com/users/username</a> 查找 于是修改代码。在特定页面读取信息。效果达成。获取地址部分应该是获取博客。未修改(=。=太懒)</p>
+<p>注释部分为原代码，原先理解为在 <a href="https://api.github.com/users" target="_blank" rel="noopener">https://api.github.com/users</a> 查找信息，后来发现这个页面只有46个用户信息，仔细观察了一会儿 官方文档。发现应该是在 <a href="https://api.github.com/users/username" target="_blank" rel="noopener">https://api.github.com/users/username</a> 查找。于是修改代码。在特定页面读取信息。效果达成。获取地址部分应该是获取博客。未修改(=。=太懒)</p>
 <p><img src="/2018/12/16/Github-profile/image-20201013191701861.png" alt="image-20201013191701861"></p>
 <p><img src="/2018/12/16/Github-profile/image-20201013191709344.png" alt="image-20201013191709344"></p>
-<p>想结束的我又发现了新问题=。=呵，为什么h1没有被删掉。。。</p>
+<p>想结束的我又发现了新问题=。=呵，为什么 <code>h1</code> 没有被删掉。。。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'grabButton'</span>).addEventListener(<span class="string">'click'</span>, e =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> divs = <span class="built_in">Array</span>.from(<span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).children);</span><br><span class="line">  <span class="keyword">if</span> (divs.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; divs.length; i++) &#123;</span><br><span class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).removeChild(divs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> input = <span class="built_in">document</span>.getElementById(<span class="string">'input'</span>).value;</span><br><span class="line">  grabgithub(input);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> grabgithub = <span class="function"><span class="params">name</span> =&gt;</span> &#123;</span><br><span class="line">  fetch(<span class="string">'https://api.github.com/users/'</span> + name)</span><br><span class="line">    .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">    .then(<span class="function"><span class="params">users</span> =&gt;</span> &#123;</span><br><span class="line">      createinfo(users);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(err.message);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createinfo</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> incon = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  incon.src = user.avatar_url;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="built_in">document</span>.createElement(<span class="string">'h1'</span>);</span><br><span class="line">  name.textContent = user.name;</span><br><span class="line">  <span class="keyword">const</span> address = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">  address.href = user.blog;</span><br><span class="line">  address.textContent = user.blog;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(incon);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(name);</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).appendChild(address);</span><br><span class="line">  divs = <span class="built_in">Array</span>.from(<span class="built_in">document</span>.getElementById(<span class="string">'information'</span>).children);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>最后死马当做活马医的我 将divs 转化为Array 然后就成功了=。=呵</p>
+<p>最后死马当做活马医的我 将 <code>divs</code> 转化为 <code>Array</code> 然后就成功了=。=呵</p>
+<h2 id="2020-年的回顾"><a href="#2020-年的回顾" class="headerlink" title="2020 年的回顾"></a>2020 年的回顾</h2><p>其实只是调取接口渲染函数的任务，没有我当时想的那么复杂，只是那个时候我还理解不了这些东西。</p>
+<p>看了一下最后出现的那个移除子元素出错的地方，应该是因为获取了子元素类数组，然后迭代它，但是我又在删除它，起了冲突。</p>
+<p>删除子元素比较简单的方法可以直接将父元素的 <code>innerHTML</code> 设置为空。</p>
 
   </div>
   <!--文末结束语-->
@@ -323,7 +326,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2018/12/16/Github-profile/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-profile"><span class="toc-number">1.</span> <span class="toc-text">GitHub profile</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-profile"><span class="toc-number">1.</span> <span class="toc-text">GitHub profile</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-年的回顾"><span class="toc-number">2.</span> <span class="toc-text">2020 年的回顾</span></a></li></ol>
       </li>
     </ul>
   </div>
@@ -335,37 +338,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>

@@ -204,7 +204,7 @@
     </span>
     <span>
       <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2019-10-22
+      更新于:&nbsp;2020-10-13
     </span>
     <span>
       <span class="iconfont icon-folder"></span>
@@ -291,6 +291,9 @@
 <p>按我的理解也就是，浏览器记住了这个覆盖过程，然后把它展示为动画效果，那我们应该要想办法把这个覆盖 <code>a</code> 默认颜色的过程提前到 <code>transition</code> 没有记住的时候。</p>
 <p>我的做法是在 <code>head</code> 标签中写入 <code>style</code> 直接覆盖 <code>a</code> 的 <code>color</code> 属性。</p>
 <p>其余解决方法待后续研究。<del>大概不会有后续</del></p>
+<h3 id="来自两年后的后续"><a href="#来自两年后的后续" class="headerlink" title="来自两年后的后续"></a>来自两年后的后续</h3><p>其实到今天我也没看出来那个奇怪的蓝紫色到底是哪里来的，我又打开当时的文件重看了一遍。将当时在 <code>style</code> 标签里的样式注释掉，却没有再看见当时的蓝紫色。很奇怪，但是我仔细看了看当时写的样式，我发现我似乎并没有对 <code>a</code>  元素设置默认颜色，只设置了 <code>hover</code> 时的颜色。</p>
+<p>当然了，我又翻看了开发者工具的计算样式，其实那个颜色只是 <code>a</code> 元素的默认蓝色而已……</p>
+<p>当时居然一惊一乍的，感觉遇到了什么难题。😂</p>
 
   </div>
   <!--文末结束语-->
@@ -325,7 +328,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2019/10/22/%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E9%97%AA%E7%8E%B0%E9%97%AE%E9%A2%98/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#📃正文"><span class="toc-number">1.</span> <span class="toc-text">📃正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transition属性页面加载a元素字体颜色闪现问题"><span class="toc-number">1.1.</span> <span class="toc-text">transition属性页面加载a元素字体颜色闪现问题</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#📃正文"><span class="toc-number">1.</span> <span class="toc-text">📃正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transition属性页面加载a元素字体颜色闪现问题"><span class="toc-number">1.1.</span> <span class="toc-text">transition属性页面加载a元素字体颜色闪现问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#来自两年后的后续"><span class="toc-number">1.2.</span> <span class="toc-text">来自两年后的后续</span></a></li></ol></li></ol>
       </li>
     </ul>
   </div>
@@ -337,37 +340,41 @@
   <div class="mdui-container">
     <div class="mdui-row">
       
-        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
       
       <span>
-        &copy; 2019 - 2020 
-        
-          <span style="color:#d9333f" class="iconfont icon-Instagram"></span>
-        
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
         Sirine
       </span>
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
       
     </div>
     <div class="mdui-row">
       
-        <div class="mdui-col-xs-6 mdui-text-right">
-          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
-        </div>
-        <div class="mdui-col-xs-6 mdui-text-left">
-          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
-        </div>
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
       
     </div>
- </div>
+  </div>
 </footer>
   
   <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
