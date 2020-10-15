@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 14 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/">学习笔记 2020 10 14</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-14
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-14
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 14&url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 14&url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/&title=学习笔记 2020 10 14" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 14&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/&text=学习笔记 2020 10 14" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-14"><a href="#学习笔记-2020-10-14" class="headerlink" title="学习笔记 2020-10-14"></a>学习笔记 2020-10-14</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h3><h4 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h4><ol>
+<li><p>顺序与迭代</p>
+<p><code>Set</code> 会维护值插入时的顺序，支持按顺序迭代。可以通过 <code>values()</code> <code>keys()</code> 方法或是 <code>Symbol.iterator</code> 取得这个迭代器。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'val1'</span>, <span class="string">'val2'</span>, <span class="string">'val3'</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(s.values === s[<span class="built_in">Symbol</span>.iterator]); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(s.keys === s[<span class="built_in">Symbol</span>.iterator]); <span class="comment">// true</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> s.values()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// val1 val2 val3</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> s[<span class="built_in">Symbol</span>.iterator]()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// val1 val2 val3</span></span><br></pre></td></tr></table></figure>
+
+<p><code>values</code> 是默认迭代器，可以通过拓展操作将集合转换为数组。</p>
+<p><code>entries</code> 方法返回一个迭代器，按照插入顺序产生包含两个元素的数组。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="string">'val1'</span>, <span class="string">'val2'</span>, <span class="string">'val3'</span>]);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> pair <span class="keyword">of</span> s.entries()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(pair);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ["val1", "val1"]</span></span><br><span class="line"><span class="comment">// ["val2", "val2"]</span></span><br><span class="line"><span class="comment">// ["val3", "val3"]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Set</span>.prototype);</span><br><span class="line"><span class="comment">// add: ƒ add()</span></span><br><span class="line"><span class="comment">// clear: ƒ clear()</span></span><br><span class="line"><span class="comment">// constructor: ƒ Set()</span></span><br><span class="line"><span class="comment">// delete: ƒ delete()</span></span><br><span class="line"><span class="comment">// entries: ƒ entries()</span></span><br><span class="line"><span class="comment">// forEach: ƒ forEach()</span></span><br><span class="line"><span class="comment">// has: ƒ has()</span></span><br><span class="line"><span class="comment">// keys: ƒ values()</span></span><br><span class="line"><span class="comment">// size: (...)</span></span><br><span class="line"><span class="comment">// values: ƒ values()</span></span><br><span class="line"><span class="comment">// Symbol(Symbol.iterator): ƒ values()</span></span><br><span class="line"><span class="comment">// Symbol(Symbol.toStringTag): "Set"</span></span><br><span class="line"><span class="comment">// get size: ƒ size()</span></span><br><span class="line"><span class="comment">// __proto__: Object</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Set</code> 的 <code>forEach</code> 方法与数组的类似，传入回调参数以及可选的 <code>this</code> 值。</p>
+</li>
+<li><p>定义正式集合操作</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XSet</span> <span class="keyword">extends</span> <span class="title">Set</span> </span>&#123;</span><br><span class="line">  union(...sets) &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.union(<span class="keyword">this</span>, ...sets);</span><br><span class="line">  &#125;</span><br><span class="line">  intersection(...sets) &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.intersection(<span class="keyword">this</span>, ...sets);</span><br><span class="line">  &#125;</span><br><span class="line">  difference(<span class="keyword">set</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.difference(<span class="keyword">this</span>, <span class="keyword">set</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  symmetricDifference(<span class="keyword">set</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.symmetricDifference(<span class="keyword">this</span>, <span class="keyword">set</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  cartesianProduct(<span class="keyword">set</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.cartesianProduct(<span class="keyword">this</span>, <span class="keyword">set</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  powerSet() &#123;</span><br><span class="line">    <span class="keyword">return</span> XSet.powerSet(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回两个或更多集合的并集</span></span><br><span class="line">  <span class="keyword">static</span> union(a, ...bSets) &#123;</span><br><span class="line">    <span class="keyword">const</span> unionSet = <span class="keyword">new</span> XSet(a);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> b <span class="keyword">of</span> bSets) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> bValue <span class="keyword">of</span> b) &#123;</span><br><span class="line">        unionSet.add(bValue);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> unionSet;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回两个或更多集合的交集</span></span><br><span class="line">  <span class="keyword">static</span> intersection(a, ...bSets) &#123;</span><br><span class="line">    <span class="keyword">const</span> intersectionSet = <span class="keyword">new</span> XSet(a);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> aValue <span class="keyword">of</span> intersectionSet) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> b <span class="keyword">of</span> bSets) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!b.has(aValue)) &#123;</span><br><span class="line">          intersectionSet.delete(aValue);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> intersectionSet;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回两个集合的差集</span></span><br><span class="line">  <span class="keyword">static</span> difference(a, b) &#123;</span><br><span class="line">    <span class="keyword">const</span> differenceSet = <span class="keyword">new</span> XSet(a);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> bValue <span class="keyword">of</span> b) &#123;</span><br><span class="line">      <span class="keyword">if</span> (a.has(bValue)) &#123;</span><br><span class="line">        differenceSet.delete(bValue);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> differenceSet;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回两个集合的对称差集</span></span><br><span class="line">  <span class="keyword">static</span> symmetricDifference(a, b) &#123;</span><br><span class="line">    <span class="comment">// 按照定义，对称差集可以表达为</span></span><br><span class="line">    <span class="keyword">return</span> a.union(b).difference(a.intersection(b));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回两个集合（数组对形式）的笛卡儿积</span></span><br><span class="line">  <span class="comment">// 必须返回数组集合，因为笛卡儿积可能包含相同值的对</span></span><br><span class="line">  <span class="keyword">static</span> cartesianProduct(a, b) &#123;</span><br><span class="line">    <span class="keyword">const</span> cartesianProductSet = <span class="keyword">new</span> XSet();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> aValue <span class="keyword">of</span> a) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> bValue <span class="keyword">of</span> b) &#123;</span><br><span class="line">        cartesianProductSet.add([aValue, bValue]);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cartesianProductSet;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回一个集合的幂集</span></span><br><span class="line">  <span class="keyword">static</span> powerSet(a) &#123;</span><br><span class="line">    <span class="keyword">const</span> powerSet = <span class="keyword">new</span> XSet().add(<span class="keyword">new</span> XSet());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> aValue <span class="keyword">of</span> a) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">set</span> of new XSet(powerSet)) &#123;</span><br><span class="line">        powerSet.add(<span class="keyword">new</span> XSet(<span class="keyword">set</span>).add(aValue));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return powerSet;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h4><p><code>ES6</code> 新增的弱集合类型，其 <code>API</code> 是 <code>Set</code> 的子集。</p>
+<p>弱集合的值只能是 <code>Object</code> 或是继承自 <code>Object</code> 的类型。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> val1 = &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;,</span><br><span class="line">  val2 = &#123; <span class="attr">id</span>: <span class="number">2</span> &#125;,</span><br><span class="line">  val3 = &#123; <span class="attr">id</span>: <span class="number">3</span> &#125;;</span><br><span class="line"><span class="comment">// 使用数组初始化弱集合</span></span><br><span class="line"><span class="keyword">const</span> ws1 = <span class="keyword">new</span> <span class="built_in">WeakSet</span>([val1, val2, val3]);</span><br><span class="line"><span class="built_in">console</span>.log(ws1.has(val1)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(ws1.has(val2)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(ws1.has(val3)); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 初始化是全有或全无的操作</span></span><br><span class="line"><span class="comment">// 只要有一个值无效就会抛出错误，导致整个初始化失败</span></span><br><span class="line"><span class="keyword">const</span> ws2 = <span class="keyword">new</span> <span class="built_in">WeakSet</span>([val1, <span class="string">'BADVAL'</span>, val3]);</span><br><span class="line"><span class="comment">// TypeError: Invalid value used in WeakSet</span></span><br><span class="line"><span class="keyword">typeof</span> ws2;</span><br><span class="line"><span class="comment">// ReferenceError: ws2 is not defined</span></span><br><span class="line"><span class="comment">// 原始值可以先包装成对象再用作值</span></span><br><span class="line"><span class="keyword">const</span> stringVal = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'val1'</span>);</span><br><span class="line"><span class="keyword">const</span> ws3 = <span class="keyword">new</span> <span class="built_in">WeakSet</span>([stringVal]);</span><br><span class="line"><span class="built_in">console</span>.log(ws3.has(stringVal)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>可用的方法：</p>
+<ul>
+<li><code>add()</code></li>
+<li><code>has()</code></li>
+<li><code>delete()</code></li>
+</ul>
+<p><code>WeakSet</code> 同样可以链式调用，其值不属于正式引用，不会影响垃圾回收，没有迭代能力。可以用于标记 <code>DOM</code> 元素是否处于某种状态。</p>
+<h4 id="迭代与拓展操作"><a href="#迭代与拓展操作" class="headerlink" title="迭代与拓展操作"></a>迭代与拓展操作</h4><p><code>ES6</code> 中新增了迭代器与拓展操作符。</p>
+<p><code>Array</code> 、定型数组、<code>Map</code> 、<code>Set</code> 定义了默认迭代器，可以传入 <code>for-of</code> 循环。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> iterableThings = [</span><br><span class="line">  <span class="built_in">Array</span>.of(<span class="number">1</span>, <span class="number">2</span>),</span><br><span class="line">  (typedArr = <span class="built_in">Int16Array</span>.of(<span class="number">3</span>, <span class="number">4</span>)),</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">    [<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">    [<span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line">  ]),</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Set</span>([<span class="number">9</span>, <span class="number">10</span>])</span><br><span class="line">];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> iterableThing <span class="keyword">of</span> iterableThings) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> x <span class="keyword">of</span> iterableThing) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// [5, 6]</span></span><br><span class="line"><span class="comment">// [7, 8]</span></span><br><span class="line"><span class="comment">// 9</span></span><br><span class="line"><span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>同样的，这些类型都兼容拓展操作符。</p>
+<p>拓展操作符可用于可迭代对象执行浅复制。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> arr2 = [...arr1];</span><br><span class="line"><span class="built_in">console</span>.log(arr1); <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(arr1 === arr2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1 = [&#123;&#125;];</span><br><span class="line"><span class="keyword">let</span> arr2 = [...arr1];</span><br><span class="line">arr1[<span class="number">0</span>].foo = <span class="string">'bar'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(arr2[<span class="number">0</span>]); <span class="comment">// &#123; foo: 'bar' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="comment">// 把数组复制到定型数组</span></span><br><span class="line"><span class="keyword">let</span> typedArr1 = <span class="built_in">Int16Array</span>.of(...arr1);</span><br><span class="line"><span class="keyword">let</span> typedArr2 = <span class="built_in">Int16Array</span>.from(arr1);</span><br><span class="line"><span class="built_in">console</span>.log(typedArr1); <span class="comment">// Int16Array [1, 2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(typedArr2); <span class="comment">// Int16Array [1, 2, 3]</span></span><br><span class="line"><span class="comment">// 把数组复制到映射</span></span><br><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>(arr1.map(<span class="function"><span class="params">x</span> =&gt;</span> [x, <span class="string">'val'</span> + x]));</span><br><span class="line"><span class="built_in">console</span>.log(map); <span class="comment">// Map &#123;1 =&gt; 'val 1', 2 =&gt; 'val 2', 3 =&gt; 'val 3'&#125;</span></span><br><span class="line"><span class="comment">// 把数组复制到集合</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">set</span> = new Set(typedArr2);</span><br><span class="line">console.log(<span class="keyword">set</span>); // Set &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line"><span class="comment">// 把集合复制回数组</span></span><br><span class="line"><span class="keyword">let</span> arr2 = [...set];</span><br><span class="line"><span class="built_in">console</span>.log(arr2); <span class="comment">// [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代器与生成器"><a href="#迭代器与生成器" class="headerlink" title="迭代器与生成器"></a>迭代器与生成器</h3><p>循环是迭代机制的基础，可以指定迭代次数以及每次迭代的操作。</p>
+<p>迭代会在一个有序集合上进行。此处有序理解为集合中所有项都可以按照既定的顺序被遍历到，特别是开始和结束项有明确的定义。</p>
+<p>循环迭代不是理想的机制，我们需要事先知道如何使用数据结构，通过递增索引来访问数据是数组独有的方式，并不通用。</p>
+<p><code>ES5</code> 新增了 <code>Array.prototype.forEach</code> 方法，解决了单独记录索引来取值的问题，但没有办法标识迭代何时终止。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>用箭头函数重写</p>
+<p>用箭头函数重写下面的函数表达式：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ask</span>(<span class="params">question, yes, no</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (confirm(question)) yes()</span><br><span class="line">  <span class="keyword">else</span> no();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ask(</span><br><span class="line">  &amp;quot;Do you agree?&amp;quot;,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; alert(&amp;quot;You agreed.&amp;quot;); &#125;,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; alert(&amp;quot;You canceled the execution.&amp;quot;); &#125;</span><br><span class="line">);<span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ask = <span class="function">(<span class="params">question, yes, no</span>) =&gt;</span> confirm(question) ? yes() : no();</span><br><span class="line"></span><br><span class="line">ask(</span><br><span class="line">  &amp;quot;Do you agree?&amp;quot;,</span><br><span class="line">  () =&gt; alert(<span class="string">"You agreed."</span>),</span><br><span class="line">  () =&gt; alert(<span class="string">"You canceled the execution."</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/15/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-15/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>学习笔记 2020 10 15</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-13/">
+        <span>学习笔记 2020 10 13</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-14/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-14"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-14</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集合引用类型"><span class="toc-number">1.1.1.</span> <span class="toc-text">集合引用类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Set"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WeakSet"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">WeakSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代与拓展操作"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">迭代与拓展操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代器与生成器"><span class="toc-number">1.1.2.</span> <span class="toc-text">迭代器与生成器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
