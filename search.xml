@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 17</title>
+    <url>/2020/10/17/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-17/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-17"><a href="#学习笔记-2020-10-17" class="headerlink" title="学习笔记 2020-10-17"></a>学习笔记 2020-10-17</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="对象、类与面向对象编程"><a href="#对象、类与面向对象编程" class="headerlink" title="对象、类与面向对象编程"></a>对象、类与面向对象编程</h3><p><code>ECMA-262</code> 将对象定义为一组属性的无序集合，使用一些内部特性来描述属性的特征，这些特性由两个中括号括起来。</p>
+<ol>
+<li><h4 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h4><ul>
+<li><p><code>[[Configurable]]</code></p>
+<p>表示属性是否可以通过 <code>delete</code> 删除并重新定义，是否可以修改它的特性，是否可以把它改为访问器属性。默认值为 <code>true</code> 。</p>
+</li>
+<li><p><code>[[Enumerable]]</code></p>
+<p>表示属性是否可以通过 <code>for-in</code> 循环返回。默认值为 <code>true</code> 。</p>
+</li>
+<li><p><code>[[Writeble]]</code></p>
+<p>表示属性的值是否可以被修改。默认值为 <code>true</code> 。</p>
+</li>
+<li><p><code>[[Value]]</code></p>
+<p>包含属性实际的值。默认值为 <code>undefined</code> 。</p>
+</li>
+</ul>
+<p>修改属性的默认特征，使用 <code>Object.defineProperty</code> 方法。这个方法接收三个参数，要添加属性的对象、属性的名称和一个描述符对象。描述符对象的属性可以包括上述四个属性名：<code>configurable</code> 、 <code>enumerable</code> 、· <code>writable</code> 和 <code>value</code> 。调用时，如果不指定属性值，则都默认为 <code>false</code> 。</p>
+</li>
+<li><h4 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h4><p>访问器属性包含一个 <code>getter</code> 和一个 <code>setter</code> 函数。有 4 个特性描述它们的行为。</p>
+<ul>
+<li><p><code>[[Configurable]]</code></p>
+<p>表示属性是否可以通过 <code>delete</code> 删除并重新定义，是否可以修改它的特性，是否可以把它改为数据属性。默认值为 <code>true</code> 。</p>
+</li>
+<li><p><code>[[Enumerable]]</code></p>
+<p>表示属性是否可以通过 <code>for-in</code> 循环返回。默认值为 <code>true</code> 。</p>
+</li>
+<li><p><code>[[Get]]</code></p>
+<p>获取函数，读取属性时调用，默认值为 <code>undefined</code> 。</p>
+</li>
+<li><p><code>[[Set]]</code></p>
+<p>设置函数，写入属性时调用，默认值为 <code>undefined</code> 。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>可以同时定义多个属性，只需要使用 <code>Object.defineProperties</code> 方法，接收两个参数，添加或修改属性的对象和另一个描述符对象。</p>
+<h4 id="读取属性的特征"><a href="#读取属性的特征" class="headerlink" title="读取属性的特征"></a>读取属性的特征</h4><p>使用 <code>Object.getOwnPropertyDescriptor()</code> 方法可以取得指定属性的属性描述符。接收两个参数，属性所在的对象和要取得其描述符的属性名。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> book = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(book, &#123;</span><br><span class="line">  year_: &#123;</span><br><span class="line">    value: <span class="number">2017</span></span><br><span class="line">  &#125;,</span><br><span class="line">  edition: &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  year: &#123;</span><br><span class="line">    <span class="keyword">get</span>: function () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.year_;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123;</span><br><span class="line">      <span class="keyword">if</span> (newValue &gt; <span class="number">2017</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.year_ = newValue;</span><br><span class="line">        <span class="keyword">this</span>.edition += newValue - <span class="number">2017</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(book, <span class="string">'year_'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(descriptor.value); <span class="comment">// 2017</span></span><br><span class="line"><span class="built_in">console</span>.log(descriptor.configurable); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> descriptor.get); <span class="comment">// "undefined"</span></span><br><span class="line"><span class="keyword">let</span> descriptor = <span class="built_in">Object</span>.getOwnPropertyDescriptor(book, <span class="string">'year'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(descriptor.value); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(descriptor.enumerable); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> descriptor.get); <span class="comment">// "function"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>ES8</code> 新增了 <code>Object.getOwnpropertyDescriptors()</code> 静态方法。会在每个自有属性上调用 <code>Object.getOwnpeopertyDescriptor()</code> 并在一个新对象中返回它们。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> book = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(book, &#123;</span><br><span class="line">  year_: &#123;</span><br><span class="line">    value: <span class="number">2017</span></span><br><span class="line">  &#125;,</span><br><span class="line">  edition: &#123;</span><br><span class="line">    value: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  year: &#123;</span><br><span class="line">    <span class="keyword">get</span>: function () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.year_;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">set</span>: function (newValue) &#123;</span><br><span class="line">      <span class="keyword">if</span> (newValue &gt; <span class="number">2017</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.year_ = newValue;</span><br><span class="line">        <span class="keyword">this</span>.edition += newValue - <span class="number">2017</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptors(book));</span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">// edition: &#123;</span></span><br><span class="line"><span class="comment">// configurable: false,</span></span><br><span class="line"><span class="comment">// enumerable: false,</span></span><br><span class="line"><span class="comment">// value: 1,</span></span><br><span class="line"><span class="comment">// writable: false</span></span><br><span class="line"><span class="comment">// &#125;,</span></span><br><span class="line"><span class="comment">// year: &#123;</span></span><br><span class="line"><span class="comment">// configurable: false,</span></span><br><span class="line"><span class="comment">// enumerable: false,</span></span><br><span class="line"><span class="comment">// get: f(),</span></span><br><span class="line"><span class="comment">// set: f(newValue),</span></span><br><span class="line"><span class="comment">// &#125;,</span></span><br><span class="line"><span class="comment">// year_: &#123;</span></span><br><span class="line"><span class="comment">// configurable: false,</span></span><br><span class="line"><span class="comment">// enumerable: false,</span></span><br><span class="line"><span class="comment">// value: 2017,</span></span><br><span class="line"><span class="comment">// writable: false</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a>合并对象</h4><p><code>ES6</code> 专门为合并对象提供了 <code>Object.assign()</code> 方法。接收一个目标对象和一个或多个源对象作为参数，将每个源对象中可枚举( <code>Object.propertyIsEnumerable()</code> 返回 <code>true</code> ) 和自有 ( <code>Object.hasOwnProperty()</code> 返回 <code>true</code> ) 属性复制到目标对象。以字符串和符号为键的属性会被复制。对每个符合条件的属性，会使用源对象上的 <code>[[Get]]</code> 取得属性的值，然后使用目标对象上的 <code>[[Set]]</code> 设置属性的值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> dest, src, result;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 简单复制</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">dest = &#123;&#125;;</span><br><span class="line">src = &#123; <span class="attr">id</span>: <span class="string">'src'</span> &#125;;</span><br><span class="line">result = <span class="built_in">Object</span>.assign(dest, src);</span><br><span class="line"><span class="comment">// Object.assign 修改目标对象</span></span><br><span class="line"><span class="comment">// 也会返回修改后的目标对象</span></span><br><span class="line"><span class="built_in">console</span>.log(dest === result); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(dest !== src); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// &#123; id: src &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(dest); <span class="comment">// &#123; id: src &#125;</span></span><br><span class="line">dest.id = <span class="string">'123'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// &#123;id: "123"&#125;</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 多个源对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">dest = &#123;&#125;;</span><br><span class="line">result = <span class="built_in">Object</span>.assign(dest, &#123; <span class="attr">a</span>: <span class="string">'foo'</span> &#125;, &#123; <span class="attr">b</span>: <span class="string">'bar'</span> &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// &#123; a: foo, b: bar &#125;</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取函数与设置函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">dest = &#123;</span><br><span class="line">  <span class="keyword">set</span> a(val) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Invoked dest setter with param <span class="subst">$&#123;val&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">src = &#123;</span><br><span class="line">  <span class="keyword">get</span> a() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Invoked src getter'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'foo'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.assign(dest, src);</span><br><span class="line"><span class="comment">// 调用 src 的获取方法</span></span><br><span class="line"><span class="comment">// 调用 dest 的设置方法并传入参数"foo"</span></span><br><span class="line"><span class="comment">// 因为这里的设置函数不执行赋值操作</span></span><br><span class="line"><span class="comment">// 所以实际上并没有把值转移过来</span></span><br><span class="line"><span class="built_in">console</span>.log(dest); <span class="comment">// &#123; set a(val) &#123;...&#125; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>复制过程执行的是浅复制。多个源对象若存在相同的属性，最后一个会覆盖前面的值。</p>
+<h4 id="对象标识及相等判定"><a href="#对象标识及相等判定" class="headerlink" title="对象标识及相等判定"></a>对象标识及相等判定</h4><p><code>ES6</code> 新增了 <code>Object.is()</code> ，接收两个参数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">true</span>, <span class="number">1</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(&#123;&#125;, &#123;&#125;)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="string">'2'</span>, <span class="number">2</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 正确的 0、-0、+0 相等/不等判定</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">-0</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(+<span class="number">0</span>, <span class="number">0</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="number">-0</span>, <span class="number">0</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 正确的 NaN 相等判定</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.is(<span class="literal">NaN</span>, <span class="literal">NaN</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 要检查超过两个值，递归地利用相等性传递即可：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recursivelyCheckEqual</span>(<span class="params">x, ...rest</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.is(x, rest[<span class="number">0</span>]) &amp;&amp; (rest.length &lt; <span class="number">2</span> || recursivelyCheckEqual(...rest));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><h4 id="不好的风格"><a href="#不好的风格" class="headerlink" title="不好的风格"></a>不好的风格</h4><p>下面的代码风格有什么问题？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pow</span>(<span class="params">x,n</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;n;i++) &#123;result*=x;&#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x=prompt(<span class="string">"x?"</span>,<span class="string">''</span>), n=prompt(<span class="string">"n?"</span>,<span class="string">''</span>)</span><br><span class="line"><span class="keyword">if</span> (n&lt;=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">  alert(<span class="string">`Power <span class="subst">$&#123;n&#125;</span> is not supported, please enter an integer number greater than zero`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">  alert(pow(x,n))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pow</span>(<span class="params">x, n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    result *= x;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x = prompt(<span class="string">"x?"</span>,<span class="string">''</span>),</span><br><span class="line">    n=prompt(<span class="string">"n?"</span>,<span class="string">''</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">  alert(<span class="string">`Power <span class="subst">$&#123;n&#125;</span> is not supported, please enter an integer number greater than zero`</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  alert(pow(x,n))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 16</title>
     <url>/2020/10/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-16/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-16"><a href="#学习笔记-2020-10-16" class="headerlink" title="学习笔记 2020-10-16"></a>学习笔记 2020-10-16</h1><a id="more"></a>
@@ -1442,9 +1508,9 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
+        <tag>css</tag>
         <tag>html</tag>
       </tags>
   </entry>
@@ -1515,8 +1581,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1553,8 +1619,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1577,8 +1643,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1611,8 +1677,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1652,8 +1718,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1677,8 +1743,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1700,8 +1766,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1723,8 +1789,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1803,8 +1869,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1829,8 +1895,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1856,8 +1922,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1888,8 +1954,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1953,8 +2019,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -1994,8 +2060,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -2033,8 +2099,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>
