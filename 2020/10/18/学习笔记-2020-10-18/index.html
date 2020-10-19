@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 18 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/">学习笔记 2020 10 18</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-18
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-18
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 18&url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 18&url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/&title=学习笔记 2020 10 18" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 18&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/&text=学习笔记 2020 10 18" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-18"><a href="#学习笔记-2020-10-18" class="headerlink" title="学习笔记 2020-10-18"></a>学习笔记 2020-10-18</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="对象、类与面向对象编程"><a href="#对象、类与面向对象编程" class="headerlink" title="对象、类与面向对象编程"></a>对象、类与面向对象编程</h3><h4 id="增强的对象语法"><a href="#增强的对象语法" class="headerlink" title="增强的对象语法"></a>增强的对象语法</h4><p><code>ES6</code> 新增了很多极其有用的语法糖特性。</p>
+<ol>
+<li><h5 id="属性值简写"><a href="#属性值简写" class="headerlink" title="属性值简写"></a>属性值简写</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'Sirine'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name: "Sirine"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>简写属性名只要使用变量名就会自动解释为同名的属性键，如果没有找到同名变量，则会抛出 <code>ReferenceError</code> 。</p>
+</li>
+<li><h5 id="可计算属性"><a href="#可计算属性" class="headerlink" title="可计算属性"></a>可计算属性</h5><p>以前，想使用变量的值作为属性，必须先声明对象，使用中括号语法来添加属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nameKey = <span class="string">'name'</span>;</span><br><span class="line"><span class="keyword">const</span> ageKey = <span class="string">'age'</span>;</span><br><span class="line"><span class="keyword">const</span> jobKey = <span class="string">'job'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;&#125;;</span><br><span class="line">person[nameKey] = <span class="string">'Sirine'</span>;</span><br><span class="line">person[ageKey] = <span class="number">27</span>;</span><br><span class="line">person[jobKey] = <span class="string">'student'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name: "Sirine", age: 27, job: "student"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可计算属性的用法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nameKey = <span class="string">'name'</span>;</span><br><span class="line"><span class="keyword">const</span> ageKey = <span class="string">'age'</span>;</span><br><span class="line"><span class="keyword">const</span> jobKey = <span class="string">'job'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  [nameKey]: <span class="string">'Sirine'</span>,</span><br><span class="line">  [ageKey]: <span class="number">27</span>,</span><br><span class="line">  [jobKey]: <span class="string">'student'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123;name: "Sirine", age: 27, job: "student"&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以在对象字面量中完成动态属性赋值。也可以使用复杂的表达式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nameKey = <span class="string">'name'</span>;</span><br><span class="line"><span class="keyword">const</span> ageKey = <span class="string">'age'</span>;</span><br><span class="line"><span class="keyword">const</span> jobKey = <span class="string">'job'</span>;</span><br><span class="line"><span class="keyword">let</span> uniqueToken = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUniqueKey</span>(<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;key&#125;</span>_<span class="subst">$&#123;uniqueToken++&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  [getUniqueKey(nameKey)]: <span class="string">'Sirine'</span>,</span><br><span class="line">  [getUniqueKey(ageKey)]: <span class="number">27</span>,</span><br><span class="line">  [getUniqueKey(jobKey)]: <span class="string">'Student'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name_0: 'Sirine', age_1: 27, job_2: 'Student' &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="简写方法名"><a href="#简写方法名" class="headerlink" title="简写方法名"></a>简写方法名</h5><p>旧的方法定义方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  sayName: <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.sayName(<span class="string">'Sirine'</span>); <span class="comment">// My name is Sirine</span></span><br></pre></td></tr></table></figure>
+
+<p>新的方法定义方式：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  sayName(name) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.sayName(<span class="string">'Sirine'</span>); <span class="comment">// My name is Sirine</span></span><br><span class="line"><span class="comment">// 对获取函数和设置函数同样适用。</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name_: <span class="string">''</span>,</span><br><span class="line">  <span class="keyword">get</span> name() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name_;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span> name(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name_ = name;</span><br><span class="line">  &#125;,</span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123;<span class="keyword">this</span>.name_&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">person.name = <span class="string">'Sirine'</span>;</span><br><span class="line">person.sayName(); <span class="comment">// My name is Sirine</span></span><br></pre></td></tr></table></figure>
+
+<p>同时，简写方法名与可计算属性键相互兼容</p>
+</li>
+</ol>
+<h4 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不使用对象解构</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> personName = person.name,</span><br><span class="line">  personAge = person.age;</span><br><span class="line"><span class="built_in">console</span>.log(personName); <span class="comment">// Sirine</span></span><br><span class="line"><span class="built_in">console</span>.log(personAge); <span class="comment">// 27</span></span><br><span class="line"><span class="comment">// 使用对象解构</span></span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; <span class="attr">name</span>: personName, <span class="attr">age</span>: personAge &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(personName); <span class="comment">// Sirine</span></span><br><span class="line"><span class="built_in">console</span>.log(personAge); <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以使用简写语法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; name, age &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// Sirine</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+
+<p>若引用的属性不存在，该变量的值就是 <code>undefined</code> 。</p>
+<p>也可以自定义默认值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; name, job = <span class="string">'Student'</span> &#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// Sirine</span></span><br><span class="line"><span class="built_in">console</span>.log(job); <span class="comment">// Student</span></span><br></pre></td></tr></table></figure>
+
+<p>解构在内部使用函数 <code>ToObject()</code> 把源数据结构转换为对象。这意味着，原始值会被当成对象。 <code>null</code>  和 <code>undefined</code> 不能解构。否则会抛出 <code>TypeError</code> 。</p>
+<p>如果是给事先声明的变量赋值，则赋值表达式需要包含在一对括号中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> personName, personAge;</span><br><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line">(&#123; <span class="attr">name</span>: personName, <span class="attr">age</span>: personAge &#125; = person);</span><br><span class="line"><span class="built_in">console</span>.log(personName, personAge); <span class="comment">// Sirine, 27</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><h5 id="嵌套解构"><a href="#嵌套解构" class="headerlink" title="嵌套解构"></a>嵌套解构</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span>,</span><br><span class="line">  job: &#123;</span><br><span class="line">    title: <span class="string">'Student'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> personCopy = &#123;&#125;;</span><br><span class="line">(&#123; <span class="attr">name</span>: personCopy.name, <span class="attr">age</span>: personCopy.age, <span class="attr">job</span>: personCopy.job &#125; = person);</span><br><span class="line"><span class="comment">// 因为一个对象的引用被赋值给 personCopy，所以修改</span></span><br><span class="line"><span class="comment">// person.job 对象的属性也会影响 personCopy</span></span><br><span class="line">person.age = <span class="number">21</span>;</span><br><span class="line">person.job.title = <span class="string">'Hacker'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person);</span><br><span class="line"><span class="comment">// &#123; name: 'Sirine', age: 21, job: &#123; title: 'Hacker' &#125; &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(personCopy);</span><br><span class="line"><span class="comment">// &#123; name: 'Sirine', age: 27, job: &#123; title: 'Hacker' &#125; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span>,</span><br><span class="line">  job: &#123;</span><br><span class="line">    title: <span class="string">'Student'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;</span><br><span class="line">  job: &#123; title &#125;</span><br><span class="line">&#125; = person;</span><br><span class="line"><span class="built_in">console</span>.log(title); <span class="comment">// Student</span></span><br></pre></td></tr></table></figure>
+
+<p>外层属性没有定义的情况下不能使用嵌套解构：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  job: &#123;</span><br><span class="line">    title: <span class="string">'Student'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> personCopy = &#123;&#125;;</span><br><span class="line"><span class="comment">// foo 在源对象上是 undefined</span></span><br><span class="line">(&#123;</span><br><span class="line">  foo: &#123; <span class="attr">bar</span>: personCopy.bar &#125;</span><br><span class="line">&#125; = person);</span><br><span class="line"><span class="comment">// TypeError: Cannot destructure property 'bar' of 'undefined' or 'null'.</span></span><br><span class="line"><span class="comment">// job 在目标对象上是 undefined</span></span><br><span class="line">(&#123;</span><br><span class="line">  job: &#123; <span class="attr">title</span>: personCopy.job.title &#125;</span><br><span class="line">&#125; = person);</span><br><span class="line"><span class="comment">// TypeError: Cannot set property 'title' of undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="部分解构"><a href="#部分解构" class="headerlink" title="部分解构"></a>部分解构</h5><p>涉及多个属性的解构赋值是一个输出无关的顺序化操作。如果开始赋值成功而后面赋值出错，解构赋值只能完成一部分。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> personName, personBar, personAge;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// person.foo 是 undefined，因此会抛出错误</span></span><br><span class="line">  (&#123;</span><br><span class="line">    name: personName,</span><br><span class="line">    foo: &#123; <span class="attr">bar</span>: personBar &#125;,</span><br><span class="line">    age: personAge</span><br><span class="line">  &#125; = person);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(personName, personBar, personAge);</span><br><span class="line"><span class="comment">// Sirine, undefined, undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="参数上下文匹配"><a href="#参数上下文匹配" class="headerlink" title="参数上下文匹配"></a>参数上下文匹配</h5><p>在函数参数列表中可以进行解构赋值，不会影响 <code>arguments</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">  name: <span class="string">'Sirine'</span>,</span><br><span class="line">  age: <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printPerson</span>(<span class="params">foo, &#123; name, age &#125;, bar</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(name, age);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printPerson2</span>(<span class="params">foo, &#123; name: personName, age: personAge &#125;, bar</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(personName, personAge);</span><br><span class="line">&#125;</span><br><span class="line">printPerson(<span class="string">'1st'</span>, person, <span class="string">'2nd'</span>);</span><br><span class="line"><span class="comment">// ['1st', &#123; name: 'Sirine', age: 27 &#125;, '2nd']</span></span><br><span class="line"><span class="comment">// 'Sirine', 27</span></span><br><span class="line">printPerson2(<span class="string">'1st'</span>, person, <span class="string">'2nd'</span>);</span><br><span class="line"><span class="comment">// ['1st', &#123; name: 'Sirine', age: 27 &#125;, '2nd']</span></span><br><span class="line"><span class="comment">// 'Sirine', 27</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h4><p>工厂模式是一种众所周知的设计模式，广泛应用于软件工程领域，用于抽象创建特定对象的过程。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">  o.name = name;</span><br><span class="line">  o.age = age;</span><br><span class="line">  o.job = job;</span><br><span class="line">  o.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = createPerson(<span class="string">'Sirine'</span>, <span class="number">29</span>, <span class="string">'Student'</span>);</span><br><span class="line"><span class="keyword">let</span> person2 = createPerson(<span class="string">'Severus'</span>, <span class="number">27</span>, <span class="string">'Teacher'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>此处，可以通过多次调用不同参数的 <code>createPerson</code> 来创建不同的对象。但没有解决对象标识问题，即新创建的对象是什么类型。在这个例子中，创建的对象全部为 <code>object</code> 类型。</p>
+<h4 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h4><p>在 <code>js</code> 中，我们可以自定义构造函数，以函数的形式为自己的对象类型定义属性和方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  <span class="keyword">this</span>.job = job;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> person1 = <span class="keyword">new</span> Person(<span class="string">'Sirine'</span>, <span class="number">29</span>, <span class="string">'Student'</span>);</span><br><span class="line"><span class="keyword">let</span> person2 = <span class="keyword">new</span> Person(<span class="string">'Severus'</span>, <span class="number">27</span>, <span class="string">'Teacher'</span>);</span><br><span class="line">person1.sayName(); <span class="comment">// Sirine</span></span><br><span class="line">person2.sayName(); <span class="comment">// Severus</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.constructor == Person); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(person2.constructor == Person); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(person2 <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(person2 <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>构造函数和工厂函数的区别是：</p>
+<ul>
+<li>没有显式地创建对象。</li>
+<li>属性和方法直接赋值给了 <code>this</code> 。</li>
+<li>没有 <code>return</code>  。</li>
+<li>函数名首字母大写。借鉴于面向对象编程语言。</li>
+</ul>
+<p>创建实例使用 <code>new</code> 操作符。会执行以下操作：</p>
+<ol>
+<li>在内存中创建一个新对象。</li>
+<li>这个新对象内部的 <code>[[Prototype]]</code> 特性被赋值为构造函数的 <code>prototype</code> 属性。</li>
+<li>构造函数内部的 <code>this</code> 被赋值为这个新对象。</li>
+<li>执行构造函数内部的代码。</li>
+<li>如果构造函数返回非空对象，则返回该对象；否则，返回刚创建的新对象。</li>
+</ol>
+<p>定义自定义构造函数可以确保实例被标识为特定类型。</p>
+<p>构造函数也可以是被赋值给变量的函数表达式。</p>
+<p>在实例化时，构造函数后的括号不加也可以。只要有 <code>new</code> 操作符，就可以调用相应的构造函数。</p>
+<ol>
+<li><h5 id="构造函数也是函数"><a href="#构造函数也是函数" class="headerlink" title="构造函数也是函数"></a>构造函数也是函数</h5><p>任何函数只要使用 <code>new</code> 操作符调用就是构造函数，不使用 <code>new</code> 操作符调用就是普通函数。</p>
+</li>
+<li><h5 id="构造函数的问题"><a href="#构造函数的问题" class="headerlink" title="构造函数的问题"></a>构造函数的问题</h5><p>构造函数的问题是定义的方法会在每个实例上创建一遍。每个实例都会有自己的方法，而这些方法实际上是一样的，却指向不同的引用，这是没有必要的。如果我们选择把方法抽离到全局，让每个实例的方法都指向这个全局方法，可以保证不会重复声明函数，但这样污染了全局作用域，当构造函数的方法较多时，全局上就会多出很多不必要的函数，这些函数明明只是属于我们的实例对象，却定义在了全局。</p>
+</li>
+</ol>
+<h2 id="CSS-知识点"><a href="#CSS-知识点" class="headerlink" title="CSS 知识点"></a>CSS 知识点</h2><p>又回顾到了浮动与清除浮动的知识，对于 <code>clearfix</code> 这种清除方法不是特别理解。自己写了写来尝试加深理解。</p>
+<p>首先查阅了 <code>MDN</code> 关于 <code>clear</code> 的文档： 👉<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clear" target="_blank" rel="noopener">传送门</a></p>
+<blockquote>
+<p><strong><code>clear</code></strong> <a href="https://developer.mozilla.org/en-US/docs/CSS" target="_blank" rel="noopener">CSS</a> 属性指定一个元素是否必须移动(清除浮动后)到在它之前的浮动元素下面。<code>clear</code> 属性适用于浮动和非浮动元素。</p>
+</blockquote>
+<p>文档中指出， <code>clear</code> 属性同时适用于浮动与非浮动元素。</p>
+<blockquote>
+<p>当应用于非浮动块时，它将非浮动块的<a href="https://developer.mozilla.org/en-US/docs/CSS/box_model" target="_blank" rel="noopener">边框边界</a>移动到所有相关浮动元素<a href="https://developer.mozilla.org/en-US/docs/CSS/box_model" target="_blank" rel="noopener">外边界</a>的下方。这个非浮动块的<a href="https://developer.mozilla.org/en-US/docs/CSS/margin_collapsing" target="_blank" rel="noopener">垂直外边距</a>会折叠。</p>
+</blockquote>
+<p>这个特性给了解决浮动导致父元素高度塌陷的方法。</p>
+<p>当父元素内的所有子元素都浮动，导致父元素内部高度无法被自动撑开。</p>
+<p>此时，我们可以给父元素内部最后添加一个元素(经验证，此元素需要为块级元素)，然后设置 <code>clear: both</code> ，表示当左右有浮动元素时需要移动到下面。该伪元素会自动移动到左右浮动元素最长的那个底下。</p>
+<p>于是，父元素内部有了一个块级元素，且有位置要求，父元素就被撑开了。</p>
+<p>为了简便，可以直接将该元素定义为父元素的伪元素 <code>:after</code> 。</p>
+<p>且文档中提到一点，移动元素的垂直外边距会被折叠。</p>
+<p>简单验证了一下，该元素的顶部外边距会被折叠，但底部外边距不会。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container clearfix"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span>to clearfix<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>another right container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">800px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bottom</span> &#123;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid blue;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: left;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/image-20201018112427598.png" alt="image-20201018112427598"></p>
+<p>另外，测试了一下浮动元素应用 <code>clear</code> 属性的效果。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container clearfix"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"bottom"</span>&gt;</span>to clearfix<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>another left container<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">800px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.bottom</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid blue;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/image-20201018111957887.png" alt="image-20201018111957887"></p>
+<p>可以看出来，浮动元素清除浮动后会影响到后续的元素，后续的元素只会跟着它进行排列。不会高于它。</p>
+<p>将 <code>.bottom</code> 的 <code>clear</code> 修改为 <code>left</code> 。</p>
+<p><img src="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/image-20201018112058725.png" alt="image-20201018112058725"></p>
+<p>将底部的最后那个元素修改为右浮动。</p>
+<p><img src="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/image-20201018112132997.png" alt="image-20201018112132997"></p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-19/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>学习笔记 2020 10 19</span>
+      </a>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/17/%E6%89%8B%E5%86%99-Promise/">
+        <span>手写 Promise</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-18/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-18"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-18</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象、类与面向对象编程"><span class="toc-number">1.1.1.</span> <span class="toc-text">对象、类与面向对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#增强的对象语法"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">增强的对象语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#属性值简写"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">属性值简写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#可计算属性"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">可计算属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#简写方法名"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">简写方法名</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象解构"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">对象解构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#嵌套解构"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">嵌套解构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#部分解构"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">部分解构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参数上下文匹配"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">参数上下文匹配</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工厂模式"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#构造函数模式"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">构造函数模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#构造函数也是函数"><span class="toc-number">1.1.1.4.1.</span> <span class="toc-text">构造函数也是函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构造函数的问题"><span class="toc-number">1.1.1.4.2.</span> <span class="toc-text">构造函数的问题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-知识点"><span class="toc-number">1.2.</span> <span class="toc-text">CSS 知识点</span></a></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
