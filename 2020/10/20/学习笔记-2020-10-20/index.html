@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 20 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/">学习笔记 2020 10 20</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-20
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-20
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 20&url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 20&url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/&title=学习笔记 2020 10 20" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 20&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/&text=学习笔记 2020 10 20" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-20"><a href="#学习笔记-2020-10-20" class="headerlink" title="学习笔记 2020-10-20"></a>学习笔记 2020-10-20</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="对象、类与面向对象编程"><a href="#对象、类与面向对象编程" class="headerlink" title="对象、类与面向对象编程"></a>对象、类与面向对象编程</h3><h4 id="对象迭代"><a href="#对象迭代" class="headerlink" title="对象迭代"></a>对象迭代</h4><ol>
+<li><h5 id="其他原型语法"><a href="#其他原型语法" class="headerlink" title="其他原型语法"></a>其他原型语法</h5><p>可以通过使用一个包含所有属性和方法的对象字面量来重写原型。</p>
+<p>重写后，构造函数原型的 <code>constructor</code> 便不再指向构造函数。必要时可以专门设置，如果选择直接在重写原型对象时写入 <code>constructor</code> ，那么这个属性会被设置为可枚举的。最好选择 <code>Object.defineProperty</code> 来定义这个属性。</p>
+</li>
+<li><h5 id="原型的动态性"><a href="#原型的动态性" class="headerlink" title="原型的动态性"></a>原型的动态性</h5><p>从原型上搜索值的过程是动态的。对原型做了修改，即使是已经被创建出来的实例也可以反映出这个变化。但是如果是重写了构造函数的原型对象的话，原本的实例依然指向最初的原型，而无法反映这个改写的原型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> friend = <span class="keyword">new</span> Person();</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">  <span class="keyword">constructor</span>: Person,</span><br><span class="line">  name: 'Nicholas',</span><br><span class="line">  age: 29,</span><br><span class="line">  job: 'Software Engineer',</span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">friend.sayName(); <span class="comment">// Uncaught TypeError: friend.sayName is not a function</span></span><br></pre></td></tr></table></figure>
+
+<p>原因是对原型做赋值操作，是直接修改了指针指向，但无法修改到已创建实例的原型指针。</p>
+</li>
+<li><h5 id="原生对象原型"><a href="#原生对象原型" class="headerlink" title="原生对象原型"></a>原生对象原型</h5><p>所有原生引用类型都采用原型模式实现。所有原生引用类型的构造函数都在原型上定义了实例方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.startsWith = <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.indexOf(text) === <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> msg = <span class="string">'Hello world!'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(msg.startsWith(<span class="string">'Hello'</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以自定义原型对象上的方法。</p>
+</li>
+<li><h5 id="原型的问题"><a href="#原型的问题" class="headerlink" title="原型的问题"></a>原型的问题</h5><p>原型模式弱化了向构造函数传递初始化参数的能力，会导致所有实例都取得相同的属性值。</p>
+<p>原型最大的问题是它的共享特性，原型对象上存在的属性会被所有实例共享，也能被所有实例修改。而不同的实例应该有自己单独的属性副本。</p>
+</li>
+</ol>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>继承一般分为两种：接口继承和实现继承。<code>ECMAScript</code> 中不存在接口继承，函数没有签名。因此，<code>ECMAScript</code> 支持实现继承，通过原型链实现。</p>
+<h5 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.property;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.subproperty = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承 SuperType</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> instance = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>示例中重写了 <code>SubType</code> 的原型，替换为了 <code>SuperType</code> 的实例。构成了一条原型链。</p>
+<ol>
+<li><h5 id="默认原型"><a href="#默认原型" class="headerlink" title="默认原型"></a>默认原型</h5><p>默认情况下，所有引用类型都继承自 <code>Object</code> 。任何函数的默认原型都是一个 <code>Object</code> 的实例。</p>
+</li>
+<li><h5 id="原型与继承关系"><a href="#原型与继承关系" class="headerlink" title="原型与继承关系"></a>原型与继承关系</h5><p>原型与实例的关系可以通过 <code>instanceof</code> 操作符确定，只要一个实例的原型链中出现过相应的构造函数，该操作符就会返回 <code>true</code> 。</p>
+<p>第二种方法是通过 <code>isPrototypeOf()</code> 方法。由原型链上的原型来调用这个方法，只要被传入的实例参数原型链中包含这个原型，就会返回 <code>true</code> 。</p>
+</li>
+<li><h5 id="关于方法"><a href="#关于方法" class="headerlink" title="关于方法"></a>关于方法</h5><p>使用对象字面量的方式创建原型方法会破坏之前的原型链。</p>
+</li>
+<li><h5 id="原型链的问题"><a href="#原型链的问题" class="headerlink" title="原型链的问题"></a>原型链的问题</h5><p>原型链的问题在于原型中包含引用值得时候，该引用值会在所有实例间共享。虽然我们原先是在对象实例上定义属性，但这个类型一旦被继承，它的实例属性就成了子类的原型属性。在这种模式下，我们不能在子类实例化的时候给父类型的构造函数传参。</p>
+</li>
+</ol>
+<h5 id="盗用构造函数"><a href="#盗用构造函数" class="headerlink" title="盗用构造函数"></a>盗用构造函数</h5><p>为了解决上面提到的问题，引用了一种叫盗用构造函数的技术，也称对象伪装或经典继承。思路为：在子类构造函数中调用父类构造函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 继承 SuperType</span></span><br><span class="line">  SuperType.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> instance1 = <span class="keyword">new</span> SubType();</span><br><span class="line">instance1.colors.push(<span class="string">'black'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors); <span class="comment">// "red,blue,green,black"</span></span><br><span class="line"><span class="keyword">let</span> instance2 = <span class="keyword">new</span> SubType();</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors); <span class="comment">// "red,blue,green"</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><h5 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h5><p>使用 <code>call</code> 或是 <code>apply</code> 的好处就在于我们可以传参，就实现了子类构造函数给父类构造函数传参。</p>
+</li>
+<li><h5 id="盗用构造函数的问题"><a href="#盗用构造函数的问题" class="headerlink" title="盗用构造函数的问题"></a>盗用构造函数的问题</h5><p>问题在于，必须在构造函数中定义方法，函数不能被重用。</p>
+</li>
+</ol>
+<h5 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h5><p>组合继承综合了原型链和盗用构造函数，思路为使用原型链继承原型上的属性和方法，通过盗用构造函数继承实例属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'green'</span>];</span><br><span class="line">&#125;</span><br><span class="line">SuperType.prototype.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 继承属性</span></span><br><span class="line">  SuperType.call(<span class="keyword">this</span>, name);</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 继承方法</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType();</span><br><span class="line">SubType.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> instance1 = <span class="keyword">new</span> SubType(<span class="string">'Nicholas'</span>, <span class="number">29</span>);</span><br><span class="line">instance1.colors.push(<span class="string">'black'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance1.colors); <span class="comment">// "red,blue,green,black"</span></span><br><span class="line">instance1.sayName(); <span class="comment">// "Nicholas";</span></span><br><span class="line">instance1.sayAge(); <span class="comment">// 29</span></span><br><span class="line"><span class="keyword">let</span> instance2 = <span class="keyword">new</span> SubType(<span class="string">'Greg'</span>, <span class="number">27</span>);</span><br><span class="line"><span class="built_in">console</span>.log(instance2.colors); <span class="comment">// "red,blue,green"</span></span><br><span class="line">instance2.sayName(); <span class="comment">// "Greg";</span></span><br><span class="line">instance2.sayAge(); <span class="comment">// 27</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，各个实例有自己的实例属性，也可以共享父类的方法。</p>
+<h2 id="MDN学习记录"><a href="#MDN学习记录" class="headerlink" title="MDN学习记录"></a>MDN学习记录</h2><h3 id="lt-video-gt-与-lt-audio-gt"><a href="#lt-video-gt-与-lt-audio-gt" class="headerlink" title="&lt;video&gt; 与 &lt;audio&gt;"></a>&lt;video&gt; 与 &lt;audio&gt;</h3><p>在网页中添加视频或音频可以用 <code>html5</code> 新增的标签，可以直接指定单独的 <code>video</code> 或 <code>audio</code> 标签使用。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">"./friday.mp4"</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>src</code> 属性指定视频源， <code>controls</code>  指定是否展示控制条。</p>
+<p>但因为视频格式多种多样，不同浏览器采用的编码器不一样，所以我们要尽可能兼容各种格式的视频。可以在 <code>video</code> 标签内部放入 <code>source</code> 标签来指定不同的视频源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"./friday.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>你的浏览器不支持 HTML5 视频。可点击<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"friday.mp4"</span>&gt;</span>此链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span>观看<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当浏览器解析时会寻找匹配的视频格式来解码。同时可以在内部放入一个后备内容用于视频不可用时的展示。</p>
+<p><code>video</code> 标签的其余属性：</p>
+<ul>
+<li><p><code>width</code> <code>height</code> </p>
+<p>可以手动设定视频的宽高。</p>
+</li>
+<li><p><code>autoplay</code></p>
+<p>视频加载完后自动播放。</p>
+</li>
+<li><p><code>loop</code></p>
+<p>视频循环播放。</p>
+</li>
+<li><p><code>muted</code></p>
+<p>视频默认关闭声音。</p>
+</li>
+<li><p><code>poster</code></p>
+<p>指定视频播放前的视频封面。</p>
+</li>
+<li><p><code>preload</code></p>
+<p>用于缓冲较大的文件：</p>
+<ul>
+<li><code>none</code> 不缓冲。</li>
+<li><code>auto</code> 页面加载后缓冲媒体文件。</li>
+<li><code>metadata</code> 仅缓冲文件的元数据。</li>
+</ul>
+</li>
+</ul>
+<p><code>audio</code> 标签与 <code>video</code> 类似，但没有 <code>width/height</code> 属性，不支持 <code>poster</code> 属性。</p>
+<p>两个标签对应的 <code>dom</code> 元素都可以调用 <code>load()</code> 方法来重置播放。</p>
+<p>可以通过监听 <code>addtrack</code> 事件来监听音频轨道的增删。</p>
+<p><code>video</code> 标签支持显示音轨文本，配置一个音轨文本的 <code>vtt</code> 文件。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">WEBVTT</span><br><span class="line"></span><br><span class="line">00:00:00.000 --&gt; 00:00:00.999  line:80<span class="comment">%</span></span><br><span class="line">Hildy!</span><br><span class="line"></span><br><span class="line">00:00:01.000 --&gt; 00:00:01.499 line:80<span class="comment">%</span></span><br><span class="line">How are you?</span><br><span class="line"></span><br><span class="line">00:00:01.500 --&gt; 00:00:02.999 line:80<span class="comment">%</span></span><br><span class="line">Tell me, is the lord of the universe in?</span><br><span class="line"></span><br><span class="line">00:00:03.000 --&gt; 00:00:04.299 line:80<span class="comment">%</span></span><br><span class="line">Yes, he's in - in a bad humor</span><br><span class="line"></span><br><span class="line">00:00:04.300 --&gt; 00:00:06.000 line:80<span class="comment">%</span></span><br><span class="line">Somebody must've stolen the crown jewels</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>video</code> 中配置 <code>track</code> 标签指明音轨文本来源。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"500"</span> <span class="attr">muted</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"./friday.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">track</span> <span class="attr">default</span> <span class="attr">kind</span>=<span class="string">"captions"</span> <span class="attr">srclang</span>=<span class="string">"en"</span> <span class="attr">src</span>=<span class="string">"friday.vtt"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>你的浏览器不支持 HTML5 视频。可点击<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"rabbit320.mp4"</span>&gt;</span>此链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span>观看<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/20201020_181134.gif" alt="视频预览"></p>
+<h3 id="lt-picture-gt"><a href="#lt-picture-gt" class="headerlink" title="&lt;picture&gt;"></a>&lt;picture&gt;</h3><p><code>picture</code> 标签可用于响应式图片。但 <code>img</code> 本身也支持这个功能，先看一下 <code>img</code> 的例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"elva-480w.jpg 480w,</span></span></span><br><span class="line"><span class="tag"><span class="string">             elva-800w.jpg 800w"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">sizes</span>=<span class="string">"(max-width: 320px) 280px,</span></span></span><br><span class="line"><span class="tag"><span class="string">            (max-width: 480px) 440px,</span></span></span><br><span class="line"><span class="tag"><span class="string">            800px"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">src</span>=<span class="string">"elva-800w.jpg"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>srcset</code> 指定了图像集以及每张图片的大小，此处的 <code>480w</code> 指的是图片真实宽度为 <code>480px</code> 。</p>
+<p><code>sizes</code> 指定了一组媒体条件，当某个媒体条件为真时，它对应的宽度会赋给该 <code>img</code> 标签。</p>
+<p>在多次测试这个功能后，我发现 <code>img</code> 的标签的响应式选择图片仅在<strong>初次加载</strong>时执行。</p>
+<p>也就是说，浏览器只会在第一次加载时来根据设备宽度选择图片，在此之后无论设备宽度如何变化，它只会根据我们设定好的条件来改变图片的大小而不会更换图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述这个元数据标签指定了浏览器采用真实可视宽度来加载网页。</p>
+<p>也可以实现相同尺寸不同分辨率的情况。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">srcset</span>=<span class="string">"elva-480w.jpg,</span></span></span><br><span class="line"><span class="tag"><span class="string">             elva-800w.jpg 2x"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">src</span>=<span class="string">"elva-800w.jpg"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子去掉了 <code>sizes</code> 。我们不修改 <code>img</code> 标签的大小。在不同尺寸下加载不同图片，以适应不同分辨率的设备更好的显示。</p>
+<h4 id="响应式切换"><a href="#响应式切换" class="headerlink" title="响应式切换"></a>响应式切换</h4><p>如果需要完成响应式切换图片的话，需要使用 <code>picture</code> 标签。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(max-width: 799px)"</span> <span class="attr">srcset</span>=<span class="string">"elva-480w.jpg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">media</span>=<span class="string">"(min-width: 800px)"</span> <span class="attr">srcset</span>=<span class="string">"elva-800w.jpg"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"elva-800w.jpg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>picture</code> 标签内部使用 <code>source</code> 标签指定图片， <code>media</code> 属性设置激活的媒体条件， <code>srcset</code> 指定生效的图片。</p>
+<p>最后的 <code>img</code> 标签作为后备内容。</p>
+<h3 id="Mozilla醒目页面"><a href="#Mozilla醒目页面" class="headerlink" title="Mozilla醒目页面"></a>Mozilla醒目页面</h3><p>实现一个网页，在设备宽度不同的情况下，加载不同的图片。</p>
+<p><img src="/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/image-20201020193827564.png" alt="设备宽度大于 600px"></p>
+<p><img src="/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/image-20201020193841095.png" alt="图片小于 480px"></p>
+<p>在设备宽度小于 <code>480px</code> 时，四个导航的图片加载 <code>120px</code> 版本。</p>
+<p>大于 <code>480px</code> 时，加载 <code>400px</code> 版本。</p>
+<p>宽度小于 <code>600px</code> 时，加载 <code>600px</code> 版本的小熊猫图片，否则加载 <code>1200px</code> 版本。</p>
+<p>列出主要代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span></span></span><br><span class="line"><span class="tag">  <span class="attr">srcset</span>=<span class="string">"./images/firefoxlogo120.png 120w, ./images/firefoxlogo400.png 400w"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">sizes</span>=<span class="string">"(max-width: 480px) 120px,</span></span></span><br><span class="line"><span class="tag"><span class="string">         (min-width: 481px) 400px"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"./images/firefoxlogo400.png"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"./images/redpanda600.jpg"</span> <span class="attr">media</span>=<span class="string">"(max-width: 600px)"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">"./images/redpanda1200.jpg"</span> <span class="attr">media</span>=<span class="string">"(min-width: 601px)"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./images/redpanda1200.jpg"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-19/">
+        <span>学习笔记 2020 10 19</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/20/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-20/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-20"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-20</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象、类与面向对象编程"><span class="toc-number">1.1.1.</span> <span class="toc-text">对象、类与面向对象编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对象迭代"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">对象迭代</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#其他原型语法"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">其他原型语法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原型的动态性"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">原型的动态性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原生对象原型"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">原生对象原型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原型的问题"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text">原型的问题</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#继承"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#原型链"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#默认原型"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">默认原型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原型与继承关系"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">原型与继承关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关于方法"><span class="toc-number">1.1.1.2.4.</span> <span class="toc-text">关于方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#原型链的问题"><span class="toc-number">1.1.1.2.5.</span> <span class="toc-text">原型链的问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#盗用构造函数"><span class="toc-number">1.1.1.2.6.</span> <span class="toc-text">盗用构造函数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#传递参数"><span class="toc-number">1.1.1.2.7.</span> <span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#盗用构造函数的问题"><span class="toc-number">1.1.1.2.8.</span> <span class="toc-text">盗用构造函数的问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#组合继承"><span class="toc-number">1.1.1.2.9.</span> <span class="toc-text">组合继承</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN学习记录"><span class="toc-number">1.2.</span> <span class="toc-text">MDN学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-video-gt-与-lt-audio-gt"><span class="toc-number">1.2.1.</span> <span class="toc-text">&lt;video&gt; 与 &lt;audio&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lt-picture-gt"><span class="toc-number">1.2.2.</span> <span class="toc-text">&lt;picture&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#响应式切换"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">响应式切换</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mozilla醒目页面"><span class="toc-number">1.2.3.</span> <span class="toc-text">Mozilla醒目页面</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
