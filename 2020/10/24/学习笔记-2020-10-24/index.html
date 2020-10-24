@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 24 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/">学习笔记 2020 10 24</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-24
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-24
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 24&url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 24&url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/&title=学习笔记 2020 10 24" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 24&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/&text=学习笔记 2020 10 24" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-24"><a href="#学习笔记-2020-10-24" class="headerlink" title="学习笔记 2020-10-24"></a>学习笔记 2020-10-24</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="代理与反射"><a href="#代理与反射" class="headerlink" title="代理与反射"></a>代理与反射</h3><h4 id="代理捕获器与反射方法"><a href="#代理捕获器与反射方法" class="headerlink" title="代理捕获器与反射方法"></a>代理捕获器与反射方法</h4><p>代理可以捕获 13 种不同的基本操作。这些操作有各自不同的反射 <code>API</code> 方法、参数、关联 <code>ECMAScript</code> 操作和不变式。</p>
+<p>有几种不同的 <code>JavaScript</code> 操作会调用同一个捕获器处理程序。不过，对于在代理对象上执行的任何一种操作，只会有一个捕获处理程序被调用。</p>
+<h5 id="get"><a href="#get" class="headerlink" title="get()"></a><code>get()</code></h5><p><code>get()</code> 捕获器会在获取属性值的操作中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.get()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p>返回值无限制。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>proxy.property</code></li>
+<li><code>proxy[property]</code></li>
+<li><code>Object.create(proxy)[property]</code></li>
+<li><code>Reflect.get(proxy, property, receiver)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象</li>
+<li><code>property</code> 引用的目标对象上的字符串键参数</li>
+<li><code>receiver</code> 处理对象或继承代理对象的对象</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>target.property</code> 不可写且不可配置，则处理程序返回的值必须与 <code>target.property</code> 匹配。</p>
+<p>如果 <code>target.property</code> 不可配置且 <code>[[Get]]</code> 特性为 <code>undefined</code> ，处理程序也必须返回 <code>undefined</code> 。</p>
+</li>
+</ol>
+<h5 id="set"><a href="#set" class="headerlink" title="set()"></a><code>set()</code></h5><p><code>set()</code> 捕获器会在设置属性值的操作中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.set()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p>返回 <code>true</code> 表示成功，返回 <code>false</code> 表示失败，严格模式下会抛出 <code>TypeError</code> 。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>proxy.property = value</code></li>
+<li><code>proxy[property] = value</code></li>
+<li><code>Object.create(proxy)[property] = value</code></li>
+<li><code>Reflect.set(proxy, property, value, receiver)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>property</code> 引用的目标对象上的字符串键属性。</li>
+<li><code>value</code> 要赋给属性的值。</li>
+<li><code>receiver</code> 接收最初赋值的对象。</li>
+</ul>
+</li>
+</ol>
+<h5 id="has"><a href="#has" class="headerlink" title="has()"></a><code>has()</code></h5><p><code>has()</code> 捕获器会在 <code>in</code> 操作符被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.has()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>has()</code> 必须返回布尔值，表示属性是否存在。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><p><code>property in proxy</code></p>
+</li>
+<li><p><code>property in Object.create(proxy)</code></p>
+</li>
+<li><p><code>with(proxy) {( property ); }</code></p>
+</li>
+<li><p><code>Reflect.has(proxy, property)</code></p>
+</li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>property</code> 引用的目标对象上的字符串键属性。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>target.property</code> 存在且不可配置，则处理程序必须返回 <code>true</code> 。</p>
+<p>如果 <code>target.property</code> 存在且目标对象不可拓展，则处理程序必须返回 <code>true</code> 。</p>
+</li>
+</ol>
+<h5 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty()"></a><code>defineProperty()</code></h5><p><code>defineProperty()</code> 捕获器会在 <code>Object.defineProperty()</code> 被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.defineProperty()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>defineProperty()</code> 必须返回布尔值，表示属性是否成功定义。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><p><code>Object.defineProperty(proxy, property, descriptor)</code></p>
+</li>
+<li><p><code>Reflect.defineProperty(proxy, property, descriptor)</code></p>
+</li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>property</code> 引用的目标对象上的字符串键属性。</li>
+<li><code>descriptor</code> 包含可选的 <code>enumerable</code> 、 <code>configurable</code> 、 <code>writable</code> 、 <code>value</code> 、 <code>get</code> 和 <code>set</code> 定义的对象。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果目标对象不可拓展，则无法定义属性。</p>
+<p>如果目标对象有一个可配置的属性，则不能添加同名的不可配置属性。</p>
+<p>如果目标对象有一个不可配置的属性，则不能添加同名的可配置属性。</p>
+</li>
+</ol>
+<h5 id="getOwnPropertyDescriptor"><a href="#getOwnPropertyDescriptor" class="headerlink" title="getOwnPropertyDescriptor()"></a><code>getOwnPropertyDescriptor()</code></h5><p><code>getOwnPropertyDescriptor()</code> 捕获器会在 <code>Object.getOwnPropertyDescriptor()</code> 中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.getOwnPropertyDscriptor()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>getOwnPropertyDescriptor()</code> 必须返回对象，或者在属性不存在时返回 <code>undefined</code> 。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>Object.getOwnpropertyDescriptor(proxy, property)</code></li>
+<li><code>Reflect.getOwnPropertyDescriptor(proxy, property)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>property</code> 引用的目标对象上的字符串键属性</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果自有的 <code>target.property</code> 存在且不可配置，则处理程序必须返回一个表示该属性存在的对象。</p>
+<p>如果自有的 <code>target.property</code> 存在且可配置，则处理程序必须返回表示该属性可配置的对象。</p>
+<p>如果 <code>target.property</code> 存在且 <code>target</code> 不可拓展，则处理程序必须返回 <code>undefined</code> 表示该属性不存在。</p>
+<p>如果 <code>target.property</code> 不存在，则处理程序不能返回表示该属性可配置的对象。</p>
+</li>
+</ol>
+<h5 id="deleteProperty"><a href="#deleteProperty" class="headerlink" title="deleteProperty()"></a><code>deleteProperty()</code></h5><p><code>deleteProperty()</code> 捕获器会在 <code>delete</code> 操作符中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.deleteProperty()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>deleteProperty()</code> 必须返回布尔值，表示删除属性是否成功。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>delete proxy.property</code></li>
+<li><code>delete proxy[property]</code></li>
+<li><code>Reflect.deleteProperty(proxy, property)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>property</code> 引用的目标对象上的字符串键属性。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果自有的 <code>target.property</code> 存在且不可配置，则处理程序不能删除这个属性。</p>
+</li>
+</ol>
+<h5 id="ownKeys"><a href="#ownKeys" class="headerlink" title="ownKeys()"></a><code>ownKeys()</code></h5><p><code>ownKeys()</code> 捕获器会在 <code>Object.keys()</code> 及类似方法中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.ownKeys()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>ownKeys()</code> 必须返回包含字符串或符号的可枚举对象。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>Object.getOwnPropertyNames(proxy)</code></li>
+<li><code>Object.getOwnPropertySymbols(proxy)</code></li>
+<li><code>Object.keys(proxy)</code></li>
+<li><code>Reflect.ownKeys(proxy)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>返回的可枚举对象必须包含 <code>target</code> 的所有不可配置的自由属性。</p>
+<p>如果 <code>target</code> 不可拓展，则返回可枚举对象必须准确地包含自有属性键。</p>
+</li>
+</ol>
+<h5 id="getPrototypeOf"><a href="#getPrototypeOf" class="headerlink" title="getPrototypeOf()"></a><code>getPrototypeOf()</code></h5><p><code>getPrototypeOf()</code> 捕获器会在 <code>Object.getPrototypeOf()</code> 中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.getPrototypeOf()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>getPrototypeOf()</code> 必须返回对象或 <code>null</code> 。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>Object.getPrototypeOf(proxy)</code></li>
+<li><code>Reflect.getPrototypeOf(proxy)</code></li>
+<li><code>proxy.__proto__</code></li>
+<li><code>Object.prototype.isPrototypeOf(proxy)</code></li>
+<li><code>proxy instanceof object</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<p><code>target</code> 目标对象。</p>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>target</code> 不可拓展，则 <code>Object.getPrototypeOf(proxy)</code> 唯一有效的返回值就是 <code>Object.getPrototypeOf(target)</code> 的返回值。</p>
+</li>
+</ol>
+<h5 id="setPrototypeOf"><a href="#setPrototypeOf" class="headerlink" title="setPrototypeOf()"></a><code>setPrototypeOf()</code></h5><p><code>setPrototypeOf()</code> 捕获器会在 <code>Object.setPrototypeOf()</code> 中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.setPrototypeOf()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>setPrototypeOf()</code> 必须返回布尔值，表示原型赋值是否成功。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><p><code>Object.setPrototypeOf(proxy)</code></p>
+</li>
+<li><p><code>Reflect.setPrototypeOf(proxy)</code></p>
+</li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>prototype</code> <code>target</code> 的替代原型，如果是顶级原型则为 <code>null</code> 。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>target</code> 不可拓展，则唯一有效的 <code>prototype</code> 参数就是 <code>Object.getPrototypeOf(target)</code> 的返回值。</p>
+</li>
+</ol>
+<h5 id="isExtensible"><a href="#isExtensible" class="headerlink" title="isExtensible()"></a><code>isExtensible()</code></h5><p><code>isExtensible()</code> 捕获器会在 <code>Object.isExtensible()</code> 中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.isExtensible()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>isExtensible()</code> 必须返回布尔值，表示 <code>target</code> 是否可拓展。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>target.isExtensible(proxy)</code></li>
+<li><code>Reflect.isExtensible(proxy)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>target</code> 可拓展，则处理程序必须返回 <code>true</code> 。</p>
+<p>如果 <code>target</code> 不可拓展，则处理程序必须返回 <code>false</code> 。</p>
+</li>
+</ol>
+<h5 id="preventExtensions"><a href="#preventExtensions" class="headerlink" title="preventExtensions()"></a><code>preventExtensions()</code></h5><p><code>preventExtensions()</code> 捕获器会在 <code>Object.preventExtensions()</code> 中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.preventExtensions()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>preventExtensions()</code> 必须返回布尔值，表示 <code>target</code> 是否已经不可拓展。返回非布尔值会被转型为布尔值。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>Object.preventExtensions(proxy)</code></li>
+<li><code>Reflect.preventExtensions(proxy)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p>如果 <code>Object.isExtensible(proxy)</code> 是 <code>false</code> ，则处理程序必须返回 <code>true</code> 。</p>
+</li>
+</ol>
+<h5 id="apply"><a href="#apply" class="headerlink" title="apply()"></a><code>apply()</code></h5><p><code>apply()</code> 捕获器会在调用函数时被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.apply()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p>返回值无限制</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>proxy(...argumentsList)</code></li>
+<li><code>Function.prototype.apply(thisArg, argumentsList)</code></li>
+<li><code>Function.prototype.call(thisArg, ...argumentsList)</code></li>
+<li><code>Reflect.apply(target, thisArgument, argumentsList)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标对象。</li>
+<li><code>thisArg</code> 调用函数时的 <code>this</code> 参数。</li>
+<li><code>argumentsList</code> 调用函数时的参数列表。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p><code>target</code> 必须是一个函数对象。</p>
+</li>
+</ol>
+<h5 id="construct"><a href="#construct" class="headerlink" title="construct()"></a><code>construct()</code></h5><p><code>construct()</code> 捕获器会在 <code>new</code> 操作符中被调用。对应的反射 <code>API</code> 方法为 <code>Reflect.construct()</code> 。</p>
+<ol>
+<li><p>返回值</p>
+<p><code>construct()</code> 必须返回一个对象。</p>
+</li>
+<li><p>拦截的操作</p>
+<ul>
+<li><code>new proxy(...argumentsList)</code></li>
+<li><code>Reflect.construct(target, argumentsList, newTarget)</code></li>
+</ul>
+</li>
+<li><p>捕获器处理程序参数</p>
+<ul>
+<li><code>target</code> 目标构造函数。</li>
+<li><code>argumentsList</code> 传给目标构造函数的参数列表。</li>
+<li><code>newTarget</code> 最初被调用的构造函数。</li>
+</ul>
+</li>
+<li><p>捕获器不变式</p>
+<p><code>target</code> 必须可以用作构造函数。</p>
+</li>
+</ol>
+<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><h5 id="跟踪属性访问"><a href="#跟踪属性访问" class="headerlink" title="跟踪属性访问"></a>跟踪属性访问</h5><p>通过捕获 <code>get</code> 、<code>set</code> 和 <code>has</code> 等操作，可以知道对象属性什么时候被访问、被查询。把实现相应捕获器的某个对象代理放到应用中，可以监控这个对象何时在何处被访问过：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  name: <span class="string">'Jake'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(user, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, property, receiver) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Getting <span class="subst">$&#123;property&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(...arguments);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">set</span>(target, property, value, receiver) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Setting <span class="subst">$&#123;property&#125;</span>=<span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(...arguments);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">proxy.name; <span class="comment">// Getting name</span></span><br><span class="line">proxy.age = <span class="number">27</span>; <span class="comment">// Setting age=27</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h5><p>代理的内部实现对外部代码是不可见的，因此要隐藏目标对象上的属性也轻而易举。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hiddenProperties = [<span class="string">'foo'</span>, <span class="string">'bar'</span>];</span><br><span class="line"><span class="keyword">const</span> targetObject = &#123;</span><br><span class="line">  foo: <span class="number">1</span>,</span><br><span class="line">  bar: <span class="number">2</span>,</span><br><span class="line">  baz: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(targetObject, &#123;</span><br><span class="line">  <span class="keyword">get</span>(target, property) &#123;</span><br><span class="line">    <span class="keyword">if</span> (hiddenProperties.includes(property)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.get(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  has(target, property) &#123;</span><br><span class="line">    <span class="keyword">if</span> (hiddenProperties.includes(property)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.has(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// get()</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.foo); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.bar); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy.baz); <span class="comment">// 3</span></span><br><span class="line"><span class="comment">// has()</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'foo'</span> <span class="keyword">in</span> proxy); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'bar'</span> <span class="keyword">in</span> proxy); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'baz'</span> <span class="keyword">in</span> proxy); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="属性验证"><a href="#属性验证" class="headerlink" title="属性验证"></a>属性验证</h5><p>所有赋值操作都会触发 <code>set()</code> 捕获器，可以根据所赋值决定允许还是拒绝赋值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> target = &#123;</span><br><span class="line">  onlyNumbersGoHere: <span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;</span><br><span class="line">  <span class="keyword">set</span>(target, property, value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">'number'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.set(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">proxy.onlyNumbersGoHere = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.onlyNumbersGoHere); <span class="comment">// 1</span></span><br><span class="line">proxy.onlyNumbersGoHere = <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(proxy.onlyNumbersGoHere); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="函数与构造函数参数验证"><a href="#函数与构造函数参数验证" class="headerlink" title="函数与构造函数参数验证"></a>函数与构造函数参数验证</h5><p>可以对函数和构造函数参数进行审查。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">median</span>(<span class="params">...nums</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> nums.sort()[<span class="built_in">Math</span>.floor(nums.length / <span class="number">2</span>)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(median, &#123;</span><br><span class="line">  apply(target, thisArg, argumentsList) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> arg <span class="keyword">of</span> argumentsList) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> arg !== <span class="string">'number'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="string">'Non-number argument provided'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Reflect</span>.apply(...arguments);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(proxy(<span class="number">4</span>, <span class="number">7</span>, <span class="number">1</span>)); <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">console</span>.log(proxy(<span class="number">4</span>, <span class="string">'7'</span>, <span class="number">1</span>));</span><br><span class="line"><span class="comment">// Error: Non-number argument provided</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(id) &#123;</span><br><span class="line">    <span class="keyword">this</span>.id_ = id;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(User, &#123;</span><br><span class="line">  construct(target, argumentsList, newTarget) &#123;</span><br><span class="line">    <span class="keyword">if</span> (argumentsList[<span class="number">0</span>] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="string">'User cannot be instantiated without id'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Reflect</span>.construct(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">new</span> proxy(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">new</span> proxy();</span><br><span class="line"><span class="comment">// Error: User cannot be instantiated without id</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><h4 id="可达性"><a href="#可达性" class="headerlink" title="可达性"></a>可达性</h4><p><code>JS</code> 中主要的内存管理概念是 <strong>可达性</strong>。</p>
+<p>当一个值以某种方式可访问或可用，都不能被释放。</p>
+<h2 id="MDN-学习记录"><a href="#MDN-学习记录" class="headerlink" title="MDN 学习记录"></a>MDN 学习记录</h2><h3 id="Web-字体"><a href="#Web-字体" class="headerlink" title="Web 字体"></a>Web 字体</h3><p>可以选择自定义一个 <code>@font-face</code> 块指定远程资源字体文件，然后使用该字体应用在页面中。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"myFont"</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"myFont.ttf"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"myFont"</span>, <span class="string">"Bitstream Vera Serif"</span>, serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大多数现代浏览器都支持 <code>WOFF / WOFF2</code> (Web Open Font Format versions 1 and 2，Web开放字体格式版本1和2) 字体。旧版本 <code>IE</code> 只支持 <code>EOT</code> (Embedded Open Type，嵌入式开放类型) 的字体。</p>
+<blockquote>
+<p>获得字体的网站：</p>
+<ul>
+<li>免费的字体经销商：这是一个可以下载免费字体的网站(可能还有一些许可条件，比如对字体创建者的信赖)。比如： <a href="https://www.fontsquirrel.com/" target="_blank" rel="noopener">Font Squirre</a>，<a href="http://www.dafont.com/" target="_blank" rel="noopener">dafont</a> 和 <a href="https://everythingfonts.com/" target="_blank" rel="noopener">Everything Fonts</a>。</li>
+<li>收费的字体经销商：这是一个收费则字体可用的网站，例如<a href="http://www.fonts.com/" target="_blank" rel="noopener">fonts.com</a>或<a href="http://www.myfonts.com/" target="_blank" rel="noopener">myfonts.com</a>。您也可以直接从字体铸造厂中购买字体，例如<a href="https://www.linotype.com/" target="_blank" rel="noopener">Linotype</a>，<a href="http://www.monotype.com/" target="_blank" rel="noopener">Monotype</a> 或 <a href="http://www.exljbris.com/" target="_blank" rel="noopener">Exljbris</a>。</li>
+<li><a href="https://www.google.com/fonts" target="_blank" rel="noopener">Google Fonts</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p> 生成所需代码</p>
+<p>对于每种字体，遵循以下步骤：</p>
+<ol>
+<li>确保已经满足了任何许可证的要求，如果打算在一个商业和/或Web项目中使用它。</li>
+<li>前往 Fontsquirrel <a href="https://www.fontsquirrel.com/tools/webfont-generator" target="_blank" rel="noopener">Webfont Generator</a>.</li>
+<li>使用上传字体按钮上传你的两个字体文件。</li>
+<li>勾选复选框，“是的，我上传的字体符合网络嵌入的合法条件。</li>
+<li>点击下载套件（kit）。</li>
+</ol>
+<p>在生成器完成处理之后，得到一个ZIP文件，将它保存在与HTML和CSS相同的目录中。</p>
+</blockquote>
+<h3 id="CSS-布局"><a href="#CSS-布局" class="headerlink" title="CSS 布局"></a>CSS 布局</h3><h4 id="弹性盒子"><a href="#弹性盒子" class="headerlink" title="弹性盒子"></a>弹性盒子</h4><p>当父元素设置 <code>display: flex</code> 时，所有子元素变成了 <code>flex items</code> ，按照父元素的 <code>flex</code> 初值进行排列。<code>flex-direction</code> 初值为 <code>row</code> 。所以子元素一般默认按行排列。 <code>align-items</code> 初值为 <code>stretch</code> ，所以子元素会被拉伸至最高的元素高度。</p>
+<p>子元素设置 <code>flex: 1</code> ，会使得所有子元素伸展并填充容器，不会留下空白。 </p>
+<h4 id="grid-布局"><a href="#grid-布局" class="headerlink" title="grid 布局"></a><code>grid</code> 布局</h4><p><code>grid</code> 布局用于同时在两个维度上把元素按行按列排序整齐。弹性盒子用于设计横向或纵向的布局。</p>
+<p>设置父元素的 <code>display</code> 值为 <code>grid</code> 即可进行 <code>grid</code> 布局。</p>
+<p>可以使用 <code>grid-template-rows</code> 和 <code>grid-template-columns</code> 来定义行和列的轨道。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span>One<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box3"</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box4"</span>&gt;</span>Four<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box5"</span>&gt;</span>Five<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box6"</span>&gt;</span>Six<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024124853197.png" alt="image-20201024124853197"></p>
+<p>也可以自定义子元素的 <code>grid-column</code> 和 <code>grid-row</code> 属性来设置子元素在哪里摆放。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">1</span>fr <span class="number">1</span>fr;</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">100px</span> <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box1</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">2</span> / <span class="number">4</span>; <span class="comment">/* 从第2列开始 到第4列结束 */</span></span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span>; <span class="comment">/* 第1行 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box2</span> &#123;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">1</span> / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box3</span> &#123;</span><br><span class="line">  <span class="attribute">grid-row</span>: <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">grid-column</span>: <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box1"</span>&gt;</span>One<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box2"</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box3"</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024125045813.png" alt="image-20201024125045813"></p>
+<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><p>浮动会使得元素从正常布局流中移除。其他的周围内容就会被这个浮动元素环绕。</p>
+<p><code>float</code> 的值：</p>
+<ul>
+<li><code>left</code></li>
+<li><code>right</code></li>
+<li><code>none</code> 默认值</li>
+<li><code>inherit</code></li>
+</ul>
+<h4 id="定位技术"><a href="#定位技术" class="headerlink" title="定位技术"></a>定位技术</h4><ul>
+<li><code>static</code> 静态定位</li>
+<li><code>relative</code> 相对定位，相对于元素在正常文档流中的位置。</li>
+<li><code>absolute</code> 绝对定位，从正常文档流移除，相对于该元素最近的被定位祖先元素或是页面的 <code>html</code> 元素。</li>
+<li><code>fixed</code> 固定定位，相对于浏览器视口固定。</li>
+<li><code>sticky</code> 粘性定位，先保持静态定位，当它的相对视口位置(<code>offset from the viewport</code>)达到某一个预设值时，会变成固定定位。</li>
+</ul>
+<h4 id="表格布局"><a href="#表格布局" class="headerlink" title="表格布局"></a>表格布局</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>First of all, tell us your name and age.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"fname"</span>&gt;</span>First name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"fname"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"lname"</span>&gt;</span>Last name:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"lname"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"age"</span>&gt;</span>Age:<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"age"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table-row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">label</span>, <span class="selector-tag">form</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table-cell;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">label</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">5%</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">input</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">form</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: table-caption;</span><br><span class="line">  <span class="attribute">caption-side</span>: bottom;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">font-style</span>: italic;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024130617494.png" alt="image-20201024130617494"></p>
+<h4 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h4><p>多列布局可以实现把内容按列排序，就像文本在报纸上排列那样。</p>
+<p>使用 <code>column-count</code> 属性来告诉浏览器需要把一个多列容器转成多少列。</p>
+<p>使用 <code>column-width</code> 属性来告诉浏览器以至少某个宽度的尽可能多的列来填充容器。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Multi-column layout<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 1.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Paragraph 2.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">column-width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024131059533.png" alt="image-20201024131059533"></p>
+<h4 id="正常布局流"><a href="#正常布局流" class="headerlink" title="正常布局流"></a>正常布局流</h4><p>正常布局流是一套在浏览器视口内放置、组织元素的系统。默认的，块级元素按照基于其父元素的书写顺序(默认值 <code>horizontal-tb</code> )的块流动方向放置。内联元素会在父级块元素的宽度内放置，溢出的文本或元素移到新的一行。</p>
+<h4 id="弹性盒子-1"><a href="#弹性盒子-1" class="headerlink" title="弹性盒子"></a>弹性盒子</h4><p>行内元素设置为弹性盒子，可以设置 <code>display</code> 的值为 <code>inline-flex</code> 。</p>
+<h5 id="flex-模型"><a href="#flex-模型" class="headerlink" title="flex 模型"></a><code>flex</code> 模型</h5><p>当元素表现为 flex 框时，它们沿着两个轴来布局：</p>
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024132638213.png" alt="flex_terms"></p>
+<ul>
+<li><strong>主轴（main axis）</strong>是沿着 flex 元素放置的方向延伸的轴（比如页面上的横向的行、纵向的列）。该轴的开始和结束被称为 <strong>main start</strong> 和 <strong>main end</strong>。</li>
+<li><strong>交叉轴（cross axis）</strong>是垂直于 flex 元素放置方向的轴。该轴的开始和结束被称为 <strong>cross start</strong> 和 <strong>cross end</strong>。</li>
+<li>设置了 <code>display: flex</code> 的父元素（在本例中是 <code>section</code>）被称之为 <strong>flex 容器（flex container）。</strong></li>
+<li>在 flex 容器中表现为柔性的盒子的元素被称之为 <strong>flex 项</strong>（<strong>flex item</strong>）（本例中是 <code>article</code> 元素。</li>
+</ul>
+<p>弹性盒子提供了 <code>flex-direction</code> 来指定主轴的方向。</p>
+<ul>
+<li><code>row</code></li>
+<li><code>column</code></li>
+<li><code>row-reverse</code></li>
+<li><code>column-reverse</code></li>
+</ul>
+<h5 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h5><p>当弹性盒子子元素定宽或定高时，可能会导致子元素溢出父元素。</p>
+<p>此时，可以设置父元素的 <code>flex-wrap</code> 属性为 <code>wrap</code> 来自动换行。</p>
+<p>子元素设置 <code>flex</code> 值为宽度时，会使得子元素的宽度大于等于这个值，当父元素某一行有多余内容时，会自动伸展来填充空余内容。</p>
+<h5 id="flex-flow-缩写"><a href="#flex-flow-缩写" class="headerlink" title="flex-flow 缩写"></a><code>flex-flow</code> 缩写</h5><p><code>flex-flow</code> 是 <code>flex-direction</code> 和 <code>flex-wrap</code> 的缩写属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">flex-direction</span>: <span class="selector-tag">row</span>;</span><br><span class="line"><span class="selector-tag">flex-wrap</span>: <span class="selector-tag">wrap</span>;</span><br><span class="line"><span class="comment">/* === */</span></span><br><span class="line"><span class="selector-tag">flex-flow</span>: <span class="selector-tag">row</span> <span class="selector-tag">wrap</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="flex-项的动态尺寸"><a href="#flex-项的动态尺寸" class="headerlink" title="flex 项的动态尺寸"></a><code>flex</code> 项的动态尺寸</h5><p>设置子元素的 <code>flex: 1</code> 。会使得子元素占用空间都相等。占用空间指在设置 <code>padding</code> 和 <code>margin</code> 之后剩余的空间。</p>
+<p>可以设置子元素的 <code>flex: 1 xxxpx</code> 来设定最小宽度。</p>
+<p>这会使得子元素首先分配最小宽度，剩余空间按照比例来分配。</p>
+<h5 id="flex-缩写与全写"><a href="#flex-缩写与全写" class="headerlink" title="flex 缩写与全写"></a><code>flex</code> 缩写与全写</h5><p><code>flex</code> 是三个值的缩写属性：</p>
+<ul>
+<li><code>flex-grow</code></li>
+<li><code>flex-shrink</code></li>
+<li><code>flex-basis</code></li>
+</ul>
+<h5 id="水平和垂直对齐"><a href="#水平和垂直对齐" class="headerlink" title="水平和垂直对齐"></a>水平和垂直对齐</h5><p><code>align-items</code> 控制 <code>flex</code> 项在交叉轴上的位置。</p>
+<ul>
+<li><p>默认值是 <code>stretch</code> ，使所有 <code>flex</code> 项沿着交叉轴的方向拉伸以填充父容器。如果父容器在交叉轴上没有固定宽度，则所有 <code>flex</code> 项将变得与最长的 <code>flex</code> 项一样长。</p>
+</li>
+<li><p>可以设置 <code>align-self</code> 在某个子元素上覆盖 <code>align-items</code> 的行为。</p>
+</li>
+</ul>
+<p><code>justify-content</code> 控制 <code>flex</code> 项在主轴上的位置。</p>
+<ul>
+<li>默认值是 <code>flex-start</code> ，使得所有 <code>flex</code> 项位于主轴的开始处。</li>
+<li><code>flex-end</code> 使得<code>flex</code> 项位于结尾。</li>
+<li><code>center</code> 使得各项居中。</li>
+<li><code>space-around</code> 让各项沿着主轴均匀分布，任意一端都留一点空间。</li>
+<li><code>space-between</code> 类似于上一个，但不会在两端留空间。</li>
+</ul>
+<h5 id="flex-项排序"><a href="#flex-项排序" class="headerlink" title="flex 项排序"></a><code>flex</code> 项排序</h5><p>弹性盒子可以改变 <code>flex</code> 项的布局位置，而不影响到源顺序。</p>
+<p>设置子元素的 <code>order</code> 属性即可。</p>
+<ul>
+<li><code>order</code> 值默认为 <code>0</code> 。</li>
+<li><code>order</code> 值越大，在显示顺序中越靠后。</li>
+<li>相同 <code>order</code> 值按源顺序显示。</li>
+</ul>
+<h4 id="网格布局"><a href="#网格布局" class="headerlink" title="网格布局"></a>网格布局</h4><p>设置父元素的 <code>display</code> 为 <code>grid</code> 后默认创建一个只有一列的网格，网页布局不会马上发生变化。</p>
+<p>设置 <code>grid-template-columns</code> 可以创建网格列的模板。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">200px</span> <span class="number">200px</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="comment">/* 创建了三列，每列200px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="fr-单位"><a href="#fr-单位" class="headerlink" title="fr 单位"></a><code>fr</code> 单位</h5><p><code>fr</code> 表示一个比例单位。分配父元素的可用空间。可用空间指的是除去那些确定被占用的空间外的空间。</p>
+<h5 id="网格间隙"><a href="#网格间隙" class="headerlink" title="网格间隙"></a>网格间隙</h5><p><code>grid-column-gap</code> 定义列间隙。 <code>grid-row-gap</code> 定义行间隙。</p>
+<p><code>grid-gap</code> 同时设定两者。</p>
+<p><code>grid-</code> 前缀已经被修改，现在可以使用 <code>gap</code> 属性。</p>
+<h5 id="重复构建行-列"><a href="#重复构建行-列" class="headerlink" title="重复构建行/列"></a>重复构建行/列</h5><p>可以使用 <code>repeat</code> 来重复构建相同宽度配置的列。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(3, 1fr); <span class="comment">/* === 1fr 1fr 1fr; */</span></span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="显式网格与隐式网格"><a href="#显式网格与隐式网格" class="headerlink" title="显式网格与隐式网格"></a>显式网格与隐式网格</h5><p>显式网格是使用 <code>grid-template-columns</code> 或 <code>grid-template-rows</code> 创建的。</p>
+<p>隐式网格是当有内容放到网格外时才会生成。</p>
+<p>隐式网格中生成的行/列大小是参数默认 <code>auto</code> ，大小会根据放入的内容自动调整。也可以使用 <code>grid-auto-rows</code> 和 <code>grid-auto-columns</code> 属性手动设定隐式网格的大小。</p>
+<h5 id="minmax"><a href="#minmax" class="headerlink" title="minmax()"></a><code>minmax()</code></h5><p><code>minmax</code> 函数为一个行/列的尺寸设置了取值范围。比如设定为 <code>minmax(100px, auto)</code>，那么尺寸就至少为100像素，并且如果内容尺寸大于100像素则会根据内容自动调整。在这里试一下把 <code>grid-auto-rows</code> 属性设置为<code>minmax</code>函数。</p>
+<h5 id="自动使用多列填充"><a href="#自动使用多列填充" class="headerlink" title="自动使用多列填充"></a>自动使用多列填充</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">grid-template-columns</span>: <span class="selector-tag">repeat</span>(<span class="selector-tag">auto-fill</span>, <span class="selector-tag">minmax</span>(200<span class="selector-tag">px</span>, 1<span class="selector-tag">fr</span>));</span><br></pre></td></tr></table></figure>
+
+<p>可以实现自动填充多列，<code>auto-fill</code> 自动确定重复次数，<code>minmax</code> 来确定列宽。</p>
+<p>此时的子元素会至少大于 <code>200px</code> ，且自动填满父容器。</p>
+<h5 id="基于线的元素放置"><a href="#基于线的元素放置" class="headerlink" title="基于线的元素放置"></a>基于线的元素放置</h5><ul>
+<li><p><code>grid-column-start</code></p>
+</li>
+<li><p><code>grid-column-end</code></p>
+</li>
+<li><p><code>grid-row-start</code></p>
+</li>
+<li><p><code>grid-row-end</code></p>
+<p>以上属性指定元素从哪条线放置到哪条线。属性值为分隔线序号。</p>
+<p>也可以使用缩写形式:</p>
+</li>
+<li><p><code>grid-column</code></p>
+</li>
+<li><p><code>grid-row</code></p>
+</li>
+</ul>
+<p>序号之间需要使用 <code>/</code> 分开。</p>
+<h5 id="使用-grid-template-areas-放置元素"><a href="#使用-grid-template-areas-放置元素" class="headerlink" title="使用 grid-template-areas 放置元素"></a>使用 <code>grid-template-areas</code> 放置元素</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>: <span class="string">'header header'</span> <span class="string">'sidebar content'</span> <span class="string">'footer footer'</span>;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">3</span>fr;</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">header</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: header;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">article</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: content;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">aside</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: sidebar;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">footer</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: footer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/image-20201024145718630.png" alt="image-20201024145718630"></p>
+<p>你需要填满网格的每个格子，对于横跨多个格子的元素，需要重复写该元素的区域名。每个区域名只能出现在一个连续的区域。一个连续的区域必须是一个矩形。使用 <code>.</code> 符号让格子留空。</p>
+<h5 id="手动实现网格系统"><a href="#手动实现网格系统" class="headerlink" title="手动实现网格系统"></a>手动实现网格系统</h5><p>在过去，一般使用浮动来手动实现网格。给出外部容器的总宽度，使用 <code>12</code> 列布局，计算出每个网格的宽度，然后配置一个网格类。</p>
+<p>但这样的网格系统宽度固定，若是想要实现流体网格，需要使用百分比单位。</p>
+<p>将固定值除以预设的外部容器宽度得到百分比进行替换。同时给予外部容器 <code>width</code> 百分比与 <code>max-width</code> 预设值。</p>
+<p>手动实现网格的方式无法控制跨越行，且难以控制元素的高度。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/23/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-23/">
+        <span>学习笔记 2020 10 23</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-24"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-24</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理与反射"><span class="toc-number">1.1.1.</span> <span class="toc-text">代理与反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代理捕获器与反射方法"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">代理捕获器与反射方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#get"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">get()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#set"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">set()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#has"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">has()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#defineProperty"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text">defineProperty()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#getOwnPropertyDescriptor"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text">getOwnPropertyDescriptor()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#deleteProperty"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text">deleteProperty()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ownKeys"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text">ownKeys()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#getPrototypeOf"><span class="toc-number">1.1.1.1.8.</span> <span class="toc-text">getPrototypeOf()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#setPrototypeOf"><span class="toc-number">1.1.1.1.9.</span> <span class="toc-text">setPrototypeOf()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isExtensible"><span class="toc-number">1.1.1.1.10.</span> <span class="toc-text">isExtensible()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#preventExtensions"><span class="toc-number">1.1.1.1.11.</span> <span class="toc-text">preventExtensions()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#apply"><span class="toc-number">1.1.1.1.12.</span> <span class="toc-text">apply()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#construct"><span class="toc-number">1.1.1.1.13.</span> <span class="toc-text">construct()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代理模式"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#跟踪属性访问"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">跟踪属性访问</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#隐藏属性"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">隐藏属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#属性验证"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">属性验证</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#函数与构造函数参数验证"><span class="toc-number">1.1.1.2.4.</span> <span class="toc-text">函数与构造函数参数验证</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#垃圾回收"><span class="toc-number">1.2.1.</span> <span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#可达性"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">可达性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN-学习记录"><span class="toc-number">1.3.</span> <span class="toc-text">MDN 学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-字体"><span class="toc-number">1.3.1.</span> <span class="toc-text">Web 字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-布局"><span class="toc-number">1.3.2.</span> <span class="toc-text">CSS 布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#弹性盒子"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">弹性盒子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#grid-布局"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">grid 布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮动"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定位技术"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">定位技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#表格布局"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">表格布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多列布局"><span class="toc-number">1.3.2.6.</span> <span class="toc-text">多列布局</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正常布局流"><span class="toc-number">1.3.2.7.</span> <span class="toc-text">正常布局流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#弹性盒子-1"><span class="toc-number">1.3.2.8.</span> <span class="toc-text">弹性盒子</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#flex-模型"><span class="toc-number">1.3.2.8.1.</span> <span class="toc-text">flex 模型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#换行"><span class="toc-number">1.3.2.8.2.</span> <span class="toc-text">换行</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flex-flow-缩写"><span class="toc-number">1.3.2.8.3.</span> <span class="toc-text">flex-flow 缩写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flex-项的动态尺寸"><span class="toc-number">1.3.2.8.4.</span> <span class="toc-text">flex 项的动态尺寸</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flex-缩写与全写"><span class="toc-number">1.3.2.8.5.</span> <span class="toc-text">flex 缩写与全写</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#水平和垂直对齐"><span class="toc-number">1.3.2.8.6.</span> <span class="toc-text">水平和垂直对齐</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#flex-项排序"><span class="toc-number">1.3.2.8.7.</span> <span class="toc-text">flex 项排序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网格布局"><span class="toc-number">1.3.2.9.</span> <span class="toc-text">网格布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#fr-单位"><span class="toc-number">1.3.2.9.1.</span> <span class="toc-text">fr 单位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#网格间隙"><span class="toc-number">1.3.2.9.2.</span> <span class="toc-text">网格间隙</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#重复构建行-列"><span class="toc-number">1.3.2.9.3.</span> <span class="toc-text">重复构建行/列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#显式网格与隐式网格"><span class="toc-number">1.3.2.9.4.</span> <span class="toc-text">显式网格与隐式网格</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#minmax"><span class="toc-number">1.3.2.9.5.</span> <span class="toc-text">minmax()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动使用多列填充"><span class="toc-number">1.3.2.9.6.</span> <span class="toc-text">自动使用多列填充</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基于线的元素放置"><span class="toc-number">1.3.2.9.7.</span> <span class="toc-text">基于线的元素放置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用-grid-template-areas-放置元素"><span class="toc-number">1.3.2.9.8.</span> <span class="toc-text">使用 grid-template-areas 放置元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#手动实现网格系统"><span class="toc-number">1.3.2.9.9.</span> <span class="toc-text">手动实现网格系统</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
