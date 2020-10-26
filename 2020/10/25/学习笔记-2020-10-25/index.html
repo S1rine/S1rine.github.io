@@ -337,9 +337,54 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ladder = &#123;</span><br><span class="line">  step: <span class="number">0</span>,</span><br><span class="line">  up() &#123;</span><br><span class="line">    <span class="keyword">this</span>.step++;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  down() &#123;</span><br><span class="line">    <span class="keyword">this</span>.step--;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  showStep: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 显示当前的 step</span></span><br><span class="line">    alert( <span class="keyword">this</span>.step );</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
-
 </li>
 </ol>
+<h2 id="MDN学习记录"><a href="#MDN学习记录" class="headerlink" title="MDN学习记录"></a>MDN学习记录</h2><h3 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h3><p>使用 <code>column-gap</code> 改变列间隙。</p>
+<p>使用 <code>column-rule</code> 在列间加入一条分割线。属性值类似于 <code>border</code> 的值。并且该分割线不占用宽度。</p>
+<h4 id="列与内容折断"><a href="#列与内容折断" class="headerlink" title="列与内容折断"></a>列与内容折断</h4><p><code>break-inside</code> 属性用于表示该盒子不被拆开。</p>
+<p><code>page-break-inside</code> 拥有更好的浏览器支持。</p>
+<h3 id="响应式设计"><a href="#响应式设计" class="headerlink" title="响应式设计"></a>响应式设计</h3><p>响应式网页设计 ( <code>responsive web design</code> )，指的是允许 <code>Web</code> 网页适应不同屏幕宽度因素等，进行布局和外观的调整的一系列实践。</p>
+<ol>
+<li>液态网格，这早先已由Gillenwater进行探讨，可以在Marcotte的文章《<a href="https://alistapart.com/article/fluidgrids/" target="_blank" rel="noopener">Fluid Grids</a>》（出版于2009年的《A List Apart》上）中读到。</li>
+<li><a href="http://unstoppablerobotninja.com/entry/fluid-images" target="_blank" rel="noopener">液态图像</a>。通过使用相当简单的将设置 <code>max-width</code> 属性设置为 <code>100%</code> 的技术，图像可以在包含它们的列变得比图像原始尺寸窄的时候，缩放得更小，但总不会变得更大。这使得图像可以被缩放，以被放到一个灵活尺寸的列，而不是溢出出去，同时也不会在列宽于图像的时候，使图像变得太大以至于画质变得粗糙。</li>
+<li>媒体查询，媒体查询使以往 <code>Cameron Adams</code> 探讨过的、由 <code>JavaScript</code> 实现的布局类型切换，可以只使用CSS实现。和所有尺寸的屏幕都使用一种布局不同的是，布局是可以改变的：侧栏可以在小屏幕上重新布局，而替代用的导航栏也可以显示出来。</li>
+</ol>
+<h4 id="媒介查询"><a href="#媒介查询" class="headerlink" title="媒介查询"></a>媒介查询</h4><p>下面的媒体查询进行测试，以知晓当前的Web页面是否被展示为屏幕媒体（也就是说不是印刷文档），且视口至少有800像素宽。用于 <code>.container</code> 选择器的CSS将只会在这两件前提存在的情况下应用。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">800px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1em</span> <span class="number">2em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>媒体查询，以及样式改变时的点，被叫做断点。</p>
+<h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><h4 id="媒体查询基础"><a href="#媒体查询基础" class="headerlink" title="媒体查询基础"></a>媒体查询基础</h4><p>最简单的媒体查询语法看起来是像这样的：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> media-type and (media-feature-rule) &#123;</span><br><span class="line">  <span class="comment">/* CSS rules go here */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它由以下部分组成：</p>
+<ul>
+<li>一个媒体类型，告诉浏览器这段代码是用在什么类型的媒体上的（例如印刷品或者屏幕）；</li>
+<li>一个媒体表达式，是一个被包含的CSS生效所需的规则或者测试；</li>
+<li>一组CSS规则，会在测试通过且媒体类型正确的时候应用。</li>
+</ul>
+<p>可指定的媒体类型为：</p>
+<ul>
+<li><code>all</code></li>
+<li><code>print</code></li>
+<li><code>screen</code></li>
+<li><code>speech</code></li>
+</ul>
+<h4 id="朝向"><a href="#朝向" class="headerlink" title="朝向"></a>朝向</h4><p>一个受到良好支持的媒体特征是 <code>orientation</code>，我们可以用它测得竖放（portrait mode）和横放（landscape mode）模式。要在设备处于横向的时候改变body文本颜色的话，可使用下面的媒体查询。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (orientation: landscape) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用指点设备"><a href="#使用指点设备" class="headerlink" title="使用指点设备"></a>使用指点设备</h4><p>作为四级规范的一部分，<code>hover</code> 媒体特征被引入了进来。这种特征意味着你可以测试用户是否能在一个元素上悬浮，这也基本就是说他们正在使用某种指点设备，因为触摸屏和键盘导航是没法实现悬浮的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">media</span> (hover: hover) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还是在四级规范中，出现了 <code>pointer</code> 媒体特征。它可取三个值：<code>none</code>、<code>fine</code> 和 <code>coarse</code> 。<code>fine</code> 指针是类似于鼠标或者触控板的东西，它让用户可以精确指向一片小区域。<code>coarse</code> 指针是你在触摸屏上的手指。<code>none</code> 值意味着，用户没有指点设备，也许是他们正只使用键盘导航，或者是语音命令。</p>
+<p>使用 <code>pointer</code> 可以在用户使用屏幕时进行交互时，帮你更好地设计响应这种交互的界面。例如，如果你知道用户正在用触摸屏设备交互的时候，你可以建立更大的响应区域。</p>
+<h4 id="媒体查询逻辑判断"><a href="#媒体查询逻辑判断" class="headerlink" title="媒体查询逻辑判断"></a>媒体查询逻辑判断</h4><ul>
+<li>与 <code>and</code></li>
+<li>或 <code>,</code></li>
+<li>非 <code>not</code></li>
+</ul>
+<h4 id="特性查询"><a href="#特性查询" class="headerlink" title="特性查询"></a>特性查询</h4><p>可以通过特性查询来判断浏览器是否支持某个特性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">supports</span> (display: grid) &#123;</span><br><span class="line">  <span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: auto;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
   </div>
   <!--文末结束语-->
@@ -351,6 +396,11 @@
   <div class="mdui-divider"></div>
   
   <nav>
+    
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/">
+        <i class="iconfont icon-angle-left"></i>
+        <span>学习笔记 2020 10 26</span>
+      </a>
     
     
       <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/24/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-24/">
@@ -369,7 +419,7 @@
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
         <a href="/2020/10/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-25/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-25"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-25</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理与反射"><span class="toc-number">1.1.1.</span> <span class="toc-text">代理与反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代理模式"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#数据绑定与可观察对象"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">数据绑定与可观察对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.1.2.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数名"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">函数名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#理解参数"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">理解参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#没有重载"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">没有重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数值"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">默认参数值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-25"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-25</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理与反射"><span class="toc-number">1.1.1.</span> <span class="toc-text">代理与反射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#代理模式"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#数据绑定与可观察对象"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">数据绑定与可观察对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.1.2.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#箭头函数"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">箭头函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数名"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">函数名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#理解参数"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">理解参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#没有重载"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">没有重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数值"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">默认参数值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN学习记录"><span class="toc-number">1.3.</span> <span class="toc-text">MDN学习记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#多列布局"><span class="toc-number">1.3.1.</span> <span class="toc-text">多列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#列与内容折断"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">列与内容折断</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应式设计"><span class="toc-number">1.3.2.</span> <span class="toc-text">响应式设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#媒介查询"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">媒介查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#媒体查询"><span class="toc-number">1.3.3.</span> <span class="toc-text">媒体查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#媒体查询基础"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">媒体查询基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#朝向"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">朝向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用指点设备"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">使用指点设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#媒体查询逻辑判断"><span class="toc-number">1.3.3.4.</span> <span class="toc-text">媒体查询逻辑判断</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特性查询"><span class="toc-number">1.3.3.5.</span> <span class="toc-text">特性查询</span></a></li></ol></li></ol></li></ol></li></ol>
       </li>
     </ul>
   </div>

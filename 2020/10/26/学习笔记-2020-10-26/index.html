@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 26 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/">学习笔记 2020 10 26</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-26
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-26
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 26&url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 26&url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/&title=学习笔记 2020 10 26" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 26&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/&text=学习笔记 2020 10 26" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-26"><a href="#学习笔记-2020-10-26" class="headerlink" title="学习笔记 2020-10-26"></a>学习笔记 2020-10-26</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数扩展与收集"><a href="#函数扩展与收集" class="headerlink" title="函数扩展与收集"></a>函数扩展与收集</h4><p><code>ECMAScript6</code> 新增了扩展操作符。扩展操作符既可以用于调用函数时传参，也可以用于定义函数参数。</p>
+<h5 id="扩展参数"><a href="#扩展参数" class="headerlink" title="扩展参数"></a>扩展参数</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; ++i) &#123;</span><br><span class="line">    sum += <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getSum(...values)); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>对可迭代对象使用拓展操作符作为一个参数传入，可以将可迭代对象拆分，并将迭代返回的每个值单独传入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProduct</span>(<span class="params">a, b, c = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a * b * c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> getSum = <span class="function">(<span class="params">a, b, c = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>])); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="收集参数"><a href="#收集参数" class="headerlink" title="收集参数"></a>收集参数</h5><p>在函数定义时，使用扩展操作符可以将不同长度的独立参数组合为一个数组。收集参数前面可以有其余命名参数，但只能作为最后一个参数。</p>
+<p>箭头函数也支持收集函数。</p>
+<h4 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h4><p><code>JS</code> 引擎在代码执行之前，会先读取函数声明，并在执行上下文中生成函数定义。函数表达式必须等到代码执行到它，才会在执行上下文中生成函数定义。</p>
+<p>因此函数声明在使用它之前是没有问题的，因为函数声明会被提升。</p>
+<h4 id="函数作为值"><a href="#函数作为值" class="headerlink" title="函数作为值"></a>函数作为值</h4><p>函数可以作为变量传递，也可以被返回。</p>
+<h4 id="函数内部"><a href="#函数内部" class="headerlink" title="函数内部"></a>函数内部</h4><h5 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a><code>arguments</code></h5><p><code>arguments</code> 对象是一个类数组对象，包含调用参数时传入的所有参数。这个对象只有以 <code>function</code> 关键字定义函数时才会有。</p>
+<p><code>arguments</code> 有一个 <code>callee</code> 属性，指向该 <code>arguments</code> 对象所在函数的指针。</p>
+<h5 id="this"><a href="#this" class="headerlink" title="this"></a><code>this</code></h5><p>在标准函数中， <code>this</code> 引用把函数当成方法调用的上下文对象。</p>
+<p><code>this</code> 引用的值只有在函数被调用时才确定。</p>
+<p>箭头函数中的 <code>this</code> 引用的是定义箭头函数的上下文。</p>
+<h5 id="caller"><a href="#caller" class="headerlink" title="caller"></a><code>caller</code></h5><p><code>ECMAScript5</code> 也会给函数对象上添加一个属性： <code>caller</code> 。这个属性引用调用当前函数的函数。在全局中调用则为 <code>null</code> 。</p>
+<p>严格模式下不能访问 <code>arguments.callee</code> ，也不能访问 <code>caller</code> ，不能给函数的 <code>caller</code> 属性赋值。</p>
+<h5 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a><code>new.target</code></h5><p><code>ECMAScript6</code> 新增了检测函数是否使用 <code>new</code> 关键字调用的 <code>new.target</code> 属性。如果使用 <code>new</code> 关键字调用，则 <code>new.target</code> 将引用被调用的构造函数，否则为 <code>undefined</code> 。</p>
+<h4 id="函数属性与方法"><a href="#函数属性与方法" class="headerlink" title="函数属性与方法"></a>函数属性与方法</h4><p>每个函数都有两个属性， <code>length</code> 和 <code>prototype</code> 。<code>length</code> 属性保存函数定义的命名参数的个数。</p>
+<p><code>prototype</code> 属性保存引用类型所有实例方法。在 <code>ECMAScript5</code> 中，该属性是不可枚举的。</p>
+<p>函数有两个方法，<code>apply()</code> 和 <code>call()</code> 。这两个方法都会以指定的 <code>this</code> 值来调用函数。区别在于 <code>apply()</code> 只需要最多两个参数，第二个参数可以是数组也可以是 <code>arguments</code> 对象。</p>
+<p><code>ECMAScript5</code> 定义了一个新方法 <code>bind()</code> 。<code>bind()</code> 只会绑定 <code>this</code> 值，并创建一个新的函数实例。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>两个函数—一个对象</p>
+<p>是否可以创建像 <code>new A()==new B()</code> 这样的函数 <code>A</code> 和 <code>B</code>？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> A;</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B;</span><br><span class="line">alert( a == b ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果可以，请提供一个它们的代码示例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> obj; &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> obj; &#125;</span><br><span class="line">alert( <span class="keyword">new</span> A() == <span class="keyword">new</span> B() ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 new Calculator</p>
+<p>创建一个构造函数 <code>Calculator</code>，它创建的对象中有三个方法：</p>
+<ul>
+<li><code>read()</code> 使用 <code>prompt</code> 请求两个值并把它们记录在对象的属性中。</li>
+<li><code>sum()</code> 返回这些属性的总和。</li>
+<li><code>mul()</code> 返回这些属性的乘积。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">calculator.read();</span><br><span class="line">alert( <span class="string">"Sum="</span> + calculator.sum() );</span><br><span class="line">alert( <span class="string">"Mul="</span> + calculator.mul() );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Calculator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = +prompt(<span class="string">'a?'</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">this</span>.b = +prompt(<span class="string">'b?'</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a + <span class="keyword">this</span>.b;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.mul = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a * <span class="keyword">this</span>.b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 new Accumulator</p>
+<p>创建一个构造函数 <code>Accumulator(startingValue)</code>。</p>
+<p>它创建的对象应该：</p>
+<ul>
+<li>将“当前 value”存储在属性 <code>value</code> 中。起始值被设置到构造器 <code>startingValue</code> 的参数。</li>
+<li><code>read()</code> 方法应该使用 <code>prompt</code> 来读取一个新的数字，并将其添加到 <code>value</code> 中。</li>
+</ul>
+<p>换句话说，<code>value</code> 属性是所有用户输入值与初始值 <code>startingValue</code> 的总和。</p>
+<p>下面是示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> accumulator = <span class="keyword">new</span> Accumulator(<span class="number">1</span>); <span class="comment">// 初始值 1</span></span><br><span class="line">accumulator.read(); <span class="comment">// 添加用户输入的 value</span></span><br><span class="line">accumulator.read(); <span class="comment">// 添加用户输入的 value</span></span><br><span class="line">alert(accumulator.value); <span class="comment">// 显示这些值的总和</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Accumulator</span>(<span class="params">startingValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.value = startingValue;</span><br><span class="line">  <span class="keyword">this</span>.read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value += +prompt(<span class="string">'new value?'</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-25/">
+        <span>学习笔记 2020 10 25</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-26"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-26</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数扩展与收集"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">函数扩展与收集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#扩展参数"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">扩展参数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#收集参数"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">收集参数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数声明与函数表达式"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">函数声明与函数表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数作为值"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">函数作为值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数内部"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">函数内部</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#arguments"><span class="toc-number">1.1.1.4.1.</span> <span class="toc-text">arguments</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#this"><span class="toc-number">1.1.1.4.2.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#caller"><span class="toc-number">1.1.1.4.3.</span> <span class="toc-text">caller</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#new-target"><span class="toc-number">1.1.1.4.4.</span> <span class="toc-text">new.target</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数属性与方法"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">函数属性与方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

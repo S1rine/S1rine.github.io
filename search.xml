@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 26</title>
+    <url>/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-26"><a href="#学习笔记-2020-10-26" class="headerlink" title="学习笔记 2020-10-26"></a>学习笔记 2020-10-26</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数扩展与收集"><a href="#函数扩展与收集" class="headerlink" title="函数扩展与收集"></a>函数扩展与收集</h4><p><code>ECMAScript6</code> 新增了扩展操作符。扩展操作符既可以用于调用函数时传参，也可以用于定义函数参数。</p>
+<h5 id="扩展参数"><a href="#扩展参数" class="headerlink" title="扩展参数"></a>扩展参数</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; ++i) &#123;</span><br><span class="line">    sum += <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getSum(...values)); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>对可迭代对象使用拓展操作符作为一个参数传入，可以将可迭代对象拆分，并将迭代返回的每个值单独传入。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProduct</span>(<span class="params">a, b, c = <span class="number">1</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a * b * c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> getSum = <span class="function">(<span class="params">a, b, c = <span class="number">0</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(getProduct(...[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])); <span class="comment">// 6</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>])); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(getSum(...[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="收集参数"><a href="#收集参数" class="headerlink" title="收集参数"></a>收集参数</h5><p>在函数定义时，使用扩展操作符可以将不同长度的独立参数组合为一个数组。收集参数前面可以有其余命名参数，但只能作为最后一个参数。</p>
+<p>箭头函数也支持收集函数。</p>
+<h4 id="函数声明与函数表达式"><a href="#函数声明与函数表达式" class="headerlink" title="函数声明与函数表达式"></a>函数声明与函数表达式</h4><p><code>JS</code> 引擎在代码执行之前，会先读取函数声明，并在执行上下文中生成函数定义。函数表达式必须等到代码执行到它，才会在执行上下文中生成函数定义。</p>
+<p>因此函数声明在使用它之前是没有问题的，因为函数声明会被提升。</p>
+<h4 id="函数作为值"><a href="#函数作为值" class="headerlink" title="函数作为值"></a>函数作为值</h4><p>函数可以作为变量传递，也可以被返回。</p>
+<h4 id="函数内部"><a href="#函数内部" class="headerlink" title="函数内部"></a>函数内部</h4><h5 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a><code>arguments</code></h5><p><code>arguments</code> 对象是一个类数组对象，包含调用参数时传入的所有参数。这个对象只有以 <code>function</code> 关键字定义函数时才会有。</p>
+<p><code>arguments</code> 有一个 <code>callee</code> 属性，指向该 <code>arguments</code> 对象所在函数的指针。</p>
+<h5 id="this"><a href="#this" class="headerlink" title="this"></a><code>this</code></h5><p>在标准函数中， <code>this</code> 引用把函数当成方法调用的上下文对象。</p>
+<p><code>this</code> 引用的值只有在函数被调用时才确定。</p>
+<p>箭头函数中的 <code>this</code> 引用的是定义箭头函数的上下文。</p>
+<h5 id="caller"><a href="#caller" class="headerlink" title="caller"></a><code>caller</code></h5><p><code>ECMAScript5</code> 也会给函数对象上添加一个属性： <code>caller</code> 。这个属性引用调用当前函数的函数。在全局中调用则为 <code>null</code> 。</p>
+<p>严格模式下不能访问 <code>arguments.callee</code> ，也不能访问 <code>caller</code> ，不能给函数的 <code>caller</code> 属性赋值。</p>
+<h5 id="new-target"><a href="#new-target" class="headerlink" title="new.target"></a><code>new.target</code></h5><p><code>ECMAScript6</code> 新增了检测函数是否使用 <code>new</code> 关键字调用的 <code>new.target</code> 属性。如果使用 <code>new</code> 关键字调用，则 <code>new.target</code> 将引用被调用的构造函数，否则为 <code>undefined</code> 。</p>
+<h4 id="函数属性与方法"><a href="#函数属性与方法" class="headerlink" title="函数属性与方法"></a>函数属性与方法</h4><p>每个函数都有两个属性， <code>length</code> 和 <code>prototype</code> 。<code>length</code> 属性保存函数定义的命名参数的个数。</p>
+<p><code>prototype</code> 属性保存引用类型所有实例方法。在 <code>ECMAScript5</code> 中，该属性是不可枚举的。</p>
+<p>函数有两个方法，<code>apply()</code> 和 <code>call()</code> 。这两个方法都会以指定的 <code>this</code> 值来调用函数。区别在于 <code>apply()</code> 只需要最多两个参数，第二个参数可以是数组也可以是 <code>arguments</code> 对象。</p>
+<p><code>ECMAScript5</code> 定义了一个新方法 <code>bind()</code> 。<code>bind()</code> 只会绑定 <code>this</code> 值，并创建一个新的函数实例。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>两个函数—一个对象</p>
+<p>是否可以创建像 <code>new A()==new B()</code> 这样的函数 <code>A</code> 和 <code>B</code>？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> A;</span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">new</span> B;</span><br><span class="line">alert( a == b ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果可以，请提供一个它们的代码示例。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> obj; &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> obj; &#125;</span><br><span class="line">alert( <span class="keyword">new</span> A() == <span class="keyword">new</span> B() ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 new Calculator</p>
+<p>创建一个构造函数 <code>Calculator</code>，它创建的对象中有三个方法：</p>
+<ul>
+<li><code>read()</code> 使用 <code>prompt</code> 请求两个值并把它们记录在对象的属性中。</li>
+<li><code>sum()</code> 返回这些属性的总和。</li>
+<li><code>mul()</code> 返回这些属性的乘积。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> calculator = <span class="keyword">new</span> Calculator();</span><br><span class="line">calculator.read();</span><br><span class="line">alert( <span class="string">"Sum="</span> + calculator.sum() );</span><br><span class="line">alert( <span class="string">"Mul="</span> + calculator.mul() );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Calculator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = +prompt(<span class="string">'a?'</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">this</span>.b = +prompt(<span class="string">'b?'</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.sum = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a + <span class="keyword">this</span>.b;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.mul = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.a * <span class="keyword">this</span>.b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 new Accumulator</p>
+<p>创建一个构造函数 <code>Accumulator(startingValue)</code>。</p>
+<p>它创建的对象应该：</p>
+<ul>
+<li>将“当前 value”存储在属性 <code>value</code> 中。起始值被设置到构造器 <code>startingValue</code> 的参数。</li>
+<li><code>read()</code> 方法应该使用 <code>prompt</code> 来读取一个新的数字，并将其添加到 <code>value</code> 中。</li>
+</ul>
+<p>换句话说，<code>value</code> 属性是所有用户输入值与初始值 <code>startingValue</code> 的总和。</p>
+<p>下面是示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> accumulator = <span class="keyword">new</span> Accumulator(<span class="number">1</span>); <span class="comment">// 初始值 1</span></span><br><span class="line">accumulator.read(); <span class="comment">// 添加用户输入的 value</span></span><br><span class="line">accumulator.read(); <span class="comment">// 添加用户输入的 value</span></span><br><span class="line">alert(accumulator.value); <span class="comment">// 显示这些值的总和</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Accumulator</span>(<span class="params">startingValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.value = startingValue;</span><br><span class="line">  <span class="keyword">this</span>.read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value += +prompt(<span class="string">'new value?'</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 25</title>
     <url>/2020/10/25/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-25/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-25"><a href="#学习笔记-2020-10-25" class="headerlink" title="学习笔记 2020-10-25"></a>学习笔记 2020-10-25</h1><a id="more"></a>
@@ -72,9 +145,54 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> ladder = &#123;</span><br><span class="line">  step: <span class="number">0</span>,</span><br><span class="line">  up() &#123;</span><br><span class="line">    <span class="keyword">this</span>.step++;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  down() &#123;</span><br><span class="line">    <span class="keyword">this</span>.step--;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  showStep: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 显示当前的 step</span></span><br><span class="line">    alert( <span class="keyword">this</span>.step );</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
-
 </li>
 </ol>
+<h2 id="MDN学习记录"><a href="#MDN学习记录" class="headerlink" title="MDN学习记录"></a>MDN学习记录</h2><h3 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h3><p>使用 <code>column-gap</code> 改变列间隙。</p>
+<p>使用 <code>column-rule</code> 在列间加入一条分割线。属性值类似于 <code>border</code> 的值。并且该分割线不占用宽度。</p>
+<h4 id="列与内容折断"><a href="#列与内容折断" class="headerlink" title="列与内容折断"></a>列与内容折断</h4><p><code>break-inside</code> 属性用于表示该盒子不被拆开。</p>
+<p><code>page-break-inside</code> 拥有更好的浏览器支持。</p>
+<h3 id="响应式设计"><a href="#响应式设计" class="headerlink" title="响应式设计"></a>响应式设计</h3><p>响应式网页设计 ( <code>responsive web design</code> )，指的是允许 <code>Web</code> 网页适应不同屏幕宽度因素等，进行布局和外观的调整的一系列实践。</p>
+<ol>
+<li>液态网格，这早先已由Gillenwater进行探讨，可以在Marcotte的文章《<a href="https://alistapart.com/article/fluidgrids/" target="_blank" rel="noopener">Fluid Grids</a>》（出版于2009年的《A List Apart》上）中读到。</li>
+<li><a href="http://unstoppablerobotninja.com/entry/fluid-images" target="_blank" rel="noopener">液态图像</a>。通过使用相当简单的将设置 <code>max-width</code> 属性设置为 <code>100%</code> 的技术，图像可以在包含它们的列变得比图像原始尺寸窄的时候，缩放得更小，但总不会变得更大。这使得图像可以被缩放，以被放到一个灵活尺寸的列，而不是溢出出去，同时也不会在列宽于图像的时候，使图像变得太大以至于画质变得粗糙。</li>
+<li>媒体查询，媒体查询使以往 <code>Cameron Adams</code> 探讨过的、由 <code>JavaScript</code> 实现的布局类型切换，可以只使用CSS实现。和所有尺寸的屏幕都使用一种布局不同的是，布局是可以改变的：侧栏可以在小屏幕上重新布局，而替代用的导航栏也可以显示出来。</li>
+</ol>
+<h4 id="媒介查询"><a href="#媒介查询" class="headerlink" title="媒介查询"></a>媒介查询</h4><p>下面的媒体查询进行测试，以知晓当前的Web页面是否被展示为屏幕媒体（也就是说不是印刷文档），且视口至少有800像素宽。用于 <code>.container</code> 选择器的CSS将只会在这两件前提存在的情况下应用。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">media</span> screen and (min-width: <span class="number">800px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">1em</span> <span class="number">2em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>媒体查询，以及样式改变时的点，被叫做断点。</p>
+<h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><h4 id="媒体查询基础"><a href="#媒体查询基础" class="headerlink" title="媒体查询基础"></a>媒体查询基础</h4><p>最简单的媒体查询语法看起来是像这样的：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">media</span> media-type and (media-feature-rule) &#123;</span><br><span class="line">  <span class="comment">/* CSS rules go here */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它由以下部分组成：</p>
+<ul>
+<li>一个媒体类型，告诉浏览器这段代码是用在什么类型的媒体上的（例如印刷品或者屏幕）；</li>
+<li>一个媒体表达式，是一个被包含的CSS生效所需的规则或者测试；</li>
+<li>一组CSS规则，会在测试通过且媒体类型正确的时候应用。</li>
+</ul>
+<p>可指定的媒体类型为：</p>
+<ul>
+<li><code>all</code></li>
+<li><code>print</code></li>
+<li><code>screen</code></li>
+<li><code>speech</code></li>
+</ul>
+<h4 id="朝向"><a href="#朝向" class="headerlink" title="朝向"></a>朝向</h4><p>一个受到良好支持的媒体特征是 <code>orientation</code>，我们可以用它测得竖放（portrait mode）和横放（landscape mode）模式。要在设备处于横向的时候改变body文本颜色的话，可使用下面的媒体查询。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">media</span> (orientation: landscape) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用指点设备"><a href="#使用指点设备" class="headerlink" title="使用指点设备"></a>使用指点设备</h4><p>作为四级规范的一部分，<code>hover</code> 媒体特征被引入了进来。这种特征意味着你可以测试用户是否能在一个元素上悬浮，这也基本就是说他们正在使用某种指点设备，因为触摸屏和键盘导航是没法实现悬浮的。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">media</span> (hover: hover) &#123;</span><br><span class="line">  <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: rebeccapurple;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还是在四级规范中，出现了 <code>pointer</code> 媒体特征。它可取三个值：<code>none</code>、<code>fine</code> 和 <code>coarse</code> 。<code>fine</code> 指针是类似于鼠标或者触控板的东西，它让用户可以精确指向一片小区域。<code>coarse</code> 指针是你在触摸屏上的手指。<code>none</code> 值意味着，用户没有指点设备，也许是他们正只使用键盘导航，或者是语音命令。</p>
+<p>使用 <code>pointer</code> 可以在用户使用屏幕时进行交互时，帮你更好地设计响应这种交互的界面。例如，如果你知道用户正在用触摸屏设备交互的时候，你可以建立更大的响应区域。</p>
+<h4 id="媒体查询逻辑判断"><a href="#媒体查询逻辑判断" class="headerlink" title="媒体查询逻辑判断"></a>媒体查询逻辑判断</h4><ul>
+<li>与 <code>and</code></li>
+<li>或 <code>,</code></li>
+<li>非 <code>not</code></li>
+</ul>
+<h4 id="特性查询"><a href="#特性查询" class="headerlink" title="特性查询"></a>特性查询</h4><p>可以通过特性查询来判断浏览器是否支持某个特性。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">supports</span> (display: grid) &#123;</span><br><span class="line">  <span class="selector-class">.item</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: auto;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>前端</category>
@@ -3346,8 +3464,8 @@ test();
       <tags>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>css</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
