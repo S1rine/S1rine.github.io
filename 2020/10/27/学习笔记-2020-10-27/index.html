@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 10 27 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/">学习笔记 2020 10 27</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-10-27
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-10-27
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 10 27&url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 10 27&url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/&title=学习笔记 2020 10 27" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 10 27&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/&text=学习笔记 2020 10 27" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-10-27"><a href="#学习笔记-2020-10-27" class="headerlink" title="学习笔记 2020-10-27"></a>学习笔记 2020-10-27</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h4><p>函数表达式创建的函数叫做匿名函数，也叫做兰姆达函数。因为 <code>function</code> 关键字没有标识符。未赋值给其他变量的匿名函数的 <code>name</code> 属性是空字符串。</p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归函数通常的形式是一个函数通过名称调用自己。</p>
+<p>在非严格模式下，可以使用 <code>arguments.callee</code> 来访问自身函数。在严格模式下，可以使用命名函数表达式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> factorial = <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * f(num - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><p><code>ECMAScript6</code> 新增了一项内存管理优化机制，让 <code>JS</code> 引擎在满足条件时可以重用栈帧。例如尾调用，即外部函数的返回是内部函数的返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> innerFunction(); <span class="comment">// 尾调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>ES6</code> 优化之前，这个例子会在内存中发生如下操作。</p>
+<ol>
+<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
+<li>执行 <code>outerFunction</code> 函数体，到 <code>return</code> 语句。计算返回值必须先计算 <code>innerFunction</code> 。</li>
+<li>执行到 <code>innerFunction</code> 函数体，第二个栈帧被推到栈上。</li>
+<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
+<li>将返回值传回 <code>outerFunction</code> ，然后 <code>outerFunction</code> 再返回值。</li>
+<li>将栈帧弹到栈外。</li>
+</ol>
+<p>在 <code>ES6</code> 优化之后，执行这个例子会在内存中发生如下操作。</p>
+<ol>
+<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
+<li>执行 <code>outerFunction</code> 函数体，到达 <code>return</code> 语句。为求值返回语句，必须先求值 <code>innerFunction</code> 。</li>
+<li>引擎发现把第一个栈帧弹出栈外也没问题，因为 <code>innerFunction</code> 的返回值也是 <code>outerFunction</code> 的返回值。</li>
+<li>弹出 <code>outerFunction</code> 的栈帧。</li>
+<li>执行到 <code>innerFunction</code> 函数体，栈帧被推到栈上。</li>
+<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
+<li>将 <code>innerFunction</code> 的栈帧弹出栈外。</li>
+</ol>
+<h5 id="尾调用优化的条件"><a href="#尾调用优化的条件" class="headerlink" title="尾调用优化的条件"></a>尾调用优化的条件</h5><p>条件是外部栈帧没有必要存在。</p>
+<ul>
+<li><p>代码在严格模式下执行。</p>
+</li>
+<li><p>外部函数的返回值是对为调用函数的调用。</p>
+</li>
+<li><p>尾调用函数返回后不需要执行额外的逻辑。</p>
+</li>
+<li><p>尾调用函数不是引用外部函数作用域中自由变量的闭包。</p>
+</li>
+</ul>
+<p>要求严格模式的原因是非严格模式下函数调用中允许使用 <code>f.arguments</code> 和 <code>f.caller</code> ，而它们都会引用外部函数的栈帧。</p>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>函数执行时，每个执行上下文中都会有一个包含其中变量的对象。全局上下文中的叫变量对象，它会在代码执行期间始终存在。而函数内部上下文中的叫活动对象，只在函数执行期间存在。在定义函数时，就会为它创建作用域链，预装载全局变量对象，并保存在内部的 <code>[[Scope]]</code> 中。在调用这个函数时，会创建相应的执行上下文，然后通过复制函数的 <code>[[Scope]]</code> 来创建其作用域链。接着创建函数的活动对象并将其推入作用域链的前端。</p>
+<p>函数内部的代码访问变量时，就会使用给定的名称从作用域链中查找变量。函数执行完毕后，局部活动对象会被销毁。</p>
+<p>而在闭包中，一个函数若是引用了外部作用域的变量，当这个函数存在的时候，外部作用域就不会被销毁。即使外部作用域对应的函数已经执行完毕。</p>
+<h5 id="this-对象"><a href="#this-对象" class="headerlink" title="this 对象"></a><code>this</code> 对象</h5><p>可以利用闭包来使一个函数内部访问外部作用域的 <code>this</code> 对象。</p>
+<p>即定义一个变量来保存外部函数的 <code>this</code> 引用，这样内部函数可以访问到该变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.identity = <span class="string">'The Window'</span>;</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">  identity: <span class="string">'My Object'</span>,</span><br><span class="line">  getIdentity() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.identity;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">object.getIdentity(); <span class="comment">// 'My Object'</span></span><br><span class="line">(object.getIdentity)(); <span class="comment">// 'My Object'</span></span><br><span class="line">(object.getIdentity = object.getIdentity)(); <span class="comment">// 'The Window'</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h5><p><code>IE</code> 在 <code>IE9</code> 以前对 <code>JScript</code> 对象和 <code>COM</code> 对象使用了不同的垃圾回收机制，所以闭包在旧版本中可能会导致问题。即存在内存泄漏的问题。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="可选链-“-”"><a href="#可选链-“-”" class="headerlink" title="可选链 “?.”"></a>可选链 “?.”</h3><p>一个常见的情景：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;&#125;; <span class="comment">// user 没有 address</span></span><br><span class="line"><span class="built_in">console</span>.log(user &amp;&amp; user.address &amp;&amp; user.address.street); <span class="comment">// undefined(不报错)</span></span><br></pre></td></tr></table></figure>
+
+<p>可选链会在遇到 <code>undefined</code> 或 <code>null</code> 时停止运算并返回 <code>undefined</code> 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;&#125;; <span class="comment">// user 没有 address</span></span><br><span class="line"><span class="built_in">console</span>.log(user?.address?.street); <span class="comment">// undefined （不报错）</span></span><br></pre></td></tr></table></figure>
+
+<p>可选链只允许前面的值成为可选值，不影响后面。可选链前的变量必须已声明，否则会触发一个错误。</p>
+<p>可使用 <code>?.()</code> 可选的调用一个可能不存在的函数。</p>
+<p>可使用 <code>?.[]</code> 来使用方括号访问属性。</p>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/">
+        <span>学习笔记 2020 10 26</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-10-27"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-10-27</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数"><span class="toc-number">1.1.1.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#函数表达式"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">函数表达式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#递归"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">递归</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#尾调用优化"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">尾调用优化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#尾调用优化的条件"><span class="toc-number">1.1.1.3.1.</span> <span class="toc-text">尾调用优化的条件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#闭包"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#this-对象"><span class="toc-number">1.1.1.4.1.</span> <span class="toc-text">this 对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#内存泄漏"><span class="toc-number">1.1.1.4.2.</span> <span class="toc-text">内存泄漏</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可选链-“-”"><span class="toc-number">1.2.1.</span> <span class="toc-text">可选链 “?.”</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >

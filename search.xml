@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 27</title>
+    <url>/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-27"><a href="#学习笔记-2020-10-27" class="headerlink" title="学习笔记 2020-10-27"></a>学习笔记 2020-10-27</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h4><p>函数表达式创建的函数叫做匿名函数，也叫做兰姆达函数。因为 <code>function</code> 关键字没有标识符。未赋值给其他变量的匿名函数的 <code>name</code> 属性是空字符串。</p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归函数通常的形式是一个函数通过名称调用自己。</p>
+<p>在非严格模式下，可以使用 <code>arguments.callee</code> 来访问自身函数。在严格模式下，可以使用命名函数表达式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> factorial = <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> num * f(num - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><p><code>ECMAScript6</code> 新增了一项内存管理优化机制，让 <code>JS</code> 引擎在满足条件时可以重用栈帧。例如尾调用，即外部函数的返回是内部函数的返回值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> innerFunction(); <span class="comment">// 尾调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>ES6</code> 优化之前，这个例子会在内存中发生如下操作。</p>
+<ol>
+<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
+<li>执行 <code>outerFunction</code> 函数体，到 <code>return</code> 语句。计算返回值必须先计算 <code>innerFunction</code> 。</li>
+<li>执行到 <code>innerFunction</code> 函数体，第二个栈帧被推到栈上。</li>
+<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
+<li>将返回值传回 <code>outerFunction</code> ，然后 <code>outerFunction</code> 再返回值。</li>
+<li>将栈帧弹到栈外。</li>
+</ol>
+<p>在 <code>ES6</code> 优化之后，执行这个例子会在内存中发生如下操作。</p>
+<ol>
+<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
+<li>执行 <code>outerFunction</code> 函数体，到达 <code>return</code> 语句。为求值返回语句，必须先求值 <code>innerFunction</code> 。</li>
+<li>引擎发现把第一个栈帧弹出栈外也没问题，因为 <code>innerFunction</code> 的返回值也是 <code>outerFunction</code> 的返回值。</li>
+<li>弹出 <code>outerFunction</code> 的栈帧。</li>
+<li>执行到 <code>innerFunction</code> 函数体，栈帧被推到栈上。</li>
+<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
+<li>将 <code>innerFunction</code> 的栈帧弹出栈外。</li>
+</ol>
+<h5 id="尾调用优化的条件"><a href="#尾调用优化的条件" class="headerlink" title="尾调用优化的条件"></a>尾调用优化的条件</h5><p>条件是外部栈帧没有必要存在。</p>
+<ul>
+<li><p>代码在严格模式下执行。</p>
+</li>
+<li><p>外部函数的返回值是对为调用函数的调用。</p>
+</li>
+<li><p>尾调用函数返回后不需要执行额外的逻辑。</p>
+</li>
+<li><p>尾调用函数不是引用外部函数作用域中自由变量的闭包。</p>
+</li>
+</ul>
+<p>要求严格模式的原因是非严格模式下函数调用中允许使用 <code>f.arguments</code> 和 <code>f.caller</code> ，而它们都会引用外部函数的栈帧。</p>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>函数执行时，每个执行上下文中都会有一个包含其中变量的对象。全局上下文中的叫变量对象，它会在代码执行期间始终存在。而函数内部上下文中的叫活动对象，只在函数执行期间存在。在定义函数时，就会为它创建作用域链，预装载全局变量对象，并保存在内部的 <code>[[Scope]]</code> 中。在调用这个函数时，会创建相应的执行上下文，然后通过复制函数的 <code>[[Scope]]</code> 来创建其作用域链。接着创建函数的活动对象并将其推入作用域链的前端。</p>
+<p>函数内部的代码访问变量时，就会使用给定的名称从作用域链中查找变量。函数执行完毕后，局部活动对象会被销毁。</p>
+<p>而在闭包中，一个函数若是引用了外部作用域的变量，当这个函数存在的时候，外部作用域就不会被销毁。即使外部作用域对应的函数已经执行完毕。</p>
+<h5 id="this-对象"><a href="#this-对象" class="headerlink" title="this 对象"></a><code>this</code> 对象</h5><p>可以利用闭包来使一个函数内部访问外部作用域的 <code>this</code> 对象。</p>
+<p>即定义一个变量来保存外部函数的 <code>this</code> 引用，这样内部函数可以访问到该变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.identity = <span class="string">'The Window'</span>;</span><br><span class="line"><span class="keyword">let</span> object = &#123;</span><br><span class="line">  identity: <span class="string">'My Object'</span>,</span><br><span class="line">  getIdentity() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.identity;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">object.getIdentity(); <span class="comment">// 'My Object'</span></span><br><span class="line">(object.getIdentity)(); <span class="comment">// 'My Object'</span></span><br><span class="line">(object.getIdentity = object.getIdentity)(); <span class="comment">// 'The Window'</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h5><p><code>IE</code> 在 <code>IE9</code> 以前对 <code>JScript</code> 对象和 <code>COM</code> 对象使用了不同的垃圾回收机制，所以闭包在旧版本中可能会导致问题。即存在内存泄漏的问题。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="可选链-“-”"><a href="#可选链-“-”" class="headerlink" title="可选链 “?.”"></a>可选链 “?.”</h3><p>一个常见的情景：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;&#125;; <span class="comment">// user 没有 address</span></span><br><span class="line"><span class="built_in">console</span>.log(user &amp;&amp; user.address &amp;&amp; user.address.street); <span class="comment">// undefined(不报错)</span></span><br></pre></td></tr></table></figure>
+
+<p>可选链会在遇到 <code>undefined</code> 或 <code>null</code> 时停止运算并返回 <code>undefined</code> 。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;&#125;; <span class="comment">// user 没有 address</span></span><br><span class="line"><span class="built_in">console</span>.log(user?.address?.street); <span class="comment">// undefined （不报错）</span></span><br></pre></td></tr></table></figure>
+
+<p>可选链只允许前面的值成为可选值，不影响后面。可选链前的变量必须已声明，否则会触发一个错误。</p>
+<p>可使用 <code>?.()</code> 可选的调用一个可能不存在的函数。</p>
+<p>可使用 <code>?.[]</code> 来使用方括号访问属性。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 26</title>
     <url>/2020/10/26/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-26/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-26"><a href="#学习笔记-2020-10-26" class="headerlink" title="学习笔记 2020-10-26"></a>学习笔记 2020-10-26</h1><a id="more"></a>
@@ -62,9 +131,10 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Accumulator</span>(<span class="params">startingValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.value = startingValue;</span><br><span class="line">  <span class="keyword">this</span>.read = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.value += +prompt(<span class="string">'new value?'</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
 </li>
 </ol>
+<h2 id="学习记录"><a href="#学习记录" class="headerlink" title="学习记录"></a>学习记录</h2><h3 id="grid-布局"><a href="#grid-布局" class="headerlink" title="grid 布局"></a><code>grid</code> 布局</h3><p><code>auto-fill</code> 与 <code>auto-fit</code> 的区别：</p>
+<p><code>auto-fill</code> 只会自动控制子元素的大小来实现布局。而 <code>auto-fit</code> 会在父容器有多余宽度的时候拉伸子元素来填满父容器。</p>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -3464,8 +3534,8 @@ test();
       <tags>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>html</tag>
         <tag>css</tag>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
