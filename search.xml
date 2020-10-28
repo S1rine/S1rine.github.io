@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 28</title>
+    <url>/2020/10/28/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-28/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-28"><a href="#学习笔记-2020-10-28" class="headerlink" title="学习笔记 2020-10-28"></a>学习笔记 2020-10-28</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="立即调用的函数表达式"><a href="#立即调用的函数表达式" class="headerlink" title="立即调用的函数表达式"></a>立即调用的函数表达式</h4><p>立即调用的匿名函数又被称作立即调用的函数表达式 ( <code>IIFE</code> ， <code>Immediately Invoked Function Expression</code> )。它类似于函数声明，但由于被包含在括号中，会被解释为函数表达式。紧跟在第一组括号后面的第二组括号会立即调用前面的函数表达式。</p>
+<p>使用 <code>IIFE</code> 可以模拟块级作用域。即在一个函数表达式内部声明变量，然后立即调用这个函数。</p>
+<p>使用立即调用的函数表达式可以解决 <code>var</code> 带来的问题。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> divs = <span class="built_in">document</span>.querySelectorAll(<span class="string">'div'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; divs.length; ++i) &#123;</span><br><span class="line">  divs[i].addEventListener(</span><br><span class="line">    <span class="string">'click'</span>,</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">frozenCounter</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(frozenCounter);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;)(i)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>ES6</code> ，有了块级作用域的概念，就可以规避这个问题。</p>
+<h4 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h4><p><code>JS</code> 没有私有成员的概念，所有对象属性都是公有的。有私有变量的概念。任何定义在函数或块中的变量，都可以认为是私有的。</p>
+<p>特权方法是能够访问函数私有变量及私有函数的公有方法。在对象上有两种方式创建特权方法。第一种是在构造函数中实现。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量和私有函数</span></span><br><span class="line">  <span class="keyword">let</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 特权方法</span></span><br><span class="line">  <span class="keyword">this</span>.publicMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    privateVariable++;</span><br><span class="line">    <span class="keyword">return</span> privateFunction();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个模式是把所有私有变量和私有函数都定义在构造函数中。然后，再创建一个能够访问这些私有成员的特权方法。因为形成了闭包，所以可行。</p>
+<h5 id="静态私有变量"><a href="#静态私有变量" class="headerlink" title="静态私有变量"></a>静态私有变量</h5><p>特权方法可以通过使用私有作用域定义私有变量和函数来实现。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量和私有函数</span></span><br><span class="line">  <span class="keyword">let</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 构造函数</span></span><br><span class="line">  MyObject = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">  <span class="comment">// 公有和特权方法</span></span><br><span class="line">  MyObject.prototype.publicMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    privateVariable++;</span><br><span class="line">    <span class="keyword">return</span> privateFunction();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>使用这种方法，避免了所有方法都在对象实例上重复定义。特权方法作为一个闭包，始终引用着包含它的作用域。但该种方法的每个实例没有了自己的私有变量。</p>
+<h5 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h5><p>模块模式在一个单例对象上实现了相同的隔离和封装。</p>
+<p>单例对象就是只有一个实例的对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> singleton = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量和私有函数</span></span><br><span class="line">  <span class="keyword">let</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 特权/公有方法和属性</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    publicProperty: <span class="literal">true</span>,</span><br><span class="line">    publicMethod() &#123;</span><br><span class="line">      privateVariable++;</span><br><span class="line">      <span class="keyword">return</span> privateFunction();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>模块模式是在单例对象基础上加以拓展，使其通过作用域链来关联私有变量和特权方法。</p>
+<p>模块模式使用了匿名函数返回一个对象。在匿名函数内部，首先定义私有变量和私有函数。之后，创建一个要通过匿名函数返回的对象字面量。这个对象字面量中只包含可以公开访问的属性和方法。本质上，对象字面量定义了单例对象的公共接口。如果单例对象需要进行某种初始化，并且需要访问私有变量时，就可以采用这个模式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> application = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量和私有函数</span></span><br><span class="line">  <span class="keyword">let</span> components = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">  <span class="comment">// 初始化</span></span><br><span class="line">  components.push(<span class="keyword">new</span> BaseComponent());</span><br><span class="line">  <span class="comment">// 公共接口</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getComponentCount() &#123;</span><br><span class="line">      <span class="keyword">return</span> components.length;</span><br><span class="line">    &#125;,</span><br><span class="line">    registerComponent(component) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> component == <span class="string">'object'</span>) &#123;</span><br><span class="line">        components.push(component);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h5 id="模块增强模式"><a href="#模块增强模式" class="headerlink" title="模块增强模式"></a>模块增强模式</h5><p>在返回对象之前先对其进行增强，适合单例对象需要是某个特定类型的实例，但又必须给它添加额外属性和方法的场景。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> singleton = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 私有变量和私有函数</span></span><br><span class="line">  <span class="keyword">let</span> privateVariable = <span class="number">10</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 创建对象</span></span><br><span class="line">  <span class="keyword">let</span> object = <span class="keyword">new</span> CustomType();</span><br><span class="line">  <span class="comment">// 添加特权/公有属性和方法</span></span><br><span class="line">  object.publicProperty = <span class="literal">true</span>;</span><br><span class="line">  object.publicMethod = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    privateVariable++;</span><br><span class="line">    <span class="keyword">return</span> privateFunction();</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 返回对象</span></span><br><span class="line">  <span class="keyword">return</span> object;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h3 id="期约与异步函数"><a href="#期约与异步函数" class="headerlink" title="期约与异步函数"></a>期约与异步函数</h3><p><code>ES6</code> 新增了正式的 <code>Promise</code> 引用类型，支持优雅地定义和组织异步逻辑。</p>
+<h4 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h4><p>同步行为和异步行为的对立统一是计算机科学的一个基本概念。特别是在 <code>JavaScript</code> 这种单线程事件循环模型中，同步操作与异步操作更是代码所要依赖的核心机制。异步行为是为了优化因计算量大而时间长的操作。但不一定必须如此，不想为等待某个操作而阻塞线程执行，就可以使用异步操作。</p>
+<h5 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h5><p>同步行为对应内存中顺序执行的处理器指令。每条指令都会严格按照它们出现的顺序来执行，而每条指令执行后也能立即获得存储在系统本地的信息。这样的执行流程容易分析程序在执行到代码任意位置时的状态。</p>
+<p>在程序执行的每一步，都可以推断出程序的状态。</p>
+<p>异步行为类似于系统中断，即当前进程外部的实体可以触发代码执行。异步操作经常是必要的，因为强制进程等待一个长时间的操作通常是不可行的。如果代码要访问一些高延迟的资源，比如向远程服务器发送请求并等待响应，那么就会出现长时间的等待。但异步操作何时完成，异步操作中涉及到的数据何时可获取可操作，是不可知的。</p>
+<h5 id="以往的异步编程模式"><a href="#以往的异步编程模式" class="headerlink" title="以往的异步编程模式"></a>以往的异步编程模式</h5><p>异步行为是 <code>JavaScript</code> 的基础。在早期，只支持定义回调函数来表明异步操作完成。串联多个异步操作是一个常见的问题，通常需要深度嵌套的回调函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> setTimeout(<span class="built_in">console</span>.log, <span class="number">0</span>, value * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">double(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// 6（大约 1000 毫秒之后）</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中， <code>setTimtout</code> 定义了一个在指定时间后会被调度执行的回调函数。<code>1000</code> 毫秒之后， <code>JavaScript</code> 执行时会把回调函数推到自己的消息队列上去等待执行。推到队列之后，回调什么时候出列被执行对 <code>JavaScript</code> 代码就完全不可见了。 <code>double</code> 函数会在 <code>setTimeout</code> 成功调度异步操作之后立即退出。</p>
+<ol>
+<li><p>异步返回值</p>
+<p>假设 <code>setTimeout</code> 操作会返回一个有用的值。如何把这个值进行传递？一个方法是给异步操作提供一个回调。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">value, callback</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> callback(value * <span class="number">2</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">double(<span class="number">3</span>, x =&gt; <span class="built_in">console</span>.log(<span class="string">`I was given: <span class="subst">$&#123;x&#125;</span>`</span>));</span><br><span class="line"><span class="comment">// I was given: 6（大约 1000 毫秒之后）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>失败处理</p>
+<p>异步操作的失败处理在回调模型中也要考虑。因此出现了成功回调与失败回调。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">value, success, failure</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> value !== <span class="string">'number'</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="string">'Must provide number as first argument'</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      success(<span class="number">2</span> * value);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      failure(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> successCallback = <span class="function"><span class="params">x</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Success: <span class="subst">$&#123;x&#125;</span>`</span>);</span><br><span class="line"><span class="keyword">const</span> failureCallback = <span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Failure: <span class="subst">$&#123;e&#125;</span>`</span>);</span><br><span class="line">double(<span class="number">3</span>, successCallback, failureCallback);</span><br><span class="line">double(<span class="string">'b'</span>, successCallback, failureCallback);</span><br></pre></td></tr></table></figure>
+
+<p>这种模式已经不可取了，因为必须在初始化异步操作时定义回调。异步函数的返回值只在短时间内存在，只有预备好将这个短时间存在的值作为参数的回调才能接收到它。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="Symbol-类型"><a href="#Symbol-类型" class="headerlink" title="Symbol 类型"></a>Symbol 类型</h3><p>根据规范，对象的属性值只能是字符串类型或者 <code>Symbol</code> 类型。</p>
+<p><code>Symbol</code> 不会被隐式转换为字符串。显式转换需要调用 <code>toString()</code> 。或者使用 <code>description</code> 属性来显示描述。</p>
+<p><code>Symbol</code> 会在 <code>for-in</code> 中被跳过。</p>
+<p><code>Object.assign</code> 会同时复制字符串和 <code>Symbol</code> 属性。</p>
+<h4 id="全局-symbol"><a href="#全局-symbol" class="headerlink" title="全局 symbol"></a>全局 symbol</h4><p>根据相同的名字创建出来的 <code>symbol</code> 都是不一样的。如果想要名字相同的 <code>Symbol</code> 具有相同的实体，可以使用 <strong>全局 Symbol 注册表</strong> 。</p>
+<p>从注册表读取( 不存在则创建 ) <code>Symbol</code> ，使用 <code>Symbol.for(key)</code> 。</p>
+<p>使用 <code>Symbol.keyFor(sym)</code> ，根据一个全局 Symbol 来返回一个名字。</p>
+<h4 id="系统-Symbol"><a href="#系统-Symbol" class="headerlink" title="系统 Symbol"></a>系统 Symbol</h4><p>JavaScript 内部有很多系统 Symbol。</p>
+<ul>
+<li><code>Symbol.hasInstance</code></li>
+<li><code>Symbol.isConcatSpreadable</code></li>
+<li><code>Symbol.iterator</code></li>
+<li><code>Symbol.toPrimitive</code></li>
+<li>…</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 27</title>
     <url>/2020/10/27/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-27/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-27"><a href="#学习笔记-2020-10-27" class="headerlink" title="学习笔记 2020-10-27"></a>学习笔记 2020-10-27</h1><a id="more"></a>
@@ -2001,8 +2076,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>source</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3182,8 +3257,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>vue</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3330,8 +3405,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>vue</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3404,8 +3479,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>vue</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3468,8 +3543,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>vue</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3532,8 +3607,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
         <tag>css</tag>
         <tag>html</tag>
       </tags>
@@ -3701,8 +3776,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3742,8 +3817,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3813,8 +3888,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3893,8 +3968,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3919,8 +3994,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3946,8 +4021,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3978,8 +4053,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4043,8 +4118,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4084,8 +4159,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4123,8 +4198,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
