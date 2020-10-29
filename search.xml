@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 29</title>
+    <url>/2020/10/29/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-29/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-29"><a href="#学习笔记-2020-10-29" class="headerlink" title="学习笔记 2020-10-29"></a>学习笔记 2020-10-29</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="期约与异步函数"><a href="#期约与异步函数" class="headerlink" title="期约与异步函数"></a>期约与异步函数</h3><h4 id="期约"><a href="#期约" class="headerlink" title="期约"></a>期约</h4><p>ECMAScript 6 增加了对 <code>Promises/A+</code> 规范的完善支持，即 <code>Promise</code> 类型。</p>
+<p>创建 Promise  时需要传入执行器 ( executor ) 函数作为参数。</p>
+<h5 id="期约基础"><a href="#期约基础" class="headerlink" title="期约基础"></a>期约基础</h5><ol>
+<li><p>期约状态机</p>
+<p>在把一个期约实例传给 console.log() 时，控制台输出表明该实例处于待定状态。期约是一个有状态的对象，可能处于如下 3 种状态之一：</p>
+<ul>
+<li>待定 ( pending )</li>
+<li>兑现 ( fulfilled ，有时候也成为 解决 ， resolved )</li>
+<li>拒绝 ( rejected )</li>
+</ul>
+<p>待定是期约的最初始状态。在待定状态下，期约可以落定( settled )为代表成功的兑现状态，或者代表失败的拒绝状态。落定的行为是不可逆的。落定后，契约的状态不再改变。期约也可能永远处于待定状态。</p>
+<p>期约的状态是私有的，无法直接通过 JavaScript 检测到。为了避免根据读取到的期约状态，以同步方式处理期约对象。期约的状态也不能被外部 JavaScript 代码修改。</p>
+</li>
+<li><p>解决值、拒绝理由及期约用例</p>
+<p>期约有两大用途。</p>
+<p>首先是抽象地表示一个异步操作。根据期约的状态可以得知一段异步代码是否已经完成。</p>
+<p>在另外一些情况下，期约封装的异步操作会实际生成某个值。程序可以根据期约状态改变来访问这个值或是拒绝理由。</p>
+<p>每个期约只要状态切换为兑现，就会有一个私有的内部值。只要状态切换为拒绝，就会有一个私有的内部理由。二者都是可选的，默认值为 <code>undefined</code> 。期约到达某个落定状态时执行的异步代码始终会收到这个值或理由。</p>
+</li>
+<li><p>通过执行函数控制期约状态</p>
+<p>期约的状态是私有的，在执行器函数内部进行操作。</p>
+<p>执行器函数有两项职责：</p>
+<ul>
+<li>初始化期约的异步行为。</li>
+<li>控制状态的最终转换。</li>
+</ul>
+<p>控制期约状态的转换是通过调用它的两个函数参数实现的。即 <code>resolve()</code> 和 <code>reject()</code> 。调用前者会把状态切换为兑现，调用后者会把状态切换为拒绝。</p>
+</li>
+<li><p><code>Promise.resolve()</code></p>
+<p>可以通过调用 Promise.resolve() 静态方法实例化一个解决的期约。这个解决的期约的值对应着传入的第一个参数，其余参数会被忽略。这个方法可以包装任何非期约值，包括错误对象，将其转换为解决的期约。</p>
+</li>
+<li><p><code>Promise.reject()</code></p>
+<p>Promise.reject() 会实例化一个拒绝的期约并抛出一个异步错误。这个错误只能通过拒绝处理程序捕获。</p>
+<p>Promise.resolve() 会接收期约参数的值来作为返回值的值。但 Promise.reject 不会把期约参数的值来传递，而是直接把这个期约对象作为拒绝的理由。</p>
+</li>
+<li><p>同步/异步执行的二元性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'foo'</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e); <span class="comment">// Error: foo</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="built_in">Promise</span>.reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'bar'</span>));</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Uncaught (in promise) Error: bar</span></span><br></pre></td></tr></table></figure>
+
+<p>此处期约抛出的错误无法被同步代码所捕获。因为期约对象需要通过异步模式捕获错误。期约是同步对象，但是异步执行模式的媒介。</p>
+<p>拒绝期约的错误并没有抛到执行同步代码的线程里，而是通过浏览器异步消息队列来处理的。因此只能使用异步结构与之交互。</p>
+</li>
+</ol>
+<h5 id="期约的实例方法"><a href="#期约的实例方法" class="headerlink" title="期约的实例方法"></a>期约的实例方法</h5><p>期约实例的方法是连接外部同步代码与内部异步代码的桥梁。这些方法可以访问异步操作返回的数据，处理期约成功和失败的结果，连接对期约求值，或者添加只有期约进入终止状态时才会执行的代码。</p>
+<ol>
+<li><p>实现 Thenable 接口</p>
+<p>在 ECMAScript 暴露的异步结构中，任何对象都有一个 <code>then()</code> 方法。这个方法被认为实现了 Thenable 接口。</p>
+<p>ECMAScript 的 Promise 类型实现了 Thenable 接口。</p>
+</li>
+<li><p><code>Promise.prototype.then()</code></p>
+<p>Promise.prototype.then() 是为期约实例添加处理程序的主要方法。接收最多两个参数： onResolved 处理程序和 onRejected 处理程序。两个参数都是可选的，提供的时候会在期约分别进入兑现和拒绝状态时执行。任何非函数参数都会被忽略。该方法返回一个新的期约实例。会通过 Promise.resolve() 包装生成新期约，没有提供处理程序的话，会包装上一个期约解决后的值。没有显示指定返回语句的话，会包装默认返回值 <code>undefined</code> 。</p>
+<p>onRejected 处理程序返回值会被 Promise.resolve() 包装。</p>
+</li>
+<li><p><code>Promise.prototype.catch()</code></p>
+<p>相当于调用 <code>Promise.prototype.then(null, onRejected)</code> 。</p>
+</li>
+<li><p><code>Promise.prototype.finally()</code></p>
+<p>这个处理程序在期约转换为解决或拒绝状态时都会执行。但无法知道期约的状态，一般用于添加清理代码。该方法返回一个新的期约实例。不同于 <code>then()</code> 返回的实例，被设计为一个状态无关的方法。在大多数情况下它将表现为父期约的传递。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="对象—原始值转换"><a href="#对象—原始值转换" class="headerlink" title="对象—原始值转换"></a>对象—原始值转换</h3><p>所有对象在布尔上下文中均为 <code>true</code> 。</p>
+<p>数值转换发生在对象相减或应用数学函数时。</p>
+<p>字符串转换发生在输出对象和类似的上下文中。</p>
+<p>为了进行转换， JavaScript 尝试查找并调用三个对象方法：</p>
+<ol>
+<li>调用 <code>obj[Symbol.toPrimitive]</code>。</li>
+<li>如果上述方法不存在，且进行字符串转换，尝试 <code>obj.toString()</code> 和 <code>obj.valueOf()</code> 。</li>
+<li>如果上述方法不存在，且进行数字转换或是默认转换，尝试 <code>obj.valueOf()</code> 和 <code>obj.toString()</code> 。</li>
+</ol>
+<p><code>toString</code> 方法返回一个字符串 <code>&quot;[object Object]&quot;</code> 。</p>
+<p><code>valueOf</code> 方法返回对象本身。</p>
+<p>三个方法唯一的限制是返回一个原始值而不是对象。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 28</title>
     <url>/2020/10/28/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-28/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-28"><a href="#学习笔记-2020-10-28" class="headerlink" title="学习笔记 2020-10-28"></a>学习笔记 2020-10-28</h1><a id="more"></a>
@@ -2076,8 +2160,8 @@
         <category>前端</category>
       </categories>
       <tags>
-        <tag>source</tag>
         <tag>js</tag>
+        <tag>source</tag>
       </tags>
   </entry>
   <entry>
@@ -3257,8 +3341,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3405,8 +3489,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3479,8 +3563,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3543,8 +3627,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3607,10 +3691,10 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
-        <tag>css</tag>
+        <tag>notes</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -3776,8 +3860,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3817,8 +3901,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3888,8 +3972,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3968,8 +4052,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3994,8 +4078,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4021,8 +4105,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4053,8 +4137,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4118,8 +4202,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4159,8 +4243,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4198,8 +4282,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>
