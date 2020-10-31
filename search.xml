@@ -1,6 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 10 31</title>
+    <url>/2020/10/31/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-31/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-31"><a href="#学习笔记-2020-10-31" class="headerlink" title="学习笔记 2020-10-31"></a>学习笔记 2020-10-31</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="期约与异步函数"><a href="#期约与异步函数" class="headerlink" title="期约与异步函数"></a>期约与异步函数</h3><h4 id="期约"><a href="#期约" class="headerlink" title="期约"></a>期约</h4><h5 id="期约拓展"><a href="#期约拓展" class="headerlink" title="期约拓展"></a>期约拓展</h5><ol>
+<li><p>期约取消</p>
+<p>ECMAScript 规范未曾涉及期约取消这个特性。</p>
+<p>我们可以通过在现有实现基础上提供一种临时性的封装，以实现取消期约的功能。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CancelToken</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(cancelFn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      cancelFn(resolve);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"start"</span>&gt;</span>Start<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"cancel"</span>&gt;</span>Cancel<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">  <span class="class"><span class="keyword">class</span> <span class="title">CancelToken</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">constructor</span>(cancelFn) &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        cancelFn(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">          setTimeout(<span class="built_in">console</span>.log, <span class="number">0</span>, <span class="string">'delay cancelled'</span>);</span></span><br><span class="line">          resolve();</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> startButton = <span class="built_in">document</span>.querySelector(<span class="string">'#start'</span>);</span></span><br><span class="line"><span class="javascript">  <span class="keyword">const</span> cancelButton = <span class="built_in">document</span>.querySelector(<span class="string">'#cancel'</span>);</span></span><br><span class="line"><span class="actionscript">  <span class="function"><span class="keyword">function</span> <span class="title">cancellableDelayedResolve</span><span class="params">(delay)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">    setTimeout(<span class="built_in">console</span>.log, <span class="number">0</span>, <span class="string">'set delay'</span>);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> id = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        setTimeout(<span class="built_in">console</span>.log, <span class="number">0</span>, <span class="string">'delayed resolve'</span>);</span></span><br><span class="line">        resolve();</span><br><span class="line">      &#125;, delay);</span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> cancelToken = <span class="keyword">new</span> CancelToken(<span class="function"><span class="params">cancelCallback</span> =&gt;</span></span></span><br><span class="line"><span class="actionscript">        cancelButton.addEventListener(<span class="string">'click'</span>, cancelCallback)</span></span><br><span class="line">      );</span><br><span class="line"><span class="javascript">      cancelToken.promise.then(<span class="function"><span class="params">()</span> =&gt;</span> clearTimeout(id));</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="actionscript">  startButton.addEventListener(<span class="string">'click'</span>, () =&gt; cancellableDelayedResolve(<span class="number">1000</span>));</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>期约进度通知</p>
+<p>ECMAScript6 期约不支持进度追踪，可以通过扩展来实现。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrackablePromise</span> <span class="keyword">extends</span> <span class="title">Promise</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line">    <span class="keyword">const</span> notifyHandlers = [];</span><br><span class="line">    <span class="keyword">super</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> executor(resolve, reject, status =&gt; &#123;</span><br><span class="line">        notifyHandlers.map(<span class="function"><span class="params">handler</span> =&gt;</span> handler(status));</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">this</span>.notifyHandlers = notifyHandlers;</span><br><span class="line">  &#125;</span><br><span class="line">  notify(notifyHandler) &#123;</span><br><span class="line">    <span class="keyword">this</span>.notifyHandlers.push(notifyHandler);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> TrackablePromise(<span class="function">(<span class="params">resolve, reject, notify</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">countdown</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      notify(<span class="string">`<span class="subst">$&#123;<span class="number">20</span> * x&#125;</span>% remaining`</span>);</span><br><span class="line">      setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> countdown(x - <span class="number">1</span>), <span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      resolve();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  countdown(<span class="number">5</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="异步函数"><a href="#异步函数" class="headerlink" title="异步函数"></a>异步函数</h4><p>异步函数也称为 <code>async/await</code> 语法关键字，是 ES6 期约模式在 ECMAScript 函数中的应用。 async/await 是 ES8 规范新增的。</p>
+<ol>
+<li><p>async</p>
+<p>该关键字用于声明异步函数。可以用在函数声明、函数表达式、箭头函数和方法上。</p>
+<p>使用 async 关键字可以让函数具有异步特征，但总体上其代码仍然是同步求值的。</p>
+<p>异步函数如果使用 <code>return</code> 关键字返回值，会被 <code>Promise.resolve()</code> 包装成一个期约对象。</p>
+<p>在异步函数中抛出错误会返回拒绝的期约。</p>
+<p>拒绝期约的错误不会被异步函数捕获。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">throw</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 给返回的期约添加一个拒绝处理程序</span></span><br><span class="line">foo().catch(<span class="built_in">console</span>.log);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">Promise</span>.reject(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Attach a rejected handler to the returned promise</span></span><br><span class="line">foo().catch(<span class="built_in">console</span>.log);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// Uncaught (in promise): 3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>await</p>
+<p>使用 await 关键字可以暂停异步函数代码的执行，等待期约解决。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> setTimeout(resolve, <span class="number">1000</span>, <span class="number">3</span>));</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">await</span> p);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<p>await 关键字会暂停执行异步函数后面的代码，让出 JS 运行时的执行线程。await 关键字尝试解包对象的值，然后将这个值传给表达式，再异步恢复异步函数的执行。</p>
+<p>await 期待一个实现 thenable 接口的对象，但常规的值也可以。如果是实现 thenable 接口的对象，则这个对象可以由 await 来解包。否则，将这个值当作已经解决的期约。</p>
+</li>
+</ol>
+<h5 id="停止和恢复执行"><a href="#停止和恢复执行" class="headerlink" title="停止和恢复执行"></a>停止和恢复执行</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">10</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> resolve(<span class="number">6</span>)));</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">11</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">7</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">4</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">await</span> <span class="number">8</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">9</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">foo();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">bar();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">5</span>);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br><span class="line"><span class="comment">// 6</span></span><br><span class="line"><span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 8</span></span><br><span class="line"><span class="comment">// 9</span></span><br><span class="line"><span class="comment">// 10</span></span><br><span class="line"><span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
+
+<p>await 后面的值可用时会被添加到消息队列，等到同步线程执行完毕才会执行.</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><p>数字调用 toString 方法时需要使用两个点，防止识别为小数点。</p>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>来自访问者的数字的总和</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> first = +prompt(<span class="string">'first number'</span>, <span class="number">0</span>);</span><br><span class="line"><span class="keyword">let</span> second = +prompt(<span class="string">'second number'</span>, <span class="number">0</span>);</span><br><span class="line">alert(first + second);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为什么 6.35.toFixed(1) == 6.3?</p>
+<p>根据文档，<code>Math.round</code> 和 <code>toFixed</code> 都将数字舍入到最接近的数字：<code>0..4</code> 会被舍去，而 <code>5..9</code> 会进一位。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( <span class="number">1.35</span>.toFixed(<span class="number">1</span>) ); <span class="comment">// 1.4</span></span><br></pre></td></tr></table></figure>
+
+<p>在下面这个类似的示例中，为什么 <code>6.35</code> 被舍入为 <code>6.3</code> 而不是 <code>6.4</code>？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( <span class="number">6.35</span>.toFixed(<span class="number">1</span>) ); <span class="comment">// 6.3</span></span><br></pre></td></tr></table></figure>
+
+<p>如何以正确的方式来对 <code>6.35</code> 进行舍入？</p>
+<p>在内部，<code>6.35</code> 的小数部分是一个无限的二进制。在这种情况下，它的存储会造成精度损失。</p>
+<p>让我们来看看：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( <span class="number">6.35</span>.toFixed(<span class="number">20</span>) ); <span class="comment">// 6.34999999999999964473</span></span><br></pre></td></tr></table></figure>
+
+<p>精度损失可能会导致数字的增加和减小。在这种特殊的情况下，数字变小了一点，这就是它向下舍入的原因。</p>
+<p>那么 <code>1.35</code> 会怎样呢？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( <span class="number">1.35</span>.toFixed(<span class="number">20</span>) ); <span class="comment">// 1.35000000000000008882</span></span><br></pre></td></tr></table></figure>
+
+<p>在这里，精度损失使得这个数字稍微大了一些，因此其向上舍入。</p>
+<p><strong>如果我们希望以正确的方式进行舍入，我们应该如何解决 <code>6.35</code> 的舍入问题呢？</strong></p>
+<p>在进行舍入前，我们应该使其更接近整数：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( (<span class="number">6.35</span> * <span class="number">10</span>).toFixed(<span class="number">20</span>) ); <span class="comment">// 63.50000000000000000000</span></span><br></pre></td></tr></table></figure>
+
+<p>请注意，<code>63.5</code> 完全没有精度损失。这是因为小数部分 <code>0.5</code> 实际上是 <code>1/2</code>。以 2 的整数次幂为分母的小数在二进制数字系统中可以被精确地表示，现在我们可以对它进行舍入：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( <span class="built_in">Math</span>.round(<span class="number">6.35</span> * <span class="number">10</span>) / <span class="number">10</span>); <span class="comment">// 6.35 -&gt; 63.5 -&gt; 64(rounded) -&gt; 6.4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重复，直到输入的是一个数字</p>
+<p>创建一个函数 <code>readNumber</code>，它提示输入一个数字，直到访问者输入一个有效的数字为止。</p>
+<p>结果值必须以数字形式返回。</p>
+<p>访问者也可以通过输入空行或点击“取消”来停止该过程。在这种情况下，函数应该返回 <code>null</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> input = prompt(<span class="string">'input'</span>, <span class="string">''</span>);</span><br><span class="line">  <span class="keyword">if</span> (input === <span class="literal">null</span> || input.trim() === <span class="string">''</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (<span class="built_in">isNaN</span>(<span class="built_in">parseInt</span>(input))) &#123;</span><br><span class="line">    input = prompt(<span class="string">'input'</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">if</span> (input === <span class="literal">null</span> || input.trim() === <span class="string">''</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">parseInt</span>(input);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考解决方案：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readNumber</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> num;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    num = prompt(<span class="string">"Enter a number please?"</span>, <span class="number">0</span>);</span><br><span class="line">  &#125; <span class="keyword">while</span> ( !<span class="built_in">isFinite</span>(num) );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (num === <span class="literal">null</span> || num === <span class="string">''</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> +num;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(<span class="string">`Read: <span class="subst">$&#123;readNumber()&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<p>该解决方案有点复杂，因为我们需要处理 null 和空行。</p>
+<p>所以，我们实际上接受输入，直到输入的是一个“常规数字”。null（取消）和空行都符合该条件，因为在数字形式中它们是 0。</p>
+<p>在我们停止之后，我们需要专门处理 null 和空行（返回 null），因为将它们转换为数字将返回 0。</p>
+</li>
+<li><p>一个偶发的无限循环</p>
+<p>这是一个无限循环。它永远不会结束。为什么？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (i != <span class="number">10</span>) &#123;</span><br><span class="line">  i += <span class="number">0.2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为 0.2 累加永远不会等于10。</p>
+</li>
+<li><p>从 min 到 max 的随机数</p>
+<p>内建函数 <code>Math.random()</code> 会创建一个在 <code>0</code> 到 <code>1</code> 之间（不包括 <code>1</code>）的随机数。</p>
+<p>编写一个 <code>random(min, max)</code> 函数，用以生成一个在 <code>min</code> 到 <code>max</code> 之间的随机浮点数（不包括 <code>max</code>)）。</p>
+<p>运行示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( random(<span class="number">1</span>, <span class="number">5</span>) ); <span class="comment">// 1.2345623452</span></span><br><span class="line">alert( random(<span class="number">1</span>, <span class="number">5</span>) ); <span class="comment">// 3.7894332423</span></span><br><span class="line">alert( random(<span class="number">1</span>, <span class="number">5</span>) ); <span class="comment">// 4.3435234525</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params">min, max</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random() * (max - min) + min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习笔记 2020 10 30</title>
+    <url>/2020/10/30/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-30/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-10-30"><a href="#学习笔记-2020-10-30" class="headerlink" title="学习笔记 2020-10-30"></a>学习笔记 2020-10-30</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="期约与异步函数"><a href="#期约与异步函数" class="headerlink" title="期约与异步函数"></a>期约与异步函数</h3><h4 id="期约"><a href="#期约" class="headerlink" title="期约"></a>期约</h4><h5 id="期约的实例方法"><a href="#期约的实例方法" class="headerlink" title="期约的实例方法"></a>期约的实例方法</h5><ol>
+<li><p>非重入期约方法</p>
+<p>当期约进入落定状态时，与该状态相关的处理程序仅仅会被排期，而非立即执行。添加在这个处理程序的代码之后的同步代码一定会在处理程序之前先执行。在一个期约上调用 then() 会把 onResolved 处理程序推进消息队列。但这个程序程序在当前线程上的同步代码执行完成前不会执行。</p>
+</li>
+<li><p>邻近处理程序的执行顺序</p>
+<p>如果给期约添加了多个处理程序，当期约状态变化时，相关处理程序会按照它们的顺序依次执行。</p>
+</li>
+<li><p>拒绝期约与拒绝错误处理</p>
+<p>在期约的执行函数或处理程序中抛出错误会导致拒绝，对应的错误对象会成为拒绝的理由。</p>
+<p>在期约中抛出错误时，错误实际上是从消息队列中异步抛出的，所以并不会阻止运行时继续执行同步指令。</p>
+</li>
+</ol>
+<h5 id="期约连锁与期约合成"><a href="#期约连锁与期约合成" class="headerlink" title="期约连锁与期约合成"></a>期约连锁与期约合成</h5><ol>
+<li><p>期约连锁</p>
+<p>因为每个期约实例的方法都会返回一个新的期约对象，所以方法可以链式调用。</p>
+</li>
+<li><p>期约图</p>
+<p>因为一个期约可以有任意多个处理程序，所以期约连锁可以构建有向非循环图的结构。</p>
+</li>
+<li><p>Promise.all() 和 Promise.race()</p>
+<p>Promise 类提供两个将多个期约实例组合成一个期约的静态方法。</p>
+<ul>
+<li><p>Promise.all()</p>
+<p>该方法创建的期约会在一组期约全部解决之后再解决。接收一个可迭代对象。合成的期约只会在每个包含的期约都解决之后才解决。</p>
+<p>如果至少有一个包含的期约待定，则合成的期约也会待定。如果有一个包含的期约拒绝，则合成的期约也会拒绝。</p>
+<p>如果所有期约都成功解决，则合成期约的解决值就是所有包含期约解决值的数组，按照迭代器顺序。</p>
+<p>如果有期约拒绝，则第一个拒绝的期约会将自己的理由作为合成期约的拒绝理由。之后再拒绝的期约不会影响最终期约的拒绝理由。</p>
+</li>
+<li><p>Promise.race()</p>
+<p>该方法返回一个包装期约，是一组集合中最先解决或拒绝的期约的镜像。接收一个可迭代对象。</p>
+<p>该方法内部第一个落定的期约，无论是解决还是拒绝，该方法都会包装其解决值或是拒绝理由并返回新期约。</p>
+</li>
+</ul>
+</li>
+<li><p>串行期约合成</p>
+<p>基于后续期约使用之前期约的返回值来串联期约是期约的基本功能。类似于函数合成。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addThree</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addFive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> addFive(addTwo(addThree(x)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(addTen(<span class="number">7</span>)); <span class="comment">// 17</span></span><br></pre></td></tr></table></figure>
+
+<p>期约也可以类似合成。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addThree</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addFive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve(x).then(addTwo).then(addThree).then(addFive);</span><br><span class="line">&#125;</span><br><span class="line">addTen(<span class="number">8</span>).then(<span class="built_in">console</span>.log); <span class="comment">// 18</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addThree</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addFive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [addTwo, addThree, addFive].reduce(<span class="function">(<span class="params">promise, fn</span>) =&gt;</span> promise.then(fn), <span class="built_in">Promise</span>.resolve(x));</span><br><span class="line">&#125;</span><br><span class="line">addTen(<span class="number">8</span>).then(<span class="built_in">console</span>.log); <span class="comment">// 18</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addThree</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addFive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compose</span>(<span class="params">...fns</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">x</span> =&gt;</span> fns.reduce(<span class="function">(<span class="params">promise, fn</span>) =&gt;</span> promise.then(fn), <span class="built_in">Promise</span>.resolve(x));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> addTen = compose(addTwo, addThree, addFive);</span><br><span class="line">addTen(<span class="number">8</span>).then(<span class="built_in">console</span>.log); <span class="comment">// 18</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 29</title>
     <url>/2020/10/29/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-29/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-29"><a href="#学习笔记-2020-10-29" class="headerlink" title="学习笔记 2020-10-29"></a>学习笔记 2020-10-29</h1><a id="more"></a>
