@@ -1,6 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 01</title>
+    <url>/2020/11/01/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-01/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-01"><a href="#学习笔记-2020-11-01" class="headerlink" title="学习笔记 2020-11-01"></a>学习笔记 2020-11-01</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="期约与异步函数"><a href="#期约与异步函数" class="headerlink" title="期约与异步函数"></a>期约与异步函数</h3><h4 id="异步函数"><a href="#异步函数" class="headerlink" title="异步函数"></a>异步函数</h4><h5 id="异步函数策略"><a href="#异步函数策略" class="headerlink" title="异步函数策略"></a>异步函数策略</h5><ol>
+<li><p>实现 sleep()</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">sleep</span>(<span class="params">delay</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, delay));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> t0 = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">await</span> sleep(<span class="number">1500</span>); <span class="comment">// 暂停约 1500 毫秒</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Date</span>.now() - t0);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// 1502</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用平行执行</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">randomDelay</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 延迟 0~1000 毫秒</span></span><br><span class="line">  <span class="keyword">const</span> delay = <span class="built_in">Math</span>.random() * <span class="number">1000</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;id&#125;</span> finished`</span>);</span><br><span class="line">      resolve();</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> t0 = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span><br><span class="line">    <span class="keyword">await</span> randomDelay(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now() - t0&#125;</span>ms elapsed`</span>);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// 0 finished</span></span><br><span class="line"><span class="comment">// 1 finished</span></span><br><span class="line"><span class="comment">// 2 finished</span></span><br><span class="line"><span class="comment">// 3 finished</span></span><br><span class="line"><span class="comment">// 4 finished</span></span><br><span class="line"><span class="comment">// 877ms elapsed</span></span><br></pre></td></tr></table></figure>
+
+<p>就算这些期约之间没有依赖，异步函数也会依次暂停，等待每个超时完成。这样可以保证执行顺序。</p>
+<p>如果顺序不是必须保证的，那么可以先一次性初始化所有期约，再分别等待它们的结果。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">randomDelay</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 延迟 0~1000 毫秒</span></span><br><span class="line">  <span class="keyword">const</span> delay = <span class="built_in">Math</span>.random() * <span class="number">1000</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;id&#125;</span> finished`</span>);</span><br><span class="line">      resolve(id);</span><br><span class="line">    &#125;, delay)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> t0 = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">const</span> promises = <span class="built_in">Array</span>(<span class="number">5</span>)</span><br><span class="line">    .fill(<span class="literal">null</span>)</span><br><span class="line">    .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> randomDelay(i));</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> p <span class="keyword">of</span> promises) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`awaited <span class="subst">$&#123;<span class="keyword">await</span> p&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">Date</span>.now() - t0&#125;</span>ms elapsed`</span>);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// 1 finished</span></span><br><span class="line"><span class="comment">// 0 finished</span></span><br><span class="line"><span class="comment">// awaited 0</span></span><br><span class="line"><span class="comment">// awaited 1</span></span><br><span class="line"><span class="comment">// 2 finished</span></span><br><span class="line"><span class="comment">// awaited 2</span></span><br><span class="line"><span class="comment">// 4 finished</span></span><br><span class="line"><span class="comment">// 3 finished</span></span><br><span class="line"><span class="comment">// awaited 3</span></span><br><span class="line"><span class="comment">// awaited 4</span></span><br><span class="line"><span class="comment">// 964ms elapsed</span></span><br></pre></td></tr></table></figure>
+
+<p>期约没有按顺序执行，但 await 按顺序收到了每个期约的值。</p>
+</li>
+<li><p>串行执行期约</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">addTwo</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">addThree</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">addFive</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x + <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">addTen</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> fn <span class="keyword">of</span> [addTwo, addThree, addFive]) &#123;</span><br><span class="line">    x = <span class="keyword">await</span> fn(x);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line">addTen(<span class="number">9</span>).then(<span class="built_in">console</span>.log); <span class="comment">// 19</span></span><br></pre></td></tr></table></figure>
+
+<p>此处 await 传递了每个函数的返回值。</p>
+</li>
+<li><p>栈追踪与内存管理</p>
+<p>期约与异步函数的功能有相当程度的重叠，但它们在内存中的表示则差别很大。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fooPromiseExecutor</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  setTimeout(reject, <span class="number">1000</span>, <span class="string">'bar'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">new</span> <span class="built_in">Promise</span>(fooPromiseExecutor);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// Uncaught (in promise) bar</span></span><br><span class="line"><span class="comment">// setTimeout (async)</span></span><br><span class="line"><span class="comment">// fooPromiseExecutor</span></span><br><span class="line"><span class="comment">// foo</span></span><br></pre></td></tr></table></figure>
+
+<p>这是拒绝期约的栈追踪信息。</p>
+<p>JS 引擎在创建期约时尽可能保留完整的调用栈。在抛出错误时，调用栈可以由运行时的错误处理逻辑获取，因而就会出现在栈追踪信息中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fooPromiseExecutor</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  setTimeout(reject, <span class="number">1000</span>, <span class="string">'bar'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(fooPromiseExecutor);</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="comment">// Uncaught (in promise) bar</span></span><br><span class="line"><span class="comment">// foo</span></span><br><span class="line"><span class="comment">// async function (async)</span></span><br><span class="line"><span class="comment">// foo</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><h4 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h4><p>BOM 的核心是 window 对象，表示浏览器的实例。window 对象是 ECMAScript 中的 Global 对象，也是浏览器窗口的 JavaScript 接口。</p>
+<h5 id="Global-作用域"><a href="#Global-作用域" class="headerlink" title="Global 作用域"></a>Global 作用域</h5><p>通过 <code>var</code> 声明的所有全局变量和函数都会变成 window 对象的属性和方法。</p>
+<p>访问未声明的变量会抛出错误，但是可以在 window 对象上查询是否存在可能未声明的变量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这会导致抛出错误，因为 oldValue 没有声明</span></span><br><span class="line"><span class="keyword">var</span> newValue = oldValue;</span><br><span class="line"><span class="comment">// 这不会抛出错误，因为这里是属性查询</span></span><br><span class="line"><span class="comment">// newValue 会被设置为 undefined</span></span><br><span class="line"><span class="keyword">var</span> newValue = <span class="built_in">window</span>.oldValue;</span><br></pre></td></tr></table></figure>
+
+<h5 id="窗口关系"><a href="#窗口关系" class="headerlink" title="窗口关系"></a>窗口关系</h5><p>top 对象始终指向最上层窗口，即浏览器窗口本身。parent 对象则始终指向当前窗口的父窗口。如果当前窗口是最上层窗口，则 parent 等于 top 等于 window 。最上层的 window 如果不是通过 <code>window.open</code> 打开的，那么其 name 属性就不会包含值。</p>
+<p>self 对象始终指向 window 。实际上，self 和 window 就是同一个对象。</p>
+<p>这些都是 window 对象的属性。</p>
+<h5 id="窗口位置与像素比"><a href="#窗口位置与像素比" class="headerlink" title="窗口位置与像素比"></a>窗口位置与像素比</h5><p>window 对象的位置可以通过不同的属性和方法来确定。现代浏览器提供了 <code>screenLeft</code> 和 <code>screenTop</code> 属性，用于表示窗口相对于屏幕左侧和顶部的位置。</p>
+<p>可以使用 <code>moveTo()</code> 和 <code>moveBy()</code> 方法移动窗口。<code>moveTo</code> 接收要移动到的新位置的绝对坐标 x 和 y 。<code>moveBy</code> 接收相对当前位置在两个方向上移动的像素数。</p>
+<p>CSS 像素是 Web 开发中使用的统一像素单位。这个单位的背后是一个角度：<code>0.0213°</code> 。如果屏幕距离人眼是一臂长，则以这个角度计算的 CSS 像素大小约为 1/96 英寸。这样定义像素大小是为了在不同设备上统一标准。不同像素密度的屏幕下会有不同的缩放系数，以便把物理像素( 屏幕实际的分辨率 )转换为 CSS 像素( 浏览器报告的虚拟分辨率 )。</p>
+<p>手机屏幕的物理分辨率可能是 1920x1080 。但因为其像素可能非常小，所以浏览器就需要把其分辨率降为较低的逻辑分辨率，比如 640x320 。这个物理像素与 CSS 像素之间的转换比率由 <code>window.devicePixelRatio</code> 属性提供。对于前面的例子，该属性的值就是 3 。于是，12 像素( CSS 像素)就会用 36 像素的物理像素来显示。</p>
+<p><code>window.devicePixelRatio</code> 实际上与每英寸像素数( DPI )是对应的。 DPI 表示单位像素密度，而 <code>window.devicePixelRatio</code> 表示物理像素与逻辑像素之间的缩放系数。</p>
+<h5 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h5><p>所有现代浏览器都支持 4 个属性：</p>
+<ul>
+<li><code>innerWidth</code></li>
+<li><code>innerHeight</code></li>
+<li><code>outerWidth</code></li>
+<li><code>outerHeight</code></li>
+</ul>
+<p><code>outerWidth</code> 和 <code>outerHeight</code> 返回浏览器窗口自身的大小。( 不管是在最外层 window 上使用，还是在窗格 <code>&lt;frame&gt;</code> 中使用 )。</p>
+<p><code>innerWidth</code> 和 <code>innerHeight</code> 返回浏览器窗口中页面视口的大小( 不包含浏览器边框和工具栏 )。</p>
+<p><code>document.documentElement.clientWidth</code> 和 <code>document.documentElement.clientHeight</code> 返回页面视口的宽度和高度。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> pageWidth = <span class="built_in">window</span>.innerWidth,</span><br><span class="line">  pageHeight = <span class="built_in">window</span>.innerHeight;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> pageWidth != <span class="string">'number'</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode == <span class="string">'CSS1Compat'</span>) &#123;</span><br><span class="line">    pageWidth = <span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">    pageHeight = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    pageWidth = <span class="built_in">document</span>.body.clientWidth;</span><br><span class="line">    pageHeight = <span class="built_in">document</span>.body.clientHeight;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>检查是否存在 <code>inner</code> 属性，不存在的话，检查页面是否处于标准模式，是的话使用 <code>documentElement</code> 的 <code>client</code> 属性，否则使用 <code>body</code> 的 <code>client</code> 属性。</p>
+<p>可以使用 <code>resizeTo()</code> 和 <code>resizeBy()</code> 方法调整窗口大小。<code>resizeTo()</code> 接收新的宽度和高度值，<code>resizeBy()</code> 接收缩放比例。</p>
+<h5 id="视口位置"><a href="#视口位置" class="headerlink" title="视口位置"></a>视口位置</h5><p>度量文档相对于视口滚动距离的属性有两对，返回相等的值。</p>
+<ul>
+<li><code>window.pageXoffset/window.scrollX</code></li>
+<li><code>window.pageYoffset/window.scrollY</code></li>
+</ul>
+<p>可以使用 <code>scroll()</code> 、<code>scrollTo()</code> 和 <code>scrollBy()</code> 方法滚动页面。三个方法都接收表示相对视口距离的 x 和 y 坐标。前两个方法中表示要滚动到的坐标，最后一个方法表示滚动的距离。</p>
+<p>这几个方法也都接收一个 <code>ScrollToOptions</code> 字典，除了提供偏移值，还可以通过 <code>behavior</code> 属性告诉浏览器是否平滑滚动。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 正常滚动 </span></span><br><span class="line"><span class="built_in">window</span>.scrollTo(&#123; </span><br><span class="line"> left: <span class="number">100</span>, </span><br><span class="line"> top: <span class="number">100</span>, </span><br><span class="line"> behavior: <span class="string">'auto'</span> </span><br><span class="line">&#125;); </span><br><span class="line"><span class="comment">// 平滑滚动</span></span><br><span class="line"><span class="built_in">window</span>.scrollTo(&#123; </span><br><span class="line"> left: <span class="number">100</span>, </span><br><span class="line"> top: <span class="number">100</span>, </span><br><span class="line"> behavior: <span class="string">'smooth'</span> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>字符串的内部格式始终是 <code>UTF-16</code> 。它不依赖于页面编码。</p>
+<p>反引号允许我们在第一个反引号之前指定一个<strong>模板函数</strong> 。</p>
+<p>语法是：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">func<span class="string">`string`</span></span><br></pre></td></tr></table></figure>
+
+<p>函数 <code>func</code> 被自动调用，接收字符串和嵌入式表达式，并处理它们。</p>
+<p>访问字符的方法有方括号和调用 <code>str.charAt(pos)</code> 。区别是，没有找到时，方括号返回 <code>undefined</code> ，而函数调用返回一个空字符串。</p>
+<p>字符串也可以使用 <code>for-of</code> 遍历。</p>
+<p>查找子字符串的方法：</p>
+<ul>
+<li><p><code>str.indexOf(substr, ?pos)</code> ，从给定位置 <code>pos</code> 开始，在 <code>str</code> 中查找 <code>substr</code> 。</p>
+</li>
+<li><p><code>str.lastIndexOf(substr, pos)</code> </p>
+<blockquote>
+<p>旧代码中会使用 <code>if (~str.indexOf(...))</code> 来判断是否存在。因为 <code>~</code> 符号对数字转换成 32-bit 整数，然后按位取反。所以 n 会转化为 -(n+1) 。计算机中负数以补码形式存在，如 1 的 32-bit 取反后正好是 -2 的补码形式。</p>
+</blockquote>
+</li>
+<li><p><code>str.includes(substr, pos)</code></p>
+</li>
+<li><p><code>str.startsWith</code></p>
+</li>
+<li><p><code>str.endsWith</code></p>
+</li>
+</ul>
+<p>获取子字符串的方法：</p>
+<ul>
+<li><code>slice(start, ?end)</code> ，返回从 start 开始到但不包含的 end 的部分。支持负参数，表示从末尾开始。</li>
+<li><code>substring(start, ?end)</code> ，返回字符串在 start 和 end 之间的部分，允许 start 大于 end 。不支持负参数。所有负参数被视为 0 。</li>
+<li><code>substr(start, ?length)</code> ，返回从 start 开始的给定 length 部分。支持负参数。</li>
+</ul>
+<p>比较字符串：</p>
+<ul>
+<li><code>str.codePointAt(pos)</code> 返回在 <code>pos</code> 位置的字符代码。</li>
+<li><code>str.charCodeAt(pos)</code></li>
+<li><code>str.fromCodePoint(code)</code> 通过 <code>code</code> 创建字符。</li>
+<li><code>str.fromCharCode(code)</code></li>
+<li><code>str.localeCompare(str2)</code> 会根据语言规则返回一个整数，若 <code>str</code> 小于 <code>str2</code> 则返回负数，若 <code>str</code> 大于 <code>str2</code> 正数，如果相等则返回 <code>0</code> 。该方法还可以指定语言并设置区别大小之类的附加规则。</li>
+</ul>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>首字母大写</p>
+<p>写一个函数 <code>ucFirst(str)</code>，并返回首字母大写的字符串 <code>str</code>，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">ucFirst(<span class="string">"john"</span>) == <span class="string">"John"</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ucFirst</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!str) <span class="keyword">return</span> str;</span><br><span class="line">  <span class="keyword">return</span> str[<span class="number">0</span>].toUpperCase() + str.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查 spam</p>
+<p>写一个函数 <code>checkSpam(str)</code>，如果 <code>str</code> 包含 <code>viagra</code> 或 <code>XXX</code> 就返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>函数必须不区分大小写：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">checkSpam(<span class="string">'buy ViAgRA now'</span>) == <span class="literal">true</span></span><br><span class="line">checkSpam(<span class="string">'free xxxxx'</span>) == <span class="literal">true</span></span><br><span class="line">checkSpam(<span class="string">"innocent rabbit"</span>) == <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkSpam</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (str.toLowerCase().includes(<span class="string">'viagra'</span>) || str.toUpperCase().includes(<span class="string">'XXX'</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>截断文本</p>
+<p>创建函数 <code>truncate(str, maxlength)</code> 来检查 <code>str</code> 的长度，如果超过 <code>maxlength</code> —— 应使用 <code>&quot;…&quot;</code> 来代替 <code>str</code> 的结尾部分，长度仍然等于 <code>maxlength</code>。</p>
+<p>函数的结果应该是截断后的文本（如果需要的话）。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">truncate(<span class="string">"What I'd like to tell on this topic is:"</span>, <span class="number">20</span>) = <span class="string">"What I'd like to te…"</span></span><br><span class="line"></span><br><span class="line">truncate(<span class="string">"Hi everyone!"</span>, <span class="number">20</span>) = <span class="string">"Hi everyone!"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">str, maxlength</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (str.length &gt; maxlength) &#123;</span><br><span class="line">    <span class="keyword">return</span> str.slice(<span class="number">0</span>, maxlength - <span class="number">1</span>) + <span class="string">'…'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提取货币</p>
+<p>我们有以 <code>&quot;$120&quot;</code> 这样的格式表示的花销。意味着：先是美元符号，然后才是数值。</p>
+<p>创建函数 <code>extractCurrencyValue(str)</code> 从字符串中提取数值并返回。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert( extractCurrencyValue(<span class="string">'$120'</span>) === <span class="number">120</span> ); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extractCurrencyValue</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> +str.slice(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 10 31</title>
     <url>/2020/10/31/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-10-31/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-10-31"><a href="#学习笔记-2020-10-31" class="headerlink" title="学习笔记 2020-10-31"></a>学习笔记 2020-10-31</h1><a id="more"></a>
@@ -3856,10 +4001,10 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
+        <tag>css</tag>
         <tag>notes</tag>
         <tag>html</tag>
-        <tag>css</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -3929,8 +4074,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3967,8 +4112,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -3991,8 +4136,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4025,8 +4170,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4066,8 +4211,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4091,8 +4236,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4114,8 +4259,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -4137,8 +4282,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4217,8 +4362,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4243,8 +4388,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4270,8 +4415,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4302,8 +4447,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4367,8 +4512,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4408,8 +4553,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -4447,8 +4592,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
