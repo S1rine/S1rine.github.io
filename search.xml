@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 05</title>
+    <url>/2020/11/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-05/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-05"><a href="#学习笔记-2020-11-05" class="headerlink" title="学习笔记 2020-11-05"></a>学习笔记 2020-11-05</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="客户端检测"><a href="#客户端检测" class="headerlink" title="客户端检测"></a>客户端检测</h3><h4 id="软件与硬件检测"><a href="#软件与硬件检测" class="headerlink" title="软件与硬件检测"></a>软件与硬件检测</h4><h5 id="浏览器元数据"><a href="#浏览器元数据" class="headerlink" title="浏览器元数据"></a>浏览器元数据</h5><ol>
+<li><p>Geolocation API</p>
+<p><code>navigator.geolocation</code> 属性可以让浏览器脚本感知当前设备的地理位置。这个 API 只在安全执行环境中可用。</p>
+<p>这个 API  可以查询素数系统并尽可能精确地返回设备的位置信息。根据宿舍系统的硬件和配置，返回结果的精度可能不一样。手机 GPS 的坐标系统可能具有极高的精度，而 IP 地址的精度就要差很多。</p>
+<p>要获取浏览器当前的位置，可以使用 <code>getCurrentPosition()</code> 方法。这个方法返回一个 <code>Coordinates</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">navigator.geolocation.getCurrentPosition(<span class="function"><span class="params">position</span> =&gt;</span> (p = position));</span><br><span class="line"><span class="built_in">console</span>.log(p.timestamp); <span class="comment">// 1525364883361</span></span><br><span class="line"><span class="built_in">console</span>.log(p.coords); <span class="comment">// Coordinates &#123;...&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(p.coords.latitude, p.coords.longitude); <span class="comment">// 37.4854409, -122.2325506 经纬度</span></span><br><span class="line"><span class="built_in">console</span>.log(p.coords.accuracy); <span class="comment">// 58 精度</span></span><br><span class="line"><span class="built_in">console</span>.log(p.coords.altitude); <span class="comment">// -8.800000190734863 海拔高度</span></span><br><span class="line"><span class="built_in">console</span>.log(p.coords.altitudeAccuracy); <span class="comment">// 200</span></span><br><span class="line"><span class="comment">// 浏览器会弹出确认对话框请用户允许访问 Geolocation API</span></span><br><span class="line"><span class="comment">// 这个例子显示了用户拒绝之后的结果</span></span><br><span class="line">navigator.geolocation.getCurrentPosition(</span><br><span class="line">  () =&gt; &#123;&#125;,</span><br><span class="line">  e =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.code); <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">// User denied Geolocation</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">// 这个例子展示了在不安全的上下文中执行代码的结果</span></span><br><span class="line">navigator.geolocation.getCurrentPosition(</span><br><span class="line">  () =&gt; &#123;&#125;,</span><br><span class="line">  e =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.code); <span class="comment">// 1</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">// Only secure origins are allowed</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>还可以传入第三个参数，一个 <code>PositionOptions</code> 对象。这个对象支持 3 个属性：</p>
+<ul>
+<li>enableHighAccuracy: 布尔值，表示是否返回精确的值。</li>
+<li>timeout: 毫秒，表示在以 TIMEOUT 状态调用错误回调之前等待的最长时间。</li>
+<li>maxmumAge: 毫秒，表示返回坐标的最长有效期。</li>
+</ul>
+</li>
+<li><p>Connection State 和 NetworkInformation API</p>
+<p>浏览器会跟踪网络连接状态并以两种方式暴露这些信息：</p>
+<ul>
+<li>连接事件</li>
+<li><code>navigator.onLine</code> 属性。</li>
+</ul>
+<p>在设备连接到网络时，浏览器会记录这个事实并在 window 对象上触发 onLine 事件。相应地，当设备断开网络连接后，浏览器会在 window 对象上触发 offline 事件。任何时候都可以通过 <code>navigator.onLine</code> 属性来确定浏览器的联网状态。这个属性返回布尔值。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> connectionStateChange = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(navigator.onLine);</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'online'</span>, connectionStateChange);</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'offline'</span>, connectionStateChange);</span><br><span class="line"><span class="comment">// 设备联网时：</span></span><br><span class="line"><span class="comment">// true</span></span><br><span class="line"><span class="comment">// 设备断网时：</span></span><br><span class="line"><span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>联网的判定取决于浏览器和系统实现。</p>
+<p>navigator 对象还暴露了 NetworkInformation API ，可以通过 <code>navigator.connection</code> 属性使用。这个 API　提供了一些只读属性，并未连接属性变化事件处理程序定义了一个事件对象。</p>
+<ul>
+<li>downlink：整数，表示当前设备的带宽，以 Mbit/s 为单位。</li>
+<li>downlinkMax：整数，表示当前设备最大的下行带宽，根据网络的第一跳来确定。</li>
+<li>effectiveType：字符串枚举值，表示连接速度和质量。这个值有以下 4 种可能：<ul>
+<li>slow-2g</li>
+<li>2g</li>
+<li>3g</li>
+<li>4g</li>
+</ul>
+</li>
+<li>rtt：毫秒，表示当前网络实际的往返时间。</li>
+<li>type：字符串枚举值，表示网络连接技术，可能为下列值：<ul>
+<li>bluetooth</li>
+<li>cellular</li>
+<li>ethernet</li>
+<li>none</li>
+<li>mixed</li>
+<li>other</li>
+<li>unknown</li>
+<li>wifi</li>
+<li>wimax</li>
+</ul>
+</li>
+<li>saveData：布尔值，表示用户设备是否启用了节流模式。</li>
+<li>onchange：事件处理程序，会在任何连接状态变化时激发一个 change 事件。</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 04</title>
     <url>/2020/11/04/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-04/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-04"><a href="#学习笔记-2020-11-04" class="headerlink" title="学习笔记 2020-11-04"></a>学习笔记 2020-11-04</h1><a id="more"></a>
@@ -4702,10 +4768,10 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>html</tag>
-        <tag>css</tag>
         <tag>js</tag>
         <tag>notes</tag>
+        <tag>css</tag>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -4775,8 +4841,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -4813,8 +4879,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -4837,8 +4903,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -4937,8 +5003,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -4960,8 +5026,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>css</tag>
         <tag>notes</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
