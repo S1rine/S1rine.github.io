@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 06 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/">学习笔记 2020 11 06</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-06
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-06
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 06&url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 06&url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/&title=学习笔记 2020 11 06" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 06&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/&text=学习笔记 2020 11 06" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-05"><a href="#学习笔记-2020-11-05" class="headerlink" title="学习笔记 2020-11-05"></a>学习笔记 2020-11-05</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="客户端检测"><a href="#客户端检测" class="headerlink" title="客户端检测"></a>客户端检测</h3><h4 id="软件与硬件检测"><a href="#软件与硬件检测" class="headerlink" title="软件与硬件检测"></a>软件与硬件检测</h4><h5 id="浏览器元数据"><a href="#浏览器元数据" class="headerlink" title="浏览器元数据"></a>浏览器元数据</h5><ol>
+<li><p>Battery Status API</p>
+<p>浏览器可以访问设备电池及充电状态的信息。<code>navigator.getBattery()</code> 方法会返回一个期约实例，解决为一个 <code>BatteryManager</code> 对象，包含四个只读属性：</p>
+<ul>
+<li><code>charging</code> 布尔值，表示设备当前是否正接入电源充电，如果设备没有电池，则返回 <code>true</code> 。</li>
+<li><code>chargingTime</code> 整数，表示预计离电池充满还有多少秒。如果电池已充满或设备没有电池，则返回 0 。</li>
+<li><code>dischargingTime</code> 整数，表示预计离电量耗尽还有多少秒，如果设备没有电池，则返回 Infinity 。</li>
+<li><code>level</code> 浮点数，表示电量百分比。电量完全耗尽返回 <code>0.0</code> ，电池充满或设备没有电池则返回 <code>1.0</code> 。</li>
+</ul>
+<p>这个 API 还提供了 4 个事件属性，可用于设置在相应的电池事件发生时调用的回调函数。</p>
+<ul>
+<li>onchargingchange</li>
+<li>onchargingtimechange</li>
+<li>ondischargingtimechange</li>
+<li>onlevelchange</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">navigator.getBattery().then(<span class="function"><span class="params">battery</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 添加充电状态变化时的处理程序</span></span><br><span class="line">  <span class="keyword">const</span> chargingChangeHandler = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'chargingchange'</span>);</span><br><span class="line">  battery.onchargingchange = chargingChangeHandler;</span><br><span class="line">  <span class="comment">// 或</span></span><br><span class="line">  battery.addEventListener(<span class="string">'chargingchange'</span>, chargingChangeHandler);</span><br><span class="line">  <span class="comment">// 添加充电时间变化时的处理程序</span></span><br><span class="line">  <span class="keyword">const</span> chargingTimeChangeHandler = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'chargingtimechange'</span>);</span><br><span class="line">  battery.onchargingtimechange = chargingTimeChangeHandler;</span><br><span class="line">  <span class="comment">// 或</span></span><br><span class="line">  battery.addEventListener(<span class="string">'chargingtimechange'</span>, chargingTimeChangeHandler);</span><br><span class="line">  <span class="comment">// 添加放电时间变化时的处理程序</span></span><br><span class="line">  <span class="keyword">const</span> dischargingTimeChangeHandler = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'dischargingtimechange'</span>);</span><br><span class="line">  battery.ondischargingtimechange = dischargingTimeChangeHandler;</span><br><span class="line">  <span class="comment">// 或</span></span><br><span class="line">  battery.addEventListener(<span class="string">'dischargingtimechange'</span>, dischargingTimeChangeHandler);</span><br><span class="line">  <span class="comment">// 添加电量百分比变化时的处理程序</span></span><br><span class="line">  <span class="keyword">const</span> levelChangeHandler = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'levelchange'</span>);</span><br><span class="line">  battery.onlevelchange = levelChangeHandler;</span><br><span class="line">  <span class="comment">// 或</span></span><br><span class="line">  battery.addEventListener(<span class="string">'levelchange'</span>, levelChangeHandler);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h5 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h5><ol>
+<li><p>处理器核心数</p>
+<p><code>navigator.hardwareConcurrency</code> 属性返回浏览器支持的逻辑处理器核心数量，包含表示核心数的一个整数值。这个值表示浏览器可以并行执行的最大工作线程数量，不一定是实际的 CPU 核心数。</p>
+</li>
+<li><p>设备内存大小、</p>
+<p><code>navigator.deviceMemory</code> 属性返回设备大致的系统内存大小，包含单位为 GB 的浮点数。</p>
+</li>
+<li><p>最大触点数</p>
+<p><code>navigator.maxTouchPoints</code> 属性返回触摸屏支持的最大关联触点数量，包含一个整数值。</p>
+</li>
+</ol>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>HTMl 中的每段标记都可以表示为一个节点。DOM 中总共有 12 种节点类型，这些类型都继承一种基本类型。</p>
+<h4 id="节点层级"><a href="#节点层级" class="headerlink" title="节点层级"></a>节点层级</h4><h5 id="Node-类型"><a href="#Node-类型" class="headerlink" title="Node 类型"></a>Node 类型</h5><p>DOM Level 1 描述了名为 Node 的接口，这个接口是所有 DOM 节点类型都必须实现的。 Node 接口在 JavaScript 中被实现为 Node 类型，在除 IE 之外的所有浏览器中都可以直接访问这个类型。在 JavaScript 中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。</p>
+<p>每个节点都有 nodeType 属性，表示该节点的类型。节点类型由定义在 Node 类型上的 12 个数值常量表示：</p>
+<ul>
+<li>Node.ELEMENT_NODE ( 1 )</li>
+<li>Node.ATTRIBUTE_NODE ( 2 )</li>
+<li>Node.TEXT_NODE ( 3 )</li>
+<li>Node.CDATA_SECTION_NODE ( 4 )</li>
+<li>Node.ENTITY_PEFERENCE_NODE ( 5 )</li>
+<li>Node.ENTITY_NODE ( 6 )</li>
+<li>Node.PROCESSING_INSTRUCTION_NODE ( 7 )</li>
+<li>Node.COMMENT_NODE ( 8 )</li>
+<li>Node.DOCUMENT_NODE ( 9 )</li>
+<li>Node.DOCUMENT_TYPE_NODE ( 10 )</li>
+<li>Node.DOCUMENT_FRAGMENT_NODE ( 11 )</li>
+<li>Node.NOTATION_NODE ( 12 )</li>
+</ul>
+<p>节点类型可以通过与这些常量比较来确定：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (someNode.nodeType == Node.ELEMENT_NODE) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Node is an element.'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器并不支持所有节点类型。</p>
+<ol>
+<li><p>nodeName 与 nodeValue</p>
+<p>nodeName 与 nodeValue 保存着有关节点的信息。这两个属性的值完全取决于节点类型。在使用这两个属性前，最好先检测节点类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (someNode.nodeType == <span class="number">1</span>) &#123;</span><br><span class="line">  value = someNode.nodeName; <span class="comment">// 会显示元素的标签名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对元素而言，nodeName 始终等于元素的标签名，而 nodeValue 则始终为 null 。</p>
+</li>
+<li><p>节点关系</p>
+<p>每个节点有一个 childNodes 属性，其中包含一个 NodeList 的实例。NodeList 是一个类数组对象，用于存储可以按位置存取的有序节点。NodeList 对象独特的地方在于，它其实是一个对 DOM 结构的查询，因此 DOM 结构的变化会自动地在 NodeList 中反映出来。NodeList 是实时的活动对象，而不是第一次访问时所获的内容的快照。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstChild = someNode.childNodes[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">let</span> secondChild = someNode.childNodes.item(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> count = someNode.childNodes.length;</span><br></pre></td></tr></table></figure>
+
+<p>每个节点有一个 parentNode 属性，指向其 DOM 树中的父元素。</p>
+<p>childNodes 列表中的每个节点都是同一列表中其他节点的同胞节点，使用 previousSibling 和 nextSibling 可以在这个列表的节点间导航。列表中第一个节点和最后一个节点的同胞属性为 null 。</p>
+<p>父节点和它的第一个及最后一个子节点也有专门属性：</p>
+<ul>
+<li>firstChild</li>
+<li>lastChild</li>
+</ul>
+<p>还有一个方法是 <code>hasChildNodes()</code> ，可以判断节点是否有一个或多个子节点。</p>
+<p>所有节点共享一个关系： ownerDocument 属性是一个指向代表整个文档的文档节点的指针。所有节点都被创建它们的文档所拥有。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>过滤数组中的唯一元素</p>
+<p>定义 <code>arr</code> 为一个数组。</p>
+<p>创建一个函数 <code>unique(arr)</code>，该函数返回一个由 <code>arr</code> 中所有唯一元素所组成的数组。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/* 你的代码 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> values = [<span class="string">"Hare"</span>, <span class="string">"Krishna"</span>, <span class="string">"Hare"</span>, <span class="string">"Krishna"</span>,</span><br><span class="line">  <span class="string">"Krishna"</span>, <span class="string">"Krishna"</span>, <span class="string">"Hare"</span>, <span class="string">"Hare"</span>, <span class="string">":-O"</span></span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">alert( unique(values) ); <span class="comment">// Hare, Krishna, :-O</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 这里用到了 string 类型，但其实可以是任何类型的值。</p>
+<p>P.S. 使用 <code>Set</code> 来存储唯一值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过滤字谜</p>
+<p><a href="https://en.wikipedia.org/wiki/Anagram" target="_blank" rel="noopener">Anagrams</a> 是具有相同数量相同字母但是顺序不同的单词。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nap - pan</span><br><span class="line">ear - are - era</span><br><span class="line">cheaters - hectares - teachers</span><br></pre></td></tr></table></figure>
+
+<p>写一个函数 <code>aclean(arr)</code>，它返回被清除了字谜（anagrams）的数组。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">"nap"</span>, <span class="string">"teachers"</span>, <span class="string">"cheaters"</span>, <span class="string">"PAN"</span>, <span class="string">"ear"</span>, <span class="string">"era"</span>, <span class="string">"hectares"</span>];</span><br><span class="line"></span><br><span class="line">alert( aclean(arr) ); <span class="comment">// "nap,teachers,ear" or "PAN,cheaters,era"</span></span><br></pre></td></tr></table></figure>
+
+<p>对于所有的字谜（anagram）组，都应该保留其中一个词，但保留的具体是哪一个并不重要。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aclean</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">set</span> = new Set();</span><br><span class="line">  let newArr = [];</span><br><span class="line">  arr.forEach(item =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> tmp = item.toLowerCase().split(<span class="string">''</span>).sort().join(<span class="string">''</span>);</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">set</span>.has(tmp)) &#123;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">      <span class="keyword">set</span>.add(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  return newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参考解决方案</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aclean</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> word <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="comment">// 将单词 split 成字母，对字母进行排序，之后再 join 回来</span></span><br><span class="line">    <span class="keyword">let</span> sorted = word.toLowerCase().split(<span class="string">''</span>).sort().join(<span class="string">''</span>); <span class="comment">// (*)</span></span><br><span class="line">    map.set(sorted, word);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(map.values());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迭代键</p>
+<p>我们期望使用 <code>map.keys()</code> 得到一个数组，然后使用特定的方法例如 <code>.push</code> 等，对其进行处理。</p>
+<p>但是运行不了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">map.set(<span class="string">"name"</span>, <span class="string">"John"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> keys = map.keys();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Error: keys.push is not a function</span></span><br><span class="line">keys.push(<span class="string">"more"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>为什么？我们应该如何修改代码让 <code>keys.push</code> 工作？</p>
+<p><code>map.keys()</code> 返回值是一个可迭代对象，不是数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line"></span><br><span class="line">map.set(<span class="string">'name'</span>, <span class="string">'John'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> keys = <span class="built_in">Array</span>.from(map.keys());</span><br><span class="line">keys.push(<span class="string">'more'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(keys); <span class="comment">// ["name", "more"]</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/05/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-05/">
+        <span>学习笔记 2020 11 05</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/06/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-06/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-05"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-05</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端检测"><span class="toc-number">1.1.1.</span> <span class="toc-text">客户端检测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#软件与硬件检测"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">软件与硬件检测</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#浏览器元数据"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">浏览器元数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#硬件"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">硬件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-number">1.1.2.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#节点层级"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">节点层级</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Node-类型"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">Node 类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
