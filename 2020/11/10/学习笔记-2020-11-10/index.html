@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 10 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/">学习笔记 2020 11 10</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-10
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-10
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 10&url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 10&url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/&title=学习笔记 2020 11 10" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 10&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/&text=学习笔记 2020 11 10" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-10"><a href="#学习笔记-2020-11-10" class="headerlink" title="学习笔记 2020-11-10"></a>学习笔记 2020-11-10</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><h4 id="MutationObserver-接口"><a href="#MutationObserver-接口" class="headerlink" title="MutationObserver 接口"></a>MutationObserver 接口</h4><h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><ol>
+<li><p>回调与 MutationRecord</p>
+<p>每个回调都会收到一个 MutationRecord 实例的数组。包含发生了什么变化，DOM 的哪一部分受到了影响。因为回调执行之前可能同时发生多个满足观察条件的事件，所以每次执行回调都会传入一个包含按顺序入队的 MutationRecord 实例的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver( </span><br><span class="line"> (mutationRecords) =&gt; <span class="built_in">console</span>.log(mutationRecords));</span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;); </span><br><span class="line"><span class="built_in">document</span>.body.setAttribute(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</span><br><span class="line"><span class="comment">// [MutationRecord]:</span></span><br><span class="line"><span class="comment">//  [</span></span><br><span class="line"><span class="comment">//   0: &#123;</span></span><br><span class="line"><span class="comment">//     MutationRecord,</span></span><br><span class="line"><span class="comment">//     addedNodes: NodeList [],</span></span><br><span class="line"><span class="comment">//     attributeName: "foo",</span></span><br><span class="line"><span class="comment">//     attributeNamespace: null,</span></span><br><span class="line"><span class="comment">//     nextSibling: null,</span></span><br><span class="line"><span class="comment">//     oldValue: null,</span></span><br><span class="line"><span class="comment">//     previousSibling: null,</span></span><br><span class="line"><span class="comment">//     removedNodes: NodeList [],</span></span><br><span class="line"><span class="comment">//     target: body,</span></span><br><span class="line"><span class="comment">//     type: "attributes",</span></span><br><span class="line"><span class="comment">//     __proto__: MutationRecord,</span></span><br><span class="line"><span class="comment">//     length: 1</span></span><br><span class="line"><span class="comment">//   &#125;,</span></span><br><span class="line"><span class="comment">//   __proto__: Array(0),</span></span><br><span class="line"><span class="comment">//  ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver( </span><br><span class="line"> (mutationRecords) =&gt; <span class="built_in">console</span>.log(mutationRecords)); </span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;); </span><br><span class="line"><span class="built_in">document</span>.body.setAttributeNS(<span class="string">'baz'</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>); </span><br><span class="line"><span class="comment">// [ </span></span><br><span class="line"><span class="comment">//   &#123; </span></span><br><span class="line"><span class="comment">//     addedNodes: NodeList [], </span></span><br><span class="line"><span class="comment">//     attributeName: "foo", </span></span><br><span class="line"><span class="comment">//     attributeNamespace: "baz", </span></span><br><span class="line"><span class="comment">//     nextSibling: null, </span></span><br><span class="line"><span class="comment">//     oldValue: null, </span></span><br><span class="line"><span class="comment">//     previousSibling: null </span></span><br><span class="line"><span class="comment">//     removedNodes: NodeList [], </span></span><br><span class="line"><span class="comment">//     target: body </span></span><br><span class="line"><span class="comment">//     type: "attributes" </span></span><br><span class="line"><span class="comment">//   &#125; </span></span><br><span class="line"><span class="comment">// ]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="params">mutationRecords</span> =&gt;</span> <span class="built_in">console</span>.log(mutationRecords));</span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'foo'</span>;</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'bar'</span>;</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'baz'</span>;</span><br><span class="line"><span class="comment">// [MutationRecord, MutationRecord, MutationRecord]</span></span><br></pre></td></tr></table></figure>
+
+<p>MutationRecord 实例的属性如下表：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>target</td>
+<td>被修改影响的目标节点</td>
+</tr>
+<tr>
+<td>type</td>
+<td>字符串，表示变化的类型：”attributes”、”characterData”或”childList”</td>
+</tr>
+<tr>
+<td>oldValue</td>
+<td>如果在 MutationObserverInit 对象中启用（attributeOldValue 或 characterData OldValue 为 true），”attributes”或”characterData”的变化事件会设置这个属性为被替代的值 “childList”类型的变化始终将这个属性设置为 null。</td>
+</tr>
+<tr>
+<td>attributeName</td>
+<td>对于”attributes”类型的变化，这里保存被修改属性的名字。其他变化事件会将这个属性设置为 null</td>
+</tr>
+<tr>
+<td>attributeNamespace</td>
+<td>对于使用了命名空间的”attributes”类型的变化，这里保存被修改属性的名字。对于使用了命名空间的”attributes”类型的变化，这里保存被修改属性的名字</td>
+</tr>
+<tr>
+<td>addedNodes</td>
+<td>对于”childList”类型的变化，返回包含变化中添加节点的 NodeList。默认为空 NodeList。</td>
+</tr>
+<tr>
+<td>removedNodes</td>
+<td>对于”childList”类型的变化，返回包含变化中删除节点的 NodeList。默认为空 NodeList。</td>
+</tr>
+<tr>
+<td>previousSibling</td>
+<td>对于”childList”类型的变化，返回变化节点的前一个同胞 Node。默认为 null。</td>
+</tr>
+<tr>
+<td>nextSibling</td>
+<td>对于”childList”类型的变化，返回变化节点的后一个同胞 Node。默认为 null。</td>
+</tr>
+</tbody></table>
+<p>传给回调函数的第二个参数是观察变化的 MutationObserver 的实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver( </span><br><span class="line"> (mutationRecords, mutationObserver) =&gt; <span class="built_in">console</span>.log(mutationRecords,</span><br><span class="line">mutationObserver)); </span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;); </span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'foo'</span>; </span><br><span class="line"><span class="comment">// [MutationRecord], MutationObserver</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>disconnect() 方法</p>
+<p>默认情况下，只要被观察的元素不被垃圾回收，回调就不会被终止。调用 disconnect() 方法提前终止执行回调。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'&lt;body&gt; attributes changed'</span>));</span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'foo'</span>;</span><br><span class="line">observer.disconnect();</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'bar'</span>;</span><br><span class="line"><span class="comment">//（没有日志输出）</span></span><br></pre></td></tr></table></figure>
+
+<p>调用后，已经加入任务队列的回调也会被抛弃。</p>
+<p>如果想执行已经入列的回调，可以使用 setTimeout() 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'&lt;body&gt; attributes changed'</span>));</span><br><span class="line">observer.observe(<span class="built_in">document</span>.body, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="built_in">document</span>.body.className = <span class="string">'foo'</span>;</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  observer.disconnect();</span><br><span class="line">  <span class="built_in">document</span>.body.className = <span class="string">'bar'</span>;</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// &lt;body&gt; attributes changed</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复用 MutationObserver</p>
+<p>多次调用 observe() 方法，可以复用一个 MutationObserver 对象观察多个不同的目标节点。此时， MutationRecord 的 target 属性可以标识发生变化事件的目标节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> observer = <span class="keyword">new</span> MutationObserver(<span class="function"><span class="params">mutationRecords</span> =&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(mutationRecords.map(<span class="function"><span class="params">x</span> =&gt;</span> x.target))</span><br><span class="line">);</span><br><span class="line"><span class="comment">// 向页面主体添加两个子节点</span></span><br><span class="line"><span class="keyword">let</span> childA = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</span><br><span class="line">  childB = <span class="built_in">document</span>.createElement(<span class="string">'span'</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(childA);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(childB);</span><br><span class="line"><span class="comment">// 观察两个子节点</span></span><br><span class="line">observer.observe(childA, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;);</span><br><span class="line">observer.observe(childB, &#123; <span class="attr">attributes</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="comment">// 修改两个子节点的属性</span></span><br><span class="line">childA.setAttribute(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</span><br><span class="line">childB.setAttribute(<span class="string">'foo'</span>, <span class="string">'bar'</span>);</span><br><span class="line"><span class="comment">// [&lt;div&gt;, &lt;span&gt;]</span></span><br></pre></td></tr></table></figure>
+
+<p>此时调用 disconnect() 方法会停止观察所有目标。</p>
+</li>
+<li><p>重用 MutationObserver</p>
+<p>调用过 disconnect() 的 MutationObserver 还可以重新使用，只需要关联到新的目标节点。</p>
+</li>
+</ol>
+<h5 id="MutationObserverInit-与观察范围"><a href="#MutationObserverInit-与观察范围" class="headerlink" title="MutationObserverInit 与观察范围"></a>MutationObserverInit 与观察范围</h5><p>MutationObserverInit 对象用于控制对目标节点的观察范围。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subtree</td>
+<td>布尔值，表示除了目标节点，是否观察目标节点的子树（后代）。如果是 false，则只观察目标节点的变化；如果是 true，则观察目标节点及其整个子树。默认为 false。</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>布尔值，表示是否观察目标节点的属性变化。默认为 false</td>
+</tr>
+<tr>
+<td>attributeFilter</td>
+<td>字符串数组，表示要观察哪些属性的变化。把这个值设置为 true 也会将 attributes 的值转换为 true。默认为观察所有属性</td>
+</tr>
+<tr>
+<td>attributeOldValue</td>
+<td>布尔值，表示 MutationRecord 是否记录变化之前的属性值。把这个值设置为 true 也会将 attributes 的值转换为 true。默认为 false。</td>
+</tr>
+<tr>
+<td>characterData</td>
+<td>布尔值，表示修改字符数据是否触发变化事件。默认为 false。</td>
+</tr>
+<tr>
+<td>characterDataOldValue</td>
+<td>布尔值，表示 MutationRecord 是否记录变化之前的字符数据。把这个值设置为 true 也会将 characterData 的值转换为 true。默认为 false。</td>
+</tr>
+<tr>
+<td>childList</td>
+<td>布尔值，表示修改目标节点的子节点是否触发变化事件。默认为 false。</td>
+</tr>
+</tbody></table>
+<p>默认情况下，观察范围限定为一个元素及其子节点的变化。设置 subtree 可以将观察范围拓展到这个元素的子树，即所有后代节点。被观察子树的节点被移出子树之后仍然能够触发变化事件。</p>
+<h5 id="异步回调与记录队列"><a href="#异步回调与记录队列" class="headerlink" title="异步回调与记录队列"></a>异步回调与记录队列</h5><p>MutationObserver 接口出于性能考虑而涉及，核心是异步回调与记录队列模型。为了在大量变化事件发生时不影响性能，每次变化的信息会保存在 MutationRecord 实例中，然后添加到记录队列。这个队列对每个 MutationObserver 实例都是唯一的，是所有 DOM 变化事件的有序列表。</p>
+<ol>
+<li><p>记录队列</p>
+<p>每次 MutationRecord 被添加到 MutationObserver 的记录队列时，仅当之前没有已排期的微任务回调时，才会将观察者注册的回调作为微任务调度到任务队列上。</p>
+<p>不过在回调的微任务异步执行期间，有可能又会发生更多变化事件。因此被调用的回调会接收到一个 MutationRecord 实例的数组，顺序为它们进入记录队列的顺序。回调要负责处理这个数组的每一个实例，因为函数退出之后这些实现就不存在了。回调执行后，这些 MutationRecord 就用不着了。因此记录队列会被清空。</p>
+</li>
+<li><p>takeRecords() 方法</p>
+<p>调用 MutationObserver 实例的 takeRecords() 方法可以清空记录队列，取出并返回其中的所有 MutationRecord 实例。</p>
+</li>
+</ol>
+<h5 id="性能、内存与垃圾回收"><a href="#性能、内存与垃圾回收" class="headerlink" title="性能、内存与垃圾回收"></a>性能、内存与垃圾回收</h5><p>将变化回调委托给微任务来执行可以保证事件同步触发，同时避免随之而来的混乱。为 MutationObserver 而实现的记录队列，可以保证即使变化事件被爆发式地触发，也不会显著地拖慢浏览器。</p>
+<ol>
+<li><p>MutationObserver 的引用</p>
+<p>MutationObserver 实例与目标节点之间的引用关系是非对称的。MutationObserver 拥有对要观察的目标节点的弱引用。因为是弱引用，所以不会妨碍垃圾回收程序回收目标节点。</p>
+<p>然而，目标节点却拥有对 MutationObserver 的强引用。如果目标节点从 DOM 中被移除，随后被垃圾回收，则关联的 MutationObserver 也会被垃圾回收。</p>
+</li>
+<li><p>MutationRecord 的引用</p>
+<p>记录队列中的每个 MutationRecord 的实例至少包含对已有 DOM 节点的一个引用。如果变化是 childList 类型，则会包含多个节点的引用。记录队列和回调处理的默认行为是耗尽这个队列，处理每个 MutationRecord ，然后让它们超出作用域并被垃圾回收。</p>
+<p>有时候可能需要保存某个观察者的完整变化记录。保存这些 MutationRecord 实例，也就会保存它们引用的节点，因而会妨碍这些节点被回收。如果需要尽快地释放内存，建议从每个 MutationRecord 中抽取出最有用的信息，然后保存到一个新对象中，最后抛弃 MutationRecord。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>创建日期</p>
+<p>创建一个 <code>Date</code> 对象，日期是：Feb 20, 2012, 3:12am。时区是当地时区。</p>
+<p>使用 <code>alert</code> 显示结果。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2012-02-20 3:12'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(time);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示星期数</p>
+<p>编写一个函数 <code>getWeekDay(date)</code> 以短格式来显示一个日期的星期数：‘MO’，‘TU’，‘WE’，‘TH’，‘FR’，‘SA’，‘SU’。</p>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">0</span>, <span class="number">3</span>);  <span class="comment">// 3 Jan 2012</span></span><br><span class="line">alert( getWeekDay(date) );        <span class="comment">// 应该输出 "TU"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWeekDay</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> day = date.getDay();</span><br><span class="line">  <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'MO'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'TU'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'WE'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'TH'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'FR'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'SA'</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'SU'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>欧洲的星期表示方法</p>
+<p>欧洲国家的星期计算是从星期一（数字 1）开始的，然后是星期二（数字 2），直到星期日（数字 7）。编写一个函数 <code>getLocalDay(date)</code>，并返回日期的欧洲式星期数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2012</span>, <span class="number">0</span>, <span class="number">3</span>);  <span class="comment">// 3 Jan 2012</span></span><br><span class="line">alert( getLocalDay(date) );       <span class="comment">// 星期二，应该显示 2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLocalDay</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> day = date.getDay();</span><br><span class="line">  <span class="keyword">return</span> day === <span class="number">0</span> ? <span class="number">7</span> : day;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>许多天之前是哪个月几号？</p>
+<p>写一个函数 <code>getDateAgo(date, days)</code>，返回特定日期 <code>date</code> 往前 <code>days</code> 天是哪个月的哪一天。</p>
+<p>例如，假设今天是 20 号，那么 <code>getDateAgo(new Date(), 1)</code> 的结果应该是 19 号，<code>getDateAgo(new Date(), 2)</code> 的结果应该是 18 号。</p>
+<p>跨月、年也应该是正确输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2015</span>, <span class="number">0</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">alert( getDateAgo(date, <span class="number">1</span>) ); <span class="comment">// 1, (1 Jan 2015)</span></span><br><span class="line">alert( getDateAgo(date, <span class="number">2</span>) ); <span class="comment">// 31, (31 Dec 2014)</span></span><br><span class="line">alert( getDateAgo(date, <span class="number">365</span>) ); <span class="comment">// 2, (2 Jan 2014)</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 函数不应该修改给定的 <code>date</code> 值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDateAgo</span>(<span class="params">date, num</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result = date.getTime() - num * <span class="number">24</span> * <span class="number">3600</span> * <span class="number">1000</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>(result).getDate();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参考解决方案</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDateAgo</span>(<span class="params">date, days</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> dateCopy = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line"></span><br><span class="line">  dateCopy.setDate(date.getDate() - days);</span><br><span class="line">  <span class="keyword">return</span> dateCopy.getDate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>某月的最后一天</p>
+<p>写一个函数 <code>getLastDayOfMonth(year, month)</code> 返回 month 月的最后一天。有时候是 30，有时是 31，甚至在二月的时候会是 28/29。</p>
+<p>参数：</p>
+<ul>
+<li><code>year</code> —— 四位数的年份，比如 2012。</li>
+<li><code>month</code> —— 月份，从 0 到 11。</li>
+</ul>
+<p>举个例子，<code>getLastDayOfMonth(2012, 1) = 29</code>（闰年，二月）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLastDayOfMonth</span>(<span class="params">year, month</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(year, month + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">return</span> date.getDate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>今天过去了多少秒？</p>
+<p>写一个函数 <code>getSecondsToday()</code>，返回今天已经过去了多少秒？</p>
+<p>例如：如果现在是 <code>10:00 am</code>，并且没有夏令时转换，那么：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getSecondsToday() == <span class="number">36000</span> <span class="comment">// (3600 * 10)</span></span><br></pre></td></tr></table></figure>
+
+<p>该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSecondsToday</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> day = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> hour = day.getHours();</span><br><span class="line">  <span class="keyword">const</span> minute = day.getMinutes();</span><br><span class="line">  <span class="keyword">const</span> second = day.getSeconds();</span><br><span class="line">  <span class="keyword">return</span> hour * <span class="number">3600</span> + minute * <span class="number">60</span> + second;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参考解决方案</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSecondsToday</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 使用当前的 day/month/year 创建一个对象</span></span><br><span class="line">  <span class="keyword">let</span> today = <span class="keyword">new</span> <span class="built_in">Date</span>(now.getFullYear(), now.getMonth(), now.getDate());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> diff = now - today; <span class="comment">// ms difference</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.round(diff / <span class="number">1000</span>); <span class="comment">// make seconds</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>距离明天还有多少秒？</p>
+<p>写一个函数 <code>getSecondsToTomorrow()</code>，返回距离明天的秒数。</p>
+<p>例如，现在是 <code>23:00</code>，那么：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getSecondsToTomorrow() == <span class="number">3600</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSecondsToTomorrow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tomorrow = <span class="keyword">new</span> <span class="built_in">Date</span>(now.getFullYear(), now.getMonth(), now.getDate() + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> diff = tomorrow - now;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.random(diff / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>格式化相对日期</p>
+<p>写一个函数 <code>formatDate(date)</code>，能够对 <code>date</code> 进行如下格式化：</p>
+<ul>
+<li>如果 <code>date</code> 距离现在不到 1 秒，输出 <code>&quot;right now&quot;</code>。</li>
+<li>否则，如果 <code>date</code> 距离现在不到 1 分钟，输出 <code>&quot;n sec. ago&quot;</code>。</li>
+<li>否则，如果不到 1 小时，输出 <code>&quot;m min. ago&quot;</code>。</li>
+<li>否则，以 <code>&quot;DD.MM.YY HH:mm&quot;</code> 格式输出完整日期。即：<code>&quot;day.month.year hours:minutes&quot;</code>，全部以两位数格式表示，例如：<code>31.12.16 10:00</code>。</li>
+</ul>
+<p>举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">alert( formatDate(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span> - <span class="number">1</span>)) ); <span class="comment">// "right now"</span></span><br><span class="line"></span><br><span class="line">alert( formatDate(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span> - <span class="number">30</span> * <span class="number">1000</span>)) ); <span class="comment">// "30 sec. ago"</span></span><br><span class="line"></span><br><span class="line">alert( formatDate(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span> - <span class="number">5</span> * <span class="number">60</span> * <span class="number">1000</span>)) ); <span class="comment">// "5 min. ago"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 昨天的日期，例如 31.12.16 20:00</span></span><br><span class="line">alert( formatDate(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">new</span> <span class="built_in">Date</span> - <span class="number">86400</span> * <span class="number">1000</span>)) );</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatDate</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> diff = <span class="built_in">Math</span>.round((now - date) / <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> hour = <span class="built_in">Math</span>.floor(diff / <span class="number">3600</span>);</span><br><span class="line">  <span class="keyword">const</span> minute = <span class="built_in">Math</span>.floor((diff - hour * <span class="number">3600</span>) / <span class="number">60</span>);</span><br><span class="line">  <span class="keyword">const</span> second = <span class="built_in">Math</span>.floor(diff % <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (hour) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;format(date.getDate())&#125;</span>.<span class="subst">$&#123;format(date.getMonth() + <span class="number">1</span>)&#125;</span>.<span class="subst">$&#123;format(</span></span></span><br><span class="line"><span class="string"><span class="subst">      date.getFullYear()</span></span></span><br><span class="line"><span class="string"><span class="subst">    )&#125;</span> <span class="subst">$&#123;format(date.getHours())&#125;</span>:<span class="subst">$&#123;format(date.getMinutes())&#125;</span>`</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (minute) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;minute&#125;</span> min. ago`</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (second) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;second&#125;</span> sec. ago`</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`right now`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">format</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">  num = <span class="string">'0'</span> + num;</span><br><span class="line">  <span class="keyword">return</span> num.slice(<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/09/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-09/">
+        <span>学习笔记 2020 11 09</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-10"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-10</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM"><span class="toc-number">1.1.1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MutationObserver-接口"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">MutationObserver 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#基本用法"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">基本用法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#MutationObserverInit-与观察范围"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">MutationObserverInit 与观察范围</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#异步回调与记录队列"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">异步回调与记录队列</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#性能、内存与垃圾回收"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text">性能、内存与垃圾回收</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
