@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 11</title>
+    <url>/2020/11/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-11/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-11"><a href="#学习笔记-2020-11-11" class="headerlink" title="学习笔记 2020-11-11"></a>学习笔记 2020-11-11</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM-拓展"><a href="#DOM-拓展" class="headerlink" title="DOM 拓展"></a>DOM 拓展</h3><h4 id="Selectors-API"><a href="#Selectors-API" class="headerlink" title="Selectors API"></a>Selectors API</h4><p>Selectors API 是 W3C 推荐标准，规定了浏览器原生支持的 CSS 查询API 。</p>
+<p>核心是两个方法，querySelector() 和 querySelectorAll() 。在兼容浏览器中，Document 类型和 Element 类型的实例上都会暴露这两个方法。</p>
+<ol>
+<li><p>querySelector()</p>
+<p>该方法接收 CSS 选择符参数，返回匹配该模式的第一个后代元素或 null 。</p>
+</li>
+<li><p>querySelectorAll()</p>
+<p>该方法也接收一个用于查询的参数，但它会返回所有匹配的节点。该方法返回一个 NodeList 的静态实例。</p>
+</li>
+<li><p>matches()</p>
+<p>该方法接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true ，否则返回 false 。</p>
+</li>
+</ol>
+<h4 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h4><p>IE9 之前的版本不会把元素间的空格当成空白节点，而其他浏览器会。这样导致了 childNodes 和 firstChild 等属性上的差异。为了弥补这个差异，同时不影响 DOM 规范， W3C 通过新的 Element Traversal 规范定义了一组新属性。</p>
+<ul>
+<li>childElementCount，返回子元素数量 ( 不包含文本节点和注释 )；</li>
+<li>firstElementChild，指向第一个 Element 类型的子元素；</li>
+<li>lastElementChild；</li>
+<li>previousElementSibling，指向前一个 Element 类型的同胞元素；</li>
+<li>nextElementSibling；</li>
+</ul>
+<h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><p>HTML5 规范包含了与标记相关的大量 JavaScript API 定义。</p>
+<h5 id="CSS-类拓展"><a href="#CSS-类拓展" class="headerlink" title="CSS 类拓展"></a>CSS 类拓展</h5><ol>
+<li><p>getElementsByClassName()</p>
+<p>该方法暴露在 document 对象和所有 HTML 元素上。返回包含相应类的元素的 NodeList 。</p>
+<p>IE9 及以上版本，以及所有现代浏览器都支持该方法。</p>
+</li>
+<li><p>classList 属性</p>
+<p>可以通过 className 属性操作类名，但该属性是一个字符串。</p>
+<p>classList 是一个新的集合类型 DOMTokenList 的实例。该类型也有 length 属性表示自己包含多少项，可以通过 item() 或中括号取得个别的元素。还有一些方法：</p>
+<ul>
+<li>add(value)；</li>
+<li>contains(value)，返回布尔值，表示给定的 value 是否存在；</li>
+<li>remove(value)；</li>
+<li>toggle(value)，若已存在则删除，不存在则添加。</li>
+</ul>
+<p>IE10 及以上版本和其他主流浏览器实现了该属性。</p>
+</li>
+</ol>
+<h5 id="焦点管理"><a href="#焦点管理" class="headerlink" title="焦点管理"></a>焦点管理</h5><p>HTML5 添加了辅助 DOM 焦点管理的功能。</p>
+<ol>
+<li><p>document.activeElement</p>
+<p>始终包含当前拥有焦点的 DOM 元素。</p>
+<p>默认情况下，该属性会在页面刚加载完之后设置为 document.body 。在那之前，值为 null 。</p>
+</li>
+<li><p>document.hasFocus()</p>
+<p>返回布尔值，表示文档是否拥有焦点。</p>
+</li>
+</ol>
+<h5 id="HTMLDocument-拓展"><a href="#HTMLDocument-拓展" class="headerlink" title="HTMLDocument 拓展"></a>HTMLDocument 拓展</h5><ol>
+<li><p>readyState</p>
+<p>该属性最早是 IE4 添加到 document 对象上。HTML5将这个属性写入了标准。该属性有两个值：</p>
+<ul>
+<li>loading，表示文档正在加载；</li>
+<li>complete，表示文档加载完成。</li>
+</ul>
+</li>
+<li><p>compatMode 属性</p>
+<p>自从 IE6 提供了以标准或混杂模式渲染页面的能力之后，检测页面渲染模式成为一个必要的需求。这个属性指示浏览器当前处于什么渲染模式下。</p>
+<p>标准模式下，这个属性的值是 “CSS1Compat”，而在混杂模式下，值是 “BackCompat”。</p>
+</li>
+<li><p>head 属性</p>
+<p>该属性指向文档的 <code>&lt;head&gt;</code> 属性。</p>
+</li>
+</ol>
+<h5 id="字符集属性"><a href="#字符集属性" class="headerlink" title="字符集属性"></a>字符集属性</h5><p>characterSet 属性表示文档实际使用的字符集，也可以用来指定新字符集。</p>
+<h5 id="自定义数据属性"><a href="#自定义数据属性" class="headerlink" title="自定义数据属性"></a>自定义数据属性</h5><p>浏览器允许给元素指定非标准的属性，最好以前缀 data- 来指定。</p>
+<p>自定义属性可以通过元素的 dataset 属性来访问。dataset 属性是一个 DOMStringMap 的实例，包含一组键/值对映射。元素的每个 data-name 属性在 dataset 中都可以通过 data- 后面的字符串作为键来访问。</p>
+<h5 id="插入标记"><a href="#插入标记" class="headerlink" title="插入标记"></a>插入标记</h5><ol>
+<li><p>innerHTML</p>
+<p>在读取 innerHTML 属性时，会返回元素所有后代的 HTML 字符串，包括元素、注释和文本节点。在写入时，会根据提供的字符串值以新的 DOM 子树替代元素中原来包含的所有子节点。</p>
+</li>
+<li><p>旧 IE中的 innerHTML</p>
+<p>在所有现代浏览器中，通过 innerHTML 插入的 <code>&lt;script&gt;</code> 标签是不会执行的。而在 IE8 及之前的版本中，只要这样插入的 <code>&lt;script&gt;</code> 元素指定了 defer 属性，且 <code>&lt;script&gt;</code> 之前是 受控元素，那就是可以执行的。<code>&lt;script&gt;</code> 元素与 <code>&lt;style&gt;</code> 或注释一样，都是非受控元素，也就是在页面上看不到它们。IE 会把 innerHTML 中从非受控元素开始的内容都删掉。</p>
+</li>
+<li><p>outerHTML 属性</p>
+<p>读取 outerHTML 属性时，会返回调用它的元素及所有后代元素的 HTML 字符串。在写入 outerHTML 属性时，调用它的元素会被传入的 HTML 字符串经解释之后生成的 DOM 子树取代。</p>
+</li>
+<li><p>insertAdjacentHTML() 与 insertAdjacentText()</p>
+<p>这两个方法最早源自 IE ，接收两个参数，要插入标记的位置和要插入的 HTML 或文本。</p>
+<p>第一个参数必须是下列值的一个：</p>
+<ul>
+<li>beforebegin，插入当前元素前面，作为前一个同胞节点；</li>
+<li>afterbegin，插入当前元素内部，作为新的子节点或放在第一个子节点后面；</li>
+<li>beforeend，插入当前元素内部，作为新的子节点或放在最后一个子节点后面；</li>
+<li>afterend，插入当前元素后面；</li>
+</ul>
+<p>以上值不区分大小写。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="JSON方法，toJSON"><a href="#JSON方法，toJSON" class="headerlink" title="JSON方法，toJSON"></a>JSON方法，toJSON</h3><h4 id="排除和转换：replacer"><a href="#排除和转换：replacer" class="headerlink" title="排除和转换：replacer"></a>排除和转换：replacer</h4><p>JSON.stringify 的完整语法是：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> json = <span class="built_in">JSON</span>.stringify(value, replacer?, space?);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>value，要编码的值。</li>
+<li>replacer，要编码的属性数组或映射函数 <code>function(key, value)</code> 。</li>
+<li>space，用于格式化的空格数量。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> room = &#123;</span><br><span class="line">  number: <span class="number">23</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> meetup = &#123;</span><br><span class="line">  title: <span class="string">'Conference'</span>,</span><br><span class="line">  participants: [&#123; <span class="attr">name</span>: <span class="string">'John'</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">'Alice'</span> &#125;],</span><br><span class="line">  place: room <span class="comment">// meetup 引用了 room</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">room.occupiedBy = meetup; <span class="comment">// room 引用了 meetup</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(meetup, [<span class="string">'title'</span>, <span class="string">'participants'</span>]));</span><br><span class="line"><span class="comment">// &#123;"title":"Conference","participants":[&#123;&#125;,&#123;&#125;]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> room = &#123;</span><br><span class="line">  number: <span class="number">23</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> meetup = &#123;</span><br><span class="line">  title: <span class="string">'Conference'</span>,</span><br><span class="line">  participants: [&#123; <span class="attr">name</span>: <span class="string">'John'</span> &#125;, &#123; <span class="attr">name</span>: <span class="string">'Alice'</span> &#125;],</span><br><span class="line">  place: room <span class="comment">// meetup 引用了 room</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">room.occupiedBy = meetup; <span class="comment">// room 引用了 meetup</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  <span class="built_in">JSON</span>.stringify(meetup, <span class="function"><span class="keyword">function</span> <span class="title">replacer</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>: <span class="subst">$&#123;value&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">return</span> key == <span class="string">'occupiedBy'</span> ? <span class="literal">undefined</span> : value;</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* key:value pairs that come to replacer:</span></span><br><span class="line"><span class="comment">:             [object Object]</span></span><br><span class="line"><span class="comment">title:        Conference</span></span><br><span class="line"><span class="comment">participants: [object Object],[object Object]</span></span><br><span class="line"><span class="comment">0:            [object Object]</span></span><br><span class="line"><span class="comment">name:         John</span></span><br><span class="line"><span class="comment">1:            [object Object]</span></span><br><span class="line"><span class="comment">name:         Alice</span></span><br><span class="line"><span class="comment">place:        [object Object]</span></span><br><span class="line"><span class="comment">number:       23</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="格式化：space"><a href="#格式化：space" class="headerlink" title="格式化：space"></a>格式化：space</h4><p>第三个参数用于优化格式的空格数量。</p>
+<h4 id="自定义-“toJSON”"><a href="#自定义-“toJSON”" class="headerlink" title="自定义 “toJSON”"></a>自定义 “toJSON”</h4><p>可以给对象自定义 toJSON 方法来自定义 JSON 转换。</p>
+<h4 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse"></a>JSON.parse</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="built_in">JSON</span>.parse(str, reviver?);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>str，要解析的 JSON 字符串。</li>
+<li>reviver，可选的函数 <code>function(key, value)</code> ，该函数将为每个键值对调用。</li>
+</ul>
+<p>例子，JSON 对象中的日期值 parse 之后依然是一个字符串，可以提供 reviver 函数来进行转换。</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>将对象转换为 JSON，然后再转换回来</p>
+<p>将 <code>user</code> 转换为 JSON，然后将其转换回到另一个变量。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123;</span><br><span class="line">  name: <span class="string">"John Smith"</span>,</span><br><span class="line">  age: <span class="number">35</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="built_in">JSON</span>.stringify(user);</span><br><span class="line"><span class="keyword">let</span> obj = <span class="built_in">JSON</span>.parse(str);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排除反向引用</p>
+<p>在简单循环引用的情况下，我们可以通过名称排除序列化中违规的属性。</p>
+<p>但是，有时我们不能只使用名称，因为它既可能在循环引用中也可能在常规属性中使用。因此，我们可以通过属性值来检查属性。</p>
+<p>编写 <code>replacer</code> 函数，移除引用 <code>meetup</code> 的属性，并将其他所有属性序列化：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> room = &#123;</span><br><span class="line">  number: <span class="number">23</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> meetup = &#123;</span><br><span class="line">  title: <span class="string">"Conference"</span>,</span><br><span class="line">  occupiedBy: [&#123;<span class="attr">name</span>: <span class="string">"John"</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">"Alice"</span>&#125;],</span><br><span class="line">  place: room</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环引用</span></span><br><span class="line">room.occupiedBy = meetup;</span><br><span class="line">meetup.self = meetup;</span><br><span class="line"></span><br><span class="line">alert( <span class="built_in">JSON</span>.stringify(meetup, <span class="function"><span class="keyword">function</span> <span class="title">replacer</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">/* your code */</span></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 结果应该是：</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  "title":"Conference",</span></span><br><span class="line"><span class="comment">  "occupiedBy":[&#123;"name":"John"&#125;,&#123;"name":"Alice"&#125;],</span></span><br><span class="line"><span class="comment">  "place":&#123;"number":23&#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(</span><br><span class="line">  <span class="built_in">JSON</span>.stringify(meetup, <span class="function"><span class="keyword">function</span> <span class="title">replacer</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (value === meetup &amp;&amp; key !== <span class="string">''</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 10</title>
     <url>/2020/11/10/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-10/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-10"><a href="#学习笔记-2020-11-10" class="headerlink" title="学习笔记 2020-11-10"></a>学习笔记 2020-11-10</h1><a id="more"></a>
@@ -5628,10 +5767,10 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
-        <tag>css</tag>
+        <tag>js</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -5797,8 +5936,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -5838,8 +5977,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -5909,8 +6048,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -5989,8 +6128,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6015,8 +6154,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6042,8 +6181,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6074,8 +6213,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6139,8 +6278,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6180,8 +6319,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6219,8 +6358,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
