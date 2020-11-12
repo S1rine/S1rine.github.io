@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 12 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/">学习笔记 2020 11 12</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-12
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-12
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 12&url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 12&url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/&title=学习笔记 2020 11 12" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 12&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/&text=学习笔记 2020 11 12" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-12"><a href="#学习笔记-2020-11-12" class="headerlink" title="学习笔记 2020-11-12"></a>学习笔记 2020-11-12</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM-扩展"><a href="#DOM-扩展" class="headerlink" title="DOM 扩展"></a>DOM 扩展</h3><h4 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h4><h5 id="插入标记"><a href="#插入标记" class="headerlink" title="插入标记"></a>插入标记</h5><ol>
+<li><p>内存与性能问题</p>
+<p>如果被移除的子树元素中之前有关联的事件处理程序或其他 JavaScript 对象。那它们之间的绑定关系会滞留在内存中。在使用 innerHTML 、outerHTML 和 insertAdjacentHTML() 之前，最好手动删除要被替换的元素上关联的事件处理程序和 JavaScript 对象。</p>
+<p>HTML 解析器会解析设置给 innerHTML 的值，解析器在浏览器中是底层代码，比 JavaScript 快得多。</p>
+</li>
+<li><p>跨站点脚本</p>
+<p>innerHTML 不会执行自己创建的 <code>&lt;script&gt;</code> 标签，但仍然向恶意用户暴露了很大的攻击面。可以通过它创建元素并执行 onclick 之类的属性。</p>
+</li>
+</ol>
+<h5 id="scrollIntoView"><a href="#scrollIntoView" class="headerlink" title="scrollIntoView()"></a>scrollIntoView()</h5><p>scrollIntoView() 方法存在于所有 HTML 元素上，可以滚动浏览器窗口或容器元素以便包含元素进入视口。方法参数如下：</p>
+<ul>
+<li>alignToTop ，布尔值。<ul>
+<li>true 表示窗口滚动后元素顶部与视口顶部对齐。</li>
+<li>false 表示窗口滚动后元素底部与视口底部对齐。</li>
+</ul>
+</li>
+<li>scrollIntoViewOptions，可选对象。<ul>
+<li>behavior，定义过渡动画，可取的值为 smooth 和 auto，默认为 auto 。</li>
+<li>block，定义垂直方向的对齐，可取的值为 start、center、end 和 nearest，默认为 start。</li>
+<li>inline，定义水平方向的对齐，可取的值为 start、center、end 和 nearest，默认为 nearest。</li>
+</ul>
+</li>
+<li>不传参数等同于第一个参数为 true。</li>
+</ul>
+<h4 id="专有扩展"><a href="#专有扩展" class="headerlink" title="专有扩展"></a>专有扩展</h4><h5 id="children-属性"><a href="#children-属性" class="headerlink" title="children 属性"></a>children 属性</h5><p>IE9 之前的版本与其他浏览器在处理空白文本节点上的差异导致了 children 属性的出现。children 属性是一个 HTMLCollection ，只包含元素的 Element 类型的子节点。</p>
+<h5 id="contains-方法"><a href="#contains-方法" class="headerlink" title="contains() 方法"></a>contains() 方法</h5><p>IE 首先引入了 contains() 方法，在要搜索的祖先元素上调用，参数是待确定的目标节点。</p>
+<p>使用 DOM Level 3 的 compareDocumentPosition() 方法也可以确定节点间的关系。这个方法会返回表示两个节点关系的位掩码。</p>
+<table>
+<thead>
+<tr>
+<th>掩 码</th>
+<th>节点关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x1</td>
+<td>断开（传入的节点不在文档中）</td>
+</tr>
+<tr>
+<td>0x2</td>
+<td>领先（传入的节点在 DOM 树中位于参考节点之前）</td>
+</tr>
+<tr>
+<td>0x4</td>
+<td>随后（传入的节点在 DOM 树中位于参考节点之后）</td>
+</tr>
+<tr>
+<td>0x8</td>
+<td>包含（传入的节点是参考节点的祖先）</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>被包含（传入的节点是参考节点的后代）</td>
+</tr>
+</tbody></table>
+<h5 id="插入标记-1"><a href="#插入标记-1" class="headerlink" title="插入标记"></a>插入标记</h5><ol>
+<li><p>innerText</p>
+<p>该属性对应元素中包含的所有文本内容，无论文本在子树中哪个层级。在用于读取值时，innerText 会按照深度优先的顺序将子树中所有文本节点的值拼接起来。在用于写入值时，innerText 会移除元素的所有后代并插入一个包含该值的文本节点。</p>
+</li>
+<li><p>outerText</p>
+<p>类似于 innerText，只不过作用范围包含调用它的节点。在读取值时，两者表现相似。在写入值时，outerText 不止会移除所有后代节点，还会替换整个元素。</p>
+</li>
+</ol>
+<h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><p>DOM1 主要定义了 HTML 和 XML 文档的底层结构。DOM2 和 DOM3 在这些结构之上加入更多交互能力，提供了更高级的 XML 特性。</p>
+<ul>
+<li>DOM Core:：在 DOM1 核心部分的基础上，为节点增加方法和属性。</li>
+<li>DOM Views：定义基于样式信息的不同试图。</li>
+<li>DOM Events：定义通过事件实现 DOM 文档交互。</li>
+<li>DOM Style：定义以编程方式访问和修改 CSS 样式的接口。</li>
+<li>DOM Traversal and Range：新增遍历 DOM 文档及选择文档内容的接口。</li>
+<li>DOM HTML：在 DOM1 HTML 部分的基础上，增加属性、方法和新接口。</li>
+<li>DOM Mutation Observers：定义基于 DOM 变化触发回调的接口。这个模块是 DOM4 级模块，用于取代 Mutation Events。</li>
+</ul>
+<h4 id="DOM-的演进"><a href="#DOM-的演进" class="headerlink" title="DOM 的演进"></a>DOM 的演进</h4><p>DOM2 和 DOM3 Core 模块的目标是扩展 DOM API，满足 XML 的所有需求并提供更好的错误处理和特性检测。</p>
+<h5 id="XML-命名空间"><a href="#XML-命名空间" class="headerlink" title="XML 命名空间"></a>XML 命名空间</h5><h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="递归和堆栈"><a href="#递归和堆栈" class="headerlink" title="递归和堆栈"></a>递归和堆栈</h3><h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>对数字求和到给定值</p>
+<p>编写一个函数 <code>sumTo(n)</code> 计算 <code>1 + 2 + ... + n</code> 的和。</p>
+<p>举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sumTo(<span class="number">1</span>) = <span class="number">1</span></span><br><span class="line">sumTo(<span class="number">2</span>) = <span class="number">2</span> + <span class="number">1</span> = <span class="number">3</span></span><br><span class="line">sumTo(<span class="number">3</span>) = <span class="number">3</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">6</span></span><br><span class="line">sumTo(<span class="number">4</span>) = <span class="number">4</span> + <span class="number">3</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">10</span></span><br><span class="line">...</span><br><span class="line">sumTo(<span class="number">100</span>) = <span class="number">100</span> + <span class="number">99</span> + ... + <span class="number">2</span> + <span class="number">1</span> = <span class="number">5050</span></span><br></pre></td></tr></table></figure>
+
+<p>用三种方式实现：</p>
+<ol>
+<li>使用循环。</li>
+<li>使用递归，对 <code>n &gt; 1</code> 执行 <code>sumTo(n) = n + sumTo(n-1)</code>。</li>
+<li>使用 <a href="https://en.wikipedia.org/wiki/Arithmetic_progression" target="_blank" rel="noopener">等差数列</a> 求和公式.</li>
+</ol>
+<p>结果示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumTo</span>(<span class="params">n</span>) </span>&#123; <span class="comment">/*... 你的代码 ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">alert( sumTo(<span class="number">100</span>) ); <span class="comment">// 5050</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 哪种解决方式最快？哪种最慢？为什么？</p>
+<p>P.P.S. 我们可以使用递归来计算 <code>sumTo(100000)</code> 吗？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumTo</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (n) &#123;</span><br><span class="line">    sum += n;</span><br><span class="line">    n--;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumTo</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">0</span>) <span class="keyword">return</span> n;</span><br><span class="line">  <span class="keyword">return</span> n + sumTo(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sumTo</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ((n + <span class="number">1</span>) * n) / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算阶乘</p>
+<p>自然数的 <a href="https://en.wikipedia.org/wiki/Factorial" target="_blank" rel="noopener">阶乘</a> 是指，一个数乘以 <code>数字减去 1</code>，然后乘以 <code>数字减去 2</code>，以此类推直到乘以 <code>1</code>。<code>n</code> 的阶乘被记作 <code>n!</code>。</p>
+<p>我们可以将阶乘的定义写成这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n! = n * (n - <span class="number">1</span>) * (n - <span class="number">2</span>) * ...*<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>不同 <code>n</code> 的阶乘的值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>! = <span class="number">1</span></span><br><span class="line"><span class="number">2</span>! = <span class="number">2</span> * <span class="number">1</span> = <span class="number">2</span></span><br><span class="line"><span class="number">3</span>! = <span class="number">3</span> * <span class="number">2</span> * <span class="number">1</span> = <span class="number">6</span></span><br><span class="line"><span class="number">4</span>! = <span class="number">4</span> * <span class="number">3</span> * <span class="number">2</span> * <span class="number">1</span> = <span class="number">24</span></span><br><span class="line"><span class="number">5</span>! = <span class="number">5</span> * <span class="number">4</span> * <span class="number">3</span> * <span class="number">2</span> * <span class="number">1</span> = <span class="number">120</span></span><br></pre></td></tr></table></figure>
+
+<p>任务是编写一个函数 <code>factorial(n)</code> 使用递归调用计算 <code>n!</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( factorial(<span class="number">5</span>) ); <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 提示：<code>n!</code> 可以被写成 <code>n * (n-1)!</code>，比如 <code>3! = 3*2! = 3*2*1! = 6</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>斐波那契数</p>
+<p><a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank" rel="noopener">斐波那契数</a> 序列有这样的公式： <code>Fn = Fn-1 + Fn-2</code>。换句话说，下一个数字是前两个数字的和。</p>
+<p>前两个数字是 <code>1</code>，然后是 <code>2(1+1)</code>，然后 <code>3(1+2)</code>，<code>5(2+3)</code> 等：<code>1, 1, 2, 3, 5, 8, 13, 21...</code>。</p>
+<p>斐波那契数与 <a href="https://en.wikipedia.org/wiki/Golden_ratio" target="_blank" rel="noopener">黄金比例</a> 以及我们周围的许多自然现象有关。</p>
+<p>编写一个函数 <code>fib(n)</code> 返回第 <code>n</code> 个斐波那契数。</p>
+<p>工作示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>) </span>&#123; <span class="comment">/* 你的代码 */</span> &#125;</span><br><span class="line"></span><br><span class="line">alert(fib(<span class="number">3</span>)); <span class="comment">// 2</span></span><br><span class="line">alert(fib(<span class="number">7</span>)); <span class="comment">// 13</span></span><br><span class="line">alert(fib(<span class="number">77</span>)); <span class="comment">// 5527939700884757</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 函数运行速度要快，对 <code>fib(77)</code> 的调用不应该超过几分之一秒。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 参考解法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> c = a + b;</span><br><span class="line">    a = b;</span><br><span class="line">    b = c;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出一个单链表</p>
+<p>假设我们有一个单链表（在 <a href="https://zh.javascript.info/recursion" target="_blank" rel="noopener">递归和堆栈</a> 那章有讲过）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  next: &#123;</span><br><span class="line">    value: <span class="number">2</span>,</span><br><span class="line">    next: &#123;</span><br><span class="line">      value: <span class="number">3</span>,</span><br><span class="line">      next: &#123;</span><br><span class="line">        value: <span class="number">4</span>,</span><br><span class="line">        next: <span class="literal">null</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>编写一个可以逐个输出链表元素的函数 <code>printList(list)</code>。</p>
+<p>使用两种方式实现：循环和递归。</p>
+<p>哪个更好：用递归还是不用递归的？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = list;</span><br><span class="line">  <span class="keyword">while</span> (tmp) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(tmp.value);</span><br><span class="line">    tmp = tmp.next;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (list) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(list.value);</span><br><span class="line">    printList(list.next);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向输出单链表</p>
+<p>反向输出前一个任务 <a href="https://zh.javascript.info/task/output-single-linked-list" target="_blank" rel="noopener">输出一个单链表</a> 中的单链表。</p>
+<p>使用两种解法：循环和递归。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (list) &#123;</span><br><span class="line">    printList(list.next);</span><br><span class="line">    <span class="built_in">console</span>.log(list.value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printList</span>(<span class="params">list</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> tmp = list;</span><br><span class="line">  <span class="keyword">const</span> arr = [];</span><br><span class="line">  <span class="keyword">while</span> (tmp) &#123;</span><br><span class="line">    arr.push(tmp.value);</span><br><span class="line">    tmp = tmp.next;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (arr.length) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(arr.pop());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/11/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-11/">
+        <span>学习笔记 2020 11 11</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-12"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-12</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-扩展"><span class="toc-number">1.1.1.</span> <span class="toc-text">DOM 扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML5"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">HTML5</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#插入标记"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">插入标记</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#scrollIntoView"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">scrollIntoView()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#专有扩展"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">专有扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#children-属性"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">children 属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#contains-方法"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">contains() 方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#插入标记-1"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">插入标记</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM2-和-DOM3"><span class="toc-number">1.1.2.</span> <span class="toc-text">DOM2 和 DOM3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM-的演进"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">DOM 的演进</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#XML-命名空间"><span class="toc-number">1.1.2.1.1.</span> <span class="toc-text">XML 命名空间</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#递归和堆栈"><span class="toc-number">1.2.1.</span> <span class="toc-text">递归和堆栈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
