@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 13 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/">学习笔记 2020 11 13</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-13
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-13
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 13&url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 13&url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/&title=学习笔记 2020 11 13" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 13&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/&text=学习笔记 2020 11 13" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-13"><a href="#学习笔记-2020-11-13" class="headerlink" title="学习笔记 2020-11-13"></a>学习笔记 2020-11-13</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><h4 id="DOM-的演进"><a href="#DOM-的演进" class="headerlink" title="DOM 的演进"></a>DOM 的演进</h4><h5 id="其他变化"><a href="#其他变化" class="headerlink" title="其他变化"></a>其他变化</h5><ol>
+<li><p>Node 的变化</p>
+<p>DOM3 新增了两个用于比较节点的方法：</p>
+<ul>
+<li>isSameNode()</li>
+<li>isEqualNode()</li>
+</ul>
+<p>这两个方法都接收一个节点参数。如果这个节点与参考节点相同或相等，则返回 true。节点相同，意味着引用同一个对象。节点相等，意味着节点类型相同，拥有相等的属性。</p>
+<p>DOM3 也增加了给 DOM 节点附加额外数据的方法。</p>
+<ul>
+<li>setUserData()，接收 3 个参数：键、值、处理函数，用于给节点追加数据。</li>
+<li>getUserData()，获取追加的信息。</li>
+</ul>
+<p>setUserData() 的处理函数会在包含数据的节点被复制、删除、重命名或导入其他文档的时候执行。处理函数接收 5 个参数：表示操作类型的数值、数据的键、数据的值、源节点和目标节点。</p>
+</li>
+<li><p>内嵌窗格的变化</p>
+<p>DOM2 HTML 给 HTMLFrameElement 类型新增了一个属性，叫 contentDocument。这个属性包含代表子内嵌窗格中内容的 document 对象的指针。</p>
+<p>contentDocument 属性是 Document 的实例，拥有所有文档属性和方法。还有一个属性 contentWindow，返回相应窗格的 window 对象。</p>
+<p>跨域访问会抛出错误。</p>
+</li>
+</ol>
+<h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><h5 id="存取元素样式"><a href="#存取元素样式" class="headerlink" title="存取元素样式"></a>存取元素样式</h5><p>任何支持 style 属性的 HTML 元素在 JS 中都会有一个对应的 style 属性。这个 style 属性是 CSSStyleDeclaration 类型的实例，其中包含通过 HTML style 属性为元素设置的所有样式信息，但不包含通过层叠机制从文档样式和外部样式中继承来的样式。</p>
+<p>float 属性是 js 中的保留字，不能用作属性名，应写作 <code>cssFloat</code> 。</p>
+<p>通过 style 属性设置的值也可以通过 style 对象获取。</p>
+<ol>
+<li><p>DOM 样式属性和方法</p>
+<p>DOM2 Style 规范也在 style 对象上定义了一些属性和方法。</p>
+<ul>
+<li>cssText，包含 style 属性中的 CSS 代码。</li>
+<li>length，应用给元素的 CSS 属性数量。</li>
+<li>parentRule，表示 CSS 信息的 CSSRule 对象。</li>
+<li>getPropertyCSSValue(propertyName)，返回包含 CSS 属性 propertyName 值的 CSSValue 对象，已废弃。</li>
+<li>getPropertyPriority(<em>propertyName</em>)，如果 CSS 属性 <em>propertyName</em> 使用了 !important，则返回”important”，否则返回空字符串。</li>
+<li>getPropertyValue(<em>propertyName</em>)，返回属性 <em>propertyName</em> 的字符串值。</li>
+<li>item(<em>index</em>)，返回索引为 <em>index</em> 的 CSS 属性名。</li>
+<li>removeProperty(<em>propertyName</em>)，从样式中删除 CSS 属性 <em>propertyName</em>。 </li>
+<li>setProperty(<em>propertyName, value, priority</em>)，设置 CSS 属性 <em>propertyName</em> 的值为value，priority 是 “important” 或空字符串。</li>
+</ul>
+</li>
+<li><p>计算样式</p>
+<p>DOM2 Style 在 document.defaultView 上增加了 getComputedStyle() 方法。接收 2 个参数，要取得计算样式的元素和伪元素字符串。可以取得该元素的正确样式，包括样式表。在所有浏览器中计算样式都是只读的，还包含了浏览器内部样式表中的信息。</p>
+</li>
+</ol>
+<h5 id="操作样式表"><a href="#操作样式表" class="headerlink" title="操作样式表"></a>操作样式表</h5><p>CSSStyleSheet 类型表示 CSS 样式表，包括使用 <code>&lt;link&gt;</code> 元素和通过 <code>&lt;style&gt;</code> 元素定义的样式表。这两个元素本身是 HTMLLinkElement 和 HTMLStyleElement 。</p>
+<p>CSSStyleSheet 类型继承 StyleSheet ，后者可用作非 CSS 样式表的基类。以下是 CSSStyleSheet 从 StyleSheet 继承的属性。</p>
+<ul>
+<li>disabled ，表示样式表是否被禁用。</li>
+<li>href，如果是使用 <code>&lt;link&gt;</code> 包含的样式表，则返回样式表的 URL，否则返回 null。</li>
+<li>media，样式表支持的媒体类型集合，这个集合有一个 length 属性和一个 item() 方法。</li>
+<li>ownerNode，拥有指向当前样式表的节点。如果样式表是通过 @import 被包含在另一个样式表中，这个属性值是 null 。</li>
+<li>parentStyleSheet，如果当前样式表是通过@import 被包含在另一个样式表中，则这个属性指向导入它的样式表。</li>
+<li>title，ownerNode 的 title 属性。</li>
+<li>type，字符串，表示样式表的类型。对 CSS 样式表来说，就是”text/css”。</li>
+</ul>
+<p>以上除了 disabled 其余为只读属性。除了以上继承的属性，CSSStyleSheet 类型还支持以下属性和方法。</p>
+<ul>
+<li>cssRules，当前样式表包含的样式规则的集合。</li>
+<li>ownerRule，如果样式表是使用@import 导入的，则指向导入规则；否则为 null。 </li>
+<li>deleteRule(<em>index</em>)，在指定位置删除 cssRules 中的规则。</li>
+<li>insertRule(<em>rule</em>, <em>index</em>)，在指定位置向 cssRules 中插入规则。</li>
+</ul>
+<p>document.styleSheets 表示文档中可用的样式表哦集合。这个集合的 length 属性保存着文档中样式表的数量。</p>
+<p>通过 <code>&lt;link&gt;</code> 或 <code>&lt;style&gt;</code> 元素也可以直接获取 CSSStyleSheet 对象。DOM 在这两个元素上暴露了 sheet 属性，其中包含对应的 CSSStyleSheet 对象。</p>
+<ol>
+<li><p>CSS 规则</p>
+<p>CSSRule 类型表示样式表中的一条规则。它也是一个通用基类，很多类型都继承它。最常用的是表示样式信息的 CSSStyleRule ，以下是 CSSStyleRule 对象上可用的属性。</p>
+<ul>
+<li>cssText，返回整条规则的文本。这里的文本可能与样式表中实际的文本不一样，因为浏览器内部处理样式表的方式也不一样。Safari 始终会把所有字母都转换为小写。</li>
+<li>parentRule，如果这条规则被其他规则（如@media）包含，则指向包含规则，否则就是 null。 </li>
+<li>parentStyleSheet，包含当前规则的样式表。</li>
+<li>selectorText，返回规则的选择符文本。这里的文本可能与样式表中实际的文本不一样，因为浏览器内部处理样式表的方式也不一样。这个属性在 Firefox、Safari、Chrome 和 IE 中是只读的，在 Opera 中是可以修改的。</li>
+<li>style，返回 CSSStyleDeclaration 对象，可以设置和获取当前规则中的样式。</li>
+<li>type，数值常量，表示规则类型。对于样式规则，它始终为 1。</li>
+</ul>
+</li>
+<li><p>创建规则</p>
+<p>可以使用 insertRule() 方法向样式表中添加新规则。接收两个参数，规则的文本和表示插入位置的索引值。</p>
+</li>
+<li><p>删除规则</p>
+<p>可以使用 deleteRule() 方法删除规则，接收一个参数，要删除规则的索引。</p>
+</li>
+</ol>
+<h5 id="元素尺寸"><a href="#元素尺寸" class="headerlink" title="元素尺寸"></a>元素尺寸</h5><p>以下介绍的属性和方法不是 DOM2 style 规范中定义的。</p>
+<ol>
+<li><p>偏移尺寸</p>
+<p>元素在页面上的视觉空间由其高度和宽度决定，包括所有内边距、滚动条和边框。以下 4 个属性用于取得元素的偏移尺寸：</p>
+<ul>
+<li>offsetHeight，元素在垂直方向上占用的像素尺寸，包括它的高度、水平滚动条高度和上、下边框的高度。</li>
+<li>offsetLeft，元素左边框外侧距离包含元素左边框内测的像素数。</li>
+<li>offsetTop，元素上边框外侧距离包括元素上边框内测的像素数。</li>
+<li>offsetWidth，元素在水平方向上占用的像素尺寸，包括它的宽度、垂直滚动条宽度和左、右边框的宽度。</li>
+</ul>
+<p>offsetLeft 和 offsetTop 是相对于包含元素的，包含元素保存在 offsetParent 属性中。</p>
+<p><img src="/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/image-20201113171012849.png" alt="image-20201113171012849"></p>
+<p>要确定一个元素在页面中的偏移量，可以把它的 offsetLeft 和 offsetTop 属性分别与 offsetParent 的相同属性相加，一直加到根元素。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementLeft</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> actualLeft = element.offsetLeft;</span><br><span class="line">  <span class="keyword">let</span> current = element.offsetParent;</span><br><span class="line">  <span class="keyword">while</span> (current !== <span class="literal">null</span>) &#123;</span><br><span class="line">    actualLeft += current.offsetLeft;</span><br><span class="line">    current = current.offsetParent;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> actualLeft;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementTop</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> actualTop = element.offsetTop;</span><br><span class="line">  <span class="keyword">let</span> current = element.offsetParent;</span><br><span class="line">  <span class="keyword">while</span> (current !== <span class="literal">null</span>) &#123;</span><br><span class="line">    actualTop += current.offsetTop;</span><br><span class="line">    current = current.offsetParent;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> actualTop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所有偏移尺寸属性都是只读的，每次访问都会重新计算。</p>
+</li>
+<li><p>客户端尺寸</p>
+<p>元素的客户端尺寸包含元素内容及其内边距所占用的空间。客户端尺寸只有两个相关属性： clientWidth 和 clientHeight 。clientWdith 是内容区宽度加左、右内边距宽度。clientHeight 是内容区高度加上、下内边距高度。</p>
+<p><img src="/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/image-20201113171423440.png" alt="image-20201113171423440"></p>
+<p>客户端尺寸实际上就是元素内部的空间，因此不包含滚动条占用的空间。这两个属性也是只读的，每次访问都会重新计算。</p>
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/12/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-12/">
+        <span>学习笔记 2020 11 12</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-13"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-13</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM2-和-DOM3"><span class="toc-number">1.1.1.</span> <span class="toc-text">DOM2 和 DOM3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM-的演进"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">DOM 的演进</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#其他变化"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">其他变化</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#样式"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">样式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#存取元素样式"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">存取元素样式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#操作样式表"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">操作样式表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#元素尺寸"><span class="toc-number">1.1.1.2.3.</span> <span class="toc-text">元素尺寸</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
