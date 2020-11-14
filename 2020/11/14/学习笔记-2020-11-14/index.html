@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 14 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/">学习笔记 2020 11 14</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-14
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-14
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 14&url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 14&url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/&title=学习笔记 2020 11 14" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 14&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/&text=学习笔记 2020 11 14" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-13"><a href="#学习笔记-2020-11-13" class="headerlink" title="学习笔记 2020-11-13"></a>学习笔记 2020-11-13</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><h5 id="元素尺寸"><a href="#元素尺寸" class="headerlink" title="元素尺寸"></a>元素尺寸</h5><ol>
+<li><p>滚动尺寸</p>
+<p>滚动尺寸提供了元素内容滚动距离的信息。有些元素，比如 <code>&lt;html&gt;</code> 无须任何代码就可以自动滚动，而其他元素需要使用 CSS 的 overflow 属性令其滚动。滚动尺寸相关属性有 4 个：</p>
+<ul>
+<li>scrollHeight，没有滚动条出现时，元素内容的总高度。</li>
+<li>scrollLeft，内容区左侧隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollTop，内容区顶部隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollWidth，没有滚动条出现时，元素内容的总宽度。</li>
+</ul>
+<p><img src="/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/image-20201114085706671.png" alt="image-20201114085706671"></p>
+<p>scrollWidth 和 scrollHeight 可以用来确定给定元素内容的实际尺寸。</p>
+<p>scrollWidth 和 scrollHeight 与 clientWidth 和 clientHeight 之间的关系在不需要滚动的文档上是分不清的。如果文档尺寸超过视口尺寸，scrollWidth 和 scrollHeight 表示文档内容的宽高，clientWidth 和 clientHeight 等于视口宽高。</p>
+</li>
+<li><p>确定元素尺寸</p>
+<p>浏览器在每个元素上都暴露了 getBoundingClientRect() 方法，返回一个 DOMRect 对象，包含 6 个属性： left、top、right、bottom、height 和 width 。这些属性给出了元素在页面中相对于视口的位置。</p>
+</li>
+</ol>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><p>DOM2 Traversal and Range 模块定义了两个类型用于辅助顺序遍历 DOM 结构。这两个类型—— NodeIterator 和 TreeWalker ——从某个起点开始执行对 DOM 结构的深度优先遍历。</p>
+<h5 id="NodeIterator"><a href="#NodeIterator" class="headerlink" title="NodeIterator"></a>NodeIterator</h5><p>NodeIterator 可以通过 document.createNodeIterator() 方法创建其实例。接收 4 个参数：</p>
+<ul>
+<li>root，作为遍历根节点的节点。</li>
+<li>whatToShow，数值代码，表示应该访问哪些节点。</li>
+<li>filter，NodeFilter 对象或函数，表示是否接收或跳过特定节点。</li>
+<li>entityReferenceExpansion，布尔值，表示是否扩展实体引用。这个参数在 HTML 文档中没有效果，因为实体引用永不扩展。</li>
+</ul>
+<p>whatToShow 参数是一个位掩码，通过应用一个或多个过滤器来指定访问哪些节点。这个参数对应的常量是在 NodeFilter 类型中定义的。</p>
+<ul>
+<li>NodeFilter.SHOW_ALL，所有节点。</li>
+<li>NodeFilter.SHOW_ELEMENT，元素节点。</li>
+<li>NodeFilter.SHOW_ATTRIBUTE，属性节点。由于 DOM 的结构，因此实际上用不上。</li>
+<li>NodeFilter.SHOW_TEXT，文本节点。</li>
+<li>NodeFilter.SHOW_CDATA_SECTION，CData 区块节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_ENTITY_REFERENCE，实体引用节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_ENTITY，实体节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_PROCESSING_INSTRUCTION，处理指令节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_COMMENT，注释节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT，文档节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT_TYPE，文档类型节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT_FRAGMENT，文档片段节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_NOTATION，记号节点。不是在 HTML 页面中使用的。</li>
+</ul>
+<p>除了第一个，其余的可以组合使用，按位或来组合多个选项。</p>
+<p>filter 参数可以用来指定自定义 NodeFilter 对象，或者一个作为节点过滤器的函数。NodeFilter 对象只有一个方法 acceptNode() ，如果给定节点应该访问就返回 NodeFilter.FILTER_ACCEPT，否则返回 NodeFilter.FILTER_SKIP。因为 NodeFilter 是一个抽象类型，所以不可能创建它的实例。只要创建一个包含 acceptNode() 的对象，然后把它传给createNodeIterator() 就可以了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只接收 p 元素的节点过滤器对象</span></span><br><span class="line"><span class="keyword">let</span> filter = &#123;</span><br><span class="line">  acceptNode(node) &#123;</span><br><span class="line">    <span class="keyword">return</span> node.tagName.toLowerCase() == <span class="string">'p'</span></span><br><span class="line">      ? NodeFilter.FILTER_ACCEPT</span><br><span class="line">      : NodeFilter.FILTER_SKIP;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 或是以下形式</span></span><br><span class="line"><span class="keyword">let</span> filter = <span class="function"><span class="keyword">function</span> (<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> node.tagName.toLowerCase() == <span class="string">'p'</span></span><br><span class="line">    ? NodeFilter.FILTER_ACCEPT</span><br><span class="line">    : NodeFilter.FILTER_SKIP;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> iterator = <span class="built_in">document</span>.createNodeIterator(</span><br><span class="line">  root,</span><br><span class="line">  NodeFilter.SHOW_ELEMENT,</span><br><span class="line">  filter,</span><br><span class="line">  <span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>NodeIterator 的两个主要方法是：</p>
+<ul>
+<li>nextNode()，在 DOM 子树中以深度优先方式进前一步。</li>
+<li>previousNode()，后退一步。</li>
+</ul>
+<h5 id="TreeWalker"><a href="#TreeWalker" class="headerlink" title="TreeWalker"></a>TreeWalker</h5><p>TreeWalker 比 NodeIterator 多了以下方法：</p>
+<ul>
+<li>parentNode()</li>
+<li>firstChild()</li>
+<li>lastChild()</li>
+<li>nextSibling()</li>
+<li>previousSibling()</li>
+</ul>
+<p>调用 document.createTreeWalker() 创建 TreeWalker 对象。接收类似的参数。</p>
+<p>不同的是，filter 除了可以返回原本的两种值，还可以返回 NodeFilter.FILTER_REJECT。</p>
+<p>在这个对象中，NodeFilter.FILTER_SKIP 表示跳过节点，访问子树的下一个节点，而 NodeFilter.FILTER_REJECT 表示跳过该节点以及该节点的整个子树。</p>
+<p>TreeWalker 类型也有一个名为 currentNode 的属性，表示遍历过程中上一次返回的节点。</p>
+<h4 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h4><p>DOM2 Traversal and Range 模块定义了范围接口。</p>
+<h5 id="DOM-范围"><a href="#DOM-范围" class="headerlink" title="DOM 范围"></a>DOM 范围</h5><p>使用 document.createRange() 方法创建 DOM 范围对象。新建的范围对象与创建它的文档关联的，不能在其他文档中使用。</p>
+<p>每个范围都是 Range 类型的实例，拥有相应的属性和方法。</p>
+<ul>
+<li>startContainer，范围起点所在的节点 ( 选区中第一个子节点的父节点 )</li>
+<li>startOffset，范围起点在 startContainer 中的偏移量。</li>
+<li>endContainer，范围终点所在的节点 ( 选区中最后一个子节点的父节点 )</li>
+<li>endOffset，范围起点在 startContainer 中的偏移量。</li>
+<li>commonAncestorContainer，文档中以 startContainer 和 endContainer 为后代的最深的节点。</li>
+</ul>
+<p>这些属性会在范围被放到文档中特定位置时获得相应的值。</p>
+<h5 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h5><p>使用 selectNode() 或 selectNodeContents() 方法范围选择文档中某个部分。接收一个节点作为参数。selectNode() 方法选择整个节点，包括其后代节点，而 selectNodeContents() 只选择节点的后代。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"p1"</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">b</span>&gt;</span> world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> range1 = <span class="built_in">document</span>.createRange(),</span><br><span class="line">  range2 = <span class="built_in">document</span>.createRange(),</span><br><span class="line">  p1 = <span class="built_in">document</span>.getElementById(<span class="string">'p1'</span>);</span><br><span class="line">range1.selectNode(p1);</span><br><span class="line">range2.selectNodeContents(p1);</span><br><span class="line"><span class="built_in">console</span>.log(range1);</span><br><span class="line"><span class="built_in">console</span>.log(range2);</span><br><span class="line"><span class="comment">// Range: &#123;</span></span><br><span class="line"><span class="comment">//   collapsed: false</span></span><br><span class="line"><span class="comment">//   commonAncestorContainer: body</span></span><br><span class="line"><span class="comment">//   endContainer: body</span></span><br><span class="line"><span class="comment">//   endOffset: 2</span></span><br><span class="line"><span class="comment">//   startContainer: body</span></span><br><span class="line"><span class="comment">//   startOffset: 1</span></span><br><span class="line"><span class="comment">//   __proto__: Range</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">// Range: &#123;</span></span><br><span class="line"><span class="comment">//   collapsed: false</span></span><br><span class="line"><span class="comment">//   commonAncestorContainer: p#p1</span></span><br><span class="line"><span class="comment">//   endContainer: p#p1</span></span><br><span class="line"><span class="comment">//   endOffset: 2</span></span><br><span class="line"><span class="comment">//   startContainer: p#p1</span></span><br><span class="line"><span class="comment">//   startOffset: 0</span></span><br><span class="line"><span class="comment">//   __proto__: Range</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以在范围上调用方法：</p>
+<ul>
+<li><p>setStartBefore(<em>refNode</em>)，把范围的起点设置到 <em>refNode</em> 之前，从而让 <em>refNode</em> 成为选</p>
+<p>区的第一个子节点。startContainer 属性被设置为 refNode.parentNode，而 startOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引。</p>
+</li>
+<li><p>setStartAfter(<em>refNode</em>)，把范围的起点设置到 <em>refNode</em> 之后，从而将 <em>refNode</em> 排除在选</p>
+<p>区之外，让其下一个同胞节点成为选区的第一个子节点。startContainer 属性被设置为</p>
+<p>refNode.parentNode，startOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合</p>
+<p>中的索引加 1。</p>
+</li>
+<li><p>setEndBefore(<em>refNode</em>)，把范围的终点设置到 <em>refNode</em> 之前，从而将 <em>refNode</em> 排除在选区之外、让其上一个同胞节点成为选区的最后一个子节点。endContainer 属性被设置为 refNode. parentNode，endOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引。</p>
+</li>
+<li><p>setEndAfter(<em>refNode</em>)，把范围的终点设置到 <em>refNode</em> 之后，从而让 <em>refNode</em> 成为选区的</p>
+<p>最后一个子节点。endContainer 属性被设置为 refNode.parentNode，endOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引加 1。</p>
+</li>
+</ul>
+<h5 id="复杂选择"><a href="#复杂选择" class="headerlink" title="复杂选择"></a>复杂选择</h5><p>使用 setStart() 和 setEnd() 方法，接收两个参数：参照节点和偏移量。对 setStart() 来说，参照节点会成为 startContainer，而偏移量会赋值给 startOffset。 对 setEnd() 而言，参照节点会成为 endContainer，而偏移量会赋值给 endOffset。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>函数会选择最新的内容码？</p>
+<p>函数 sayHi 使用外部变量。当函数运行时，将使用哪个值？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">"John"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"Hi, "</span> + name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">name = <span class="string">"Pete"</span>;</span><br><span class="line"></span><br><span class="line">sayHi(); <span class="comment">// 会显示什么："John" 还是 "Pete"？</span></span><br></pre></td></tr></table></figure>
+
+<p>这种情况在浏览器和服务器端开发中都很常见。一个函数可能被计划在创建之后一段时间后才执行，例如在用户行为或网络请求之后。</p>
+<p>因此，问题是：它会接收最新的修改吗？</p>
+<p>会。</p>
+</li>
+<li><p>哪些变量可用呢？</p>
+<p>下面的 <code>makeWorker</code> 函数创建了另一个函数并返回该函数。可以在其他地方调用这个新函数。</p>
+<p>它是否可以从它被创建的位置或调用位置（或两者）访问外部变量？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeWorker</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> name = <span class="string">"Pete"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(name);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> name = <span class="string">"John"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// create a function</span></span><br><span class="line"><span class="keyword">let</span> work = makeWorker();</span><br><span class="line"></span><br><span class="line"><span class="comment">// call it</span></span><br><span class="line">work(); <span class="comment">// 会显示什么？</span></span><br></pre></td></tr></table></figure>
+
+<p>会显示哪个值？“Pete” 还是 “John”？</p>
+<p>“Pete”。</p>
+</li>
+<li><p>Counter 是独立的吗？</p>
+<p>在这儿我们用相同的 <code>makeCounter</code> 函数创建了两个计数器（counters）：<code>counter</code> 和 <code>counter2</code>。</p>
+<p>它们是独立的吗？第二个 counter 会显示什么？<code>0,1</code> 或 <code>2,3</code> 还是其他？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeCounter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> count++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> counter = makeCounter();</span><br><span class="line"><span class="keyword">let</span> counter2 = makeCounter();</span><br><span class="line"></span><br><span class="line">alert( counter() ); <span class="comment">// 0</span></span><br><span class="line">alert( counter() ); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">alert( counter2() ); <span class="comment">// ?</span></span><br><span class="line">alert( counter2() ); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+
+<p>独立的，第二个会显示 0 1 。</p>
+</li>
+<li><p>Counter 对象</p>
+<p>这里通过构造函数创建了一个 counter 对象。</p>
+<p>它能正常工作吗？它会显示什么呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.up = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ++count;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">this</span>.down = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> --count;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> counter = <span class="keyword">new</span> Counter();</span><br><span class="line"></span><br><span class="line">alert( counter.up() ); <span class="comment">// ?</span></span><br><span class="line">alert( counter.up() ); <span class="comment">// ?</span></span><br><span class="line">alert( counter.down() ); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+
+<p>能。1 2 1。</p>
+</li>
+<li><p>if 内的函数</p>
+<p>看看下面这个代码。最后一行代码的执行结果是什么？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> phrase = <span class="string">"Hello"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> user = <span class="string">"John"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">`<span class="subst">$&#123;phrase&#125;</span>, <span class="subst">$&#123;user&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sayHi();</span><br></pre></td></tr></table></figure>
+
+<p>报错。</p>
+</li>
+<li><p>闭包 sum</p>
+<p>编写一个像 <code>sum(a)(b) = a+b</code> 这样工作的 <code>sum</code> 函数。</p>
+<p>是的，就是这种通过双括号的方式（并不是错误）。</p>
+<p>举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="number">1</span>)(<span class="number">2</span>) = <span class="number">3</span></span><br><span class="line">sum(<span class="number">5</span>)(<span class="number">-1</span>) = <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量可见吗</p>
+<p>下面这段代码的结果会是什么？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x); <span class="comment">// ?</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func();</span><br></pre></td></tr></table></figure>
+
+<p>P.S. 这个任务有一个陷阱。解决方案并不明显。</p>
+<p>报错。因为函数内部包含 x 。虽然还未定义，但已经不会去外部寻找 x 。</p>
+</li>
+<li><p>通过函数筛选</p>
+<p>我们有一个内建的数组方法 <code>arr.filter(f)</code>。它通过函数 <code>f</code> 过滤元素。如果它返回 <code>true</code>，那么该元素会被返回到结果数组中。</p>
+<p>制造一系列“即用型”过滤器：</p>
+<ul>
+<li><code>inBetween(a, b)</code> —— 在 <code>a</code> 和 <code>b</code> 之间或与它们相等（包括）。</li>
+<li><code>inArray([...])</code> —— 包含在给定的数组中。</li>
+</ul>
+<p>用法如下所示：</p>
+<ul>
+<li><code>arr.filter(inBetween(3,6))</code> —— 只挑选范围在 3 到 6 的值。</li>
+<li><code>arr.filter(inArray([1,2,3]))</code> —— 只挑选与 <code>[1,2,3]</code> 中的元素匹配的元素。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* .. inBetween 和 inArray 的代码 */</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"></span><br><span class="line">alert( arr.filter(inBetween(<span class="number">3</span>, <span class="number">6</span>)) ); <span class="comment">// 3,4,5,6</span></span><br><span class="line"></span><br><span class="line">alert( arr.filter(inArray([<span class="number">1</span>, <span class="number">2</span>, <span class="number">10</span>])) ); <span class="comment">// 1,2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inBetween</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> item &gt;= a &amp;&amp; item &lt;= b;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) !== <span class="number">-1</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按字段排序</p>
+<p>我们有一组要排序的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> users = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">"John"</span>, <span class="attr">age</span>: <span class="number">20</span>, <span class="attr">surname</span>: <span class="string">"Johnson"</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">"Pete"</span>, <span class="attr">age</span>: <span class="number">18</span>, <span class="attr">surname</span>: <span class="string">"Peterson"</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">"Ann"</span>, <span class="attr">age</span>: <span class="number">19</span>, <span class="attr">surname</span>: <span class="string">"Hathaway"</span> &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>通常的做法应该是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过 name (Ann, John, Pete)</span></span><br><span class="line">users.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.name &gt; b.name ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 age (Pete, Ann, John)</span></span><br><span class="line">users.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.age &gt; b.age ? <span class="number">1</span> : <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>我们可以让它更加简洁吗，比如这样？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">users.sort(byField(<span class="string">'name'</span>));</span><br><span class="line">users.sort(byField(<span class="string">'age'</span>));</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就只需要写 <code>byField(fieldName)</code>，而不是写一个函数。</p>
+<p>编写函数 <code>byField</code> 来实现这个需求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">byField</span>(<span class="params">fieldName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">a, b</span>) =&gt;</span> (a[fieldName] &gt; b[fieldName] ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数大军</p>
+<p>下列的代码创建了一个 <code>shooters</code> 数组。</p>
+<p>每个函数都应该输出其编号。但好像出了点问题……</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeArmy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> shooters = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> shooter = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 创建一个 shooter 函数，</span></span><br><span class="line">      alert( i ); <span class="comment">// 应该显示其编号</span></span><br><span class="line">    &#125;;</span><br><span class="line">    shooters.push(shooter); <span class="comment">// 将此 shooter 函数添加到数组中</span></span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ……返回 shooters 数组</span></span><br><span class="line">  <span class="keyword">return</span> shooters;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> army = makeArmy();</span><br><span class="line"></span><br><span class="line"><span class="comment">// ……所有的 shooter 显示的都是 10，而不是它们的编号 0, 1, 2, 3...</span></span><br><span class="line">army[<span class="number">0</span>](); <span class="comment">// 编号为 0 的 shooter 显示的是 10</span></span><br><span class="line">army[<span class="number">1</span>](); <span class="comment">// 编号为 1 的 shooter 显示的是 10</span></span><br><span class="line">army[<span class="number">2</span>](); <span class="comment">// 10，其他的也是这样。</span></span><br></pre></td></tr></table></figure>
+
+<p>为什么所有的 shooter 显示的都是同样的值？</p>
+<p>修改代码以使得代码能够按照我们预期的那样工作。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeArmy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> shooters = [];</span><br><span class="line">  <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> j = i;</span><br><span class="line">    <span class="keyword">let</span> shooter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// 创建一个 shooter 函数，</span></span><br><span class="line">      <span class="built_in">console</span>.log(j); <span class="comment">// 应该显示其编号</span></span><br><span class="line">    &#125;;</span><br><span class="line">    shooters.push(shooter); <span class="comment">// 将此 shooter 函数添加到数组中</span></span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ……返回 shooters 数组</span></span><br><span class="line">  <span class="keyword">return</span> shooters;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-13/">
+        <span>学习笔记 2020 11 13</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-13"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-13</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM2-和-DOM3"><span class="toc-number">1.1.1.</span> <span class="toc-text">DOM2 和 DOM3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#样式"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">样式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#元素尺寸"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">元素尺寸</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#遍历"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#NodeIterator"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">NodeIterator</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeWalker"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">TreeWalker</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#范围"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">范围</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM-范围"><span class="toc-number">1.1.1.3.1.</span> <span class="toc-text">DOM 范围</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#简单选择"><span class="toc-number">1.1.1.3.2.</span> <span class="toc-text">简单选择</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#复杂选择"><span class="toc-number">1.1.1.3.3.</span> <span class="toc-text">复杂选择</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
