@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 15</title>
+    <url>/2020/11/15/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-15/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-15"><a href="#学习笔记-2020-11-15" class="headerlink" title="学习笔记 2020-11-15"></a>学习笔记 2020-11-15</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><h4 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h4><h5 id="操作范围"><a href="#操作范围" class="headerlink" title="操作范围"></a>操作范围</h5><ul>
+<li>deleteContents()</li>
+<li>extractContents()</li>
+<li>cloneContents()</li>
+</ul>
+<h5 id="范围插入"><a href="#范围插入" class="headerlink" title="范围插入"></a>范围插入</h5><ul>
+<li>insertNode()</li>
+<li>surroundContents()</li>
+</ul>
+<h5 id="范围折叠"><a href="#范围折叠" class="headerlink" title="范围折叠"></a>范围折叠</h5><ul>
+<li>collapse()</li>
+<li>collapsed</li>
+</ul>
+<h5 id="范围比较"><a href="#范围比较" class="headerlink" title="范围比较"></a>范围比较</h5><ul>
+<li>compareBoundaryPoints()</li>
+</ul>
+<h5 id="复制范围"><a href="#复制范围" class="headerlink" title="复制范围"></a>复制范围</h5><ul>
+<li>cloneRange()</li>
+</ul>
+<h5 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h5><ul>
+<li>detach()</li>
+</ul>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><h5 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h5><ol>
+<li>事件冒泡</li>
+<li>事件捕获</li>
+<li>DOM 事件流</li>
+</ol>
+<h5 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h5><ol>
+<li><p>HTML 事件处理程序</p>
+<p>可以在 HTML 元素上定义事件属性，这个函数有一个特殊的局部变量 event。函数中 this 值相当于事件的目标元素，其作用域链被扩展了，在这个函数中，document 和元素自身的成员都可以被当成局部变量来访问。这是通过 with 实现的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">with</span> (<span class="built_in">document</span>) &#123;</span><br><span class="line">    <span class="keyword">with</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">      <span class="comment">// 属性值</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因此可以直接在函数中访问自己的属性。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 输出"Click Me" --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Click Me"</span> <span class="attr">onclick</span>=<span class="string">"console.log(value)"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM0 事件处理程序</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 14</title>
     <url>/2020/11/14/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-14/</url>
-    <content><![CDATA[<h1 id="学习笔记-2020-11-13"><a href="#学习笔记-2020-11-13" class="headerlink" title="学习笔记 2020-11-13"></a>学习笔记 2020-11-13</h1><a id="more"></a>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-14"><a href="#学习笔记-2020-11-14" class="headerlink" title="学习笔记 2020-11-14"></a>学习笔记 2020-11-14</h1><a id="more"></a>
 
 <h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><h5 id="元素尺寸"><a href="#元素尺寸" class="headerlink" title="元素尺寸"></a>元素尺寸</h5><ol>
 <li><p>滚动尺寸</p>
