@@ -1,6 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 17</title>
+    <url>/2020/11/17/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-17/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-17"><a href="#学习笔记-2020-11-17" class="headerlink" title="学习笔记 2020-11-17"></a>学习笔记 2020-11-17</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h5 id="用户界面事件"><a href="#用户界面事件" class="headerlink" title="用户界面事件"></a>用户界面事件</h5><ul>
+<li>DOMActivate</li>
+<li>load</li>
+<li>unload</li>
+<li>abort</li>
+<li>error</li>
+<li>select</li>
+<li>resize</li>
+<li>scroll</li>
+</ul>
+<ol>
+<li><p>load 事件</p>
+<p>一般来说，在 window 上发生的事件，都可以通过给 <code>&lt;body&gt;</code> 元素上对应的属性赋值来指定。</p>
+</li>
+<li><p>unload 事件</p>
+</li>
+<li><p>resize 事件</p>
+</li>
+<li><p>scroll 事件</p>
+<p>scroll 事件发生在 window 上。在混杂模式下，可以通过 body 元素检测 scrollLeft 和 scrollTop 属性的变化。在标准模式下，这些变化在除早期版的 Safari 之外的所有浏览器上都发生在 html 元素上。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, event =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.compatMode == <span class="string">'CSS1Compat'</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.documentElement.scrollTop);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.body.scrollTop);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h5 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h5><ul>
+<li>blur</li>
+<li>DOMFocusIn</li>
+<li>DOMFocusOut</li>
+<li>focus</li>
+<li>focusin</li>
+<li>focusout</li>
+</ul>
+<h5 id="鼠标和滚轮事件"><a href="#鼠标和滚轮事件" class="headerlink" title="鼠标和滚轮事件"></a>鼠标和滚轮事件</h5><ul>
+<li>click，响应鼠标主键和键盘回车键。</li>
+<li>dbclick</li>
+<li>mousedown</li>
+<li>mouseenter，鼠标光标从元素外部移到元素内部。不冒泡。</li>
+<li>mouseleave，鼠标光标从元素内部移到元素外部。不冒泡。</li>
+<li>mousemove，鼠标光标在元素上移动。</li>
+<li>mouseout，鼠标光标从一个元素移到另一个元素。</li>
+<li>mouseover，鼠标光标从元素外部移到元素内部。</li>
+<li>mouseup</li>
+<li>mousewheel，鼠标滚轮事件。</li>
+</ul>
+<p>触发顺序：</p>
+<ol>
+<li>mousedown</li>
+<li>mouseup</li>
+<li>click</li>
+<li>mousedown</li>
+<li>mouseup</li>
+<li>click</li>
+<li>dbclick</li>
+</ol>
+<p>click 和 dbclick 依赖其他事件触发。</p>
+<ol>
+<li><p>客户端坐标</p>
+<ul>
+<li>event.clientX</li>
+<li>event.clientY</li>
+</ul>
+<p>鼠标光标在视口中的坐标。</p>
+</li>
+<li><p>页面坐标</p>
+<ul>
+<li>event.pageX</li>
+<li>event.pageY</li>
+</ul>
+<p>鼠标光标在页面上的坐标。</p>
+</li>
+<li><p>屏幕坐标</p>
+<ul>
+<li>event.screenX</li>
+<li>event.screenY</li>
+</ul>
+<p>鼠标光标在整个屏幕上的坐标。</p>
+</li>
+<li><p>修饰键</p>
+<ul>
+<li>event.shiftKey</li>
+<li>event.ctrlKey</li>
+<li>event.altKey</li>
+<li>event.metaKey</li>
+</ul>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="函数对象，NFE"><a href="#函数对象，NFE" class="headerlink" title="函数对象，NFE"></a>函数对象，NFE</h3><ol>
+<li><p>属性，name</p>
+<p>函数名</p>
+</li>
+<li><p>属性，length</p>
+<p>函数形参个数，rest 参数不参与计数。</p>
+</li>
+<li><p>自定义属性</p>
+</li>
+<li><p>命名函数表达式</p>
+</li>
+</ol>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>为 counter 添加 set 和 decrease 方法</p>
+<p>修改 <code>makeCounter()</code> 代码，使得 counter 可以进行减一和设置值的操作：</p>
+<ul>
+<li><code>counter()</code> 应该返回下一个数字（与之前的逻辑相同）。</li>
+<li><code>counter.set(value)</code> 应该将 <code>count</code> 设置为 <code>value</code>。</li>
+<li><code>counter.decrease(value)</code> 应该把 <code>count</code> 减 1。</li>
+</ul>
+<p>查看沙箱中的代码获取完整使用示例。</p>
+<p>P.S. 你可以使用闭包或者函数属性来保持当前的计数，或者两种都写。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeCounter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> counter.count++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  counter.count = <span class="number">0</span>;</span><br><span class="line">  counter.set = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.count = value;</span><br><span class="line">  &#125;;</span><br><span class="line">  counter.decrease = <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.count--;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> counter;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>任意数量的括号求和</p>
+<p>写一个函数 <code>sum</code>，它有这样的功能：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sum(<span class="number">1</span>)(<span class="number">2</span>) == <span class="number">3</span>; <span class="comment">// 1 + 2</span></span><br><span class="line">sum(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>) == <span class="number">6</span>; <span class="comment">// 1 + 2 + 3</span></span><br><span class="line">sum(<span class="number">5</span>)(<span class="number">-1</span>)(<span class="number">2</span>) == <span class="number">6</span></span><br><span class="line">sum(<span class="number">6</span>)(<span class="number">-1</span>)(<span class="number">-2</span>)(<span class="number">-3</span>) == <span class="number">0</span></span><br><span class="line">sum(<span class="number">0</span>)(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)(<span class="number">4</span>)(<span class="number">5</span>) == <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<p>P.S. 提示：你可能需要创建自定义对象来为你的函数提供基本类型转换。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> num = a;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    num += n;</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">  &#125;</span><br><span class="line">  f.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习笔记 2020 11 16</title>
+    <url>/2020/11/16/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-16/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-16"><a href="#学习笔记-2020-11-16" class="headerlink" title="学习笔记 2020-11-16"></a>学习笔记 2020-11-16</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h4><h5 id="DOM2-事件处理程序"><a href="#DOM2-事件处理程序" class="headerlink" title="DOM2 事件处理程序"></a>DOM2 事件处理程序</h5><h5 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h5><ol>
+<li>attachEvent()</li>
+<li>detachEvent()</li>
+</ol>
+<p>IE 中的事件处理程序作用域是在全局。多个事件监听触发顺序是逆序。</p>
+<h5 id="跨浏览器事件处理程序"><a href="#跨浏览器事件处理程序" class="headerlink" title="跨浏览器事件处理程序"></a>跨浏览器事件处理程序</h5><h4 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h4><h5 id="DOM-事件对象"><a href="#DOM-事件对象" class="headerlink" title="DOM 事件对象"></a>DOM 事件对象</h5><p>所有事件对象的公共属性和方法：</p>
+<ul>
+<li>bubbles</li>
+<li>cancelable</li>
+<li>currentTarget</li>
+<li>defaultPrevented</li>
+<li>detail</li>
+<li>eventPhase</li>
+<li>preventDefault()</li>
+<li>stopImmediatePropagation()</li>
+<li>stopPropagation()</li>
+<li>target</li>
+<li>trusted</li>
+<li>type</li>
+<li>View</li>
+</ul>
+<p>事件处理程序内部，this 对象始终等于 currentTarget 的值。</p>
+<h5 id="IE-事件对象"><a href="#IE-事件对象" class="headerlink" title="IE 事件对象"></a>IE 事件对象</h5><ol>
+<li><p>DOM0</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> e = <span class="built_in">window</span>.event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>attachEvent()</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// event === window.event</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>IE 事件对象的公共属性和方法：</p>
+<ul>
+<li>cancelBubble</li>
+<li>returnValue</li>
+<li>srcElement</li>
+<li>type</li>
+</ul>
+<h5 id="跨浏览器事件对象"><a href="#跨浏览器事件对象" class="headerlink" title="跨浏览器事件对象"></a>跨浏览器事件对象</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> EventUtil = &#123;</span><br><span class="line">  addHandler: <span class="function"><span class="keyword">function</span> (<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (element.addEventListener) &#123;</span><br><span class="line">      element.addEventListener(type, handler, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.attachEvent) &#123;</span><br><span class="line">      element.attachEvent(<span class="string">'on'</span> + type, handler);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      element[<span class="string">'on'</span> + type] = handler;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  getEvent: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> event ? event : <span class="built_in">window</span>.event;</span><br><span class="line">  &#125;,</span><br><span class="line">  getTarget: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> event.target || event.srcElement;</span><br><span class="line">  &#125;,</span><br><span class="line">  preventDefault: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.preventDefault) &#123;</span><br><span class="line">      event.preventDefault();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      event.returnValue = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  removeHandler: <span class="function"><span class="keyword">function</span> (<span class="params">element, type, handler</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (element.removeEventListener) &#123;</span><br><span class="line">      element.removeEventListener(type, handler, <span class="literal">false</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element.detachEvent) &#123;</span><br><span class="line">      element.detachEvent(<span class="string">'on'</span> + type, handler);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      element[<span class="string">'on'</span> + type] = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  stopPropagation: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.stopPropagation) &#123;</span><br><span class="line">      event.stopPropagation();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 15</title>
     <url>/2020/11/15/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-15/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-15"><a href="#学习笔记-2020-11-15" class="headerlink" title="学习笔记 2020-11-15"></a>学习笔记 2020-11-15</h1><a id="more"></a>
@@ -27,23 +211,13 @@
 <h5 id="清理"><a href="#清理" class="headerlink" title="清理"></a>清理</h5><ul>
 <li>detach()</li>
 </ul>
-<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><h5 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h5><ol>
-<li>事件冒泡</li>
-<li>事件捕获</li>
-<li>DOM 事件流</li>
-</ol>
-<h5 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h5><ol>
-<li><p>HTML 事件处理程序</p>
-<p>可以在 HTML 元素上定义事件属性，这个函数有一个特殊的局部变量 event。函数中 this 值相当于事件的目标元素，其作用域链被扩展了，在这个函数中，document 和元素自身的成员都可以被当成局部变量来访问。这是通过 with 实现的。</p>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h4><h5 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h5><h5 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h5><h5 id="DOM-事件流"><a href="#DOM-事件流" class="headerlink" title="DOM 事件流"></a>DOM 事件流</h5><h4 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h4><h5 id="HTML-事件处理程序"><a href="#HTML-事件处理程序" class="headerlink" title="HTML 事件处理程序"></a>HTML 事件处理程序</h5><p>可以在 HTML 元素上定义事件属性，这个函数有一个特殊的局部变量 event。函数中 this 值相当于事件的目标元素，其作用域链被扩展了，在这个函数中，document 和元素自身的成员都可以被当成局部变量来访问。这是通过 with 实现的。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">with</span> (<span class="built_in">document</span>) &#123;</span><br><span class="line">    <span class="keyword">with</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">      <span class="comment">// 属性值</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>因此可以直接在函数中访问自己的属性。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 输出"Click Me" --&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"Click Me"</span> <span class="attr">onclick</span>=<span class="string">"console.log(value)"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>DOM0 事件处理程序</p>
-</li>
-</ol>
-]]></content>
+
+<h5 id="DOM0-事件处理程序"><a href="#DOM0-事件处理程序" class="headerlink" title="DOM0 事件处理程序"></a>DOM0 事件处理程序</h5>]]></content>
       <categories>
         <category>前端</category>
       </categories>
