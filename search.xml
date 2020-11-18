@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 18</title>
+    <url>/2020/11/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-18/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-18"><a href="#学习笔记-2020-11-18" class="headerlink" title="学习笔记 2020-11-18"></a>学习笔记 2020-11-18</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h5 id="鼠标和滚轮事件"><a href="#鼠标和滚轮事件" class="headerlink" title="鼠标和滚轮事件"></a>鼠标和滚轮事件</h5><ol>
+<li><p>相关元素</p>
+<p>event.relatedTarget，mouseover 时，主要目标是获得光标的元素，相关元素是失去光标的元素，mouseout 类似。</p>
+<p>IE8 及更早版本提供 fromElement 和 toElement 来替代。</p>
+</li>
+<li><p>鼠标按键</p>
+<p>event.button</p>
+<ul>
+<li>0 主键</li>
+<li>1 中键</li>
+<li>2 副键</li>
+</ul>
+<p>IE8 及更早版本：</p>
+<ul>
+<li>0 没有按下任何键</li>
+<li>1 主键</li>
+<li>2 副键</li>
+<li>3 同时主键、副键</li>
+<li>4 中键</li>
+<li>5 同时主键、中键</li>
+<li>6 同时副键、中键</li>
+<li>7 同时 3 个键</li>
+</ul>
+</li>
+<li><p>额外事件信息</p>
+<p>event.detail</p>
+<ul>
+<li>鼠标事件中，值为给定位置发生单击的次数。</li>
+</ul>
+<p>IE 还提供了：</p>
+<ul>
+<li>altLeft，是否按下，下同。</li>
+<li>ctrlLeft</li>
+<li>offsetX，光标相对于目标元素边界的 X 坐标。</li>
+<li>offsetY</li>
+<li>shiftLeft</li>
+</ul>
+</li>
+<li><p>mousewheel 事件</p>
+<p>该事件在任何元素上触发，并冒泡到 document ( IE8 ) 和 window 。</p>
+<p>event.wheelDelta</p>
+</li>
+<li><p>触摸屏设备</p>
+<ul>
+<li>不支持 dbclick。</li>
+<li>单指点击可点击元素触发 mousemove。如果屏幕没有变化，相继触发 mousedown、mouseup 和 click 事件。</li>
+<li>mousemove 也会触发 mouseover 和 mouseout。</li>
+<li>双指点触并滑动会触发 mousewheel 和 scroll 。</li>
+</ul>
+</li>
+<li><p>无障碍问题</p>
+</li>
+</ol>
+<h5 id="键盘与输入事件"><a href="#键盘与输入事件" class="headerlink" title="键盘与输入事件"></a>键盘与输入事件</h5><ul>
+<li>keydown，按下触发，持续按住重复触发。</li>
+<li>keypress，同样重复触发。</li>
+<li>keyup</li>
+<li>textInput，在文本被插入到文本框之前触发。</li>
+</ul>
+<p>触发顺序：keydown -&gt; keypress -&gt; keyup</p>
+<ol>
+<li><p>键码</p>
+<p>event.keyCode</p>
+</li>
+<li><p>字符编码</p>
+<p>event.charCode，只会在 keypress 事件被设置。</p>
+</li>
+<li><p>DOM3 的变化</p>
+<ul>
+<li>event.key || event.keyIdentifier</li>
+<li>event.char</li>
+<li>event.location<ul>
+<li>0 默认</li>
+<li>1 左边</li>
+<li>2 右边</li>
+<li>3 数字键盘</li>
+<li>4 移动设备</li>
+<li>5 游戏手柄</li>
+</ul>
+</li>
+<li>event.getModifierState()</li>
+</ul>
+</li>
+<li><p>textInput 事件</p>
+<ul>
+<li>event.data</li>
+<li>event.inputMethod</li>
+</ul>
+</li>
+<li><p>设备上的键盘事件</p>
+</li>
+</ol>
+<h5 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h5><ul>
+<li>compositionstart</li>
+<li>compositionupdate</li>
+<li>compositionend</li>
+</ul>
+<h5 id="变化事件"><a href="#变化事件" class="headerlink" title="变化事件"></a>变化事件</h5><h5 id="HTML5-事件"><a href="#HTML5-事件" class="headerlink" title="HTML5 事件"></a>HTML5 事件</h5><ol>
+<li>contextmenu 事件</li>
+<li>beforeunload 事件</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 17</title>
     <url>/2020/11/17/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-17/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-17"><a href="#学习笔记-2020-11-17" class="headerlink" title="学习笔记 2020-11-17"></a>学习笔记 2020-11-17</h1><a id="more"></a>
@@ -6465,9 +6579,9 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
+        <tag>js</tag>
         <tag>html</tag>
       </tags>
   </entry>
@@ -6538,8 +6652,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -6576,8 +6690,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -6600,8 +6714,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -6634,8 +6748,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6675,8 +6789,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6700,8 +6814,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -6723,8 +6837,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -6746,8 +6860,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6826,8 +6940,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6852,8 +6966,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6879,8 +6993,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6911,8 +7025,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -6976,8 +7090,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -7017,8 +7131,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
   <entry>
@@ -7056,8 +7170,8 @@ test();
         <category>前端</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>notes</tag>
+        <tag>js</tag>
       </tags>
   </entry>
 </search>
