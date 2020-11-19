@@ -1,6 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 19</title>
+    <url>/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-19"><a href="#学习笔记-2020-11-19" class="headerlink" title="学习笔记 2020-11-19"></a>学习笔记 2020-11-19</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h5 id="HTML5-事件"><a href="#HTML5-事件" class="headerlink" title="HTML5 事件"></a>HTML5 事件</h5><ol>
+<li><p>DOMContentLoaded 事件</p>
+<p>在 DOM 树构建完成后立即触发。</p>
+</li>
+<li><p>readystatechange 事件</p>
+<p>event.readyState:</p>
+<ul>
+<li>uninitialized</li>
+<li>event.loading</li>
+<li>event.loaded</li>
+<li>event.interactive</li>
+<li>event.complete</li>
+</ul>
+</li>
+<li><p>pageshow 与 pagehide 事件</p>
+<p>往返缓存</p>
+</li>
+<li><p>hashchange 事件</p>
+<p>用于在 URL 散列值发生变化时触发。</p>
+</li>
+</ol>
+<h5 id="设备事件"><a href="#设备事件" class="headerlink" title="设备事件"></a>设备事件</h5><ol>
+<li><p>orientationchange 事件</p>
+<p>判断设备处于垂直还是水平模式。</p>
+<p>window.orientation</p>
+</li>
+<li><p>deviceorientation 事件</p>
+<ul>
+<li>event.alpha</li>
+<li>event.beta</li>
+<li>event.gamma</li>
+<li>event.absolute</li>
+<li>event.compasCalibrated</li>
+</ul>
+</li>
+<li><p>devicemotion 事件</p>
+<ul>
+<li>event.acceleration</li>
+<li>event.accelerateionIncludingGravity</li>
+<li>event.interval</li>
+<li>event.rotationRate</li>
+</ul>
+</li>
+</ol>
+<h5 id="触摸及手势事件"><a href="#触摸及手势事件" class="headerlink" title="触摸及手势事件"></a>触摸及手势事件</h5><ol>
+<li><p>触摸事件</p>
+<ul>
+<li>touchstart</li>
+<li>touchmove</li>
+<li>touchend</li>
+<li>touchcancel</li>
+</ul>
+<p>event对象提供以下属性：</p>
+<ul>
+<li>bubbles</li>
+<li>cancelable</li>
+<li>view</li>
+<li>clientX</li>
+<li>clientY</li>
+<li>screenX</li>
+<li>screenY</li>
+<li>detail</li>
+<li>altKey</li>
+<li>shiftKey</li>
+<li>ctrlKey</li>
+<li>metaKey</li>
+<li>touches</li>
+<li>targetTouches</li>
+<li>changedTouches</li>
+</ul>
+<p>每个 Touch 对象包含以下属性：</p>
+<ul>
+<li>clientX</li>
+<li>clientY</li>
+<li>pageX</li>
+<li>pageY</li>
+<li>screenX</li>
+<li>screenY</li>
+<li>target</li>
+</ul>
+</li>
+<li><p>手势事件</p>
+<ul>
+<li>gesturestart</li>
+<li>gesturechange</li>
+<li>gesureend</li>
+</ul>
+</li>
+</ol>
+<h5 id="事件参考"><a href="#事件参考" class="headerlink" title="事件参考"></a>事件参考</h5><h4 id="内存与性能"><a href="#内存与性能" class="headerlink" title="内存与性能"></a>内存与性能</h4><h5 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h5><p>减少页面所需内存，提升性能，节省 DOM 引用。</p>
+<h5 id="删除事件处理程序"><a href="#删除事件处理程序" class="headerlink" title="删除事件处理程序"></a>删除事件处理程序</h5><p>直接替换 innerHTML ，不会删除其中元素上的事件处理程序。</p>
+<p>页面卸载后如果事件处理程序没有被清理，则仍然残留在内存中。</p>
+<h4 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h4><h5 id="DOM-事件模拟"><a href="#DOM-事件模拟" class="headerlink" title="DOM 事件模拟"></a>DOM 事件模拟</h5><p>通过 document.createEvent() 创建 event 对象。通过 dispatchEvent() 触发事件。</p>
+<ol>
+<li>模拟鼠标事件</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="调度：setTimeout-和-setInterval"><a href="#调度：setTimeout-和-setInterval" class="headerlink" title="调度：setTimeout 和 setInterval"></a>调度：setTimeout 和 setInterval</h3><p>alert 弹窗时计时器依然在计时。</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>每秒输出一次</p>
+<p>编写一个函数 <code>printNumbers(from, to)</code>，使其每秒输出一个数字，数字从 <code>from</code> 开始，到 <code>to</code> 结束。</p>
+<p>使用以下两种方法来实现。</p>
+<ol>
+<li>使用 <code>setInterval</code>。</li>
+<li>使用嵌套的 <code>setTimeout</code>。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printNumbers</span>(<span class="params">from, to</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> count = <span class="keyword">from</span>;</span><br><span class="line">  <span class="keyword">let</span> timeId = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">    <span class="keyword">if</span> (count === to) &#123;</span><br><span class="line">      clearInterval(timeId);</span><br><span class="line">      timeId = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    count++;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">printNumbers(<span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printNumbers</span>(<span class="params">from, to</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">num, to</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">    <span class="keyword">if</span> (num &lt; to) &#123;</span><br><span class="line">      setTimeout(run, <span class="number">1000</span>, num + <span class="number">1</span>, to);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  setTimeout(run, <span class="number">1000</span>, <span class="keyword">from</span>, to);</span><br><span class="line">&#125;</span><br><span class="line">printNumbers(<span class="number">5</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>setTimeout 会显示什么？</p>
+<p>下面代码中使用 <code>setTimeout</code> 调度了一个调用，然后需要运行一个计算量很大的 <code>for</code> 循环，这段运算耗时超过 100 毫秒。</p>
+<p>调度的函数会在何时运行？</p>
+<ol>
+<li>循环执行完成后。</li>
+<li>循环执行前。</li>
+<li>循环刚开始时。</li>
+</ol>
+<p><code>alert</code> 会显示什么？</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> alert(i), <span class="number">100</span>); <span class="comment">// ?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设这段代码的运行时间 &gt;100ms</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">100000000</span>; j++) &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>循环执行完成后。100000000。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 18</title>
     <url>/2020/11/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-18/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-18"><a href="#学习笔记-2020-11-18" class="headerlink" title="学习笔记 2020-11-18"></a>学习笔记 2020-11-18</h1><a id="more"></a>
@@ -6581,8 +6715,8 @@ test();
       <tags>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>css</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>

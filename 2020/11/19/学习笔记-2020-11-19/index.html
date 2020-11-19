@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
+    
+
+    
+    
+        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+    
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            学习笔记 2020 11 19 | Drowning me
+        
+    </title>
+    
+    
+</head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">Drowning me</a>
+    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-2">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-2">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/images/avatar.jpg"/>
+                
+            </div>
+            <div class="sidebar-author-name">Sirine</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/">学习笔记 2020 11 19</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2020-11-19
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2020-11-19
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=学习笔记 2020 11 19&url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=学习笔记 2020 11 19&url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/&title=学习笔记 2020 11 19" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=学习笔记 2020 11 19&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/&text=学习笔记 2020 11 19" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/notes/ >notes</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="学习笔记-2020-11-19"><a href="#学习笔记-2020-11-19" class="headerlink" title="学习笔记 2020-11-19"></a>学习笔记 2020-11-19</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h5 id="HTML5-事件"><a href="#HTML5-事件" class="headerlink" title="HTML5 事件"></a>HTML5 事件</h5><ol>
+<li><p>DOMContentLoaded 事件</p>
+<p>在 DOM 树构建完成后立即触发。</p>
+</li>
+<li><p>readystatechange 事件</p>
+<p>event.readyState:</p>
+<ul>
+<li>uninitialized</li>
+<li>event.loading</li>
+<li>event.loaded</li>
+<li>event.interactive</li>
+<li>event.complete</li>
+</ul>
+</li>
+<li><p>pageshow 与 pagehide 事件</p>
+<p>往返缓存</p>
+</li>
+<li><p>hashchange 事件</p>
+<p>用于在 URL 散列值发生变化时触发。</p>
+</li>
+</ol>
+<h5 id="设备事件"><a href="#设备事件" class="headerlink" title="设备事件"></a>设备事件</h5><ol>
+<li><p>orientationchange 事件</p>
+<p>判断设备处于垂直还是水平模式。</p>
+<p>window.orientation</p>
+</li>
+<li><p>deviceorientation 事件</p>
+<ul>
+<li>event.alpha</li>
+<li>event.beta</li>
+<li>event.gamma</li>
+<li>event.absolute</li>
+<li>event.compasCalibrated</li>
+</ul>
+</li>
+<li><p>devicemotion 事件</p>
+<ul>
+<li>event.acceleration</li>
+<li>event.accelerateionIncludingGravity</li>
+<li>event.interval</li>
+<li>event.rotationRate</li>
+</ul>
+</li>
+</ol>
+<h5 id="触摸及手势事件"><a href="#触摸及手势事件" class="headerlink" title="触摸及手势事件"></a>触摸及手势事件</h5><ol>
+<li><p>触摸事件</p>
+<ul>
+<li>touchstart</li>
+<li>touchmove</li>
+<li>touchend</li>
+<li>touchcancel</li>
+</ul>
+<p>event对象提供以下属性：</p>
+<ul>
+<li>bubbles</li>
+<li>cancelable</li>
+<li>view</li>
+<li>clientX</li>
+<li>clientY</li>
+<li>screenX</li>
+<li>screenY</li>
+<li>detail</li>
+<li>altKey</li>
+<li>shiftKey</li>
+<li>ctrlKey</li>
+<li>metaKey</li>
+<li>touches</li>
+<li>targetTouches</li>
+<li>changedTouches</li>
+</ul>
+<p>每个 Touch 对象包含以下属性：</p>
+<ul>
+<li>clientX</li>
+<li>clientY</li>
+<li>pageX</li>
+<li>pageY</li>
+<li>screenX</li>
+<li>screenY</li>
+<li>target</li>
+</ul>
+</li>
+<li><p>手势事件</p>
+<ul>
+<li>gesturestart</li>
+<li>gesturechange</li>
+<li>gesureend</li>
+</ul>
+</li>
+</ol>
+<h5 id="事件参考"><a href="#事件参考" class="headerlink" title="事件参考"></a>事件参考</h5><h4 id="内存与性能"><a href="#内存与性能" class="headerlink" title="内存与性能"></a>内存与性能</h4><h5 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h5><p>减少页面所需内存，提升性能，节省 DOM 引用。</p>
+<h5 id="删除事件处理程序"><a href="#删除事件处理程序" class="headerlink" title="删除事件处理程序"></a>删除事件处理程序</h5><p>直接替换 innerHTML ，不会删除其中元素上的事件处理程序。</p>
+<p>页面卸载后如果事件处理程序没有被清理，则仍然残留在内存中。</p>
+<h4 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h4><h5 id="DOM-事件模拟"><a href="#DOM-事件模拟" class="headerlink" title="DOM 事件模拟"></a>DOM 事件模拟</h5><p>通过 document.createEvent() 创建 event 对象。通过 dispatchEvent() 触发事件。</p>
+<ol>
+<li>模拟鼠标事件</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="调度：setTimeout-和-setInterval"><a href="#调度：setTimeout-和-setInterval" class="headerlink" title="调度：setTimeout 和 setInterval"></a>调度：setTimeout 和 setInterval</h3><p>alert 弹窗时计时器依然在计时。</p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>每秒输出一次</p>
+<p>编写一个函数 <code>printNumbers(from, to)</code>，使其每秒输出一个数字，数字从 <code>from</code> 开始，到 <code>to</code> 结束。</p>
+<p>使用以下两种方法来实现。</p>
+<ol>
+<li>使用 <code>setInterval</code>。</li>
+<li>使用嵌套的 <code>setTimeout</code>。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printNumbers</span>(<span class="params">from, to</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> count = <span class="keyword">from</span>;</span><br><span class="line">  <span class="keyword">let</span> timeId = setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(count);</span><br><span class="line">    <span class="keyword">if</span> (count === to) &#123;</span><br><span class="line">      clearInterval(timeId);</span><br><span class="line">      timeId = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    count++;</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">printNumbers(<span class="number">5</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printNumbers</span>(<span class="params">from, to</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params">num, to</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num);</span><br><span class="line">    <span class="keyword">if</span> (num &lt; to) &#123;</span><br><span class="line">      setTimeout(run, <span class="number">1000</span>, num + <span class="number">1</span>, to);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  setTimeout(run, <span class="number">1000</span>, <span class="keyword">from</span>, to);</span><br><span class="line">&#125;</span><br><span class="line">printNumbers(<span class="number">5</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>setTimeout 会显示什么？</p>
+<p>下面代码中使用 <code>setTimeout</code> 调度了一个调用，然后需要运行一个计算量很大的 <code>for</code> 循环，这段运算耗时超过 100 毫秒。</p>
+<p>调度的函数会在何时运行？</p>
+<ol>
+<li>循环执行完成后。</li>
+<li>循环执行前。</li>
+<li>循环刚开始时。</li>
+</ol>
+<p><code>alert</code> 会显示什么？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> alert(i), <span class="number">100</span>); <span class="comment">// ?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 假设这段代码的运行时间 &gt;100ms</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">100000000</span>; j++) &#123;</span><br><span class="line">  i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>循环执行完成后。100000000。</p>
+</li>
+</ol>
+
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2020/11/18/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-18/">
+        <span>学习笔记 2020 11 18</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2020/11/19/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2020-11-19/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学习笔记-2020-11-19"><span class="toc-number">1.</span> <span class="toc-text">学习笔记 2020-11-19</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="toc-number">1.1.</span> <span class="toc-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事件"><span class="toc-number">1.1.1.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事件类型"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">事件类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#HTML5-事件"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text">HTML5 事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#设备事件"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text">设备事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#触摸及手势事件"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text">触摸及手势事件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#事件参考"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text">事件参考</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存与性能"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">内存与性能</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#事件委托"><span class="toc-number">1.1.1.2.1.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#删除事件处理程序"><span class="toc-number">1.1.1.2.2.</span> <span class="toc-text">删除事件处理程序</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模拟事件"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">模拟事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM-事件模拟"><span class="toc-number">1.1.1.3.1.</span> <span class="toc-text">DOM 事件模拟</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现代-JavaScript-教程"><span class="toc-number">1.2.</span> <span class="toc-text">现代 JavaScript 教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#调度：setTimeout-和-setInterval"><span class="toc-number">1.2.1.</span> <span class="toc-text">调度：setTimeout 和 setInterval</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#任务"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">任务</span></a></li></ol></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2019 - 2020
+      
+      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
+      
+        Sirine
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+      </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+      <div class="mdui-col-xs-6 mdui-text-right">
+        <span id="busuanzi_container_site_uv" style="display: none;"> <span
+            class="iconfont icon-user"></span>总访客量 <span
+            id="busuanzi_value_site_uv"></span></span>
+      </div>
+      <div class="mdui-col-xs-6 mdui-text-left">
+        <span id="busuanzi_container_site_pv" style="display: none;"> <span
+            class="iconfont icon-eye"></span>总访问量 <span
+            id="busuanzi_value_site_pv"></span></span>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    <script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+<script src="/js/meadow.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html >
