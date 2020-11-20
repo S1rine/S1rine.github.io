@@ -1,354 +1,636 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="zh-CN">
+
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    
-    <meta name="renderer" content="webkit"/>
-    <meta name="force-rendering" content="webkit"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
-    
-    
-        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
-        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
-    
-    
-    
-        <link rel="shortcut icon" href="/images/favicon-16x16.ico">
-    
-
-    
-    
-        <link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
-    
-    <link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/iconfont.css">
-
-    
-    
+    <meta charset="utf-8">
+    <meta name="keywords" content="VueNote-3, Drowning me">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
+    <title>VueNote-3 | Drowning me</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
 
 
-
-
-
-
-
-
-
-
-          
-
-
-    
-    
-    <title>
-        
-            VueNote-3 | Drowning me
-        
-    </title>
-    
-    
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
-<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
-  
-  <header class="mdui-appbar mdui-appbar-fixed">
-  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
-    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
-    <a href="/" class="mdui-typo-headline">Drowning me</a>
-    <a href="/" class="header-subtitle mdui-typo-headline">沉没</a>
-    <div class="mdui-toolbar-spacer"></div>
-    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
-  </div>
-</header>
 
-<div class="mdui-dialog" id="search">
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Drowning me</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
   
-    <div class="search-form">
-      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Drowning me</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-    <div class="search-result" data-resource="/search.xml"></div>
-  
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
 </div>
 
-  <aside id="sidebar" class="mdui-drawer">
-    <div class="mdui-tab" mdui-tab>
-        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
-        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
-    </div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
 
     
-    <div id="sidebar-tab1" class="mdui-p-a-2">
-        <div class="mdui-list">
-            
-                
-                <a href="/" class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-home"></i>
-                    </div>
-                    <div class="mdui-list-item-content">主页</div>
-                </a>
-            
-                
-                <a href="/tags/" class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-bookmark"></i>
-                    </div>
-                    <div class="mdui-list-item-content">标签</div>
-                </a>
-            
-                
-                <a href="/categories/" class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-folder"></i>
-                    </div>
-                    <div class="mdui-list-item-content">分类</div>
-                </a>
-            
-                
-                <a href="/archives/" class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-archive"></i>
-                    </div>
-                    <div class="mdui-list-item-content">归档</div>
-                </a>
-            
-                
-                <a href="/about/" class="mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-user"></i>
-                    </div>
-                    <div class="mdui-list-item-content">关于</div>
-                </a>
-            
-            <div class="mdui-list-item mdui-ripple">
-                <div class="mdui-list-item-icon">
-                    <i class="iconfont icon-moon"></i>
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">VueNote-3</h1>
                 </div>
-                <div class="mdui-list-item-content">夜间模式</div>
-                <label class="mdui-switch" id="darkmode">
-                  <input type="checkbox" id="nightmode_switch"/>
-                  <i class="mdui-switch-icon"></i>
-                </label>
-            </div>           
+            </div>
         </div>
     </div>
+</div>
+
+
+
+
+<main class="post-container content">
 
     
-    <div id="sidebar-tab2" class="mdui-p-a-2">
-        <div class="sidebar-overview">
-            <div class="sidebar-avatar">
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/notes/">
+                                <span class="chip bg-color">notes</span>
+                            </a>
+                        
+                            <a href="/tags/vue/">
+                                <span class="chip bg-color">vue</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
                 
-                    <img src="/images/avatar.jpg"/>
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-12-14
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-05-08
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.2k
+                </div>
+                
+
+                
+
                 
             </div>
-            <div class="sidebar-author-name">Sirine</div>
-            <div class="sidebar-description"></div>
         </div>
-        <div class="sidebar-links">
-            
-                
-                <div class="mdui-chip">
-                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
-                    <a href="mailto:sirine@foxmail.com" target="_blank" rel="noopener" class="mdui-chip-title">E-Mail</a>
-                </div>
-            
-                
-                <div class="mdui-chip">
-                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
-                    <a href="https://github.com/S1rine" target="_blank" rel="noopener" class="mdui-chip-title">GitHub</a>
-                </div>
-            
-        </div>
-        <ul class="mdui-list" mdui-collapse="{accordion: true}">
-            <li class="mdui-collapse-item">
-                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
-                    <div class="mdui-list-item-icon">
-                        <i class="iconfont icon-link"></i>
-                    </div>
-                    <div class="mdui-list-item-content">友情链接</div>
-                    <div class="mdui-collapse-item-arrow">
-                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
-                    </div>
-                </div>
-                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
-                    
-                        <a href="https://garybear.cn/hexo-theme-meadow/" target="_blank" rel="noopener" class="mdui-list-item mdui-ripple">
-                            Meadow说明文档
-                        </a>
-                    
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <div class="mdui-divider"></div>
-    
-    
-</aside>
-  
-  <main id="main-contain" class="mdui-container mdui-m-t-5">
-    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
-  <header class="mdui-card-media">
-    
-    
-      <div class="post-header"> 
-  <a class="post-header-title" href="/2019/12/14/VueNote-3/">VueNote-3</a>
-  <div class="post-header-meta">
-    <span>
-      <span class="iconfont icon-calendar"></span>
-      发布于:&nbsp;2019-12-14
-    </span>
-    <span>
-      <span class="iconfont icon-calendar-check"></span>
-      更新于:&nbsp;2020-05-08
-    </span>
-    <span>
-      <span class="iconfont icon-folder"></span>
-      分类于:&nbsp;<a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-      <span>
-        <span class="iconfont icon-eye"></span>
-        阅读次数:&nbsp;
-        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
-      </span>
-    
-  </div>
-</div>   
-    
-
-
-
-    
-    
-    <div class="mdui-card-menu">
-    
-      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
-      <ul class="mdui-menu" id="share_menu">
-        <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=VueNote-3&url=https://s1rine.github.io/2019/12/14/VueNote-3/&pic=https://s1rine.github.io/images/favicon-16x16.ico&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="https://twitter.com/intent/tweet?text=VueNote-3&url=https://s1rine.github.io/2019/12/14/VueNote-3/&via=Sirine" target="_blank" class="mdui-ripple">分享到 Twitter</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://s1rine.github.io/2019/12/14/VueNote-3/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=https://s1rine.github.io/2019/12/14/VueNote-3/" target="_blank" class="mdui-ripple">分享到 Google+</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://s1rine.github.io/2019/12/14/VueNote-3/&title=VueNote-3" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=Drowning me&title=VueNote-3&summary=&pics=https://s1rine.github.io/images/favicon-16x16.ico&url=https://s1rine.github.io/2019/12/14/VueNote-3/" target="_blank" class="mdui-ripple">分享到 QQ</a>
-        </li>
-        <li class="mdui-menu-item">
-          <a href="https://telegram.me/share/url?url=https://s1rine.github.io/2019/12/14/VueNote-3/&text=VueNote-3" target="_blank" class="mdui-ripple">分享到 Telegram</a>
-        </li>
-      </ul>
-    
-  </div>
-  </header>
-  
-  
-  
-  
-  <div class="post-tags">
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/notes/ >notes</a>
-      </i>
-    
-      <i class="iconfont icon-tag">
-        <a rel="tag" href = /tags/vue/ >vue</a>
-      </i>
-    
-  </div>
-
-  
-  <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <h1 id="Vue笔记-③"><a href="#Vue笔记-③" class="headerlink" title="Vue笔记 ③"></a>Vue笔记 ③</h1><h2 id="📃-正文"><a href="#📃-正文" class="headerlink" title="📃 正文"></a>📃 正文</h2><h3 id="①-Vuex-对象"><a href="#①-Vuex-对象" class="headerlink" title="① Vuex 对象"></a>① <code>Vuex</code> 对象</h3><h4 id="1-1-vuex-中的-state"><a href="#1-1-vuex-中的-state" class="headerlink" title="1.1 vuex 中的 state"></a>1.1 vuex 中的 state</h4><p>创建 <code>vuex</code> 实例对象时，传入一个包含 <code>state</code> 属性的对象，表示该 <code>store</code> 对象包含的全局状态，可以理解为全局属性，即其余组件都可以访问的共享数据。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">state: &#123;</span><br><span class="line">  data: something</span><br><span class="line">&#125;</span><br><span class="line">&#123;&#123;$store.state.data&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Vue笔记-③"><a href="#Vue笔记-③" class="headerlink" title="Vue笔记 ③"></a>Vue笔记 ③</h1><h2 id="📃-正文"><a href="#📃-正文" class="headerlink" title="📃 正文"></a>📃 正文</h2><h3 id="①-Vuex-对象"><a href="#①-Vuex-对象" class="headerlink" title="① Vuex 对象"></a>① <code>Vuex</code> 对象</h3><h4 id="1-1-vuex-中的-state"><a href="#1-1-vuex-中的-state" class="headerlink" title="1.1 vuex 中的 state"></a>1.1 vuex 中的 state</h4><p>创建 <code>vuex</code> 实例对象时，传入一个包含 <code>state</code> 属性的对象，表示该 <code>store</code> 对象包含的全局状态，可以理解为全局属性，即其余组件都可以访问的共享数据。</p>
+<pre class=" language-javascript"><code class="language-javascript">state<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> something
+<span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token punctuation">{</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>data<span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>
 <a id="more"></a>
 
 <h4 id="1-2-vuex-中的-mutations"><a href="#1-2-vuex-中的-mutations" class="headerlink" title="1.2  vuex 中的 mutations"></a>1.2  vuex 中的 mutations</h4><p>该属性的值为一个包含许多函数的对象，可以近似看作 <code>methods</code> ，但是这里更严谨一些，官方希望我们将对 <code>state</code> 中的值的修改都通过 <code>mutations</code> 来实现，这样可以通过官方的浏览器插件 <code>devtools</code> 来进行追踪。</p>
 <p>所有 <code>mutations</code> 的方法都有一个固定的形参，即 <code>state</code> ，可以通过它来直接调用 <code>state</code> 中的数据。</p>
 <p>在组件中对于 <code>mutations</code> 的调用需要通过 <code>this.$store.commit</code> 来实现，该方法的参数为字符串和可选的传入参数。</p>
 <p>传参时存在两种提交风格。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一种提交风格</span></span><br><span class="line"><span class="comment">// 调用示例</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  anotherExample(n)&#123;</span><br><span class="line">    <span class="keyword">this</span>.$store.commit(<span class="string">'example'</span>, n);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// mutations 定义</span></span><br><span class="line">mutations: &#123;</span><br><span class="line">  example(state, extra)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(extra) <span class="comment">// n</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种提交风格</span></span><br><span class="line"><span class="comment">// 调用示例</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  anotherExample(n)&#123;</span><br><span class="line">    <span class="keyword">this</span>.$store.commit(&#123;</span><br><span class="line">      type: <span class="string">'example'</span>,</span><br><span class="line">      extra: n</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// mutations 定义</span></span><br><span class="line">mutations: &#123;</span><br><span class="line">  example(state, payload)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(payload) <span class="comment">// &#123;type: "increment", extra: n&#125;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 第一种提交风格</span>
+<span class="token comment" spellcheck="true">// 调用示例</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">anotherExample</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'example'</span><span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// mutations 定义</span>
+mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">example</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> extra<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>extra<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// n</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-
-
+<span class="token comment" spellcheck="true">// 第二种提交风格</span>
+<span class="token comment" spellcheck="true">// 调用示例</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">anotherExample</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      type<span class="token punctuation">:</span> <span class="token string">'example'</span><span class="token punctuation">,</span>
+      extra<span class="token punctuation">:</span> n
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// mutations 定义</span>
+mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">example</span><span class="token punctuation">(</span>state<span class="token punctuation">,</span> payload<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// {type: "increment", extra: n}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h4 id="1-3-vuex-中的-actions"><a href="#1-3-vuex-中的-actions" class="headerlink" title="1.3 vuex 中的 actions"></a>1.3 vuex 中的 actions</h4><p><code>actions</code> 可以看作一个中转，当我们需要执行一些异步方法时，直接在 <code>mutations</code> 中实现的话，会导致 <code>devtools</code> 追踪出错，数据无法实时更新。而往往页面的更改已经完成，会导致混乱。那么，我们对异步方法的执行就可以写在 <code>actions</code> 中，异步完成时再调用 <code>mutations</code> 来完成对数据的更改。</p>
 <p><code>actions</code> 中的方法的形参为 <code>context</code> ， 代表该 <code>store</code> 实例。</p>
 <p>在组件中对于 <code>actions</code> 的调用使用 <code>this.$store.dispatch</code> 来实现，参数与 <code>commit</code> 类似。</p>
 <h4 id="1-4-一个异步方法实例"><a href="#1-4-一个异步方法实例" class="headerlink" title="1.4 一个异步方法实例"></a>1.4 一个异步方法实例</h4><p>首先在组件中的 <code>methods</code> 定义一个方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">asyncClick()&#123;</span><br><span class="line">  <span class="keyword">this</span>.$store</span><br><span class="line">  .dispatch(<span class="string">'UpdatedInfo'</span>,<span class="string">'i am payload'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">asyncClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>$store
+  <span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'UpdatedInfo'</span><span class="token punctuation">,</span><span class="token string">'i am payload'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
 <p>在 <code>store</code> 实例的 <code>actions</code> 中定义一个 <code>UpdatedInfo</code> 方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UpdatedInfo(context, payload)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resovle,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      context.commit(<span class="string">'changeName'</span>);</span><br><span class="line">      <span class="built_in">console</span>.log(payload);</span><br><span class="line">      resovle(<span class="string">'updated'</span>);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">UpdatedInfo</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> payload<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resovle<span class="token punctuation">,</span>reject<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      context<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'changeName'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">resovle</span><span class="token punctuation">(</span><span class="token string">'updated'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
 <p>使用 <code>setTimeout</code> 模拟异步操作。该方法返回一个 <code>promise</code> ，当异步操作执行时，实现 <code>resolve</code> 并将需要的值传递出去。</p>
 <p>那么在组件中就可以使用 <code>.then</code> 来实现异步操作完成的反馈。</p>
-<p><img src="/2019/12/14/VueNote-3/1-1.png" alt="1-1"></p>
+<p><img src="/2019/12/14/vuenote-3/1-1.png" alt="1-1"></p>
 <p>从此图中可以看到，异步操作和完成的反馈确实是在两个不同文件中实现的。</p>
 <h4 id="1-5-vuex-中的-getters"><a href="#1-5-vuex-中的-getters" class="headerlink" title="1.5 vuex 中的 getters"></a>1.5 vuex 中的 getters</h4><p><code>getters</code> 类似于 <code>computed</code> ，不多描述。参数固定为 <code>state</code> ，第二个参数可以是 <code>getters</code> 来获取全部 <code>getters</code> 以此调用其余的 <code>getter</code> 。</p>
 <p>想要实现在 <code>getters</code> 中传入额外参数的话可以如下所示</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">getters: &#123;</span><br><span class="line">  example(state)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> something;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如下调用</span></span><br><span class="line">&#123;&#123;$store.getters.example(arg)&#125;&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript">getters<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token function">example</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">return</span> something<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 如下调用</span>
+<span class="token punctuation">{</span><span class="token punctuation">{</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">.</span><span class="token function">example</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre>
 <h4 id="1-6-vuex-中的-modules"><a href="#1-6-vuex-中的-modules" class="headerlink" title="1.6 vuex 中的 modules"></a>1.6 vuex 中的 modules</h4><p><code>vuex</code> 实例对象可以分模块管理， <code>modules</code> 的值为一个对象，每个键对应的值为一个类 <code>store</code> 对象，包含 <code>state</code> <code>mutations</code> <code>getters</code> <code>actions</code> 等属性，组件中获取模块内部的 <code>state</code> 直接在根 <code>state</code> 中根据模块名来获取值，内部原理是将模块直接挂到根 <code>state</code> 上，并且内部的 <code>mutations</code> <code>getters</code> 一类都是直接挂载 <code>store</code> 对象上，调用方法没有变化， <code>getters</code> 可以使用第三个参数即根 <code>state</code> 。</p>
 <p><code>actions</code> 中的 <code>context</code> 值的作用域为自己，即在 <code>actions</code> 中调用 <code>context</code> 中的 <code>mutations</code> 只会调用自身内部的 <code>mutations</code> 。</p>
-<p><img src="/2019/12/14/VueNote-3/1-2.png" alt="1-2"></p>
+<p><img src="/2019/12/14/vuenote-3/1-2.png" alt="1-2"></p>
 <p>该图为打印出的 <code>context</code> 值。</p>
 <h4 id="1-7-官方推荐的-mutations-常量写法"><a href="#1-7-官方推荐的-mutations-常量写法" class="headerlink" title="1.7 官方推荐的 mutations 常量写法"></a>1.7 官方推荐的 mutations 常量写法</h4><p>由于在 <code>commit</code> <code>mutations</code> 时，传入的参数为字符串，没有提示，有可能出现错误。于是官方推荐了使用常量表示 <code>mutations</code> 函数名的方法。如下所示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> INCREMENT = <span class="string">'increment'</span>;</span><br><span class="line"><span class="comment">// 或写于外部 js 文件中</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> INCREMENT = <span class="string">'increment'</span>;</span><br><span class="line">mutations: &#123;</span><br><span class="line">  [INCREMENT](state)&#123;</span><br><span class="line">    <span class="comment">// some code...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> INCREMENT <span class="token operator">=</span> <span class="token string">'increment'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 或写于外部 js 文件中</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> INCREMENT <span class="token operator">=</span> <span class="token string">'increment'</span><span class="token punctuation">;</span>
+mutations<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>INCREMENT<span class="token punctuation">]</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// some code...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h4 id="1-8-vuex-的-actions-等映射"><a href="#1-8-vuex-的-actions-等映射" class="headerlink" title="1.8 vuex 的 actions 等映射"></a>1.8 vuex 的 actions 等映射</h4><p>在 <code>vuex</code> 中， 若是因为频繁调用 <code>this.$store.getters.xxxx</code> 或是 <code>dispatch</code> 等方法，可以通过 <code>MapGetters</code> 和 <code>MapActions</code> 等将 <code>store</code> 对象上的方法映射到当前组件内部。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; MapActions &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  ...mapActions([<span class="string">'addCart'</span>]),</span><br><span class="line">  aMethod()&#123;</span><br><span class="line">    <span class="keyword">this</span>.addCart(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">import</span> &#123; mapGetters &#125; <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line">computed: &#123;</span><br><span class="line">  ...mapGetters([<span class="string">'cartList'</span>]),</span><br><span class="line">  aComputed()&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.cartList</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> MapActions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuex'</span>
+methods<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'addCart'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">aMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addCart</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> mapGetters <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vuex'</span>
+computed<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'cartList'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token function">aComputed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>cartList
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="②-axios"><a href="#②-axios" class="headerlink" title="② axios"></a>② axios</h3><h4 id="2-1-封装第三方框架的必要性"><a href="#2-1-封装第三方框架的必要性" class="headerlink" title="2.1 封装第三方框架的必要性"></a>2.1 封装第三方框架的必要性</h4><p>在一个项目中，不应该对一个第三方框架过分依赖。例如 <code>axios</code> ，不应该在每个组件中单独引入并在 <code>methods</code> 中写入调用方法。如果框架出了问题，就会引发很多麻烦。<del>话说 <code>vue</code> 出了问题会咋样 😂</del></p>
 <p>因此，可以考虑自己封装一下第三方框架的使用，然后在组件中使用自己封装的文件。</p>
 <h4 id="2-2-axios-封装"><a href="#2-2-axios-封装" class="headerlink" title="2.2 axios 封装"></a>2.2 axios 封装</h4><p>在 <code>src</code> 中新建一个 <code>network</code> 文件夹作为封装模块的目录。</p>
-<p><img src="/2019/12/14/VueNote-3/2-1.png" alt="2-1"></p>
+<p><img src="/2019/12/14/vuenote-3/2-1.png" alt="2-1"></p>
 <p>在 <code>request.js</code> 中引入 <code>axios</code> 然后导出自己写的包装函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">config, success, failure</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">    baseURL: <span class="string">'...'</span>,</span><br><span class="line">    timeout: <span class="number">5000</span></span><br><span class="line">  &#125;)</span><br><span class="line">  instance(config)</span><br><span class="line">  .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    success(res)</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    failure(err)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">request</span><span class="token punctuation">(</span>config<span class="token punctuation">,</span> success<span class="token punctuation">,</span> failure<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    baseURL<span class="token punctuation">:</span> <span class="token string">'...'</span><span class="token punctuation">,</span>
+    timeout<span class="token punctuation">:</span> <span class="token number">5000</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token function">instance</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">success</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token function">failure</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
 <p>定义一个 <code>axios</code> 实例，除了规定请求的基本 <code>config</code> ，还要求了请求成功和失败的回调函数，来实现在组件内的相应回调操作。</p>
 <p>例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;request&#125; <span class="keyword">from</span> <span class="string">'@/network/request'</span></span><br><span class="line">request(&#123;</span><br><span class="line">  url: <span class="string">'category'</span>,</span><br><span class="line">&#125;,(res)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;,(err)=&gt;&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span>request<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/network/request'</span>
+<span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  url<span class="token punctuation">:</span> <span class="token string">'category'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>或是直接在 <code>config</code> 中写入回调函数。</p>
 <p>理解后，改用 <code>Promise</code> 来实现。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">config</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> instance = axios.create(&#123;</span><br><span class="line">      baseURL: <span class="string">'http://106.54.54.237:8000/api/v1'</span>,</span><br><span class="line">      timeout: <span class="number">5000</span></span><br><span class="line">    &#125;)</span><br><span class="line">    instance(config)</span><br><span class="line">      .then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(res)</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">        reject(err)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
 
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">request</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> instance <span class="token operator">=</span> axios<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      baseURL<span class="token punctuation">:</span> <span class="token string">'http://106.54.54.237:8000/api/v1'</span><span class="token punctuation">,</span>
+      timeout<span class="token punctuation">:</span> <span class="token number">5000</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token function">instance</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token function">reject</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
 <p>组件内部代码为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;request&#125; <span class="keyword">from</span> <span class="string">'@/network/request'</span></span><br><span class="line">request(&#123;</span><br><span class="line">  url: <span class="string">'category'</span>,</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span>request<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/network/request'</span>
+<span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  url<span class="token punctuation">:</span> <span class="token string">'category'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>然而实际上，<code>instance</code> 的返回值就是一个 <code>Promise</code> ，直接返回 <code>instance</code> 的返回值就可以。</p>
 <h4 id="2-3-axios-拦截器"><a href="#2-3-axios-拦截器" class="headerlink" title="2.3 axios 拦截器"></a>2.3 axios 拦截器</h4><p>拦截器分为请求拦截和响应拦截。</p>
 <ul>
 <li><p>请求拦截</p>
 <p>请求拦截中分为配置拦截和错误拦截，分别对应该方法的第一个参数和第二个参数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">instance.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(config);</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript">instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>config <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> config<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p><code>instance</code> 对应于前文。<br>第一个参数函数中的参数为 <code>config</code> ，并且在拦截操作完成后必须将 <code>config</code> 返回，否则无法完成请求。</p>
-<p><img src="/2019/12/14/VueNote-3/2-2.png" alt="2-2"></p>
+<p><img src="/2019/12/14/vuenote-3/2-2.png" alt="2-2"></p>
 <p>常用于修改不符合服务器要求的信息，加入请求过渡动画，检查用户是否符合要求。</p>
 </li>
 <li><p>响应拦截</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">instance.interceptors.response.use(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res);</span><br><span class="line">  <span class="keyword">return</span> res.data;</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class=" language-javascript"><code class="language-javascript">instance<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>res <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> res<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> err <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>类似于请求拦截，一个响应成功拦截，一个响应失败拦截。</p>
 <p>响应成功拦截也需要将结果再次返回。</p>
 </li>
@@ -357,22 +639,23 @@
 <p>上网查了一下后发现，应该是在执行 <code>npm run dev</code> 时，<code>webpack.base.conf.js</code> 文件中的配置只会在指令执行时生效，后续修改的话需要再次执行命令来生效。</p>
 <h4 id="3-2-alias-使用注意点"><a href="#3-2-alias-使用注意点" class="headerlink" title="3.2 alias 使用注意点"></a>3.2 alias 使用注意点</h4><p>在 <code>script</code> 标签中使用 <code>import</code> 导入时可以直接使用别名，在 <code>template</code> 标签中对 <code>img</code> 之类的 <code>src</code> 路径需要在开始处添加 <code>~</code> 符号指示 <code>html</code> 标签中的别名使用。</p>
 <h3 id="④-Error-in-render-问题记录"><a href="#④-Error-in-render-问题记录" class="headerlink" title="④ Error in render 问题记录"></a>④ Error in render 问题记录</h3><h4 id="4-1-问题描述"><a href="#4-1-问题描述" class="headerlink" title="4.1 问题描述"></a>4.1 问题描述</h4><p>在写 <code>Python</code> 比赛题目试图混学分时，写数据可视化收尾环节出现了非常多问题。浏览器控制台不停地报错，显示为</p>
-<p><img src="/2019/12/14/VueNote-3/20190209195753429.png" alt="img"></p>
+<p><img src="/2019/12/14/vuenote-3/20190209195753429.png" alt="img"></p>
 <p>找不到问题出处，查了一番发现有人提到 <code>error in render</code> 表示在渲染部分出了问题，应该去找模板的问题。排查一番确实是模块处的循环部分出了问题。</p>
 <h3 id="⑤-Vue-项目部署问题记录"><a href="#⑤-Vue-项目部署问题记录" class="headerlink" title="⑤ Vue 项目部署问题记录"></a>⑤ Vue 项目部署问题记录</h3><h4 id="5-1-打包后路径问题"><a href="#5-1-打包后路径问题" class="headerlink" title="5.1 打包后路径问题"></a>5.1 打包后路径问题</h4><p>同样是那个 <code>Python</code> 比赛，写完前端部分后打包想做一个预览，把资源都放到服务器网站根目录发现并没有问题。</p>
-<p><img src="/2019/12/14/VueNote-3/image-20200508094542121.png" alt="image-20200508094542121"></p>
-<p><img src="/2019/12/14/VueNote-3/image-20200508094605218.png" alt="image-20200508094605218"></p>
-<p><img src="/2019/12/14/VueNote-3/image-20200508094618992.png" alt="image-20200508094618992"></p>
+<p><img src="/2019/12/14/vuenote-3/image-20200508094542121.png" alt="image-20200508094542121"></p>
+<p><img src="/2019/12/14/vuenote-3/image-20200508094605218.png" alt="image-20200508094605218"></p>
+<p><img src="/2019/12/14/vuenote-3/image-20200508094618992.png" alt="image-20200508094618992"></p>
 <p>而在 <code>github pages</code> 部署以及本地打开打包后文件都会出现静态资源访问不到的情况。</p>
 <p>本地静态资源正确路径👇</p>
-<p><img src="/2019/12/14/VueNote-3/image-20200508094721461.png" alt="image-20200508094721461"></p>
+<p><img src="/2019/12/14/vuenote-3/image-20200508094721461.png" alt="image-20200508094721461"></p>
 <p>本地静态资源错误路径👇</p>
-<p><img src="/2019/12/14/VueNote-3/image-20200508094753038.png" alt="image-20200508094753038"></p>
+<p><img src="/2019/12/14/vuenote-3/image-20200508094753038.png" alt="image-20200508094753038"></p>
 <p><code>github pages</code> 访问问题也差不多。</p>
 <p>一开始的问题是 <code>js</code> 和 <code>css</code> 文件也无法访问，因为使用的都是绝对路径。在项目访问时存在子目录就会出现问题。</p>
 <p>在 <code>Vue</code> 项目内配置 <code>vue.config.js</code> 文件时</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  publicPath: process.env.NODE_ENV === <span class="string">'production'</span> ? <span class="string">'./'</span>:<span class="string">''</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  publicPath<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV <span class="token operator">===</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token string">'./'</span><span class="token punctuation">:</span><span class="token string">''</span>
+<span class="token punctuation">}</span></code></pre>
 <p>当环境为生产环境时，使用相对路径。但这样操作后依然只有 <code>js</code> <code>css</code> 文件生效，我放在 <code>public</code> 文件下的 <code>data</code> 文件依然无法访问到。</p>
 <p>仔细观察两处文件引用的方法，发现在引用 <code>css</code> 时使用的是相对路径，引用 <code>json</code> 文件时用的是绝对路径且是根目录起。</p>
 <p>因为了解到 <code>vue</code> 项目最后打包的文件是在 <code>public</code> 目录运行的，即使是本地运行时也是，那么就尝试把绝对路径修改为相对路径。</p>
@@ -382,11 +665,17 @@
 <p>除去访问 <code>github</code> 本身带来的慢速以外，我检查了一下 <code>network</code> 发现有一个 <code>js</code> 文件请求了一分钟还没有请求完，在资源管理器里查看了一下这个文件的大小，足足有 1000 多 <code>k</code> ，于是我开始尝试减少这部分的大小。</p>
 <p>大概原因是打包的模块太多太大，但我的这个项目依赖的模块并不多，应当是某个模块太大。我随便翻了一下 <code>chunk</code> 这个文件，就会发现许多与 <code>echarts</code> 相关的内容。于是准备减轻这个模块引起的负担。</p>
 <p>首先，在 <code>index.html</code> 中引用需要的模块 <code>cdn</code> 链接。 </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcdn.net/ajax/libs/echarts/4.7.0/echarts.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://cdn.bootcdn.net/ajax/libs/echarts/4.7.0/echarts.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
 <p>然后在 <code>vue.config.js</code> 中进行配置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;  </span><br><span class="line">  configureWebpack: &#123;    </span><br><span class="line">    externals: &#123;</span><br><span class="line">      <span class="string">'vue'</span>: <span class="string">'Vue'</span>,</span><br><span class="line">      <span class="string">'echarts'</span>: <span class="string">'echarts'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>  
+  configureWebpack<span class="token punctuation">:</span> <span class="token punctuation">{</span>    
+    externals<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'vue'</span><span class="token punctuation">:</span> <span class="token string">'Vue'</span><span class="token punctuation">,</span>
+      <span class="token string">'echarts'</span><span class="token punctuation">:</span> <span class="token string">'echarts'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span></code></pre>
 <p>事实上这个部分应该怎么写我都不是很清楚，但这样子就可以成功了。</p>
 <p>然后再 <code>push</code> 到 <code>github</code> 上，打开 <code>github pages</code> 就会发现可以大大提速。</p>
 <p>且前面的路径问题也已经解决。</p>
@@ -398,10 +687,13 @@
 </ul>
 <h4 id="5-3-单页面应用在子目录路由跳转的问题"><a href="#5-3-单页面应用在子目录路由跳转的问题" class="headerlink" title="5.3 单页面应用在子目录路由跳转的问题"></a>5.3 单页面应用在子目录路由跳转的问题</h4><p>写另一个单页面应用的时候发现了问题，通过上面的经验，已经在项目配置文件中写好了基本路径为相对路径。</p>
 <p>但在我把项目放进服务器根网站的子目录 <code>/ask</code> 时出现了路由跳转的问题。</p>
-<p><code>Vue</code> 提供的只是前端路由，无法直接用来获取资源，我们的项目根路径还是 <code>&#39;/&#39;</code> ，但访问 <code>ip/ask</code> 时无法正确的跳转路由。</p>
-<p>原先的设定是访问 <code>&#39;/&#39;</code> 时重定向到 <code>/question</code> ，但此时我们访问的其实是 <code>/ask</code> ，查询了一下发现 <code>vue-router</code> 可以设置一个 <code>base</code> 路径，将路由跳转加上一个基础 <code>/ask</code> 。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  mode: <span class="string">'history'</span>,</span><br><span class="line">  routes,</span><br><span class="line">  base: <span class="string">'/ask'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
+<p><code>Vue</code> 提供的只是前端路由，无法直接用来获取资源，我们的项目根路径还是 <code>'/'</code> ，但访问 <code>ip/ask</code> 时无法正确的跳转路由。</p>
+<p>原先的设定是访问 <code>'/'</code> 时重定向到 <code>/question</code> ，但此时我们访问的其实是 <code>/ask</code> ，查询了一下发现 <code>vue-router</code> 可以设置一个 <code>base</code> 路径，将路由跳转加上一个基础 <code>/ask</code> 。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token punctuation">:</span> <span class="token string">'history'</span><span class="token punctuation">,</span>
+  routes<span class="token punctuation">,</span>
+  base<span class="token punctuation">:</span> <span class="token string">'/ask'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 <p>那么再次打包部署到服务器，就可以正常访问了。</p>
 <p>访问 <code>ip/ask</code> 时可以正确的重定向到 <code>ip/ask/question</code> ，并且其他部分的跳转也没有问题。</p>
 <h4 id="5-4-多页面应用问题"><a href="#5-4-多页面应用问题" class="headerlink" title="5.4 多页面应用问题"></a>5.4 多页面应用问题</h4><p>接触到一个多页面应用项目，很懵逼。把配置文件捋了一遍后，发现使用了 <code>glob</code> 模块，实际上，这个项目的运行路径下就是存在多个页面，想要去哪个页面，直接打开这个 <code>html</code> 页面即可。</p>
@@ -409,109 +701,674 @@
 <p>父组件传值给子组件，而在我写的子组件中，传值是需要被修改的。而这个行为官方是不推荐的，那么就在 <code>data</code> 域中新建两个变量，但是总是出现无法正确赋值的情况。</p>
 <p>后得知是因为 <code>data</code> 域只会初始化一次，那么我们需要使用 <code>watch</code> 来监听 <code>props</code> 内需要的参数，然后去赋值给 <code>data</code> 域。</p>
 
-  </div>
-  <!--文末结束语-->
-  
-    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
-  
-  <!--页脚广告-->
-  
-  <div class="mdui-divider"></div>
-  
-  <nav>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Sirine</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://s1rine.github.io/2019/12/14/vuenote-3/">https://s1rine.github.io/2019/12/14/vuenote-3/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Sirine</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/notes/">
+                                    <span class="chip bg-color">notes</span>
+                                </a>
+                            
+                                <a href="/tags/vue/">
+                                    <span class="chip bg-color">vue</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
     
-      <a rel="prev" class="post-nav-item mdui-float-left" href="/2020/06/07/VueNote-4/">
-        <i class="iconfont icon-angle-left"></i>
-        <span>VueNote-4</span>
-      </a>
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
     
+
     
-      <a rel="next" class="post-nav-item mdui-float-right" href="/2019/12/12/VueNote-2/">
-        <span>VueNote-2</span>
-        <i class="iconfont icon-angle-right"></i>
-      </a>
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
     
-  </nav>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/06/07/vuenote-4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="VueNote-4">
+                        
+                        <span class="card-title">VueNote-4</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Vue笔记 ④📃 正文① Vue 单文件组件1.1 style 中的 scoped在 Vue 的单文件组件中，有 template , script, style 三种标签。其中的 style 有一个 scoped 属性。在文档中的解释为
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/notes/">
+                        <span class="chip bg-color">notes</span>
+                    </a>
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/12/12/vuenote-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="VueNote-2">
+                        
+                        <span class="card-title">VueNote-2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Vue 笔记 ②📃正文①父子组件传值1.1 子组件访问问题在 vue 中，子组件访问父组件的值是需要经过特定的操作的。我很好奇，为什么不能够直接访问，按理说，嵌套关系是应该可以访问到父作用域的值的。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/notes/">
+                        <span class="chip bg-color">notes</span>
+                    </a>
+                    
+                    <a href="/tags/vue/">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
 </article>
 
+</div>
 
 
 
-  <div class="toc-button"  style="z-index: 100;">
-    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
-    <ul class="mdui-menu" id="toc">
-      <li class="mdui-menu-item">
-        <a href="/2019/12/14/VueNote-3/" id="toc-header" class="mdui-ripple">文章目录</a>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue笔记-③"><span class="toc-number">1.</span> <span class="toc-text">Vue笔记 ③</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#📃-正文"><span class="toc-number">1.1.</span> <span class="toc-text">📃 正文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#①-Vuex-对象"><span class="toc-number">1.1.1.</span> <span class="toc-text">① Vuex 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-vuex-中的-state"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.1 vuex 中的 state</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-vuex-中的-mutations"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">1.2  vuex 中的 mutations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-vuex-中的-actions"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1.3 vuex 中的 actions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-一个异步方法实例"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">1.4 一个异步方法实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-vuex-中的-getters"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">1.5 vuex 中的 getters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-vuex-中的-modules"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">1.6 vuex 中的 modules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-7-官方推荐的-mutations-常量写法"><span class="toc-number">1.1.1.7.</span> <span class="toc-text">1.7 官方推荐的 mutations 常量写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-8-vuex-的-actions-等映射"><span class="toc-number">1.1.1.8.</span> <span class="toc-text">1.8 vuex 的 actions 等映射</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#②-axios"><span class="toc-number">1.1.2.</span> <span class="toc-text">② axios</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-封装第三方框架的必要性"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">2.1 封装第三方框架的必要性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-axios-封装"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.2 axios 封装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-axios-拦截器"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">2.3 axios 拦截器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#③-webpack-别名配置"><span class="toc-number">1.1.3.</span> <span class="toc-text">③ webpack 别名配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-alias-配置无法生效问题"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">3.1 alias 配置无法生效问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-alias-使用注意点"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">3.2 alias 使用注意点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#④-Error-in-render-问题记录"><span class="toc-number">1.1.4.</span> <span class="toc-text">④ Error in render 问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-问题描述"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">4.1 问题描述</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#⑤-Vue-项目部署问题记录"><span class="toc-number">1.1.5.</span> <span class="toc-text">⑤ Vue 项目部署问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-打包后路径问题"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">5.1 打包后路径问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-减少打包后-chunk-js-文件的大小"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">5.2 减少打包后 chunk.js 文件的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-单页面应用在子目录路由跳转的问题"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">5.3 单页面应用在子目录路由跳转的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-多页面应用问题"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">5.4 多页面应用问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-父子组件传值问题"><span class="toc-number">1.1.5.5.</span> <span class="toc-text">5.5 父子组件传值问题</span></a></li></ol></li></ol></li></ol></li></ol>
-      </li>
-    </ul>
-  </div>
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
 
 
+<!-- 代码块复制 -->
 
-  </main>
-  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
-  <div class="mdui-container">
-    <div class="mdui-row">
-      
-      <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
-      
-      <span>
-        &copy; 2019 - 2020
-      
-      <span style="color:#ffffff" class="iconfont icon-Instagram"></span>
-      
-        Sirine
-      </span>
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
     </div>
-    <div class="mdui-row">
-      
-      <div class="mdui-col-xs-6 mdui-text-right">
-        <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
-      </div>
-      <div class="mdui-col-xs-6 mdui-text-left">
-        <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
-      </div>
-      
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
     </div>
-    <div class="mdui-row">
-      
-      <div class="mdui-col-xs-6 mdui-text-right">
-        <span id="busuanzi_container_site_uv" style="display: none;"> <span
-            class="iconfont icon-user"></span>总访客量 <span
-            id="busuanzi_value_site_uv"></span></span>
-      </div>
-      <div class="mdui-col-xs-6 mdui-text-left">
-        <span id="busuanzi_container_site_pv" style="display: none;"> <span
-            class="iconfont icon-eye"></span>总访问量 <span
-            id="busuanzi_value_site_pv"></span></span>
-      </div>
-      
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
     </div>
-  </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2020</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">Sirine</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">104.8k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/S1rine" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:sirine@foxmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
 </footer>
-  
-  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
-  
-  
 
-    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="progress-bar"></div>
 
 
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({
-        startOnLoad: true,
-        theme: "default"
-    });</script>
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
 
+    <!-- Baidu Analytics -->
 
+    <!-- Baidu Push -->
 
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
 
-    <script src="/js/mdui.min.v1.0.0.js"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
 
+    
 
-<script src="/js/meadow.js"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
-</html >
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
