@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="学习笔记 2020 11 17, Drowning me">
+    <meta name="keywords" content="学习笔记 2020 11 21, Drowning me">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>学习笔记 2020 11 17 | Drowning me</title>
+    <title>学习笔记 2020 11 21 | Drowning me</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,12 +270,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">学习笔记 2020 11 17</h1>
+                    <h1 class="description center-align post-title">学习笔记 2020 11 21</h1>
                 </div>
             </div>
         </div>
@@ -417,21 +417,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-17
+                    2020-11-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-17
+                    2020-11-21
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    676
+                    599
                 </div>
                 
 
@@ -443,156 +443,149 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="学习笔记-2020-11-17"><a href="#学习笔记-2020-11-17" class="headerlink" title="学习笔记 2020-11-17"></a>学习笔记 2020-11-17</h1><a id="more"></a>
+                <h1 id="学习笔记-2020-11-21"><a href="#学习笔记-2020-11-21" class="headerlink" title="学习笔记 2020-11-21"></a>学习笔记 2020-11-21</h1><a id="more"></a>
 
-<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><h4 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h4><h5 id="用户界面事件"><a href="#用户界面事件" class="headerlink" title="用户界面事件"></a>用户界面事件</h5><ul>
-<li>DOMActivate</li>
-<li>load</li>
-<li>unload</li>
-<li>abort</li>
-<li>error</li>
-<li>select</li>
-<li>resize</li>
-<li>scroll</li>
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="动画与-Canvas-图形"><a href="#动画与-Canvas-图形" class="headerlink" title="动画与 Canvas 图形"></a>动画与 Canvas 图形</h3><h4 id="2D-绘图上下文"><a href="#2D-绘图上下文" class="headerlink" title="2D 绘图上下文"></a>2D 绘图上下文</h4><h5 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h5><ul>
+<li>fillRect()</li>
+<li>strokeRect()</li>
+<li>clearRect()</li>
 </ul>
-<ol>
-<li><p>load 事件</p>
-<p>一般来说，在 window 上发生的事件，都可以通过给 <code>&lt;body&gt;</code> 元素上对应的属性赋值来指定。</p>
-</li>
-<li><p>unload 事件</p>
-</li>
-<li><p>resize 事件</p>
-</li>
-<li><p>scroll 事件</p>
-<p>scroll 事件发生在 window 上。在混杂模式下，可以通过 body 元素检测 scrollLeft 和 scrollTop 属性的变化。在标准模式下，这些变化在除早期版的 Safari 之外的所有浏览器上都发生在 html 元素上。</p>
-<pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>compatMode <span class="token operator">==</span> <span class="token string">'CSS1Compat'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-</ol>
-<h5 id="焦点事件"><a href="#焦点事件" class="headerlink" title="焦点事件"></a>焦点事件</h5><ul>
-<li>blur</li>
-<li>DOMFocusIn</li>
-<li>DOMFocusOut</li>
-<li>focus</li>
-<li>focusin</li>
-<li>focusout</li>
-</ul>
-<h5 id="鼠标和滚轮事件"><a href="#鼠标和滚轮事件" class="headerlink" title="鼠标和滚轮事件"></a>鼠标和滚轮事件</h5><ul>
-<li>click，响应鼠标主键和键盘回车键。</li>
-<li>dbclick</li>
-<li>mousedown</li>
-<li>mouseenter，鼠标光标从元素外部移到元素内部。不冒泡。</li>
-<li>mouseleave，鼠标光标从元素内部移到元素外部。不冒泡。</li>
-<li>mousemove，鼠标光标在元素上移动。</li>
-<li>mouseout，鼠标光标从一个元素移到另一个元素。</li>
-<li>mouseover，鼠标光标从元素外部移到元素内部。</li>
-<li>mouseup</li>
-<li>mousewheel，鼠标滚轮事件。</li>
-</ul>
-<p>触发顺序：</p>
-<ol>
-<li>mousedown</li>
-<li>mouseup</li>
-<li>click</li>
-<li>mousedown</li>
-<li>mouseup</li>
-<li>click</li>
-<li>dbclick</li>
-</ol>
-<p>click 和 dbclick 依赖其他事件触发。</p>
-<ol>
-<li><p>客户端坐标</p>
+<p>以上方法接收 4 个参数，矩形 x 坐标， y 坐标，矩形宽度和矩形高度。</p>
 <ul>
-<li>event.clientX</li>
-<li>event.clientY</li>
+<li>lineWidth</li>
+<li>lineCap</li>
 </ul>
-<p>鼠标光标在视口中的坐标。</p>
-</li>
-<li><p>页面坐标</p>
+<h5 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h5><ul>
+<li>beginPath()</li>
+<li>arc(x, y, radius, startAngle, endAngle, counterclockwise)</li>
+<li>arcTo(x1, y1, x2, y2, radius)</li>
+<li>bezierCurveTo(c1x, c1y, c2x, c2y, x, y)</li>
+<li>lineTo(x, y)</li>
+<li>moveTo(x, y)</li>
+<li>quadraticCurveTo(cx, cy, x, y)</li>
+<li>rect(x, y, width, height)</li>
+<li>isPointInPath(x, y)</li>
+</ul>
+<h5 id="绘制文本"><a href="#绘制文本" class="headerlink" title="绘制文本"></a>绘制文本</h5><ul>
+<li>fillText()</li>
+<li>strokeText()</li>
+</ul>
+<p>parameter: string, x, y, pxWidth</p>
 <ul>
-<li>event.pageX</li>
-<li>event.pageY</li>
+<li>font</li>
+<li>textAlign</li>
+<li>textBaseLine</li>
+<li>measureText()</li>
 </ul>
-<p>鼠标光标在页面上的坐标。</p>
-</li>
-<li><p>屏幕坐标</p>
-<ul>
-<li>event.screenX</li>
-<li>event.screenY</li>
+<h5 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h5><ul>
+<li>rotate(angle)</li>
+<li>scale(scaleX, scaleY)</li>
+<li>translate(x, y)</li>
+<li>transform(m1_1, m1_2, m2_1, m2_2, dx, dy)</li>
+<li>setTransform(m1_1, m1_2, m2_1, m2_2, dx, dy)</li>
+<li>save()</li>
+<li>restore()</li>
 </ul>
-<p>鼠标光标在整个屏幕上的坐标。</p>
-</li>
-<li><p>修饰键</p>
-<ul>
-<li>event.shiftKey</li>
-<li>event.ctrlKey</li>
-<li>event.altKey</li>
-<li>event.metaKey</li>
+<h5 id="绘制图像"><a href="#绘制图像" class="headerlink" title="绘制图像"></a>绘制图像</h5><ul>
+<li>drawImage()</li>
 </ul>
-</li>
-</ol>
-<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="函数对象，NFE"><a href="#函数对象，NFE" class="headerlink" title="函数对象，NFE"></a>函数对象，NFE</h3><ol>
-<li><p>属性，name</p>
-<p>函数名</p>
-</li>
-<li><p>属性，length</p>
-<p>函数形参个数，rest 参数不参与计数。</p>
-</li>
-<li><p>自定义属性</p>
-</li>
-<li><p>命名函数表达式</p>
-</li>
-</ol>
-<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
-<li><p>为 counter 添加 set 和 decrease 方法</p>
-<p>修改 <code>makeCounter()</code> 代码，使得 counter 可以进行减一和设置值的操作：</p>
-<ul>
-<li><code>counter()</code> 应该返回下一个数字（与之前的逻辑相同）。</li>
-<li><code>counter.set(value)</code> 应该将 <code>count</code> 设置为 <code>value</code>。</li>
-<li><code>counter.decrease(value)</code> 应该把 <code>count</code> 减 1。</li>
+<h5 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h5><ul>
+<li>shadowColor</li>
+<li>shadowOffsetX</li>
+<li>shadowOffsetY</li>
+<li>shadowBlur</li>
 </ul>
-<p>查看沙箱中的代码获取完整使用示例。</p>
-<p>P.S. 你可以使用闭包或者函数属性来保持当前的计数，或者两种都写。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">function</span> <span class="token function">counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> counter<span class="token punctuation">.</span>count<span class="token operator">++</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+<h5 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h5><ul>
+<li>createLinearGradient(x1, y1, x2, y2)</li>
+<li>addColorStop(position, color)</li>
+</ul>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="函数绑定"><a href="#函数绑定" class="headerlink" title="函数绑定"></a>函数绑定</h3><h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>作为方法的绑定函数</p>
+<p>输出将会是什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token keyword">this</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span>
+<span class="token punctuation">}</span>
 
-  counter<span class="token punctuation">.</span>count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  counter<span class="token punctuation">.</span><span class="token keyword">set</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>count <span class="token operator">=</span> value<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  counter<span class="token punctuation">.</span>decrease <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">--</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
+  g<span class="token punctuation">:</span> f<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-  <span class="token keyword">return</span> counter<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+user<span class="token punctuation">.</span><span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>null。</p>
 </li>
-<li><p>任意数量的括号求和</p>
-<p>写一个函数 <code>sum</code>，它有这样的功能：</p>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1 + 2</span>
-<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1 + 2 + 3</span>
-<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">6</span>
-<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span>
-<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">15</span></code></pre>
-<p>P.S. 提示：你可能需要创建自定义对象来为你的函数提供基本类型转换。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">let</span> num <span class="token operator">=</span> a<span class="token punctuation">;</span>
-  <span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    num <span class="token operator">+</span><span class="token operator">=</span> n<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> f<span class="token punctuation">;</span>
+<li><p>二次 bind</p>
+<p>我们可以通过额外的绑定改变 <code>this</code> 吗？</p>
+<p>输出将会是什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+f <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"John"</span><span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span> <span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"Ann"</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>John。一个函数不能被重绑定。</p>
+</li>
+<li><p>bind 后的函数属性</p>
+<p>函数的属性中有一个值。<code>bind</code> 之后它会改变吗？为什么，阐述一下？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+sayHi<span class="token punctuation">.</span>test <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> bound <span class="token operator">=</span> sayHi<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">"John"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> bound<span class="token punctuation">.</span>test <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输出将会是什么？为什么？</span></code></pre>
+<p><code>undefined</code> 。</p>
+</li>
+<li><p>修复丢失了 “this” 的函数</p>
+<p>下面代码中对 <code>askPassword()</code> 的调用将会检查 password，然后基于结果调用 <code>user.loginOk/loginFail</code>。</p>
+<p>但是它导致了一个错误。为什么？</p>
+<p>修改高亮的行，以使所有内容都能正常工作（其它行不用修改）。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">askPassword</span><span class="token punctuation">(</span>ok<span class="token punctuation">,</span> fail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> password <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Password?"</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>password <span class="token operator">==</span> <span class="token string">"rockstar"</span><span class="token punctuation">)</span> <span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'John'</span><span class="token punctuation">,</span>
+
+  <span class="token function">loginOk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> logged in`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function">loginFail</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> failed to log in`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">askPassword</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>loginOk<span class="token punctuation">,</span> user<span class="token punctuation">.</span>loginFail<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 此行高亮</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token function">askPassword</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>loginOk<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span>loginFail<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>偏函数在登陆中的应用</p>
+<p>这个任务是比 <a href="https://zh.javascript.info/task/question-use-bind" target="_blank" rel="noopener">修复丢失了 “this” 的函数</a> 略微复杂的变体。</p>
+<p><code>user</code> 对象被修改了。现在不是两个函数 <code>loginOk/loginFail</code>，现在只有一个函数 <code>user.login(true/false)</code>。</p>
+<p>在下面的代码中，我们应该向 <code>askPassword</code> 传入什么参数，以使得 <code>user.login(true)</code> 结果是 <code>ok</code>，<code>user.login(fasle)</code> 结果是 <code>fail</code>？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">askPassword</span><span class="token punctuation">(</span>ok<span class="token punctuation">,</span> fail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> password <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Password?"</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>password <span class="token operator">==</span> <span class="token string">"rockstar"</span><span class="token punctuation">)</span> <span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span> <span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'John'</span><span class="token punctuation">,</span>
+
+  <span class="token function">login</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token punctuation">(</span>result <span class="token operator">?</span> <span class="token string">' logged in'</span> <span class="token punctuation">:</span> <span class="token string">' failed to log in'</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-  f<span class="token punctuation">.</span>toString <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> num<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> f<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">askPassword</span><span class="token punctuation">(</span><span class="token operator">?</span><span class="token punctuation">,</span> <span class="token operator">?</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>你只能修改高亮部分的代码。</p>
+<pre class=" language-js"><code class="language-js"><span class="token function">askPassword</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span>login<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span>login<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>user<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
 
@@ -620,7 +613,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://s1rine.github.io/2020/11/17/xue-xi-bi-ji-2020-11-17/">https://s1rine.github.io/2020/11/17/xue-xi-bi-ji-2020-11-17/</a>
+                    <a href="https://s1rine.github.io/2020/11/21/xue-xi-bi-ji-2020-11-21/">https://s1rine.github.io/2020/11/21/xue-xi-bi-ji-2020-11-21/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -829,29 +822,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/18/xue-xi-bi-ji-2020-11-18/">
+                <a href="/2020/11/21/xue-xi-bi-ji-2020-11-21/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="学习笔记 2020 11 18">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="学习笔记 2020 11 21">
                         
-                        <span class="card-title">学习笔记 2020 11 18</span>
+                        <span class="card-title">学习笔记 2020 11 21</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-11-18
+                            学习笔记 2020-11-21
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -864,6 +858,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -882,24 +877,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/16/xue-xi-bi-ji-2020-11-16/">
+                <a href="/2020/11/20/xue-xi-bi-ji-2020-11-20/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="学习笔记 2020 11 16">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="学习笔记 2020 11 20">
                         
-                        <span class="card-title">学习笔记 2020 11 16</span>
+                        <span class="card-title">学习笔记 2020 11 20</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-11-16
+                            学习笔记 2020-11-20
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
                             </span>
                         <span class="publish-author">
                             

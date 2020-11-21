@@ -519,24 +519,13 @@ work <span class="token operator">=</span> <span class="token function">spy</spa
   <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">'call:'</span> <span class="token operator">+</span> args<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "call:1,2", "call:4,5"</span>
 <span class="token punctuation">}</span></code></pre>
 <p>P.S. 该装饰器有时对于单元测试很有用。它的高级形式是 <a href="http://sinonjs.org/" target="_blank" rel="noopener">Sinon.JS</a> 库中的 <code>sinon.spy</code>。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">work</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// work 是一个任意的函数或方法</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">function</span> <span class="token function">spy</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">spy</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">function</span> <span class="token function">it</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     it<span class="token punctuation">.</span>calls<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> func<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
   it<span class="token punctuation">.</span>calls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> it<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-work <span class="token operator">=</span> <span class="token function">spy</span><span class="token punctuation">(</span>work<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token function">work</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3</span>
-<span class="token function">work</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 9</span>
-
-<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> args <span class="token keyword">of</span> work<span class="token punctuation">.</span>calls<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'call:'</span> <span class="token operator">+</span> args<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "call:1,2", "call:4,5"</span>
 <span class="token punctuation">}</span></code></pre>
 </li>
 <li><p>延时装饰器</p>
@@ -555,11 +544,11 @@ work <span class="token operator">=</span> <span class="token function">spy</spa
 <p>换句话说，<code>delay(f, ms)</code> 返回的是延迟 <code>ms</code> 后的 <code>f</code> 的变体。</p>
 <p>在上面的代码中，<code>f</code> 是单个参数的函数，但是你的解决方案应该传递所有参数和上下文 <code>this</code>。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">delay</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> time<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-      func<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+     func<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 </li>
 <li><p>防抖装饰器</p>
@@ -893,30 +882,29 @@ work <span class="token operator">=</span> <span class="token function">spy</spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/20/xue-xi-bi-ji-2020-11-20/">
+                <a href="/2020/11/21/xue-xi-bi-ji-2020-11-21/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="学习笔记 2020 11 20">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="学习笔记 2020 11 21">
                         
-                        <span class="card-title">学习笔记 2020 11 20</span>
+                        <span class="card-title">学习笔记 2020 11 21</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-11-20
+                            学习笔记 2020-11-21
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-20
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -929,7 +917,6 @@ work <span class="token operator">=</span> <span class="token function">spy</spa
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1193,7 +1180,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">104.8k</span>&nbsp;字
+                class="white-color">105.4k</span>&nbsp;字
             
             
             
