@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="学习笔记 2020 10 27, Drowning me">
+    <meta name="keywords" content="学习笔记 2020 11 22, Drowning me">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>学习笔记 2020 10 27 | Drowning me</title>
+    <title>学习笔记 2020 11 22 | Drowning me</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,12 +270,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">学习笔记 2020 10 27</h1>
+                    <h1 class="description center-align post-title">学习笔记 2020 11 22</h1>
                 </div>
             </div>
         </div>
@@ -417,21 +417,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-27
+                    2020-11-22
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-27
+                    2020-11-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    65
                 </div>
                 
 
@@ -443,79 +443,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="学习笔记-2020-10-27"><a href="#学习笔记-2020-10-27" class="headerlink" title="学习笔记 2020-10-27"></a>学习笔记 2020-10-27</h1><a id="more"></a>
+                <h1 id="学习笔记-2020-11-22"><a href="#学习笔记-2020-11-22" class="headerlink" title="学习笔记 2020-11-22"></a>学习笔记 2020-11-22</h1><a id="more"></a>
 
-<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h4><p>函数表达式创建的函数叫做匿名函数，也叫做兰姆达函数。因为 <code>function</code> 关键字没有标识符。未赋值给其他变量的匿名函数的 <code>name</code> 属性是空字符串。</p>
-<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>递归函数通常的形式是一个函数通过名称调用自己。</p>
-<p>在非严格模式下，可以使用 <code>arguments.callee</code> 来访问自身函数。在严格模式下，可以使用命名函数表达式。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> factorial <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> num <span class="token operator">*</span> <span class="token function">f</span><span class="token punctuation">(</span>num <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><p><code>ECMAScript6</code> 新增了一项内存管理优化机制，让 <code>JS</code> 引擎在满足条件时可以重用栈帧。例如尾调用，即外部函数的返回是内部函数的返回值。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">outerFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token function">innerFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 尾调用</span>
-<span class="token punctuation">}</span></code></pre>
-<p>在 <code>ES6</code> 优化之前，这个例子会在内存中发生如下操作。</p>
-<ol>
-<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
-<li>执行 <code>outerFunction</code> 函数体，到 <code>return</code> 语句。计算返回值必须先计算 <code>innerFunction</code> 。</li>
-<li>执行到 <code>innerFunction</code> 函数体，第二个栈帧被推到栈上。</li>
-<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
-<li>将返回值传回 <code>outerFunction</code> ，然后 <code>outerFunction</code> 再返回值。</li>
-<li>将栈帧弹到栈外。</li>
-</ol>
-<p>在 <code>ES6</code> 优化之后，执行这个例子会在内存中发生如下操作。</p>
-<ol>
-<li>执行到 <code>outerFunction</code> 函数体，第一个栈帧被推到栈上。</li>
-<li>执行 <code>outerFunction</code> 函数体，到达 <code>return</code> 语句。为求值返回语句，必须先求值 <code>innerFunction</code> 。</li>
-<li>引擎发现把第一个栈帧弹出栈外也没问题，因为 <code>innerFunction</code> 的返回值也是 <code>outerFunction</code> 的返回值。</li>
-<li>弹出 <code>outerFunction</code> 的栈帧。</li>
-<li>执行到 <code>innerFunction</code> 函数体，栈帧被推到栈上。</li>
-<li>执行 <code>innerFunction</code> 函数体，计算其返回值。</li>
-<li>将 <code>innerFunction</code> 的栈帧弹出栈外。</li>
-</ol>
-<h5 id="尾调用优化的条件"><a href="#尾调用优化的条件" class="headerlink" title="尾调用优化的条件"></a>尾调用优化的条件</h5><p>条件是外部栈帧没有必要存在。</p>
-<ul>
-<li><p>代码在严格模式下执行。</p>
-</li>
-<li><p>外部函数的返回值是对为调用函数的调用。</p>
-</li>
-<li><p>尾调用函数返回后不需要执行额外的逻辑。</p>
-</li>
-<li><p>尾调用函数不是引用外部函数作用域中自由变量的闭包。</p>
-</li>
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="动画与-Canvas-图形"><a href="#动画与-Canvas-图形" class="headerlink" title="动画与 Canvas 图形"></a>动画与 Canvas 图形</h3><h4 id="2D-绘图上下文"><a href="#2D-绘图上下文" class="headerlink" title="2D 绘图上下文"></a>2D 绘图上下文</h4><h5 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h5><ul>
+<li>createRectLinearGradient()</li>
+<li>createRadialGradient()</li>
 </ul>
-<p>要求严格模式的原因是非严格模式下函数调用中允许使用 <code>f.arguments</code> 和 <code>f.caller</code> ，而它们都会引用外部函数的栈帧。</p>
-<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>函数执行时，每个执行上下文中都会有一个包含其中变量的对象。全局上下文中的叫变量对象，它会在代码执行期间始终存在。而函数内部上下文中的叫活动对象，只在函数执行期间存在。在定义函数时，就会为它创建作用域链，预装载全局变量对象，并保存在内部的 <code>[[Scope]]</code> 中。在调用这个函数时，会创建相应的执行上下文，然后通过复制函数的 <code>[[Scope]]</code> 来创建其作用域链。接着创建函数的活动对象并将其推入作用域链的前端。</p>
-<p>函数内部的代码访问变量时，就会使用给定的名称从作用域链中查找变量。函数执行完毕后，局部活动对象会被销毁。</p>
-<p>而在闭包中，一个函数若是引用了外部作用域的变量，当这个函数存在的时候，外部作用域就不会被销毁。即使外部作用域对应的函数已经执行完毕。</p>
-<h5 id="this-对象"><a href="#this-对象" class="headerlink" title="this 对象"></a><code>this</code> 对象</h5><p>可以利用闭包来使一个函数内部访问外部作用域的 <code>this</code> 对象。</p>
-<p>即定义一个变量来保存外部函数的 <code>this</code> 引用，这样内部函数可以访问到该变量。</p>
-<pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>identity <span class="token operator">=</span> <span class="token string">'The Window'</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> object <span class="token operator">=</span> <span class="token punctuation">{</span>
-  identity<span class="token punctuation">:</span> <span class="token string">'My Object'</span><span class="token punctuation">,</span>
-  <span class="token function">getIdentity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>identity<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-object<span class="token punctuation">.</span><span class="token function">getIdentity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'My Object'</span>
-<span class="token punctuation">(</span>object<span class="token punctuation">.</span>getIdentity<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'My Object'</span>
-<span class="token punctuation">(</span>object<span class="token punctuation">.</span>getIdentity <span class="token operator">=</span> object<span class="token punctuation">.</span>getIdentity<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 'The Window'</span></code></pre>
-<h5 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h5><p><code>IE</code> 在 <code>IE9</code> 以前对 <code>JScript</code> 对象和 <code>COM</code> 对象使用了不同的垃圾回收机制，所以闭包在旧版本中可能会导致问题。即存在内存泄漏的问题。</p>
-<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="可选链-“-”"><a href="#可选链-“-”" class="headerlink" title="可选链 “?.”"></a>可选链 “?.”</h3><p>一个常见的情景：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// user 没有 address</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user <span class="token operator">&amp;&amp;</span> user<span class="token punctuation">.</span>address <span class="token operator">&amp;&amp;</span> user<span class="token punctuation">.</span>address<span class="token punctuation">.</span>street<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// undefined(不报错)</span></code></pre>
-<p>可选链会在遇到 <code>undefined</code> 或 <code>null</code> 时停止运算并返回 <code>undefined</code> 。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// user 没有 address</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>user<span class="token operator">?</span><span class="token punctuation">.</span>address<span class="token operator">?</span><span class="token punctuation">.</span>street<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// undefined （不报错）</span></code></pre>
-<p>可选链只允许前面的值成为可选值，不影响后面。可选链前的变量必须已声明，否则会触发一个错误。</p>
-<p>可使用 <code>?.()</code> 可选的调用一个可能不存在的函数。</p>
-<p>可使用 <code>?.[]</code> 来使用方括号访问属性。</p>
-
+<h5 id="图案"><a href="#图案" class="headerlink" title="图案"></a>图案</h5><ul>
+<li>createPattern()</li>
+</ul>
+<h5 id="图像数据"><a href="#图像数据" class="headerlink" title="图像数据"></a>图像数据</h5><ul>
+<li>getImageData() =&gt; ImageData: object</li>
+<li>ImageData.width</li>
+<li>ImageData.height</li>
+<li>ImageData.data</li>
+</ul>
+<h5 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h5><ul>
+<li>globalAlpha</li>
+<li>globalCompositionOperation</li>
+</ul>
+<h4 id="WebGL"><a href="#WebGL" class="headerlink" title="WebGL"></a>WebGL</h4><h5 id="WebGL-上下文"><a href="#WebGL-上下文" class="headerlink" title="WebGL 上下文"></a>WebGL 上下文</h5><h5 id="WebGL-基础"><a href="#WebGL-基础" class="headerlink" title="WebGL 基础"></a>WebGL 基础</h5>
             </div>
             <hr/>
 
@@ -540,7 +487,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://s1rine.github.io/2020/10/27/xue-xi-bi-ji-2020-10-27/">https://s1rine.github.io/2020/10/27/xue-xi-bi-ji-2020-10-27/</a>
+                    <a href="https://s1rine.github.io/2020/11/22/xue-xi-bi-ji-2020-11-22/">https://s1rine.github.io/2020/11/22/xue-xi-bi-ji-2020-11-22/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -749,29 +696,30 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/10/28/xue-xi-bi-ji-2020-10-28/">
+                <a href="/2020/11/22/xue-xi-bi-ji-2020-11-22/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="学习笔记 2020 10 28">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="学习笔记 2020 11 22">
                         
-                        <span class="card-title">学习笔记 2020 10 28</span>
+                        <span class="card-title">学习笔记 2020 11 22</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-10-28
+                            学习笔记 2020-11-22
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -784,6 +732,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -802,24 +751,24 @@ console<span class="token punctuation">.</span><span class="token function">log<
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/26/xue-xi-bi-ji-2020-10-26/">
+                <a href="/2020/11/21/xue-xi-bi-ji-2020-11-21/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="学习笔记 2020 10 26">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="学习笔记 2020 11 21">
                         
-                        <span class="card-title">学习笔记 2020 10 26</span>
+                        <span class="card-title">学习笔记 2020 11 21</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-10-26
+                            学习笔记 2020-11-21
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-21
                             </span>
                         <span class="publish-author">
                             
