@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CSStip, Drowning me">
+    <meta name="keywords" content="学习笔记 2020 11 23, Drowning me">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CSStip | Drowning me</title>
+    <title>学习笔记 2020 11 23 | Drowning me</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,12 +270,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CSStip</h1>
+                    <h1 class="description center-align post-title">学习笔记 2020 11 23</h1>
                 </div>
             </div>
         </div>
@@ -396,10 +396,6 @@
                                 <span class="chip bg-color">notes</span>
                             </a>
                         
-                            <a href="/tags/css/">
-                                <span class="chip bg-color">css</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -421,21 +417,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-10-27
+                    2020-11-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-12-09
+                    2020-11-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    461
+                    153
                 </div>
                 
 
@@ -447,92 +443,31 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一些关于CSS的tip"><a href="#一些关于CSS的tip" class="headerlink" title="一些关于CSS的tip"></a>一些关于CSS的tip</h1><ul>
-<li><code>margin</code> 值的百分比是相对于父元素的 <code>width</code> 。</li>
-<li>三角形的制作利用 <code>width</code> <code>height</code> 为0 然后设置 <code>border</code> 。</li>
-<li>气泡的制作<br><img src="/2019/10/27/css-xiao-tip/bubble.png" alt="bubble"></li>
-</ul>
-<a id="more"></a>
+                <h1 id="学习笔记-2020-11-23"><a href="#学习笔记-2020-11-23" class="headerlink" title="学习笔记 2020-11-23"></a>学习笔记 2020-11-23</h1><a id="more"></a>
 
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>bubble<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>triangle common<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cover common<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>   <span class="token comment" spellcheck="true">&lt;!-- 用来覆盖的倒三角 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.bubble</span> </span><span class="token punctuation">{</span>
-  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span> 
-  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">50</span>px<span class="token punctuation">;</span> 
-  <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">5</span>px solid <span class="token hexcode">#FFB5BF</span><span class="token punctuation">;</span> 
-  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token selector"><span class="token class">.common</span> </span><span class="token punctuation">{</span>
-  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> 
-  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span> 
-  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 使用绝对定位 */</span>
-  <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span>
-  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-<span class="token number">50%</span>, <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">/* 水平居中 */</span>
-<span class="token punctuation">}</span>
-<span class="token selector"><span class="token class">.triangle</span> </span><span class="token punctuation">{</span>
-  <span class="token property">bottom</span><span class="token punctuation">:</span> -<span class="token number">20</span>px<span class="token punctuation">;</span>
-  <span class="token property">border-top</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid <span class="token hexcode">#FFB5BF</span><span class="token punctuation">;</span>
-  <span class="token property">border-right</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid transparent<span class="token punctuation">;</span>
-  <span class="token property">border-left</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid transparent<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token selector"><span class="token class">.cover</span> </span><span class="token punctuation">{</span>
-  <span class="token property">bottom</span><span class="token punctuation">:</span> -<span class="token number">13</span>px<span class="token punctuation">;</span>
-  <span class="token property">border-top</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid <span class="token hexcode">#94E8FF</span><span class="token punctuation">;</span>
-  <span class="token property">border-right</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid transparent<span class="token punctuation">;</span>
-  <span class="token property">border-left</span><span class="token punctuation">:</span> <span class="token number">20</span>px solid transparent<span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<ul>
-<li><code>loading</code> 效果制作利用 <code>CSS3</code> 的动画<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.loading</span> </span><span class="token punctuation">{</span>
-<span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">50</span>px<span class="token punctuation">;</span>
-<span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">50</span>px<span class="token punctuation">;</span>
-<span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
-<span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">5</span>px solid <span class="token hexcode">#ddd</span><span class="token punctuation">;</span>
-<span class="token property">border-left-color</span><span class="token punctuation">:</span> <span class="token hexcode">#FFB5BF</span><span class="token punctuation">;</span>
-<span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">50%</span><span class="token punctuation">;</span> 
-<span class="token punctuation">}</span></code></pre>
-<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.loading</span> </span><span class="token punctuation">{</span>
-<span class="token property">animation</span><span class="token punctuation">:</span> loading-animation <span class="token number">1.2</span>s linear infinite<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token atrule"><span class="token rule">@keyframes</span> loading-animation</span> <span class="token punctuation">{</span>
-<span class="token selector">0% </span><span class="token punctuation">{</span>
-  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotate</span><span class="token punctuation">(</span><span class="token number">0</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token selector">100% </span><span class="token punctuation">{</span>
-  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotate</span><span class="token punctuation">(</span><span class="token number">360</span>deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-</li>
-<li>行级元素的高度取决于文体字体大小。</li>
-<li>文字隐藏的方法:<ul>
-<li><code>height: 0</code>+<code>padding</code>撑出背景图片，然后设置<code>overflow: hidden</code></li>
-<li><code>text-indent: -10000</code></li>
-<li>将文字包入<code>span</code>元素中，然后<code>display: none</code></li>
-</ul>
-</li>
-<li><code>a</code> 标签的样式需要遵守 <code>link</code> <code>visited</code> <code>hover</code> <code>active</code> 顺序，在 <code>href</code> 不填入值的时候， <code>a:link</code> 不起作用。</li>
-<li>浏览器将标签间的换行空白渲染为一个空格导致部分元素间出现间隙解决方法：<ul>
-<li>编写页面时不换行。</li>
-<li>容器的 <code>font-size</code> 设置为 <code>0</code>.</li>
-<li>我们需要将li内的字符间隔设为默认。<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.wrap</span> ul</span><span class="token punctuation">{</span><span class="token property">letter-spacing</span><span class="token punctuation">:</span> -<span class="token number">4</span>px<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
-之后记得设置li内字符间隔<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.wrap</span> ul li</span><span class="token punctuation">{</span><span class="token property">letter-spacing</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre>
-</li>
-</ul>
-</li>
-<li>div里嵌套了 <code>img</code> 底部会出现白边<ul>
-<li>因为 <code>img</code> 默认是按基线 <code>(baseline)</code> 对齐的。</li>
-<li>要去掉空格可以使用 <code>vertical-align: bottom</code> 或将 <code>img</code> 标签变为块级元素。</li>
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="表单脚本"><a href="#表单脚本" class="headerlink" title="表单脚本"></a>表单脚本</h3><h4 id="表单基础"><a href="#表单基础" class="headerlink" title="表单基础"></a>表单基础</h4><ul>
+<li>HTMLFormElement<ul>
+<li>acceptCharset</li>
+<li>action</li>
+<li>elements</li>
+<li>enctype</li>
+<li>length</li>
+<li>method</li>
+<li>name</li>
+<li>reset()</li>
+<li>submit()</li>
+<li>target</li>
 </ul>
 </li>
 </ul>
-<ul>
-<li><p><code>line-height</code> 仅在值为纯数字时，才会使后代继承该比值，否则继承计算后的结果。</p>
-</li>
-<li><p><code>p</code> 元素不能包含 <code>div</code> 元素。</p>
-</li>
-</ul>
+<h4 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h4><pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 通用提交按钮 --></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Submit Form<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+<span class="token comment" spellcheck="true">&lt;!-- 自定义提交按钮 --></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Submit Form<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span> 
+<span class="token comment" spellcheck="true">&lt;!-- 图片按钮 --></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>image<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>graphic.gif<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<p>有上述任何一个按钮，焦点处于除了 <code>textarea</code> 以外的控件上时，按回车键也可以提交表单。在发起请求前会触发一个 submit 事件。</p>
+<p>通过 js 方式调用 sumbit 提交时不会再触发该事件。</p>
 
             </div>
             <hr/>
@@ -558,7 +493,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://s1rine.github.io/2019/10/27/css-xiao-tip/">https://s1rine.github.io/2019/10/27/css-xiao-tip/</a>
+                    <a href="https://s1rine.github.io/2020/11/23/xue-xi-bi-ji-2020-11-23/">https://s1rine.github.io/2020/11/23/xue-xi-bi-ji-2020-11-23/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -598,10 +533,6 @@
                             
                                 <a href="/tags/notes/">
                                     <span class="chip bg-color">notes</span>
-                                </a>
-                            
-                                <a href="/tags/css/">
-                                    <span class="chip bg-color">css</span>
                                 </a>
                             
                         </div>
@@ -771,36 +702,50 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/11/04/hello-world/">
+                <a href="/2020/11/23/xue-xi-bi-ji-2020-11-23/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="学习笔记 2020 11 23">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">学习笔记 2020 11 23</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            学习笔记 2020-11-23
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-23
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Sirine
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/notes/">
+                        <span class="chip bg-color">notes</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -812,26 +757,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/22/zi-ti-yan-se-shan-xian-wen-ti/">
+                <a href="/2020/11/22/xue-xi-bi-ji-2020-11-22/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="字体颜色闪现问题">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="学习笔记 2020 11 22">
                         
-                        <span class="card-title">字体颜色闪现问题</span>
+                        <span class="card-title">学习笔记 2020 11 22</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            📃正文transition属性页面加载a元素字体颜色闪现问题
-在写需求的时候，对 index.html 页面的按钮做了 transition 效果来使样式展示更平滑。
-
+                            学习笔记 2020-11-22
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-22
                             </span>
                         <span class="publish-author">
                             
@@ -850,10 +793,6 @@
                     
                     <a href="/tags/notes/">
                         <span class="chip bg-color">notes</span>
-                    </a>
-                    
-                    <a href="/tags/css/">
-                        <span class="chip bg-color">css</span>
                     </a>
                     
                 </div>
