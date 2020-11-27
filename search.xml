@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 27</title>
+    <url>/2020/11/27/xue-xi-bi-ji-2020-11-27/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-27"><a href="#学习笔记-2020-11-27" class="headerlink" title="学习笔记 2020-11-27"></a>学习笔记 2020-11-27</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="表单脚本"><a href="#表单脚本" class="headerlink" title="表单脚本"></a>表单脚本</h3><h4 id="富文本编辑"><a href="#富文本编辑" class="headerlink" title="富文本编辑"></a>富文本编辑</h4><h5 id="富文本选择"><a href="#富文本选择" class="headerlink" title="富文本选择"></a>富文本选择</h5><ul>
+<li>getSelection()<ul>
+<li>anchorNode</li>
+<li>anchorOffset</li>
+<li>focusNode</li>
+<li>focusOffset</li>
+<li>isCollapsed</li>
+<li>rangeCount</li>
+<li>addRange()</li>
+<li>collapse(node, offset)</li>
+<li>collapseToEnd()</li>
+<li>collapseToStart()</li>
+<li>containsNode()</li>
+<li>deleteFromDocument()</li>
+<li>extend()</li>
+<li>getRangeAt()</li>
+<li>removeAllRanges()</li>
+<li>removRange(range)</li>
+<li>selectAllChildren()</li>
+<li>toString()</li>
+</ul>
+</li>
+</ul>
+<h5 id="通过表单提交富文本"><a href="#通过表单提交富文本" class="headerlink" title="通过表单提交富文本"></a>通过表单提交富文本</h5><h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="原生的原型"><a href="#原生的原型" class="headerlink" title="原生的原型"></a>原生的原型</h3><h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>给函数添加一个 “f.defer(ms)” 方法</p>
+<p>在所有函数的原型中添加 <code>defer(ms)</code> 方法，该方法将在 <code>ms</code> 毫秒后运行该函数。</p>
+<p>当你完成添加后，下面的代码应该是可执行的：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+f<span class="token punctuation">.</span><span class="token function">defer</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1 秒后显示 "Hello!"</span></code></pre>
+<pre class=" language-js"><code class="language-js">Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>defer <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>将装饰器 “defer()” 添加到函数</p>
+<p>在所有函数的原型中添加 <code>defer(ms)</code> 方法，该方法返回一个包装器，将函数调用延迟 <code>ms</code> 毫秒。</p>
+<p>下面是它应该如何执行的例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span> a <span class="token operator">+</span> b <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+f<span class="token punctuation">.</span><span class="token function">defer</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1 秒后显示 3</span></code></pre>
+<p>请注意，参数应该被传给原始函数。</p>
+<pre class=" language-js"><code class="language-js">Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>defer <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> that<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">,</span> time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 26</title>
     <url>/2020/11/26/xue-xi-bi-ji-2020-11-26/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-26"><a href="#学习笔记-2020-11-26" class="headerlink" title="学习笔记 2020-11-26"></a>学习笔记 2020-11-26</h1><a id="more"></a>
@@ -12972,8 +13038,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
       <tags>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>html</tag>
         <tag>css</tag>
+        <tag>html</tag>
       </tags>
   </entry>
   <entry>
