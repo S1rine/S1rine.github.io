@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>学习笔记 2020 11 28</title>
+    <url>/2020/11/28/xue-xi-bi-ji-2020-11-28/</url>
+    <content><![CDATA[<h1 id="学习笔记-2020-11-28"><a href="#学习笔记-2020-11-28" class="headerlink" title="学习笔记 2020-11-28"></a>学习笔记 2020-11-28</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="JavaScript-API"><a href="#JavaScript-API" class="headerlink" title="JavaScript API"></a>JavaScript API</h3><h4 id="Atomics-与-SharedArrayBuffer"><a href="#Atomics-与-SharedArrayBuffer" class="headerlink" title="Atomics 与 SharedArrayBuffer"></a>Atomics 与 SharedArrayBuffer</h4><h5 id="SharedArrayBuffer"><a href="#SharedArrayBuffer" class="headerlink" title="SharedArrayBuffer"></a>SharedArrayBuffer</h5><h5 id="原子操作基础"><a href="#原子操作基础" class="headerlink" title="原子操作基础"></a>原子操作基础</h5><ol>
+<li>算数及位操作方法</li>
+<li>原子读和写</li>
+<li>原子交换</li>
+<li>原子 Futex 操作与加锁</li>
+</ol>
+<h4 id="跨上下文消息"><a href="#跨上下文消息" class="headerlink" title="跨上下文消息"></a>跨上下文消息</h4><p>XDM 实现不同源或不同工作线程间传递信息。</p>
+<ul>
+<li>postMessage()</li>
+</ul>
+<h4 id="Encoding-API"><a href="#Encoding-API" class="headerlink" title="Encoding API"></a>Encoding API</h4><h5 id="批量编码"><a href="#批量编码" class="headerlink" title="批量编码"></a>批量编码</h5><ul>
+<li>TextEncoder</li>
+</ul>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="原型方法，没有-proto-的对象"><a href="#原型方法，没有-proto-的对象" class="headerlink" title="原型方法，没有 __proto__ 的对象"></a>原型方法，没有 <code>__proto__</code> 的对象</h3><h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li><p>为 directionary 添加 toString 方法</p>
+<p>这儿有一个通过 <code>Object.create(null)</code> 创建的，用来存储任意 <code>key/value</code> 对的对象 <code>dictionary</code>。</p>
+<p>为该对象添加 <code>dictionary.toString()</code> 方法，该方法应该返回以逗号分隔的所有键的列表。你的 <code>toString</code> 方法不应该在使用 <code>for...in</code> 循环遍历数组的时候显现出来。</p>
+<p>它的工作方式如下：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> dictionary <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 你的添加 dictionary.toString 方法的代码</span>
+
+<span class="token comment" spellcheck="true">// 添加一些数据</span>
+dictionary<span class="token punctuation">.</span>apple <span class="token operator">=</span> <span class="token string">"Apple"</span><span class="token punctuation">;</span>
+dictionary<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> <span class="token string">"test"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 这里 __proto__ 是一个常规的属性键</span>
+
+<span class="token comment" spellcheck="true">// 在循环中只有 apple 和 __proto__</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> dictionary<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "apple", then "__proto__"</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 你的 toString 方法在发挥作用</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>dictionary<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "apple,__proto__"</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> dictionary <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  toString<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 定义 toString 属性</span>
+    <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// value 是一个 function</span>
+      <span class="token keyword">return</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>调用方式的差异</p>
+<p>让我们创建一个新的 <code>rabbit</code> 对象：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Rabbit</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rabbit<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>sayHi <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> rabbit <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Rabbit</span><span class="token punctuation">(</span><span class="token string">"Rabbit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>以下调用做的是相同的事儿还是不同的？</p>
+<pre class=" language-javascript"><code class="language-javascript">rabbit<span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Rabbit<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>rabbit<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+rabbit<span class="token punctuation">.</span>__proto__<span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>不同。</p>
+<p>第一行使用 rabbit 调用。</p>
+<p>第二行使用原型调用。</p>
+<p>第三行使用原型调用。</p>
+<p>第四行使用原型调用</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习笔记 2020 11 27</title>
     <url>/2020/11/27/xue-xi-bi-ji-2020-11-27/</url>
     <content><![CDATA[<h1 id="学习笔记-2020-11-27"><a href="#学习笔记-2020-11-27" class="headerlink" title="学习笔记 2020-11-27"></a>学习笔记 2020-11-27</h1><a id="more"></a>
@@ -13038,8 +13116,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
       <tags>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>css</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
