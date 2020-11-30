@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="学习笔记 2020 11 03, Drowning me">
+    <meta name="keywords" content="现代 JavaScript 教程任务题解, Drowning me">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>学习笔记 2020 11 03 | Drowning me</title>
+    <title>现代 JavaScript 教程任务题解 | Drowning me</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -270,12 +270,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">学习笔记 2020 11 03</h1>
+                    <h1 class="description center-align post-title">现代 JavaScript 教程任务题解</h1>
                 </div>
             </div>
         </div>
@@ -392,8 +392,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/notes/">
-                                <span class="chip bg-color">notes</span>
+                            <a href="/tags/js/">
+                                <span class="chip bg-color">js</span>
                             </a>
                         
                     </div>
@@ -417,21 +417,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-11-03
+                    2020-11-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-11-03
+                    2020-11-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    2.7k
                 </div>
                 
 
@@ -443,360 +443,158 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="学习笔记-2020-11-03"><a href="#学习笔记-2020-11-03" class="headerlink" title="学习笔记 2020-11-03"></a>学习笔记 2020-11-03</h1><a id="more"></a>
+                <h1 id="现代-JavaScript-教程任务题解"><a href="#现代-JavaScript-教程任务题解" class="headerlink" title="现代 JavaScript 教程任务题解"></a>现代 JavaScript 教程任务题解</h1><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>首字母大写</p>
+<p>写一个函数 <code>ucFirst(str)</code>，并返回首字母大写的字符串 <code>str</code>，例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">ucFirst</span><span class="token punctuation">(</span><span class="token string">"john"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"John"</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">ucFirst</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>str<span class="token punctuation">)</span> <span class="token keyword">return</span> str<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>检查 spam</p>
+<p>写一个函数 <code>checkSpam(str)</code>，如果 <code>str</code> 包含 <code>viagra</code> 或 <code>XXX</code> 就返回 <code>true</code>，否则返回 <code>false</code>。</p>
+<p>函数必须不区分大小写：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">checkSpam</span><span class="token punctuation">(</span><span class="token string">'buy ViAgRA now'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span>
+<span class="token function">checkSpam</span><span class="token punctuation">(</span><span class="token string">'free xxxxx'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span>
+<span class="token function">checkSpam</span><span class="token punctuation">(</span><span class="token string">"innocent rabbit"</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">false</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">checkSpam</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'viagra'</span><span class="token punctuation">)</span> <span class="token operator">||</span> str<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'XXX'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>截断文本</p>
+<p>创建函数 <code>truncate(str, maxlength)</code> 来检查 <code>str</code> 的长度，如果超过 <code>maxlength</code> —— 应使用 <code>"…"</code> 来代替 <code>str</code> 的结尾部分，长度仍然等于 <code>maxlength</code>。</p>
+<p>函数的结果应该是截断后的文本（如果需要的话）。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">truncate</span><span class="token punctuation">(</span><span class="token string">"What I'd like to tell on this topic is:"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"What I'd like to te…"</span>
 
-<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><h4 id="navigator-对象"><a href="#navigator-对象" class="headerlink" title="navigator 对象"></a>navigator 对象</h4><p>已经成为客户端标识浏览器的标准。只要浏览器启用 JavaScript， navigator 对象就一定存在。</p>
-<table>
-<thead>
-<tr>
-<th>属性/方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>activeVrDisplays</code></td>
-<td>返回数组，包含 ispresenting 属性为 true 的VRDisplay 实例。</td>
-</tr>
-<tr>
-<td><code>appCodeName</code></td>
-<td>即使在非 Mozilla 浏览器中也会返回 Mozilla 。</td>
-</tr>
-<tr>
-<td><code>appName</code></td>
-<td>浏览器全名。</td>
-</tr>
-<tr>
-<td><code>appVersion</code></td>
-<td>浏览器版本。通常与实际的浏览器版本不一致。</td>
-</tr>
-<tr>
-<td><code>battery</code></td>
-<td>返回暴露 Battery Status API 的 BatteryManager 对象。</td>
-</tr>
-<tr>
-<td><code>buildId</code></td>
-<td>浏览器的构建编号。</td>
-</tr>
-<tr>
-<td><code>connection</code></td>
-<td>返回暴露 Network Information API 的 NetworkInformation 对象。</td>
-</tr>
-<tr>
-<td><code>cookieEnabled</code></td>
-<td>返回布尔值，表示是否启用了 cookie 。</td>
-</tr>
-<tr>
-<td><code>credentials</code></td>
-<td>返回暴露 Credentials Management API 的 CredentialsContainer 对象。</td>
-</tr>
-<tr>
-<td><code>deviceMemory</code></td>
-<td>返回单位为 GB 的设备内存容量。</td>
-</tr>
-<tr>
-<td><code>doNotTrack</code></td>
-<td>返回用户的 不跟踪 设置。</td>
-</tr>
-<tr>
-<td><code>gelocation</code></td>
-<td>返回暴露 Geolocation API 的 Geolocation 对象。</td>
-</tr>
-<tr>
-<td><code>getVRDisplays()</code></td>
-<td>返回数组，包含可用的每个 VRDisplay 实例。</td>
-</tr>
-<tr>
-<td><code>getUserMedia()</code></td>
-<td>返回与可用媒体设备硬件关联的流。</td>
-</tr>
-<tr>
-<td><code>hardwareConcurrency</code></td>
-<td>返回设备的处理器核心数量。</td>
-</tr>
-<tr>
-<td><code>javaEnabled</code></td>
-<td>返回布尔值，表示浏览器是否启用了 Java 。</td>
-</tr>
-<tr>
-<td><code>language</code></td>
-<td>返回浏览器的主语言。</td>
-</tr>
-<tr>
-<td><code>languages</code></td>
-<td>返回浏览器偏好的语言数组。</td>
-</tr>
-<tr>
-<td><code>locks</code></td>
-<td>返回暴露 Web Locks API 的 LockManager 对象。</td>
-</tr>
-<tr>
-<td><code>mediaCapabilities</code></td>
-<td>返回暴露 Media Capabilities API 的 MediaCapabilities 对象。</td>
-</tr>
-<tr>
-<td><code>mediaDevices</code></td>
-<td>返回可用的媒体设备。</td>
-</tr>
-<tr>
-<td><code>maxTouchPoints</code></td>
-<td>返回设备触摸屏支持的最大触点数。</td>
-</tr>
-<tr>
-<td><code>mimeTypes</code></td>
-<td>返回浏览器中注册的 MIME 类型数组。</td>
-</tr>
-<tr>
-<td><code>onLine</code></td>
-<td>返回布尔值，表示浏览器是否联网。</td>
-</tr>
-<tr>
-<td><code>oscpu</code></td>
-<td>返回浏览器运行设备的操作系统和 CPU 。</td>
-</tr>
-<tr>
-<td><code>permissions</code></td>
-<td>返回暴露 Permissions API 的 Persimissions 对象。</td>
-</tr>
-<tr>
-<td><code>platform</code></td>
-<td>抱回浏览器运行的系统平台。</td>
-</tr>
-<tr>
-<td><code>plugins</code></td>
-<td>返回浏览器安装的插件数组。在 IE 中，这个数组包含页面中所有 <code>&lt;embed&gt;</code> 元素。</td>
-</tr>
-<tr>
-<td><code>product</code></td>
-<td>返回产品名称。</td>
-</tr>
-<tr>
-<td><code>productSub</code></td>
-<td>返回产品的额外信息。</td>
-</tr>
-<tr>
-<td><code>registerProtocolHandler()</code></td>
-<td>将一个网站注册为特定协议的处理程序。</td>
-</tr>
-<tr>
-<td><code>requestMediaKeySystemAccess()</code></td>
-<td>返回一个期约，解决为 MediaKeySystemAccess 对象。</td>
-</tr>
-<tr>
-<td><code>sendBeacon()</code></td>
-<td>异步传输一些小数据。</td>
-</tr>
-<tr>
-<td><code>serviceWorker</code></td>
-<td>返回用来与 ServiceWorker 实例交互的 ServiceWorkerContainer 。</td>
-</tr>
-<tr>
-<td><code>share()</code></td>
-<td>返回当前平台的原生共享机制。</td>
-</tr>
-<tr>
-<td><code>storage</code></td>
-<td>返回暴露 Storage API 的 StorageManager 对象。</td>
-</tr>
-<tr>
-<td><code>userAgent</code></td>
-<td>返回浏览器的用户代理字符串。</td>
-</tr>
-<tr>
-<td><code>vendor</code></td>
-<td>返回浏览器的厂商名称。</td>
-</tr>
-<tr>
-<td><code>vendorSub</code></td>
-<td>返回浏览器厂商的更多信息。</td>
-</tr>
-<tr>
-<td><code>vibrate()</code></td>
-<td>触发设备振动。</td>
-</tr>
-<tr>
-<td><code>webdriver</code></td>
-<td>返回浏览器当前是否被自动化程序控制。</td>
-</tr>
-</tbody></table>
-<ol>
-<li><p>检测插件</p>
-<p>除 IE10 及更低版本外的浏览器，都可以通过 plugins 数组来检测浏览器是否安装了某个插件。这个数组的每一项都包含：</p>
-<ul>
-<li>name：插件名称。</li>
-<li>description：插件介绍。</li>
-<li>filename：插件的文件名。</li>
-<li>length：由当前插件处理的 MIME 类型数量。</li>
-</ul>
-<p>旧版本 IE 中检测插件使用 <code>ActiveXObject</code> 。</p>
-</li>
-<li><p>注册处理程序</p>
-<p>现代浏览器支持 navigator 上的 <code>registerProtocolHandler()</code> 方法。可以把一个网站注册为处理某种特定类型信息用用程序。接收三个参数，要处理的协议、处理该协议的 URL 、以及应用名称。</p>
-<pre class=" language-js"><code class="language-js">navigator<span class="token punctuation">.</span><span class="token function">registerProtocolHandler</span><span class="token punctuation">(</span>
-  <span class="token string">'mailto'</span><span class="token punctuation">,</span>
-  <span class="token string">'http://www.somemailclient.com?cmd=%s'</span><span class="token punctuation">,</span>
-  <span class="token string">'Some Mail Client'</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-</ol>
-<h4 id="screen-对象"><a href="#screen-对象" class="headerlink" title="screen 对象"></a>screen 对象</h4><p>这个对象中保存的是客户端能力信息，也就是浏览器窗口外面的客户端显示器的信息。</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>availHeight</code></td>
-<td>屏幕像素高度减去系统组件高度( 只读 )</td>
-</tr>
-<tr>
-<td><code>availLeft</code></td>
-<td>没有被系统组件占用的屏幕的最左侧像素 ( 只读 )</td>
-</tr>
-<tr>
-<td><code>availTop</code></td>
-<td>没有被系统组件占用的屏幕的最顶端像素 ( 只读 )</td>
-</tr>
-<tr>
-<td><code>availWidth</code></td>
-<td>屏幕像素宽度减去系统组件宽度  ( 只读 )</td>
-</tr>
-<tr>
-<td><code>colorDepth</code></td>
-<td>表示屏幕颜色的位数；多数系统是 32 ( 只读 )</td>
-</tr>
-<tr>
-<td><code>height</code></td>
-<td>屏幕像素高度。</td>
-</tr>
-<tr>
-<td><code>left</code></td>
-<td>当前屏幕左边的像素距离。</td>
-</tr>
-<tr>
-<td><code>pixelDepth</code></td>
-<td>屏幕的位深 ( 只读 )</td>
-</tr>
-<tr>
-<td><code>top</code></td>
-<td>当前屏幕顶端的像素距离。</td>
-</tr>
-<tr>
-<td><code>width</code></td>
-<td>屏幕像素宽度。</td>
-</tr>
-<tr>
-<td><code>orientation</code></td>
-<td>返回 Screen Orientation API 中屏幕的朝向。</td>
-</tr>
-</tbody></table>
-<h4 id="history-对象"><a href="#history-对象" class="headerlink" title="history 对象"></a>history 对象</h4><p>history 对象表示当前窗口首次使用以来用户的导航历史记录。因为 history 是 window 的属性，所以每个 window 都有自己的 history 对象。出于安全考虑，这个对象不会暴露用户访问过的 URL，但可以通过它在不知道实际 URL 的情况下前进和后退。</p>
-<ol>
-<li><p>导航</p>
-<p><code>go()</code> 方法可以在用户历史记录中沿任何方向导航，可以前进也可以后退。这个方法只接收一个参数，可以是一个整数，表示前进或后退多少步。</p>
-<p>在旧版本的一些浏览器中，<code>go()</code> 方法的参数也可以是一个字符串，浏览器会导航到历史中包含该字符串的第一个位置或什么也不做。</p>
-<p><code>go()</code> 有两个简写方法：<code>back()</code> 和 <code>forward()</code> 。</p>
-<p><code>history</code> 对象还有一个 <code>length</code> 属性，表示历史记录中有多个条目。</p>
-</li>
-<li><p>历史状态管理</p>
-<p><code>hashchange</code> 会在页面 URL 的散列变化时被触发，开发者可以在此时执行某些操作。状态管理 API 可以让开发者改变浏览器 URL 而不会加载新页面。可以使用 <code>history.pushState()</code> 方法。接收三个参数，一个 state 对象，一个新状态 的标题和一个可选的相对 URL 。</p>
-<p><code>pushState</code> 方法执行后，状态信息就会被推到历史记录中，浏览器地址栏也会改变以反映新的相对 URL 。浏览器页不会向服务器发送请求。此时单击后退按钮，就会触发 window 对象上的 popstate 事件。popstate 事件的事件对象有一个 state 属性，包含通过 pushState 第一个参数传入的 state 对象。</p>
-<p>基于这个状态，应该把页面重置为状态对象所表示的状态。浏览器不会自动做这件事。页面初次加载时没有状态。</p>
-<p>可以通过 <code>history.state</code> 获取当前的状态对象，也可以使用 <code>replaceState()</code> 并传入与 <code>pushState()</code> 同样的前两个参数来更新状态。此时只会覆盖当前状态。</p>
-<p>传给 <code>pushState()</code> 和 <code>replaceState()</code> 的 state 对象应该只包含可被序列化的信息。因此， DOM 元素之类并不适合放到状态对象里保存。</p>
-</li>
-</ol>
-<h4 id="客户端检测"><a href="#客户端检测" class="headerlink" title="客户端检测"></a>客户端检测</h4><p>因为浏览器实现不一，所以 Web 开发者需要面对跨平台浏览器开发的统一性问题，需要使用各种方法来检测客户端，以实现功能。</p>
-<h5 id="能力检测"><a href="#能力检测" class="headerlink" title="能力检测"></a>能力检测</h5><p>能力检测指在 JS 运行时使用一套简单的逻辑检测，测试浏览器是否支持某种特性。只需要检测自己关心的能力是否存在即可。</p>
-<p>例如， IE5 之前的版本没有 <code>document.getElementById()</code> 这个方法，可以通过 <code>document.all</code> 属性实现相同的功能。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getElement</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>getElementById<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>all<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> document<span class="token punctuation">.</span>all<span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'No way to retrieve element!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">truncate</span><span class="token punctuation">(</span><span class="token string">"Hi everyone!"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">"Hi everyone!"</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">truncate</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> maxlength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> maxlength<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> maxlength <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'…'</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> str<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<ol>
-<li><p>安全能力检测</p>
-<p>能力检测最有效的场景是检测能力是否存在的同时，验证其是否能够展现出预期的行为。</p>
-<p>比如想要检测 <code>sort</code> 方法，不仅仅是检测这个方法是否存在，而是要检测这个属性是不是一个函数。</p>
 </li>
-<li><p>基于能力检测进行浏览器分析</p>
-<p>恰当地使用能力检测可以精准地分析运行代码的浏览器。使用能力检测而非用户代理检测的优点在于，伪造用户代理字符串很简单，而伪造能够欺骗能力检测的浏览器特性却很难。</p>
-<ul>
-<li><p>检测特性</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 检测浏览器是否支持 Netscape 式的插件</span>
-<span class="token keyword">let</span> hasNSPlugins <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>plugins <span class="token operator">&amp;&amp;</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 检测浏览器是否具有 DOM Level 1 能力</span>
-<span class="token keyword">let</span> hasDOM1 <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span>
-  document<span class="token punctuation">.</span>getElementById <span class="token operator">&amp;&amp;</span>
-  document<span class="token punctuation">.</span>createElement <span class="token operator">&amp;&amp;</span>
-  document<span class="token punctuation">.</span>getElementsByTagName
-<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li><p>检测浏览器</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">BrowserDetector</span> <span class="token punctuation">{</span>
-  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">// 测试条件编译</span>
-    <span class="token comment" spellcheck="true">// IE6~10 支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isIE_Gte6Lte10 <span class="token operator">=</span> <span class="token comment" spellcheck="true">/*@cc_on!@*/</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 测试 documentMode</span>
-    <span class="token comment" spellcheck="true">// IE7~11 支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isIE_Gte7Lte11 <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>document<span class="token punctuation">.</span>documentMode<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 测试 StyleMedia 构造函数</span>
-    <span class="token comment" spellcheck="true">// Edge 20 及以上版本支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isEdge_Gte20 <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>window<span class="token punctuation">.</span>StyleMedia<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 测试 Firefox 专有扩展安装 API</span>
-    <span class="token comment" spellcheck="true">// 所有版本的 Firefox 都支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isFirefox_Gte1 <span class="token operator">=</span> <span class="token keyword">typeof</span> InstallTrigger <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 测试 chrome 对象及其 webstore 属性</span>
-    <span class="token comment" spellcheck="true">// Opera 的某些版本有 window.chrome，但没有 window.chrome.webstore</span>
-    <span class="token comment" spellcheck="true">// 所有版本的 Chrome 都支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isChrome_Gte1 <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>window<span class="token punctuation">.</span>chrome <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token operator">!</span>window<span class="token punctuation">.</span>chrome<span class="token punctuation">.</span>webstore<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// Safari 早期版本会给构造函数的标签符追加"Constructor"字样，如：</span>
-    <span class="token comment" spellcheck="true">// window.Element.toString(); // [object ElementConstructor]</span>
-    <span class="token comment" spellcheck="true">// Safari 3~9.1 支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isSafari_Gte3Lte9_1 <span class="token operator">=</span> <span class="token regex">/constructor/i</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>Element<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 推送通知 API 暴露在 window 对象上</span>
-    <span class="token comment" spellcheck="true">// 使用默认参数值以避免对 undefined 调用 toString()</span>
-    <span class="token comment" spellcheck="true">// Safari 7.1 及以上版本支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isSafari_Gte7_1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> pushNotification <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
-      pushNotification<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'[object SafariRemoteNotification]'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>safari<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 测试 addons 属性</span>
-    <span class="token comment" spellcheck="true">// Opera 20 及以上版本支持</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>isOpera_Gte20 <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>window<span class="token punctuation">.</span>opr <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token operator">!</span>window<span class="token punctuation">.</span>opr<span class="token punctuation">.</span>addons<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isIE</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isIE_Gte6Lte10 <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isIE_Gte7Lte11<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isEdge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isEdge_Gte20 <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">isIE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isFirefox</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isFirefox_Gte1<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isChrome</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isChrome_Gte1<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isSafari</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isSafari_Gte3Lte9_1 <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isSafari_Gte7_1<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token function">isOpera</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>isOpera_Gte20<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+<li><p>提取货币</p>
+<p>我们有以 <code>"$120"</code> 这样的格式表示的花销。意味着：先是美元符号，然后才是数值。</p>
+<p>创建函数 <code>extractCurrencyValue(str)</code> 从字符串中提取数值并返回。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">extractCurrencyValue</span><span class="token punctuation">(</span><span class="token string">'$120'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">120</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">extractCurrencyValue</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token operator">+</span>str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-<p>这个类暴露的通用浏览器检测方法使用了检测浏览器范围的能力测试。随着浏览器的变迁及发展，可以不断调整底层检测逻辑，但主要的 API 可以保持不变。</p>
-</li>
-<li><p>能力检测的局限</p>
-<p>通过检测一种或一组能力，并不总能确定使用的是哪种浏览器。</p>
-</li>
-</ul>
 </li>
 </ol>
-<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>数组被拷贝了吗？</p>
+<p>下面的代码将会显示什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Apples"</span><span class="token punctuation">,</span> <span class="token string">"Pear"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 在“副本”里 push 了一个新的值</span>
+<span class="token keyword">let</span> shoppingCart <span class="token operator">=</span> fruits<span class="token punctuation">;</span>
+shoppingCart<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// fruits 里面是什么？</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> fruits<span class="token punctuation">.</span>length <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>数组的赋值是引用赋值，所以输出是 4 。</p>
+</li>
+<li><p>数组操作</p>
+<p>我们试试下面的 5 个数组操作。</p>
+<ol>
+<li>创建一个数组 <code>styles</code>，里面存储有 “Jazz” 和 “Blues”。</li>
+<li>将 “Rock-n-Roll” 从数组末端添加进去。</li>
+<li>用 “Classics” 替换掉数组最中间的元素。查找数组最中间的元素的代码应该适用于任何奇数长度的数组。</li>
+<li>去掉数组的第一个值并显示它。</li>
+<li>在数组前面添加 <code>Rap</code> 和 <code>Reggae</code>。</li>
+</ol>
+<p>过程中的数组：</p>
+<pre class=" language-javascript"><code class="language-javascript">Jazz<span class="token punctuation">,</span> Blues
+Jazz<span class="token punctuation">,</span> Bues<span class="token punctuation">,</span> Rock<span class="token operator">-</span>n<span class="token operator">-</span>Roll
+Jazz<span class="token punctuation">,</span> Classics<span class="token punctuation">,</span> Rock<span class="token operator">-</span>n<span class="token operator">-</span>Roll
+Classics<span class="token punctuation">,</span> Rock<span class="token operator">-</span>n<span class="token operator">-</span>Roll
+Rap<span class="token punctuation">,</span> Reggae<span class="token punctuation">,</span> Classics<span class="token punctuation">,</span> Rock<span class="token operator">-</span>n<span class="token operator">-</span>Roll。</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> styles <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Jazz'</span><span class="token punctuation">,</span> <span class="token string">'Blues'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+styles<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'Rock-n-Roll'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+styles<span class="token punctuation">[</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span>styles<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'Classics'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>styles<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+styles<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token string">'Rap'</span><span class="token punctuation">,</span> <span class="token string">'Reggae'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>在数组上下文调用</p>
+<p>结果是什么？为什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span> <span class="token keyword">this</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+arr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>数组对象。获取该函数的形式类似于对象的方法引用，然后调用方法。</p>
+</li>
+<li><p>输入数字求和</p>
+<p>写出函数 <code>sumInput()</code>，要求如下：</p>
+<ul>
+<li>使用 <code>prompt</code> 向用户索要值，并存在数组中。</li>
+<li>当用户输入了非数字、空字符串或者点击“取消”按钮的时候，问询结束。</li>
+<li>计算并返回数组所有项之和。</li>
+</ul>
+<p>P.S. <code>0</code> 是有效的数字，不要因为是 0 就停止问询。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">sumInput</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> value <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"A number please?"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 应该结束了吗？</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">===</span> <span class="token string">""</span> <span class="token operator">||</span> value <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">isFinite</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+    numbers<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">+</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> number <span class="token keyword">of</span> numbers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sum <span class="token operator">+</span><span class="token operator">=</span> number<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> sum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">sumInput</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>最大子数组</p>
+<p>输入是以数字组成的数组，例如 <code>arr = [1, -2, 3, 4, -9, 6]</code>.</p>
+<p>任务是：找出所有项的和最大的 <code>arr</code> 数组的连续子数组。</p>
+<p>写出函数 <code>getMaxSubSum(arr)</code>，用其找出并返回最大和。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">5</span>（高亮项的加和）
+<span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">6</span>
+<span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">11</span>
+<span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3</span>
+<span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">100</span>
+<span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">6</span>（所有项的和）</code></pre>
+<p>如果所有项都是负数，那就一个项也不取（子数组是空的），所以返回的是 0：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">getMaxSubSum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span></code></pre>
+<p>请尝试想出一个快速的解决方案：复杂度可以是 <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank" rel="noopener">O(n2)</a>，有能力达到 O(n) 则更好。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getMaxSubSum</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> len <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> len<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> tmp <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> sum <span class="token operator">=</span> tmp<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> prev<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> prev <span class="token operator">+</span> item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>sum <span class="token operator">&gt;</span> result<span class="token punctuation">)</span> result <span class="token operator">=</span> sum<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getMaxSubSum</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> tmp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> item <span class="token keyword">of</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tmp <span class="token operator">+</span><span class="token operator">=</span> item<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp <span class="token operator">&gt;</span> result<span class="token punctuation">)</span> result <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>tmp <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> tmp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+<h2 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h2><h3 id="任务-2"><a href="#任务-2" class="headerlink" title="任务"></a>任务</h3><ol>
 <li><p>将 border-left-width 转换成 borderLeftWidth</p>
 <p>编写函数 <code>camelize(str)</code> 将诸如 “my-short-string” 之类的由短划线分隔的单词变成骆驼式的 “myShortString”。</p>
 <p>即：删除所有短横线，并将短横线后的每一个单词的首字母变为大写。</p>
@@ -1108,7 +906,7 @@ usersById = {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://s1rine.github.io/2020/11/03/xue-xi-bi-ji-2020-11-03/">https://s1rine.github.io/2020/11/03/xue-xi-bi-ji-2020-11-03/</a>
+                    <a href="https://s1rine.github.io/2020/11/29/xian-dai-javascript-jiao-cheng-ren-wu-ti-jie/">https://s1rine.github.io/2020/11/29/xian-dai-javascript-jiao-cheng-ren-wu-ti-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1146,8 +944,8 @@ usersById = {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/notes/">
-                                    <span class="chip bg-color">notes</span>
+                                <a href="/tags/js/">
+                                    <span class="chip bg-color">js</span>
                                 </a>
                             
                         </div>
@@ -1317,29 +1115,30 @@ usersById = {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/11/04/xue-xi-bi-ji-2020-11-04/">
+                <a href="/2020/11/29/xian-dai-javascript-jiao-cheng-ren-wu-ti-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="学习笔记 2020 11 04">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="现代 JavaScript 教程任务题解">
                         
-                        <span class="card-title">学习笔记 2020 11 04</span>
+                        <span class="card-title">现代 JavaScript 教程任务题解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-11-04
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1352,11 +1151,12 @@ usersById = {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/notes/">
-                        <span class="chip bg-color">notes</span>
+                    <a href="/tags/js/">
+                        <span class="chip bg-color">js</span>
                     </a>
                     
                 </div>
@@ -1370,24 +1170,24 @@ usersById = {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/02/xue-xi-bi-ji-2020-11-02/">
+                <a href="/2020/11/28/xue-xi-bi-ji-2020-11-28/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="学习笔记 2020 11 02">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="学习笔记 2020 11 28">
                         
-                        <span class="card-title">学习笔记 2020 11 02</span>
+                        <span class="card-title">学习笔记 2020 11 28</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            学习笔记 2020-11-02
+                            学习笔记 2020-11-28
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-28
                             </span>
                         <span class="publish-author">
                             

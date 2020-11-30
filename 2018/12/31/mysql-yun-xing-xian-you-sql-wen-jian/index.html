@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -435,7 +435,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    317
+                    324
                 </div>
                 
 
@@ -451,28 +451,28 @@
 <p>PHP和MySQLWeb开发第四版</p>
 <h1 id="关于命令行运行现有的sql文件问题"><a href="#关于命令行运行现有的sql文件问题" class="headerlink" title="关于命令行运行现有的sql文件问题"></a>关于命令行运行现有的sql文件问题</h1><a id="more"></a>
 
-<pre class=" language-bash"><code class="language-bash">D:\wamp\bin\mysql\mysql5.7.23<span class="token operator">></span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> bookorama.sql
+<pre class=" language-bash"><code class="language-bash">D:\wamp\bin\mysql\mysql5.7.23<span class="token operator">&gt;</span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> bookorama.sql
 系统找不到指定的文件。
 
-D:\wamp\bin\mysql\mysql5.7.23<span class="token operator">></span>cd bin
+D:\wamp\bin\mysql\mysql5.7.23<span class="token operator">&gt;</span>cd bin
 
-D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">></span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
+D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">&gt;</span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
 Enter password: ************
 ERROR 1050 <span class="token punctuation">(</span>42S01<span class="token punctuation">)</span> at line 1: Table <span class="token string">'customers'</span> already exists
 
-D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">></span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
+D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">&gt;</span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
 Enter password: ************
 ERROR 1064 <span class="token punctuation">(</span>42000<span class="token punctuation">)</span> at line 8: You have an error <span class="token keyword">in</span> your SQL syntax<span class="token punctuation">;</span> check the manual that corresponds to your MySQL server version <span class="token keyword">for</span> the right syntax to use near <span class="token string">'data not null
 )'</span> at line 6
 
-D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">></span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
+D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">&gt;</span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
 Enter password: ************
 ERROR 1050 <span class="token punctuation">(</span>42S01<span class="token punctuation">)</span> at line 1: Table <span class="token string">'customers'</span> already exists
 
-D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">></span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
+D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">&gt;</span>mysql -h localhost -u bookorama -D books -p <span class="token operator">&lt;</span> D:\zyWEB\SQLjb\bookorama.sql
 Enter password: ************
 
-D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">></span></code></pre>
+D:\wamp\bin\mysql\mysql5.7.23\bin<span class="token operator">&gt;</span></code></pre>
 <p>经过无数次尝试与纠结，一开始提示权限不够，很无语，记得上次创建 <code>bookorama</code> 这个账户时应该给了他权限的，然后又开 <code>mysql</code> 控制台重新给权限然后再来命令行继续敲命令，又发现 <code>sql</code> 文件中写错了，然后又改，最终是成功了。QAQ</p>
 
             </div>
@@ -1024,7 +1024,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">107.5k</span>&nbsp;字
+                class="white-color">111.2k</span>&nbsp;字
             
             
             
