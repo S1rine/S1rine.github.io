@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>django 踩坑</title>
+    <title>Django 部署二三事</title>
+    <url>/2020/12/12/django-bu-shu-er-san-shi/</url>
+    <content><![CDATA[<h1 id="Django-部署记录"><a href="#Django-部署记录" class="headerlink" title="Django 部署记录"></a>Django 部署记录</h1><p>大概学着写完了 Django 简单的项目后，试着看看能不能部署到服务器上。</p>
+<p>折腾了半天才部署好。</p>
+<p>特此记录一下。</p>
+<a id="more"></a>
+
+<p>首先列一下最终让我茅塞顿开的这篇 <a href="https://www.zhihu.com/question/348410145/answer/857812199" target="_blank" rel="noopener">Django 部署回答</a>。</p>
+<p>这篇回答讲解了服务部署在服务器上时如何响应请求, <code>uwsgi</code> 与 <code>Nginx</code> 的关系以及 <code>Nginx</code> 如何直接代理静态资源的获取又如何把请求转发给 <code>uwsgi</code> 。</p>
+<p>简述一下我的踩坑过程。</p>
+<p>因为我的土豆机装了宝塔，我寻思着用宝塔图形化部署会更方便。于是在完全不懂原理的情况下开始学着部署，然后不成功。</p>
+<p>于是我又尝试抛弃图形化界面，直接在命令行部署。结果夭折在了第一步，下载 <code>uwsgi</code> ……</p>
+<p>windows 下载不了这个就暂且不提了。在土豆机上用 <code>anaconda</code> 装的环境下载不了，退出虚拟环境后本机的 <code>python</code> 又可以装。然后我就迷糊着，又回到了图形化部署。</p>
+<p>当时就一直迷惑，用 <code>uwsgi</code> 运行程序的话，那为什么要启动一个网页呢？</p>
+<p>而当时我尝试访问 80 端口，一直被拒绝。我就查看了一下我的 <code>Nginx</code> 环境，发现是我之前给关了。</p>
+<p>启动后，就成功部署了。</p>
+<p><a href="https://www.django.cn/article/show-30.html" target="_blank" rel="noopener">图形化快速部署传送门</a>。</p>
+<p><a href="https://blog.dyboy.cn/program/144.html" target="_blank" rel="noopener">补充链接</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我发现我的很大问题还是在没有系统化的学习一些知识，而是忙着自己在搜索引擎找一些不那么官方的文章来看。</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>Django</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Django 踩坑</title>
     <url>/2020/12/11/django-cai-keng/</url>
-    <content><![CDATA[<h1 id="django-踩坑记录"><a href="#django-踩坑记录" class="headerlink" title="django 踩坑记录"></a>django 踩坑记录</h1><p>因为在学 Python 的关系，学习了一下 django 开发 Web。</p>
+    <content><![CDATA[<h1 id="Django-踩坑记录"><a href="#Django-踩坑记录" class="headerlink" title="Django 踩坑记录"></a>Django 踩坑记录</h1><p>因为在学 Python 的关系，学习了一下 Django 开发 Web。</p>
 <p>Python 不愧是一门奔放且奇特的语言，框架也这么不同寻常。</p>
-<p>django 的项目目录结构就很让我迷惑，而且目录中不包含静态 html 等文件，却能启动服务打开网页……</p>
+<a id="more"></a>
+
+<p>Django 的项目目录结构就很让我迷惑，而且目录中不包含静态 html 等文件，却能启动服务打开网页……</p>
 <blockquote>
 <p>当然，只要仔细查一下就会发现这些都是来自 django 包内。</p>
 </blockquote>
@@ -24,6 +55,7 @@
       </categories>
       <tags>
         <tag>python</tag>
+        <tag>Django</tag>
       </tags>
   </entry>
   <entry>
@@ -9874,8 +9906,8 @@ promise2
         <category>前端</category>
       </categories>
       <tags>
-        <tag>source</tag>
         <tag>js</tag>
+        <tag>source</tag>
       </tags>
   </entry>
   <entry>
@@ -12696,8 +12728,8 @@ config<span class="token punctuation">.</span><span class="token function">plugi
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -12961,8 +12993,8 @@ computed<span class="token punctuation">:</span> <span class="token punctuation"
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -13149,8 +13181,8 @@ Router<span class="token punctuation">.</span>prototype<span class="token punctu
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -13441,8 +13473,8 @@ Vue<span class="token punctuation">.</span><span class="token keyword">delete</s
         <category>前端</category>
       </categories>
       <tags>
-        <tag>vue</tag>
         <tag>notes</tag>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -13665,10 +13697,10 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
-        <tag>css</tag>
+        <tag>notes</tag>
         <tag>html</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -13930,8 +13962,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14048,8 +14080,8 @@ p<span class="token punctuation">.</span><span class="token function">then</span
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14479,8 +14511,8 @@ ONE <span class="token operator">=</span> <span class="token keyword">function</
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14675,8 +14707,8 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14788,8 +14820,8 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14878,8 +14910,8 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -14977,8 +15009,8 @@ document<span class="token punctuation">.</span><span class="token function">get
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -15415,8 +15447,8 @@ document<span class="token punctuation">.</span><span class="token function">get
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -15570,8 +15602,8 @@ document<span class="token punctuation">.</span><span class="token function">get
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -15675,8 +15707,8 @@ document<span class="token punctuation">.</span><span class="token function">get
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>js</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>
