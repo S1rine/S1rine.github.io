@@ -971,6 +971,240 @@ user<span class="token punctuation">.</span>name <span class="token operator">=<
 links<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>link <span class="token operator">=</span><span class="token operator">></span> link<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'orange'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
+<h2 id="修改文档-document"><a href="#修改文档-document" class="headerlink" title="修改文档 (document)"></a>修改文档 (document)</h2><h3 id="任务-10"><a href="#任务-10" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>从对象创建树</p>
+<p>编写一个函数 <code>createTree</code>，从嵌套对象创建一个嵌套的 <code>ul/li</code> 列表（list）。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">"Fish"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"trout"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"salmon"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token string">"Tree"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"Huge"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"sequoia"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"oak"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">"Flowering"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"apple tree"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">"magnolia"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>语法：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> container <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'container'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">createTree</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将树创建在 container 中</span></code></pre>
+<p>结果（树）看起来像这样：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/create-object-tree/build-tree-dom/" style="display: block; border: 0px; width: 798px; height: 300px;"></iframe>
+
+<p>选择下面两种方式中的一种，来完成这个任务：</p>
+<ol>
+<li>为树创建 HTML，然后将它们赋值给 <code>container.innerHTML</code>。</li>
+<li>创建节点树，并使用 DOM 方法将它们附加（append）上去。</li>
+</ol>
+<p>如果这两种方式你都做，那就太好了。</p>
+<p>P.S. 树上不应该有“多余”的元素，例如空的 <code>&lt;ul&gt;&lt;/ul&gt;</code> 叶子节点。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">createTree</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> value <span class="token operator">=</span> data<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> li <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    li<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">createTree</span><span class="token punctuation">(</span>li<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ul<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>li<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  container<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>ul<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> ul<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>参考解法：</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// innerHTML</span>
+<span class="token keyword">function</span> <span class="token function">createTree</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  container<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token function">createTreeText</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createTreeText</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// standalone recursive function</span>
+  <span class="token keyword">let</span> li <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> ul<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    li <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;li>'</span> <span class="token operator">+</span> key <span class="token operator">+</span> <span class="token function">createTreeText</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'&lt;/li>'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>li<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ul <span class="token operator">=</span> <span class="token string">'&lt;ul>'</span> <span class="token operator">+</span> li <span class="token operator">+</span> <span class="token string">'&lt;/ul>'</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> ul <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// DOM</span>
+<span class="token keyword">function</span> <span class="token function">createTree</span><span class="token punctuation">(</span>container<span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  container<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token function">createTreeDom</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">createTreeDom</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// if there's no children, then the call returns undefined</span>
+  <span class="token comment" spellcheck="true">// and the &lt;ul> won't be created</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> li <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    li<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> key<span class="token punctuation">;</span>
+
+    <span class="token keyword">let</span> childrenUl <span class="token operator">=</span> <span class="token function">createTreeDom</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>childrenUl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      li<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>childrenUl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    ul<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>li<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> ul<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>在树中显示后代</p>
+<p>这里有一棵由嵌套的 <code>ul/li</code> 组成的树。</p>
+<p>编写代码，为每个 <code>&lt;li&gt;</code> 添加其后代数量。跳过叶子节点（没有子代的节点）。</p>
+<p>结果：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/tree-count/solution/" style="display: block; border: 0px; width: 798px; height: 300px;"></iframe>
+
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> lis <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> li <span class="token keyword">of</span> lis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> childLen <span class="token operator">=</span> li<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>childLen <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> first <span class="token operator">=</span> li<span class="token punctuation">.</span>firstChild<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> text <span class="token operator">=</span> first<span class="token punctuation">.</span>textContent<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token template-string"><span class="token string">`[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>childLen<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]`</span></span><span class="token punctuation">;</span>
+  first<span class="token punctuation">.</span>data <span class="token operator">=</span> text<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>参考解法：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> lis <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> li <span class="token keyword">of</span> lis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// get the count of all &lt;li> below this &lt;li></span>
+  <span class="token keyword">let</span> descendantsCount <span class="token operator">=</span> li<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>descendantsCount<span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// add directly to the text node (append to the text)</span>
+  li<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>data <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">' ['</span> <span class="token operator">+</span> descendantsCount <span class="token operator">+</span> <span class="token string">']'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>创建一个日历</p>
+<p>编写一个函数 <code>createCalendar(elem, year, month)</code>。</p>
+<p>对该函数的调用，应该使用给定的 year/month 创建一个日历，并将创建的日历放入 <code>elem</code> 中。</p>
+<p>创建的日历应该是一个表格（table），其中每一周用 <code>&lt;tr&gt;</code> 表示，每一天用 <code>&lt;td&gt;</code> 表示。表格顶部应该是带有星期名的 <code>&lt;th&gt;</code>：第一天应该是 Monday，依此类推，直到 Sunday。</p>
+<p>例如，<code>createCalendar(cal, 2012, 9)</code> 应该在元素 <code>cal</code> 中生成如下所示的日历：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/calendar-table/solution/" style="display: block; border: 0px; width: 798px; height: 210px;"></iframe>
+
+<p>P.S. 在这个任务中，生成一个日历就可以了，不需要有点击交互的功能。</p>
+<p>参考解法：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">createCalendar</span><span class="token punctuation">(</span>elem<span class="token punctuation">,</span> year<span class="token punctuation">,</span> month<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">let</span> mon <span class="token operator">=</span> month <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// months in JS are 0..11, not 1..12</span>
+  <span class="token keyword">let</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> mon<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> table <span class="token operator">=</span> <span class="token string">'&lt;table>&lt;tr>&lt;th>MO&lt;/th>&lt;th>TU&lt;/th>&lt;th>WE&lt;/th>&lt;th>TH&lt;/th>&lt;th>FR&lt;/th>&lt;th>SA&lt;/th>&lt;th>SU&lt;/th>&lt;/tr>&lt;tr>'</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// spaces for the first row</span>
+  <span class="token comment" spellcheck="true">// from Monday till the first day of the month</span>
+  <span class="token comment" spellcheck="true">// * * * 1  2  3  4</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">getDay</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    table <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;td>&lt;/td>'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// &lt;td> with actual dates</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> mon<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    table <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;td>'</span> <span class="token operator">+</span> d<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'&lt;/td>'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getDay</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">7</span> <span class="token operator">==</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// sunday, last day of week - newline</span>
+      table <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;/tr>&lt;tr>'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    d<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// add spaces after last days of month for the last row</span>
+  <span class="token comment" spellcheck="true">// 29 30 31 * * * *</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getDay</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token function">getDay</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">7</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      table <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;td>&lt;/td>'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// close the table</span>
+  table <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'&lt;/tr>&lt;/table>'</span><span class="token punctuation">;</span>
+
+  elem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> table<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">getDay</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// get day number from 0 (monday) to 6 (sunday)</span>
+  <span class="token keyword">let</span> day <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>day <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> day <span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// make Sunday (0) the last day</span>
+  <span class="token keyword">return</span> day <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>使用 setInterval 的彩色时钟</p>
+<p>创建一个像这样的彩色时钟：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/clock-setinterval/solution/" style="display: block; border: 0px; width: 798px; height: 60px;"></iframe>
+
+<p>使用 HTML/CSS 进行样式设计，JavaScript 仅用来更新元素中的时间。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clock<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hour<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>hh<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>min<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>mm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sec<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>ss<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+</li>
+</ol>
+<pre class=" language-js"><code class="language-js">   <span class="token keyword">function</span> <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">let</span> clock <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'clock'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// (*)</span>
+     <span class="token keyword">let</span> hours <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>hours <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> hours <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> hours<span class="token punctuation">;</span>
+     clock<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> hours<span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> minutes <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>minutes <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> minutes <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> minutes<span class="token punctuation">;</span>
+     clock<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> minutes<span class="token punctuation">;</span>
+
+     <span class="token keyword">let</span> seconds <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>seconds <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> seconds <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> seconds<span class="token punctuation">;</span>
+     clock<span class="token punctuation">.</span>children<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> seconds<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+   <span class="token keyword">let</span> timerId<span class="token punctuation">;</span>
+
+   <span class="token keyword">function</span> <span class="token function">clockStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 运行时钟</span>
+     timerId <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span>update<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// (*)</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token keyword">function</span> <span class="token function">clockStop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token function">clearInterval</span><span class="token punctuation">(</span>timerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     timerId <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span></code></pre>
+<ol start="5">
+<li><p>对表格进行排序</p>
+<p>下面是一个表格：</p>
+<pre class=" language-markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>Surname<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>Age<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>John<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Smith<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Pete<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Brown<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>15<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Ann<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>Lee<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span></code></pre>
+<p>可能会有更多行。</p>
+<p>编写代码，按 <code>"name"</code> 列对其进行排序。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> sortedRows <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>table<span class="token punctuation">.</span>tBodies<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>rows<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1</span>
+  <span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>rowA<span class="token punctuation">,</span> rowB<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> rowA<span class="token punctuation">.</span>cells<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span>rowB<span class="token punctuation">.</span>cells<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+table<span class="token punctuation">.</span>tBodies<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token operator">...</span>sortedRows<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// (3)</span></code></pre>
+</li>
+</ol>
 
     </div>
 </article>
