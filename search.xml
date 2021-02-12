@@ -1304,6 +1304,206 @@ table<span class="token punctuation">.</span>tBodies<span class="token punctuati
 }</code></pre>
 </li>
 </ol>
+<h2 id="元素大小和滚动"><a href="#元素大小和滚动" class="headerlink" title="元素大小和滚动"></a>元素大小和滚动</h2><h3 id="任务-12"><a href="#任务-12" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>将小球置于区域(filed)中心</p>
+<p>源文件的效果如下：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/put-ball-in-center/source/" style="display: block; border: 0px; width: 798px; height: 180px;"></iframe>
+
+<p>区域（field）的中心坐标是多少？</p>
+<p>计算它们，并将小球置于绿色的区域（field）中心：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/put-ball-in-center/solution/" style="display: block; border: 0px; width: 798px; height: 180px;"></iframe>
+
+<ul>
+<li>该元素应该通过 JavaScript 移动，而不是 CSS。</li>
+<li>该代码应该适用于任何大小的球（<code>10</code>、<code>20</code>、<code>30</code> 像素）以及任意大小的区域（field），而不应该绑定到给定值。</li>
+</ul>
+<p>P.S. 当然了，置于中心的操作通过 CSS 也可以完成，但是这里我们需要通过 JavaScript 完成。此外，当必须使用 JavaScript 时，我们可能会遇到其他话题以及更加复杂的情况，这里我们只是做一个“热身”。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> field <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#field'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ball <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#ball'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ball<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> fieldWidth <span class="token operator">=</span> field<span class="token punctuation">.</span>clientWidth<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> fieldHeight <span class="token operator">=</span> field<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> ballWidth <span class="token operator">=</span> ball<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fieldWidth<span class="token punctuation">,</span> fieldHeight<span class="token punctuation">,</span> ballWidth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> fieldWidth <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> ballWidth <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> fieldHeight <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">-</span> ballWidth <span class="token operator">/</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>此处调用 <code>ball.onload</code> 原因为 <code>ball</code> 元素为图片，在未加载完成前无法取得宽高，需要在图片加载完成后再进行读取计算。或者给 <code>img</code> 显式设置宽高。</p>
+</li>
+</ol>
+<h2 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h2><h3 id="任务-13"><a href="#任务-13" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>查找区域的窗口坐标</p>
+<p>在下面的 iframe 中，你可以看到一个带有绿色区域（field）的文档。</p>
+<p>使用 JavaScript 查找带箭头指向的角的窗口坐标。</p>
+<p>为了方便起见，已经在文档中实现了一个小功能。在任何地方点击都会显示那里的坐标。</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/find-point-coordinates/source/" style="display: block; border: 0px; width: 798px; height: 360px;"></iframe>
+
+<p>你的代码应该使用 DOM 来获取以下窗口坐标：</p>
+<ol>
+<li>左上的外角（这很简单）。</li>
+<li>右下的外角（也挺简单）。</li>
+<li>左上的内角（这有点难）。</li>
+<li>右下的内角（有几种方式，选择其中一种）。</li>
+</ol>
+<p>你计算得到的坐标，应该与点击鼠标返回的坐标相同。</p>
+<p>P.S. 如果元素具有其他大小（size）和边框（border），且未绑定任何固定的值，你写的代码也应该起作用。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> coords <span class="token operator">=</span> elem<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> answer1 <span class="token operator">=</span> <span class="token punctuation">[</span>coords<span class="token punctuation">.</span>left<span class="token punctuation">,</span> coords<span class="token punctuation">.</span>top<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> answer2 <span class="token operator">=</span> <span class="token punctuation">[</span>coords<span class="token punctuation">.</span>right<span class="token punctuation">,</span> coords<span class="token punctuation">.</span>bottom<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> answer3 <span class="token operator">=</span> <span class="token punctuation">[</span>coords<span class="token punctuation">.</span>left <span class="token operator">+</span> field<span class="token punctuation">.</span>clientLeft<span class="token punctuation">,</span> coords<span class="token punctuation">.</span>top <span class="token operator">+</span> field<span class="token punctuation">.</span>clientTop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> answer4 <span class="token operator">=</span> <span class="token punctuation">[</span>
+  coords<span class="token punctuation">.</span>right <span class="token operator">-</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token function">getComputedStyle</span><span class="token punctuation">(</span>field<span class="token punctuation">)</span><span class="token punctuation">.</span>borderRightWidth<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  coords<span class="token punctuation">.</span>bottom <span class="token operator">-</span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token function">getComputedStyle</span><span class="token punctuation">(</span>field<span class="token punctuation">)</span><span class="token punctuation">.</span>borderBottomWidth<span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// or</span>
+<span class="token keyword">let</span> answer4 <span class="token operator">=</span> <span class="token punctuation">[</span>
+  coords<span class="token punctuation">.</span>left <span class="token operator">+</span> elem<span class="token punctuation">.</span>clientLeft <span class="token operator">+</span> elem<span class="token punctuation">.</span>clientWidth<span class="token punctuation">,</span>
+  coords<span class="token punctuation">.</span>top <span class="token operator">+</span> elem<span class="token punctuation">.</span>clientTop <span class="token operator">+</span> elem<span class="token punctuation">.</span>clientHeight
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>在元素旁显示一个 note</p>
+<p>创建一个函数 <code>positionAt(anchor, position, elem)</code> 来定位 <code>elem</code>，具体取决于 <code>anchor</code> 元素附近的 <code>position</code>。</p>
+<p><code>position</code> 必须具有下列三个字符串中的一个：</p>
+<ul>
+<li><code>"top"</code> — 将 <code>elem</code> 定位在 <code>anchor</code> 上方</li>
+<li><code>"right"</code> — 将 <code>elem</code> 定位在 <code>anchor</code> 右侧</li>
+<li><code>"bottom"</code> — 将 <code>elem</code> 定位在 <code>anchor</code> 下方</li>
+</ul>
+<p><code>position</code> 被用在函数 <code>showNote(anchor, position, html)</code> 内，该函数使用给定的 <code>html</code> 创建一个 “note” 元素，并将其显示在 <code>anchor</code> 附近的 <code>position</code> 处。</p>
+<p>这是一个演示示例：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/position-at/solution/" style="display: block; border: 0px; width: 798px; height: 350px;"></iframe>
+
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">positionAt</span><span class="token punctuation">(</span>anchor<span class="token punctuation">,</span> position<span class="token punctuation">,</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> pos <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> anchor<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> self <span class="token operator">=</span> elem<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'top'</span><span class="token punctuation">:</span>
+      pos<span class="token punctuation">.</span>x <span class="token operator">=</span> data<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+      pos<span class="token punctuation">.</span>y <span class="token operator">=</span> data<span class="token punctuation">.</span>y <span class="token operator">-</span> self<span class="token punctuation">.</span>height<span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'right'</span><span class="token punctuation">:</span>
+      pos<span class="token punctuation">.</span>x <span class="token operator">=</span> data<span class="token punctuation">.</span>right<span class="token punctuation">;</span>
+      pos<span class="token punctuation">.</span>y <span class="token operator">=</span> data<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'bottom'</span><span class="token punctuation">:</span>
+      pos<span class="token punctuation">.</span>x <span class="token operator">=</span> data<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+      pos<span class="token punctuation">.</span>y <span class="token operator">=</span> data<span class="token punctuation">.</span>bottom<span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> pos<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> pos<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">positionAt</span><span class="token punctuation">(</span>anchor<span class="token punctuation">,</span> position<span class="token punctuation">,</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> anchorCoords <span class="token operator">=</span> anchor<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"top"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">-</span> elem<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"right"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"bottom"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>在元素旁 (absolute) 显示一个 note</p>
+<p>修改 <a href="https://zh.javascript.info/task/position-at" target="_blank" rel="noopener">上一个任务</a> 的解决方案，让 note 元素使用 <code>position:absolute</code> 来替代 <code>position:fixed</code>。</p>
+<p>这可以防止页面滚动时元素的“失控”。</p>
+<p>以上一个任务的解决方案为基础。为了测试页面滚动，请添加样式 <code>&lt;body style="height: 2000px"&gt;</code>。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getCoords</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> box <span class="token operator">=</span> elem<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    top<span class="token punctuation">:</span> box<span class="token punctuation">.</span>top <span class="token operator">+</span> window<span class="token punctuation">.</span>pageYOffset<span class="token punctuation">,</span>
+    left<span class="token punctuation">:</span> box<span class="token punctuation">.</span>left <span class="token operator">+</span> window<span class="token punctuation">.</span>pageXOffset
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">positionAt</span><span class="token punctuation">(</span>anchor<span class="token punctuation">,</span> position<span class="token punctuation">,</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> anchorCoords <span class="token operator">=</span> <span class="token function">getCoords</span><span class="token punctuation">(</span>anchor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"top"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">-</span> elem<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"right"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"bottom"</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">"px"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>把 note 放在元素内部 (absolute)</p>
+<p>扩展上一个任务 <a href="https://zh.javascript.info/task/position-at-absolute" target="_blank" rel="noopener">在元素旁（absolute）显示一个 note</a>：教函数 <code>positionAt(anchor, position, elem)</code> 把 <code>elem</code> 插入到 <code>anchor</code> 内部。</p>
+<p><code>position</code> 的新值：</p>
+<ul>
+<li><code>top-out</code>，<code>right-out</code>，<code>bottom-out</code> — 和之前一样工作，它们把 <code>elem</code> 插入到 <code>anchor</code> 的上方/右侧/下方。</li>
+<li><code>top-in</code>，<code>right-in</code>，<code>bottom-in</code> — 把 <code>elem</code> 插入到 <code>anchor</code> 内部：将其粘贴到上/右/下边缘。</li>
+</ul>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 在 blockquote 上方显示 note</span>
+<span class="token function">positionAt</span><span class="token punctuation">(</span>blockquote<span class="token punctuation">,</span> <span class="token string">"top-out"</span><span class="token punctuation">,</span> note<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 在 blockquote 内部的上边缘显示 note</span>
+<span class="token function">positionAt</span><span class="token punctuation">(</span>blockquote<span class="token punctuation">,</span> <span class="token string">"top-in"</span><span class="token punctuation">,</span> note<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>结果：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/position-inside-absolute/solution/" style="display: block; border: 0px; width: 798px; height: 310px;"></iframe>
+
+<p>可以以上一个任务 <a href="https://zh.javascript.info/task/position-at-absolute" target="_blank" rel="noopener">在元素旁（absolute）显示一个 note</a> 的解决方案为基础。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getCoords</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> box <span class="token operator">=</span> elem<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    top<span class="token punctuation">:</span> box<span class="token punctuation">.</span>top <span class="token operator">+</span> window<span class="token punctuation">.</span>pageYOffset<span class="token punctuation">,</span>
+    left<span class="token punctuation">:</span> box<span class="token punctuation">.</span>left <span class="token operator">+</span> window<span class="token punctuation">.</span>pageXOffset
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">positionAt</span><span class="token punctuation">(</span>anchor<span class="token punctuation">,</span> position<span class="token punctuation">,</span> elem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> anchorCoords <span class="token operator">=</span> <span class="token function">getCoords</span><span class="token punctuation">(</span>anchor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'top-in'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'top-out'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">-</span> elem<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'right-in'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span>
+        anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> elem<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'right-out'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'bottom-in'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span>
+        anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetHeight <span class="token operator">-</span> elem<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'bottom-out'</span><span class="token punctuation">:</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>left <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> anchorCoords<span class="token punctuation">.</span>top <span class="token operator">+</span> anchor<span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>前端</category>
