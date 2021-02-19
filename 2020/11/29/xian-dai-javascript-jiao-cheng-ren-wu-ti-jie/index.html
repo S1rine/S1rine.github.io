@@ -2216,6 +2216,69 @@ document<span class="token punctuation">.</span>onmouseout <span class="token op
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
+<h2 id="浏览器默认行为"><a href="#浏览器默认行为" class="headerlink" title="浏览器默认行为"></a>浏览器默认行为</h2><h3 id="任务-16"><a href="#任务-16" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>捕获元素中的链接</p>
+<p>使所有包含 <code>id="contents"</code> 的元素内的链接询问用户是否真的要离开。如果用户不想离开，那就不离开。</p>
+<p>像这样：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/catch-link-navigation/solution/" style="display: block; border: 0px; width: 798px; height: 100px;"></iframe>
+
+<p>细节：</p>
+<ul>
+<li>元素内的 HTML 可以被随时动态加载或重新生成，因此，我们无法找到所有链接并为其添加处理程序。这里使用事件委托。</li>
+<li>内容中可能有嵌套的标签。链接中也是，例如 <code>&lt;a href=".."&gt;&lt;i&gt;...&lt;/i&gt;&lt;/a&gt;</code>。</li>
+</ul>
+<pre class=" language-js"><code class="language-js">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> tar <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> target <span class="token operator">=</span> tar<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>target<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>tagName <span class="token operator">!==</span> <span class="token string">'A'</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">confirm</span><span class="token punctuation">(</span><span class="token string">'?'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>result<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+contents<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">handleLink</span><span class="token punctuation">(</span>href<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> isLeaving <span class="token operator">=</span> <span class="token function">confirm</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`Leave for </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>href<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">?`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isLeaving<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">let</span> target <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target <span class="token operator">&amp;&amp;</span> contents<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">handleLink</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>图册</p>
+<p>创建一个图册，通过点击缩略图可以更改主图片。</p>
+<p>像这样：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/image-gallery/solution/" style="display: block; border: 0px; width: 798px; height: 600px;"></iframe>
+
+<p>P.S. 使用事件委托。</p>
+<p><a href="https://plnkr.co/edit/ZQdC9wmRJpI1qLPO?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js">thumbs<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>tagName <span class="token operator">!==</span> <span class="token string">'IMG'</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> href <span class="token operator">=</span> target<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>parentNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  largeImg<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">,</span> href<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+thumbs<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> thumbnail <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>thumbnail<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token function">showThumbnail</span><span class="token punctuation">(</span>thumbnail<span class="token punctuation">.</span>href<span class="token punctuation">,</span> thumbnail<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showThumbnail</span><span class="token punctuation">(</span>href<span class="token punctuation">,</span> title<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  largeImg<span class="token punctuation">.</span>src <span class="token operator">=</span> href<span class="token punctuation">;</span>
+  largeImg<span class="token punctuation">.</span>alt <span class="token operator">=</span> title<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
 
     </div>
 </article>
