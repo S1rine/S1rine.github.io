@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    name="viewport"
+  />
+  <title>Drowning me></title>
+  <link rel="stylesheet" href="/css/style.css">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">Drowning me</a>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+      <li class="menu-item">
+        <a href="/" class="menu-item-link"
+          >home</a
+        >
+      </li>
+      
+      <li class="menu-item">
+        <a href="/categories" class="menu-item-link"
+          >categories</a
+        >
+      </li>
+      
+      <li class="menu-item">
+        <a href="/tags" class="menu-item-link"
+          >tags</a
+        >
+      </li>
+      
+      <li class="menu-item">
+        <a href="/archives" class="menu-item-link"
+          >archives</a
+        >
+      </li>
+      
+      <li class="menu-item">
+        <a href="/about" class="menu-item-link"
+          >about</a
+        >
+      </li>
+      
+    </ul>
+  </nav>
+</header>
+ <article class="post">
+    <div class="post-title">
+        <h2 class="title">现代 JavaScript 教程任务题解二</h2>
+    </div>
+    <div class="post-meta">
+        <span class="post-time">2021-03-02</span>
+    </div>
+    <div class="post-content">
+        <h1 id="现代-JavaScript-教程任务题解二"><a href="#现代-JavaScript-教程任务题解二" class="headerlink" title="现代 JavaScript 教程任务题解二"></a>现代 JavaScript 教程任务题解二</h1><h2 id="鼠标拖放事件"><a href="#鼠标拖放事件" class="headerlink" title="鼠标拖放事件"></a>鼠标拖放事件</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>滑动条</p>
+<p>创建一个滑动条（slider）：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/slider/solution/" style="display: block; border: 0px; width: 798px; height: 60px;"></iframe>
+
+<p>用鼠标拖动蓝色的滑块（thumb）并移动它。</p>
+<p>重要的细节：</p>
+<ul>
+<li>当鼠标按钮被按下时，在滑动过程中，鼠标指针可能会移动到滑块的上方或下方。此时滑块仍会继续移动（方便用户）。</li>
+<li>如果鼠标非常快地向左边或者向右边移动，那么滑块应该恰好停在边缘。</li>
+</ul>
+<p><a href="https://plnkr.co/edit/wUVdmjJaJbvXCUOr?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> slider <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#slider'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> thumb <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.thumb'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> thumbWidth <span class="token operator">=</span> thumb<span class="token punctuation">.</span>clientWidth<span class="token punctuation">;</span>
+<span class="token keyword">const</span> sliderLeft <span class="token operator">=</span> slider<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+<span class="token keyword">const</span> sliderWidth <span class="token operator">=</span> slider<span class="token punctuation">.</span>clientWidth<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>slider<span class="token punctuation">.</span>clientWidth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+thumb<span class="token punctuation">.</span>onmousedown <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">moveAt</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> res <span class="token operator">=</span> x <span class="token operator">-</span> sliderLeft<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> sliderWidth<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderWidth <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> sliderLeft<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderLeft <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
+    thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">function</span> <span class="token function">moveHandle</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">moveAt</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>pageX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> moveHandle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span>onmouseup <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'here'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> moveHandle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>onmouseup <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+thumb<span class="token punctuation">.</span>ondragstart <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">let</span> thumb <span class="token operator">=</span> slider<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.thumb'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+thumb<span class="token punctuation">.</span>onmousedown <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// prevent selection start (browser action)</span>
+  <span class="token keyword">let</span> shiftX <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">-</span> thumb<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// shiftY not needed, the thumb moves only horizontally</span>
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> onMouseMove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> onMouseUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">onMouseMove</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> newLeft <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">-</span> shiftX <span class="token operator">-</span> slider<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// the pointer is out of slider => lock the thumb within the bounaries</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newLeft <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> rightEdge <span class="token operator">=</span> slider<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> thumb<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">></span> rightEdge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newLeft <span class="token operator">=</span> rightEdge<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> newLeft <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">onMouseUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> onMouseUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> onMouseMove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+thumb<span class="token punctuation">.</span>ondragstart <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>将超级英雄放置在足球场周围</p>
+<p>这个任务可以帮助你检查你对拖放和 DOM 的一些方面的理解程度。</p>
+<p>使所有元素都具有类 <code>draggable</code> —— 可拖动。就像本章中的球一样。</p>
+<p>要求：</p>
+<ul>
+<li>使用事件委托来跟踪拖动的开始：一个在 <code>document</code> 上的用于 <code>mousedown</code> 的处理程序。</li>
+<li>如果元素被拖动到了窗口的顶端/末端 —— 页面会向上/向下滚动以允许进一步的拖动。</li>
+<li>没有水平滚动（这使本任务更简单，但添加水平滚动也很简单）。</li>
+<li>即使在快速移动鼠标后，可拖动元素或该元素的部分也绝不应该离开窗口。</li>
+</ul>
+<p>这个示例太大了，不适合放在这里，所以在下面给出了示例链接。</p>
+<p><a href="https://zh.js.cx/task/drag-heroes/solution/" target="_blank" rel="noopener">在新窗口中演示</a></p>
+<p><a href="https://plnkr.co/edit/sTvqaFg9sJo1MoOt?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">let</span> isDragging <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousedown'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">let</span> dragElement <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'.draggable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>dragElement<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  dragElement<span class="token punctuation">.</span>ondragstart <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> coords<span class="token punctuation">,</span> shiftX<span class="token punctuation">,</span> shiftY<span class="token punctuation">;</span>
+
+  <span class="token function">startDrag</span><span class="token punctuation">(</span>dragElement<span class="token punctuation">,</span> event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> event<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">onMouseUp</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">finishDrag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">onMouseMove</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">moveAt</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> event<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// 在拖动开始时：</span>
+  <span class="token comment" spellcheck="true">//   记住初始的移位</span>
+  <span class="token comment" spellcheck="true">//   将元素设置为 position:fixed，并将此元素移动到作为 body 的直接子元素</span>
+  <span class="token keyword">function</span> <span class="token function">startDrag</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> clientX<span class="token punctuation">,</span> clientY<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>isDragging<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    isDragging <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> onMouseMove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    element<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> onMouseUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    shiftX <span class="token operator">=</span> clientX <span class="token operator">-</span> element<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+    shiftY <span class="token operator">=</span> clientY <span class="token operator">-</span> element<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>top<span class="token punctuation">;</span>
+
+    element<span class="token punctuation">.</span>style<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token string">'fixed'</span><span class="token punctuation">;</span>
+
+    <span class="token function">moveAt</span><span class="token punctuation">(</span>clientX<span class="token punctuation">,</span> clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// 在最后，转换到绝对（absolute）坐标，以将元素固定在文档中</span>
+  <span class="token keyword">function</span> <span class="token function">finishDrag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>isDragging<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    isDragging <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+    dragElement<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>dragElement<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top<span class="token punctuation">)</span> <span class="token operator">+</span> window<span class="token punctuation">.</span>pageYOffset <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+    dragElement<span class="token punctuation">.</span>style<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token string">'absolute'</span><span class="token punctuation">;</span>
+
+    document<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> onMouseMove<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dragElement<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> onMouseUp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">moveAt</span><span class="token punctuation">(</span>clientX<span class="token punctuation">,</span> clientY<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 新的窗口相对坐标</span>
+    <span class="token keyword">let</span> newX <span class="token operator">=</span> clientX <span class="token operator">-</span> shiftX<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> newY <span class="token operator">=</span> clientY <span class="token operator">-</span> shiftY<span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">// 检查新坐标是否在底部窗口边缘以下</span>
+    <span class="token keyword">let</span> newBottom <span class="token operator">=</span> newY <span class="token operator">+</span> dragElement<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// new bottom</span>
+
+    <span class="token comment" spellcheck="true">// 在窗口边缘以下？让我们滚动此页面</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newBottom <span class="token operator">></span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// 文档末端的窗口相对坐标</span>
+      <span class="token keyword">let</span> docBottom <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>bottom<span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// 将文档向下滚动 10px 有一个问题</span>
+      <span class="token comment" spellcheck="true">// 它可以滚动到文档末尾之后</span>
+      <span class="token comment" spellcheck="true">// Math.min(how much left to the end, 10)</span>
+      <span class="token keyword">let</span> scrollY <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>docBottom <span class="token operator">-</span> newBottom<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// 计算是不精确的，可能会有舍入误差导致页面向上滚动</span>
+      <span class="token comment" spellcheck="true">// 这是不应该出现，我们在这儿解决它</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollY <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> scrollY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      window<span class="token punctuation">.</span><span class="token function">scrollBy</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> scrollY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment" spellcheck="true">// 快速移动鼠标将指针移至文档末端的外面</span>
+      <span class="token comment" spellcheck="true">// 如果发生这种情况 ——</span>
+      <span class="token comment" spellcheck="true">//  使用最大的可能距离来限制 newY（就是文档末端到顶端的距离）</span>
+      newY <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>newY<span class="token punctuation">,</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 检查新坐标是否在顶部窗口边缘上方（类似的逻辑）</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newY <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// scroll up</span>
+      <span class="token keyword">let</span> scrollY <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token operator">-</span>newY<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollY <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> scrollY <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 检查精度损失</span>
+
+      window<span class="token punctuation">.</span><span class="token function">scrollBy</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span>scrollY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// 快速移动鼠标可以使指针超出文档的顶端</span>
+      newY <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>newY<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// newY 不得小于 0</span>
+    <span class="token punctuation">}</span>
+
+</code></pre>
+</li>
+</ol>
+<pre><code>   // 将 newX 限制在窗口范围内
+   // 这里没有滚动，所以它很简单
+   if (newX &lt; 0) newX = 0;
+   if (newX &gt; document.documentElement.clientWidth - dragElement.offsetWidth) {
+     newX = document.documentElement.clientWidth - dragElement.offsetWidth;
+   }
+
+   dragElement.style.left = newX + 'px';
+   dragElement.style.top = newY + 'px';
+ }</code></pre><p>   });</p>
+<pre><code></code></pre>
+    </div>
+</article>
+ <footer>
+  <p>
+    Theme is <a href="/" target="_blank">Theme-example</a> by
+    <a href="https://s1rine.github.io" target="_blank">Sirine</a>
+  </p>
+  <p>
+    Powered by
+    <a href="https://hexo.io/" target="_blank" rel="nofollow">hexo</a>
+    &copy; 2021
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

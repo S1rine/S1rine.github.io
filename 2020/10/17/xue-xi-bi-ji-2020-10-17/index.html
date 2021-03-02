@@ -118,7 +118,7 @@ Object<span class="token punctuation">.</span><span class="token function">defin
       <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>year_<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>newValue <span class="token operator">&gt;</span> <span class="token number">2017</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>newValue <span class="token operator">></span> <span class="token number">2017</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>year_ <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>edition <span class="token operator">+</span><span class="token operator">=</span> newValue <span class="token operator">-</span> <span class="token number">2017</span><span class="token punctuation">;</span>
       <span class="token punctuation">}</span>
@@ -147,7 +147,7 @@ Object<span class="token punctuation">.</span><span class="token function">defin
       <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>year_<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token keyword">set</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>newValue <span class="token operator">&gt;</span> <span class="token number">2017</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>newValue <span class="token operator">></span> <span class="token number">2017</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>year_ <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>edition <span class="token operator">+</span><span class="token operator">=</span> newValue <span class="token operator">-</span> <span class="token number">2017</span><span class="token punctuation">;</span>
       <span class="token punctuation">}</span>
@@ -274,11 +274,11 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li><p><code>table</code> 单元格默认垂直居中。</p>
 </li>
 <li><p>垂直居中的一种思路</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>
     这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本这里是多行文本
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
 <pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span> </span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> table<span class="token punctuation">;</span>
   <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token hexcode">#000</span><span class="token punctuation">;</span>

@@ -153,7 +153,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token comment" spellcheck="true">// 并不是真正私有的</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wm<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">[</span>user<span class="token punctuation">.</span>idProperty<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 456</span></code></pre>
 <p>为了防止外部获取到弱映射而破坏了私有性。我们可以使用闭包：</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> User <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> wm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
     <span class="token function">constructor</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -218,8 +218,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <li>函数表达式仅在代码执行到达时才会创建该函数，且从此刻开始可用。函数声明会在脚本开始运行时被创建，在声明语句之前也可以调用该函数。</li>
 </ol>
 <h2 id="TODO-LIST"><a href="#TODO-LIST" class="headerlink" title="TODO-LIST"></a>TODO-LIST</h2><ul>
-<li><input disabled type="checkbox"> 想尝试一下 <code>hugo</code> 作为博客。</li>
-<li><input checked disabled type="checkbox"> 整理 18 年的笔记。</li>
+<li><input disabled="" type="checkbox"> 想尝试一下 <code>hugo</code> 作为博客。</li>
+<li><input checked="" disabled="" type="checkbox"> 整理 18 年的笔记。</li>
 </ul>
 
     </div>
