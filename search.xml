@@ -24,7 +24,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 thumb<span class="token punctuation">.</span>onmousedown <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">function</span> <span class="token function">moveAt</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> res <span class="token operator">=</span> x <span class="token operator">-</span> sliderLeft<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> sliderWidth<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderWidth <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&gt;</span> sliderWidth<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderWidth <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> sliderLeft<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderLeft <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
     thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -52,12 +52,12 @@ thumb<span class="token punctuation">.</span>onmousedown <span class="token oper
 
   <span class="token keyword">function</span> <span class="token function">onMouseMove</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> newLeft <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">-</span> shiftX <span class="token operator">-</span> slider<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>left<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// the pointer is out of slider => lock the thumb within the bounaries</span>
+    <span class="token comment" spellcheck="true">// the pointer is out of slider =&gt; lock the thumb within the bounaries</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       newLeft <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">let</span> rightEdge <span class="token operator">=</span> slider<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> thumb<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">></span> rightEdge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">&gt;</span> rightEdge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       newLeft <span class="token operator">=</span> rightEdge<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> newLeft <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
@@ -159,7 +159,7 @@ document<span class="token punctuation">.</span><span class="token function">add
     <span class="token keyword">let</span> newBottom <span class="token operator">=</span> newY <span class="token operator">+</span> dragElement<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// new bottom</span>
 
     <span class="token comment" spellcheck="true">// 在窗口边缘以下？让我们滚动此页面</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newBottom <span class="token operator">></span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newBottom <span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment" spellcheck="true">// 文档末端的窗口相对坐标</span>
       <span class="token keyword">let</span> docBottom <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>bottom<span class="token punctuation">;</span>
 
@@ -191,20 +191,60 @@ document<span class="token punctuation">.</span><span class="token function">add
       newY <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>newY<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// newY 不得小于 0</span>
     <span class="token punctuation">}</span>
 
-</code></pre>
+    <span class="token comment" spellcheck="true">// 将 newX 限制在窗口范围内</span>
+    <span class="token comment" spellcheck="true">// 这里没有滚动，所以它很简单</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newX <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> newX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newX <span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      newX <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    dragElement<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> newX <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+    dragElement<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> newY <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
-<pre><code>   // 将 newX 限制在窗口范围内
-   // 这里没有滚动，所以它很简单
-   if (newX &lt; 0) newX = 0;
-   if (newX &gt; document.documentElement.clientWidth - dragElement.offsetWidth) {
-     newX = document.documentElement.clientWidth - dragElement.offsetWidth;
-   }
-
-   dragElement.style.left = newX + 'px';
-   dragElement.style.top = newY + 'px';
- }</code></pre><p>   });</p>
-<pre><code></code></pre>]]></content>
+<h2 id="键盘：keydown-和-keyup"><a href="#键盘：keydown-和-keyup" class="headerlink" title="键盘：keydown 和 keyup"></a>键盘：keydown 和 keyup</h2><h3 id="任务-1"><a href="#任务-1" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>扩展热键</p>
+<p>创建一个 <code>runOnKeys(func, code1, code2, ... code_n)</code> 函数，在同时按下 <code>code1, code2, ... code_n</code> 键时运行函数 <code>func</code>。</p>
+<p>例如，当按键 <code>"Q"</code> 和 <code>"W"</code> 被一起按下时（任何语言中，无论是否 CapsLock），下面的代码将显示 <code>alert</code>：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">runOnKeys</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">"KeyQ"</span><span class="token punctuation">,</span>
+  <span class="token string">"KeyW"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><a href="https://zh.js.cx/task/check-sync-keydown/solution/" target="_blank" rel="noopener">在新窗口中演示</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">runOnKeys</span><span class="token punctuation">(</span>func<span class="token punctuation">,</span> <span class="token operator">...</span>codes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> pressed <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'keydown'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    pressed<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> code <span class="token keyword">of</span> codes<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 所有的按键都在集合中？</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pressed<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 是的</span>
+    <span class="token comment" spellcheck="true">// 在 alert 期间，如果访客松开了按键，</span>
+    <span class="token comment" spellcheck="true">// JavaScript 就不会获得 "keyup" 事件</span>
+    <span class="token comment" spellcheck="true">// 那么集合 pressed 会保持假设这些按键是被按下的状态</span>
+    <span class="token comment" spellcheck="true">// 因此，为避免“粘滞”键，我们对状态进行了重置</span>
+    <span class="token comment" spellcheck="true">// 如果用户想再次运行热键 —— 他们需要再次按下所有键</span>
+    pressed<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'keyup'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    pressed<span class="token punctuation">.</span><span class="token keyword">delete</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">runOnKeys</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token string">"KeyQ"</span><span class="token punctuation">,</span>
+  <span class="token string">"KeyW"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+]]></content>
       <categories>
         <category>前端</category>
       </categories>
