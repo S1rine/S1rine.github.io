@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.1k</span>
+              <span>9.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -683,6 +683,33 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 <span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
+<h2 id="表单属性和方法"><a href="#表单属性和方法" class="headerlink" title="表单属性和方法"></a>表单属性和方法</h2><h3 id="任务-3"><a href="#任务-3" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>在 select 元素中添加一个选项</p>
+<p>下面是一个 <code>&lt;select&gt;</code> 元素：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>genres<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rock<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Rock<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>blues<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">></span></span>Blues<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
+<p>使用 JavaScript 来实现：</p>
+<ol>
+<li>显示所选选项的值和文本。</li>
+<li>添加一个选项：<code>&lt;option value="classic"&gt;Classic&lt;/option&gt;</code>。</li>
+<li>使之变为可选的。</li>
+</ol>
+<p>请注意，如果你已正确完成所有事项，那么 <code>alert</code> 应该显示 <code>blues</code>。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 解决方案</span>
+<span class="token comment" spellcheck="true">// 1)</span>
+<span class="token keyword">let</span> selectedOption <span class="token operator">=</span> genres<span class="token punctuation">.</span>options<span class="token punctuation">[</span>genres<span class="token punctuation">.</span>selectedIndex<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> selectedOption<span class="token punctuation">.</span>value <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 2)</span>
+<span class="token keyword">let</span> newOption <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span><span class="token string">"Classic"</span><span class="token punctuation">,</span> <span class="token string">"classic"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+genres<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>newOption<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 3)</span>
+newOption<span class="token punctuation">.</span>selected <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
 
     </div>
 
@@ -764,7 +791,7 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -896,13 +923,13 @@ window<span class="token punctuation">.</span><span class="token function">addEv
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">371k</span>
+    <span title="站点总字数">372k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:37</span>
+    <span title="站点阅读时长">5:38</span>
 </div>
 
         
