@@ -101,9 +101,9 @@
   </style>
 </noscript>
 
-
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.6k</span>
+              <span>15k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>13 分钟</span>
             </span>
 
         </div>
@@ -304,7 +304,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 thumb<span class="token punctuation">.</span>onmousedown <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">function</span> <span class="token function">moveAt</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> res <span class="token operator">=</span> x <span class="token operator">-</span> sliderLeft<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">></span> sliderWidth<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderWidth <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&gt;</span> sliderWidth<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderWidth <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&lt;</span> sliderLeft<span class="token punctuation">)</span> res <span class="token operator">=</span> sliderLeft <span class="token operator">-</span> thumbWidth<span class="token punctuation">;</span>
     thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> res <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -332,12 +332,12 @@ thumb<span class="token punctuation">.</span>onmousedown <span class="token oper
 
   <span class="token keyword">function</span> <span class="token function">onMouseMove</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> newLeft <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">-</span> shiftX <span class="token operator">-</span> slider<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>left<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// the pointer is out of slider => lock the thumb within the bounaries</span>
+    <span class="token comment" spellcheck="true">// the pointer is out of slider =&gt; lock the thumb within the bounaries</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       newLeft <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     <span class="token keyword">let</span> rightEdge <span class="token operator">=</span> slider<span class="token punctuation">.</span>offsetWidth <span class="token operator">-</span> thumb<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">></span> rightEdge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newLeft <span class="token operator">&gt;</span> rightEdge<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       newLeft <span class="token operator">=</span> rightEdge<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
     thumb<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> newLeft <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
@@ -439,7 +439,7 @@ document<span class="token punctuation">.</span><span class="token function">add
     <span class="token keyword">let</span> newBottom <span class="token operator">=</span> newY <span class="token operator">+</span> dragElement<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// new bottom</span>
 
     <span class="token comment" spellcheck="true">// 在窗口边缘以下？让我们滚动此页面</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newBottom <span class="token operator">></span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newBottom <span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment" spellcheck="true">// 文档末端的窗口相对坐标</span>
       <span class="token keyword">let</span> docBottom <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>bottom<span class="token punctuation">;</span>
 
@@ -474,7 +474,7 @@ document<span class="token punctuation">.</span><span class="token function">add
     <span class="token comment" spellcheck="true">// 将 newX 限制在窗口范围内</span>
     <span class="token comment" spellcheck="true">// 这里没有滚动，所以它很简单</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>newX <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> newX <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>newX <span class="token operator">></span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>newX <span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       newX <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientWidth <span class="token operator">-</span> dragElement<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
@@ -489,7 +489,7 @@ document<span class="token punctuation">.</span><span class="token function">add
 <p>创建一个 <code>runOnKeys(func, code1, code2, ... code_n)</code> 函数，在同时按下 <code>code1, code2, ... code_n</code> 键时运行函数 <code>func</code>。</p>
 <p>例如，当按键 <code>"Q"</code> 和 <code>"W"</code> 被一起按下时（任何语言中，无论是否 CapsLock），下面的代码将显示 <code>alert</code>：</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token function">runOnKeys</span><span class="token punctuation">(</span>
-  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token string">"KeyQ"</span><span class="token punctuation">,</span>
   <span class="token string">"KeyW"</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
@@ -518,7 +518,7 @@ document<span class="token punctuation">.</span><span class="token function">add
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token function">runOnKeys</span><span class="token punctuation">(</span>
-  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token string">"KeyQ"</span><span class="token punctuation">,</span>
   <span class="token string">"KeyW"</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
@@ -549,7 +549,7 @@ document<span class="token punctuation">.</span><span class="token function">add
     scrollHeight<span class="token punctuation">,</span>
     clientHeight
   <span class="token punctuation">}</span> <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
-  <span class="token keyword">while</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">+</span> clientHeight <span class="token operator">>=</span> scrollHeight <span class="token operator">-</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">+</span> clientHeight <span class="token operator">&gt;=</span> scrollHeight <span class="token operator">-</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token function">createDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">(</span><span class="token punctuation">{</span>
       scrollTop<span class="token punctuation">,</span>
@@ -559,15 +559,15 @@ document<span class="token punctuation">.</span><span class="token function">add
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span class="token function">addScroll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
   <span class="token function">addScroll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 参考解法</span>
 <span class="token keyword">function</span> <span class="token function">populate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">let</span> windowRelativeBottom <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>bottom<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>windowRelativeBottom <span class="token operator">></span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-      document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">insertAdjacentHTML</span><span class="token punctuation">(</span><span class="token string">"beforeend"</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token string">`&lt;p>Date: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p>`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>windowRelativeBottom <span class="token operator">&gt;</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight <span class="token operator">+</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+      document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">insertAdjacentHTML</span><span class="token punctuation">(</span><span class="token string">"beforeend"</span><span class="token punctuation">,</span> <span class="token template-string"><span class="token string">`&lt;p&gt;Date: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p&gt;`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> populate<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -596,10 +596,10 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> arrow <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#arrowTop'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">function</span> <span class="token function">checkArrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">{</span> scrollTop<span class="token punctuation">,</span> clientHeight <span class="token punctuation">}</span> <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">>=</span> clientHeight<span class="token punctuation">)</span> arrow<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'show'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">&gt;=</span> clientHeight<span class="token punctuation">)</span> arrow<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'show'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">else</span> arrow<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'show'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-arrow<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+arrow<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
   document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">scrollTo</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> checkArrow<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -615,7 +615,7 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 <li><p>加载可视化图像</p>
 <p>假设我们有一个速度较慢的客户端，并且希望节省它们在移动端的流量。</p>
 <p>为此，我们决定不立即显示图像，而是将其替换为占位符，如下所示：</p>
-<pre class=" language-markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder.svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>128<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>128<span class="token punctuation">"</span></span> <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>real.jpg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>placeholder.svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>128<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>128<span class="token punctuation">"</span></span> <span class="token attr-name">data-src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>real.jpg<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>因此，最初所有图像均为 <code>placeholder.svg</code>。当页面滚动到用户可以看到图像位置时 —— 我们就会将 <code>src</code> 更改为 <code>data-src</code> 的 <code>src</code>，从而加载图像。</p>
 <p>这是在 <code>iframe</code> 中的一个示例：</p>
 <iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/load-visible-img/solution/" style="display: block; border: 0px; width: 798px; height: 300px;"></iframe>
@@ -666,8 +666,8 @@ window<span class="token punctuation">.</span><span class="token function">addEv
   <span class="token keyword">let</span> coords <span class="token operator">=</span> elem<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">let</span> windowHeight <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">// top elem edge is visible OR bottom elem edge is visible</span>
-  <span class="token keyword">let</span> topVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>top <span class="token operator">></span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>top <span class="token operator">&lt;</span> windowHeight<span class="token punctuation">;</span>
-  <span class="token keyword">let</span> bottomVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&lt;</span> windowHeight <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> topVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>top <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>top <span class="token operator">&lt;</span> windowHeight<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bottomVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&lt;</span> windowHeight <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> topVisible <span class="token operator">||</span> bottomVisible<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// 参考解法 2</span>
@@ -677,8 +677,8 @@ window<span class="token punctuation">.</span><span class="token function">addEv
   <span class="token keyword">let</span> extendedTop <span class="token operator">=</span> <span class="token operator">-</span>windowHeight<span class="token punctuation">;</span>
   <span class="token keyword">let</span> extendedBottom <span class="token operator">=</span> <span class="token number">2</span> <span class="token operator">*</span> windowHeight<span class="token punctuation">;</span>
   <span class="token comment" spellcheck="true">// top visible || bottom visible</span>
-  <span class="token keyword">let</span> topVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>top <span class="token operator">></span> extendedTop <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>top <span class="token operator">&lt;</span> extendedBottom<span class="token punctuation">;</span>
-  <span class="token keyword">let</span> bottomVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&lt;</span> extendedBottom <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">></span> extendedTop<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> topVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>top <span class="token operator">&gt;</span> extendedTop <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>top <span class="token operator">&lt;</span> extendedBottom<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bottomVisible <span class="token operator">=</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&lt;</span> extendedBottom <span class="token operator">&amp;&amp;</span> coords<span class="token punctuation">.</span>bottom <span class="token operator">&gt;</span> extendedTop<span class="token punctuation">;</span>
   <span class="token keyword">return</span> topVisible <span class="token operator">||</span> bottomVisible<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 </li>
@@ -686,10 +686,10 @@ window<span class="token punctuation">.</span><span class="token function">addEv
 <h2 id="表单属性和方法"><a href="#表单属性和方法" class="headerlink" title="表单属性和方法"></a>表单属性和方法</h2><h3 id="任务-3"><a href="#任务-3" class="headerlink" title="任务"></a>任务</h3><ol>
 <li><p>在 select 元素中添加一个选项</p>
 <p>下面是一个 <code>&lt;select&gt;</code> 元素：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>genres<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rock<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Rock<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>blues<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">></span></span>Blues<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>genres<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>rock<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Rock<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>blues<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>Blues<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span></code></pre>
 <p>使用 JavaScript 来实现：</p>
 <ol>
 <li>显示所选选项的值和文本。</li>
@@ -708,6 +708,234 @@ genres<span class="token punctuation">.</span><span class="token function">appen
 
 <span class="token comment" spellcheck="true">// 3)</span>
 newOption<span class="token punctuation">.</span>selected <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<h2 id="聚焦：focus-blur"><a href="#聚焦：focus-blur" class="headerlink" title="聚焦：focus/blur"></a>聚焦：focus/blur</h2><h3 id="任务-4"><a href="#任务-4" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>可编辑的 div</p>
+<p>创建一个 <code>&lt;div&gt;</code>，它在被点击后变成 <code>&lt;textarea&gt;</code>。</p>
+<p>文本区域（textarea）允许我们编辑 <code>&lt;div&gt;</code> 里的 HTML。</p>
+<p>当用户按下 Enter 键，或者 <code>&lt;textarea&gt;</code> 失去焦点时，<code>&lt;textarea&gt;</code> 会变回 <code>&lt;div&gt;</code>，并且 <code>&lt;textarea&gt;</code> 中的内容会变成 <code>&lt;div&gt;</code> 中的 HTML。</p>
+<p><a href="https://zh.js.cx/task/editable-div/solution/" target="_blank" rel="noopener">在新窗口中演示</a></p>
+<p><a href="https://plnkr.co/edit/5MrP217W6yBfav3i?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> view <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#view'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+view<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> textarea <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'textarea'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span>value <span class="token operator">=</span> view<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'edit'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'blur'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">remove</span><span class="token punctuation">(</span>textarea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'keydown'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>keyCode <span class="token operator">!==</span> <span class="token number">13</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    textarea<span class="token punctuation">.</span><span class="token function">blur</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>textarea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  view<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">remove</span><span class="token punctuation">(</span>textarea<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  view<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span><span class="token punctuation">;</span>
+  view<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> textarea<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  textarea<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 解决方案</span>
+<span class="token keyword">let</span> area <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> view <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'view'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+view<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">editStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">editStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  area <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'textarea'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'edit'</span><span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span>value <span class="token operator">=</span> view<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span>onkeydown <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>key <span class="token operator">==</span> <span class="token string">'Enter'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">blur</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span>onblur <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">editEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  view<span class="token punctuation">.</span><span class="token function">replaceWith</span><span class="token punctuation">(</span>area<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">editEnd</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  view<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> area<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  area<span class="token punctuation">.</span><span class="token function">replaceWith</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>点击即可编辑单元格</p>
+<p>使单元格在点击时可编辑。</p>
+<ul>
+<li>点击时 —— 单元格应该变成“可编辑的”（在里面会出现文本区域），我们修改其中的 HTML。在这不调整单元格大小，所有几何形状保持不变。</li>
+<li>OK 和 CANCEL 按钮会出现在单元格的下面，用以完成/取消编辑。</li>
+<li>同一时刻只有一个单元格可被编辑。当一个 <code>&lt;td&gt;</code> 处于“编辑模式”时，在其它单元格上的点击会被忽略。</li>
+<li>该表格可能有很多单元格。请使用事件委托。</li>
+</ul>
+<p>示例：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/edit-td-click/solution/" style="display: block; border: 0px; width: 798px; height: 400px;"></iframe>
+
+<p><a href="https://plnkr.co/edit/uIj9ySuIjsUoFPHf?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.edit-td</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.edit</span> </span><span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">170</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">104</span>px<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">outline</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">resize</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.btn-group</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">100%</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'bagua-table'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> edit <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> tdContent <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+table<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'td'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>target<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  edit <span class="token operator">||</span> <span class="token function">editStart</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">editStart</span><span class="token punctuation">(</span>td<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  edit <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'textarea'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  edit<span class="token punctuation">.</span>value <span class="token operator">=</span> td<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+  edit<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'edit'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> btn <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+  &lt;button data-type="1"&gt;ok&lt;/button&gt;
+  &lt;button data-type="2"&gt;cancel&lt;/button&gt;
+  `</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  div<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> target <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> type <span class="token operator">=</span> target<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>type<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">'1'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">confirmEdit</span><span class="token punctuation">(</span>td<span class="token punctuation">,</span> edit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">cancelEdit</span><span class="token punctuation">(</span>td<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  div<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'btn-group'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  div<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> btn<span class="token punctuation">;</span>
+  tdContent <span class="token operator">=</span> td<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>edit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>div<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'edit-td'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">cancelEdit</span><span class="token punctuation">(</span>td<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> tdContent<span class="token punctuation">;</span>
+  tdContent <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  edit <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">confirmEdit</span><span class="token punctuation">(</span>td<span class="token punctuation">,</span> edit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> edit<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  tdContent <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  edit <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>参考解法：</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.edit-td</span> <span class="token class">.edit-area</span> </span><span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* remove resizing handle in Firefox */</span>
+  <span class="token property">resize</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* remove outline on focus in Chrome */</span>
+  <span class="token property">outline</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* remove scrollbar in IE */</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.edit-controls</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector"><span class="token class">.edit-td</span> </span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'bagua-table'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> editingTd<span class="token punctuation">;</span>
+table<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 3 possible targets</span>
+  <span class="token keyword">let</span> target <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">'.edit-cancel,.edit-ok,td'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>table<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>className <span class="token operator">==</span> <span class="token string">'edit-cancel'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">finishTdEdit</span><span class="token punctuation">(</span>editingTd<span class="token punctuation">.</span>elem<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>className <span class="token operator">==</span> <span class="token string">'edit-ok'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">finishTdEdit</span><span class="token punctuation">(</span>editingTd<span class="token punctuation">.</span>elem<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>target<span class="token punctuation">.</span>nodeName <span class="token operator">==</span> <span class="token string">'TD'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>editingTd<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// already editing</span>
+    <span class="token function">makeTdEditable</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">makeTdEditable</span><span class="token punctuation">(</span>td<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  editingTd <span class="token operator">=</span> <span class="token punctuation">{</span>
+    elem<span class="token punctuation">:</span> td<span class="token punctuation">,</span>
+    data<span class="token punctuation">:</span> td<span class="token punctuation">.</span>innerHTML
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'edit-td'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// td is in edit state, CSS also styles the area inside</span>
+  <span class="token keyword">let</span> textArea <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'textarea'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textArea<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> td<span class="token punctuation">.</span>clientWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  textArea<span class="token punctuation">.</span>style<span class="token punctuation">.</span>height <span class="token operator">=</span> td<span class="token punctuation">.</span>clientHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  textArea<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'edit-area'</span><span class="token punctuation">;</span>
+  textArea<span class="token punctuation">.</span>value <span class="token operator">=</span> td<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>textArea<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textArea<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  td<span class="token punctuation">.</span><span class="token function">insertAdjacentHTML</span><span class="token punctuation">(</span><span class="token string">"beforeEnd"</span><span class="token punctuation">,</span>
+    <span class="token string">'&lt;div class="edit-controls"&gt;&lt;button class="edit-ok"&gt;OK&lt;/button&gt;&lt;button class="edit-cancel"&gt;CANCEL&lt;/button&gt;&lt;/div&gt;'</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">finishTdEdit</span><span class="token punctuation">(</span>td<span class="token punctuation">,</span> isOk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isOk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> td<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    td<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> editingTd<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  td<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'edit-td'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  editingTd <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>键盘移动老鼠</p>
+<p>聚焦在老鼠上。然后使用键盘的方向键移动它：</p>
+<p><a href="https://zh.js.cx/task/keyboard-mouse/solution/" target="_blank" rel="noopener">在新窗口中演示</a></p>
+<p>P.S. 除了 <code>#mouse</code> 元素外，不要在任何地方放置事件处理程序。 P.P.S. 不要修改 HTML/CSS，这个方法应该是通用的，可以用于任何元素。</p>
+<p><a href="https://plnkr.co/edit/Qv2fSzhSriojlP3T?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> mouse <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#mouse'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+mouse<span class="token punctuation">.</span>tabIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+mouse<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  mouse<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  mouse<span class="token punctuation">.</span>style<span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token string">'fixed'</span><span class="token punctuation">;</span>
+  mouse<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> mouse<span class="token punctuation">.</span>offsetLeft <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  mouse<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> mouse<span class="token punctuation">.</span>offsetTop <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  mouse<span class="token punctuation">.</span>onkeydown <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">'ArrowLeft'</span><span class="token punctuation">:</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span>
+          <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'ArrowUp'</span><span class="token punctuation">:</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span>
+          <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>top<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'ArrowRight'</span><span class="token punctuation">:</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span>
+          <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">'ArrowDown'</span><span class="token punctuation">:</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span>
+          <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>top<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>offsetHeight <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
 
@@ -791,7 +1019,7 @@ newOption<span class="token punctuation">.</span>selected <span class="token ope
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -923,13 +1151,13 @@ newOption<span class="token punctuation">.</span>selected <span class="token ope
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">372k</span>
+    <span title="站点总字数">377k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:38</span>
+    <span title="站点阅读时长">5:42</span>
 </div>
 
         
