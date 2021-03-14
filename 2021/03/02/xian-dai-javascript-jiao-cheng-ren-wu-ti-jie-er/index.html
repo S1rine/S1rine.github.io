@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>18k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>16 分钟</span>
+              <span>18 分钟</span>
             </span>
 
         </div>
@@ -1071,6 +1071,51 @@ document<span class="token punctuation">.</span><span class="token function">get
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ol>
+<h2 id="资源加载：onload-onerror"><a href="#资源加载：onload-onerror" class="headerlink" title="资源加载：onload, onerror"></a>资源加载：onload, onerror</h2><h3 id="任务-6"><a href="#任务-6" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>使用回调函数加载图片</p>
+<p>通常，图片在被创建时才会被加载。所以，当我们向页面中添加 <code>&lt;img&gt;</code> 时，用户不会立即看到图片。浏览器首先需要加载它。</p>
+<p>为了立即显示一张图片，我们可以“提前”创建它，像这样：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'my.jpg'</span><span class="token punctuation">;</span></code></pre>
+<p>浏览器开始加载图片，并将其保存到缓存中。以后，当相同图片出现在文档中时（无论怎样），它都会立即显示。</p>
+<p><strong>创建一个函数 <code>preloadImages(sources, callback)</code>，来加载来自数组 <code>source</code> 的所有图片，并在准备就绪时运行 <code>callback</code>。</strong></p>
+<p>例如，这段代码将在图片加载完成后显示一个 <code>alert</code>：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">loaded</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Images loaded"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">preloadImages</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"1.jpg"</span><span class="token punctuation">,</span> <span class="token string">"2.jpg"</span><span class="token punctuation">,</span> <span class="token string">"3.jpg"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> loaded<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>如果出现错误，函数应该仍假定图片已经“加载完成”。</p>
+<p>换句话说，当所有图片都已加载完成，或出现错误输出时，将执行 <code>callback</code>。</p>
+<p>例如，当我们计划显示一个包含很多图片的可滚动图册，并希望确保所有图片都已加载完成时，这个函数很有用。</p>
+<p>在源文档中，你可以找到指向测试图片的链接，以及检查它们是否已加载完成的代码。它应该输出 <code>300</code>。</p>
+<p><a href="https://plnkr.co/edit/A2YjseeJafHft1FB?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">preloadImages</span><span class="token punctuation">(</span>sources<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> callback<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> list <span class="token operator">=</span> sources<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      img<span class="token punctuation">.</span>src <span class="token operator">=</span> src<span class="token punctuation">;</span>
+      img<span class="token punctuation">.</span>onload <span class="token operator">=</span> resolve<span class="token punctuation">;</span>
+      img<span class="token punctuation">.</span>onerror <span class="token operator">=</span> reject<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">preloadImages</span><span class="token punctuation">(</span>sources<span class="token punctuation">,</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">onLoad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    counter<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>counter <span class="token operator">==</span> sources<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> source of sources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    img<span class="token punctuation">.</span>onload <span class="token operator">=</span> img<span class="token punctuation">.</span>onerror <span class="token operator">=</span> onLoad<span class="token punctuation">;</span>
+    img<span class="token punctuation">.</span>src <span class="token operator">=</span> source<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
 
     </div>
 
@@ -1155,7 +1200,7 @@ document<span class="token punctuation">.</span><span class="token function">get
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1287,13 +1332,13 @@ document<span class="token punctuation">.</span><span class="token function">get
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">381k</span>
+    <span title="站点总字数">382k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:46</span>
+    <span title="站点阅读时长">5:47</span>
 </div>
 
         
