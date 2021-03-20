@@ -97,9 +97,9 @@
   </style>
 </noscript>
 
-
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -273,20 +273,14 @@
       
           <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>刷面试题看到懒加载、预加载问题时，随手在掘金搜了一下，搜到一篇文章。<a href="https://juejin.cn/post/6844903614138286094" target="_blank" rel="noopener">链接</a></p>
 <p>看完原理后，把文章附的代码跑了一下，发现了一些问题。下面详细列一下。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
-<li><p>代码中附带很多中文符号。</p>
-<p>这个很好解决，多选然后替换就可以了。</p>
-</li>
-<li><p>无法像预期那样实现懒加载。</p>
-<p>实际上，这段代码的表现是首屏打开就会试图加载所有的图片，并不像理论所说当图片的dom元素出现在可视窗口才会进行加载。</p>
-<p>简单翻阅了一下评论区，其实有人提到了这个问题。但当时的我还没有发现最根本的问题出自何处。我检查了一下懒加载函数内的循环，发现判定是否在可视区域的代码根本没有用，一股脑地全部判定为真了。</p>
-<p>我纠结了很久之后才想起打印一下 <code>document.documentElement.clientHeight</code> 确认一下。这一看才发现原来这个值就已经不符合预期了。它的值表现为整个页面的高度而非预期的可视部分的高度。</p>
-<p>我想起前不久写过的题目，也是懒加载。我翻出代码示例一跑，在它的代码示例中 <code>clientHeight</code> 却是符合预期的可视窗口高度。我很懵逼，翻来覆去检查了好久的 HTML 元素，一会儿看看是不是给 <code>img</code> 添加 CSS 高度的问题，一会儿看看是不是修改了 <code>display</code> 的问题。但一无所获，我也试图查找搜索引擎是否有此先例，但没有超出我的预料。我看了很久很久才发现原代码中缺少头行的 <code>!&lt;DOCTYPE html&gt;</code> 标签。我加了上去一试，才得知原来是这个标签的影响。</p>
-</li>
-</ol>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Quirks_Mode_and_Standards_Mode" target="_blank" rel="noopener">怪异模式和标准模式</a></p>
-<p>此前就知道浏览器有不同的渲染模式，使用 DOCTYPE 标签启用标准模式，防止浏览器以非标准行为渲染。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/13/lan-jia-zai-yu-jia-zai-cai-keng-clientheight/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -356,7 +350,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>19k</span>
+              <span>20k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1496,13 +1490,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">382k</span>
+    <span title="站点总字数">383k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:47</span>
+    <span title="站点阅读时长">5:48</span>
 </div>
 
         
