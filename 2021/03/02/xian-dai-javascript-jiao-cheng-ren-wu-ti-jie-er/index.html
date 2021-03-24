@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>20k</span>
+              <span>21k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>18 分钟</span>
+              <span>19 分钟</span>
             </span>
 
         </div>
@@ -1152,6 +1152,60 @@ img<span class="token punctuation">.</span>src <span class="token operator">=</s
 <span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
+<h2 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h2><h3 id="任务-8"><a href="#任务-8" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>从 GitHub fetch 用户信息</p>
+<p>创建一个异步函数 <code>getUsers(names)</code>，该函数接受 GitHub 登录名数组作为输入，查询 GitHub 以获取有关这些用户的信息，并返回 GitHub 用户数组。</p>
+<p>带有给定 <code>USERNAME</code> 的用户信息的 GitHub 网址是：<code>https://api.github.com/users/USERNAME</code>。</p>
+<p>沙箱中有一个测试用例。</p>
+<p>重要的细节：</p>
+<ol>
+<li>对每一个用户都应该有一个 <code>fetch</code> 请求。</li>
+<li>请求不应该相互等待。以便能够尽快获取到数据。</li>
+<li>如果任何一个请求失败了，或者没有这个用户，则函数应该返回 <code>null</code> 到结果数组中。</li>
+</ol>
+<p><a href="https://plnkr.co/edit/CbrKaT63zVbOOPvp?p=preview" target="_blank" rel="noopener">打开带有测试的沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getUsers</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> list <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>name <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`https://api.github.com/users/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>item <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>item<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">404</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> data <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getUsers</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> jobs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> name <span class="token keyword">of</span> names<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> job <span class="token operator">=</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`https://api.github.com/users/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+      successResponse <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>successResponse<span class="token punctuation">.</span>status <span class="token operator">!=</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> successResponse<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      failResponse <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    jobs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">let</span> results <span class="token operator">=</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> results<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/**
+请注意：.then 调用紧跟在 fetch 后面，这样，当我们收到响应时，它不会等待其他的 fetch，而是立即开始读取 .json()。
+如果我们使用 await Promise.all(names.map(name =&gt; fetch(...)))，并在 results 上调用 .json() 方法，那么它将会等到所有 fetch 都获取到响应数据才开始解析。通过将 .json() 直接添加到每个 fetch 中，我们就能确保每个 fetch 在收到响应时都会立即开始以 JSON 格式读取数据，而不会彼此等待。
+这个例子表明，即使我们主要使用 async/await，低级别的 Promise API 仍然很有用。
+*/</span></code></pre>
+</li>
+</ol>
 
     </div>
 
@@ -1236,7 +1290,7 @@ img<span class="token punctuation">.</span>src <span class="token operator">=</s
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-8"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1368,13 +1422,13 @@ img<span class="token punctuation">.</span>src <span class="token operator">=</s
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">383k</span>
+    <span title="站点总字数">384k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:48</span>
+    <span title="站点阅读时长">5:49</span>
 </div>
 
         
