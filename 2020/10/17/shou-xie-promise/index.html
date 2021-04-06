@@ -314,14 +314,16 @@ promise1
 <li><p>When fulfilled, a promise:</p>
 <ol>
 <li>must not transition to any other state.</li>
-<li>must have a value, which must not change.</li>
 </ol>
+</li>
+<li><p>must have a value, which must not change.</p>
 </li>
 <li><p>When rejected, a promise:</p>
 <ol>
 <li>must not transition to any other state.</li>
-<li>must have a reason, which must not change.</li>
 </ol>
+</li>
+<li><p>must have a reason, which must not change.</p>
 </li>
 </ol>
 <p>Here, “must not change” means immutable identity (i.e. <code>===</code>), but does not imply deep immutability.</p>
@@ -329,36 +331,35 @@ promise1
 <p><code>promise</code> 仅有三种状态，表示还未完成，已成功或是已失败。当处于 <code>pending</code> 状态时，可能会转换为另外两种状态。当处于 <code>fulfilled</code> 状态时，不会再转为其余状态，必须拥有一个 <code>value</code> 属性且不再变化。当处于 <code>rejected</code> 状态时，同样不会再转变，且必须拥有一个 <code>reason</code> 属性不再变化。</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> PENDING <span class="token operator">=</span> <span class="token string">'pending'</span><span class="token punctuation">,</span>
   FULFILLED <span class="token operator">=</span> <span class="token string">'fulfilled'</span><span class="token punctuation">,</span>
-  REJECTED <span class="token operator">=</span> <span class="token string">'rejected'</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">MyPromise</span> <span class="token punctuation">{</span>
-  <span class="token function">constructor</span><span class="token punctuation">(</span>executor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">=</span> PENDING<span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> undefined<span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>reason <span class="token operator">=</span> undefined<span class="token punctuation">;</span>
-
-    <span class="token keyword">const</span> resolve <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">const</span> reject <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-    <span class="token function">executor</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>所以在构造函数中，我们定义三个变量，初始化此时的状态为 <code>pending</code> ，并且传入的 <code>executor</code> 函数我们需要进行调用，传入定义的两个函数作为参数。</p>
-<p>然后定义 <code>resolve</code> 和 <code>reject</code> 的内容。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> resolve <span class="token operator">=</span> value <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">!==</span> PENDING<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> FULFILLED<span class="token punctuation">;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> reject <span class="token operator">=</span> reason <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">!==</span> PENDING<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> REJECTED<span class="token punctuation">;</span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>reason <span class="token operator">=</span> reason<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
-<p>遵循规范，若当前状态不是 <code>pending</code> ，不执行后续操作。</p>
+REJECTED <span class="token operator">=</span> <span class="token string">'rejected'</span><span class="token punctuation">;</span>
+</code></pre>
 </li>
+</ol>
+<p>class MyPromise {<br>     constructor(executor) {<br>       this.status = PENDING;<br>       this.value = undefined;<br>       this.reason = undefined;</p>
+<pre><code>   const resolve = () =&gt; {};
+
+   const reject = () =&gt; {};
+
+   executor(resolve, reject);
+ }</code></pre><p>   }</p>
+<pre><code>
+   所以在构造函数中，我们定义三个变量，初始化此时的状态为 `pending` ，并且传入的 `executor` 函数我们需要进行调用，传入定义的两个函数作为参数。
+
+   然后定义 `resolve` 和 `reject` 的内容。
+
+   ```js
+const resolve = value =&gt; {
+     if (this.status !== PENDING) return;
+  this.status === FULFILLED;
+     this.value = value;
+};
+
+   const reject = reason =&gt; {
+     if (this.status !== PENDING) return;
+     this.status === REJECTED;
+     this.reason = reason;
+   };</code></pre><p>   遵循规范，若当前状态不是 <code>pending</code> ，不执行后续操作。</p>
+<ol start="2">
 <li><h3 id="定义-then-方法"><a href="#定义-then-方法" class="headerlink" title="定义 then 方法"></a>定义 <code>then</code> 方法</h3><p>首先查看规范：</p>
 <blockquote>
 <p>A promise’s <code>then</code> method accepts two arguments:</p>
