@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>how to add a babel plugin in cra app</title>
+    <url>/2021/04/24/how-to-add-a-babel-plugin-in-cra-app/</url>
+    <content><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>趁乱摸鱼写会儿 React ，用 CRA (create-react-app) 拉的项目模板。最近接触到了 <code>CSS in JS</code> 的写法，觉得很新奇很有趣。不用单独写一个样式文件来引入，而是可以用行内样式的方式或是 <code>styled-components</code> 的方式来编写样式。试着改写之前写过的 Comment List 模块的样式。碰到 1 个问题。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>我偏向于 <code>styled-components</code> 的写法，如下所示：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> Container <span class="token operator">=</span> styled<span class="token punctuation">.</span>div<span class="token template-string"><span class="token string">`
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+`</span></span><span class="token punctuation">;</span></code></pre>
+<p>如此，就可以把 Container 直接作为一个组件来使用，不会使得 JSX 的标签内容因为填塞了太多的样式而显得臃肿且影响阅读。</p>
+<p>但我如何实现两个标签拥有相同的样式，但其中一个又要部分独有的样式呢？遂翻阅文档。</p>
+<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题++"></a>问题++</h2><p>文档中提到了如何复用样式，每个创建出来的组件都会有 <code>withComponents</code> 这个方法，调用它就可以复制出一个相同样式的组件。但是这样似乎无法满足我的第二个要求，实现额外的定制化样式。</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">import</span> styled <span class="token keyword">from</span> <span class="token string">'@emotion/styled'</span>
+
+<span class="token keyword">const</span> Section <span class="token operator">=</span> styled<span class="token punctuation">.</span>section<span class="token template-string"><span class="token string">`
+  background: #333;
+  color: #fff;
+`</span></span>
+<span class="token comment" spellcheck="true">// this component has the same styles as Section but it renders an aside</span>
+<span class="token keyword">const</span> Aside <span class="token operator">=</span> Section<span class="token punctuation">.</span><span class="token function">withComponent</span><span class="token punctuation">(</span><span class="token string">'aside'</span><span class="token punctuation">)</span>
+<span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Section</span><span class="token punctuation">></span></span>This is a section<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Section</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Aside</span><span class="token punctuation">></span></span>This is an aside<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Aside</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span></code></pre>
+<p>这个问题也许可以在 <code>styled-components</code> 官网翻阅解决，因为 <code>emotion</code> 应该就是基于这个库的。但我没有再钻研这个，而是发现了另一个问题。关于样式嵌套。</p>
+<p>嵌套一向是 CSS 预编译器的拿手好戏。在 <code>styled-components</code> 中的普通嵌套也完全没问题 。但是对于我们创建出的样式组件就难以在 native 环境下完成嵌套。需要额外安装一个 babel 插件来实现。那么问题来了，如何在 CRA 的定制模板中修改 babel 配置？</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>其实这个问题有一个很简单的解法，就是 eject 出 CRA 的 webpack 配置，然后自行修改即可。但这样实在是太大费周章了。于是我查了查如何不影响项目结构而单独配置 babel 。</p>
+<p>了解到了 <code>react-app-rewired</code> <code>customize-cra</code> 可以实现 CRA 配置的修改。</p>
+<p>修改启动命令的内容，配置 <code>config-override.js</code> 来添加新的 babel 配置。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> override<span class="token punctuation">,</span> addBabelPlugin <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'customize-cra'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">override</span><span class="token punctuation">(</span><span class="token function">addBabelPlugin</span><span class="token punctuation">(</span><span class="token string">'@emotion'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>cli</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>懒加载、预加载踩坑 clientHeight</title>
     <url>/2021/03/13/lan-jia-zai-yu-jia-zai-cai-keng-clientheight/</url>
     <content><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>刷面试题看到懒加载、预加载问题时，随手在掘金搜了一下，搜到一篇文章。<a href="https://juejin.cn/post/6844903614138286094" target="_blank" rel="noopener">链接</a></p>
@@ -1074,6 +1117,152 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
     div<span class="token punctuation">.</span>style<span class="token punctuation">.</span>height <span class="token operator">=</span> radius <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+<h2 id="JavaScript-动画"><a href="#JavaScript-动画" class="headerlink" title="JavaScript 动画"></a>JavaScript 动画</h2><h3 id="任务-11"><a href="#任务-11" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>为弹跳的球设置动画</p>
+<p>做一个弹跳的球。点击查看应有的效果：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/animate-ball/solution/" style="display: block; border: 0px; width: 798px; height: 250px;"></iframe>
+
+<p><a href="https://plnkr.co/edit/8NZsuZsiZveDBR2C?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>timing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token function">timing</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> timeFraction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bounce</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> result<span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> a <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">,</span> b <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timeFraction <span class="token operator">>=</span> <span class="token punctuation">(</span><span class="token number">7</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">-</span> <span class="token number">6</span> <span class="token operator">*</span> a <span class="token operator">-</span> <span class="token number">11</span> <span class="token operator">*</span> timeFraction<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+ball<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> to <span class="token operator">=</span> field<span class="token punctuation">.</span>clientHeight <span class="token operator">-</span> ball<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>bounce<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">draw</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> to <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">'px'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>设置动画使球向右移动</p>
+<p>让球向右移动。像这样：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/animate-ball-hops/solution/" style="display: block; border: 0px; width: 798px; height: 250px;"></iframe>
+
+<p>编写动画代码。终止时球到左侧的距离是 <code>100px</code>。</p>
+<p>从前一个任务 <a href="https://zh.javascript.info/task/animate-ball" target="_blank" rel="noopener">为弹跳的球设置动画</a> 的答案开始。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>timing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token function">timing</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> timeFraction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bounce</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> result<span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> a <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">,</span> b <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timeFraction <span class="token operator">>=</span> <span class="token punctuation">(</span><span class="token number">7</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">-</span> <span class="token number">6</span> <span class="token operator">*</span> a <span class="token operator">-</span> <span class="token number">11</span> <span class="token operator">*</span> timeFraction<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">quad</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ball<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> height <span class="token operator">=</span> field<span class="token punctuation">.</span>clientHeight <span class="token operator">-</span> ball<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> width <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>bounce<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    draw<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> height <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">'px'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>quad<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    draw<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> width <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">"px"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+<h2 id="Custom-elements"><a href="#Custom-elements" class="headerlink" title="Custom elements"></a>Custom elements</h2><h3 id="任务-12"><a href="#任务-12" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>计时器元素实例</p>
+<p>我们已经创建了 <code>&lt;time-formatted&gt;</code> 元素用于展示格式化好的时间。</p>
+<p>创建一个 <code>&lt;live-timer&gt;</code> 元素用于展示当前时间：</p>
+<ol>
+<li>这个元素应该在内部使用 <code>&lt;time-formatted&gt;</code>，不要重复实现这个元素的功能。</li>
+<li>每秒钟更新。</li>
+<li>每一秒钟都应该有一个自定义事件 <code>tick</code> 被生成，这个事件的 <code>event.detail</code> 属性带有当前日期。（参考章节 <a href="https://zh.javascript.info/dispatch-events" target="_blank" rel="noopener">创建自定义事件</a> ）。</li>
+</ol>
+<p>使用方式：</p>
+<pre class=" language-markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>live-timer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>elem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>live-timer</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+  elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'tick'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>detail<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>例子：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/live-timer/solution/" style="display: block; border: 0px; width: 798px; height: 40px;"></iframe>
+
+<p><a href="https://plnkr.co/edit/5h3EC2BIlTuOlhJZ?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<blockquote>
+<p>请注意：</p>
+<ol>
+<li>在元素被从文档移除的时候，我们会清除 <code>setInterval</code> 的 timer。这非常重要，否则即使我们不再需要它了，它仍然会继续计时。这样浏览器就不能清除这个元素占用和被这个元素引用的内存了。</li>
+<li>我们可以通过 <code>elem.date</code> 属性得到当前时间。类所有的方法和属性天生就是元素的方法和属性。</li>
+</ol>
+<p><a href="https://plnkr.co/edit/hhtl31PgIAqhULc8?p=preview" target="_blank" rel="noopener">使用沙箱打开解决方案。</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="词边界：-b"><a href="#词边界：-b" class="headerlink" title="词边界：\b"></a>词边界：\b</h2><h3 id="任务-13"><a href="#任务-13" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>查找时间</p>
+<p>时间的格式是：<code>hours:minutes</code>。小时和分钟都是两位数，如 <code>09:00</code>。</p>
+<p>编写正则表达式在字符串 <code>Breakfast at 09:00 in the room 123:456.</code> 中查找时间。</p>
+<p>P.S. 在这个任务里没有必要校验时间的正确性，所以 <code>25:99</code> 也可算做有效的结果。</p>
+<p>P.P.S. 正则表达式不能匹配 <code>123:456</code>。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'Breakfast at 09:00 in the room 123:456.'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> reg <span class="token operator">=</span> <span class="token regex">/\b\d\d:\d\d\b/g</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<h2 id="集合和范围-…"><a href="#集合和范围-…" class="headerlink" title="集合和范围 […]"></a>集合和范围 […]</h2><h3 id="任务-14"><a href="#任务-14" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>Java[^script]</p>
+<p>我们有一个正则表达式 <code>/Java[^script]/</code>。</p>
+<p>它会和字符串 <code>Java</code> 中的任何一部分匹配吗？会和字符串 <code>JavaScript</code> 任何一部分匹配吗？</p>
+<p>不匹配 <code>Java</code> ，匹配 <code>JavaS</code> 。</p>
+</li>
+<li><p>找到 hh: mm 或者 hh-mm 形式的时间字符串</p>
+<p>时间可以通过 <code>hours:minutes</code> 或者 <code>hours-minutes</code> 格式来表示。小时和分钟都有两个数字：<code>09:00</code> 或者 <code>21-30</code>。</p>
+<p>写一个正则表达式来找到时间：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/your regexp/g</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"Breakfast at 09:00. Dinner at 21-30"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 09:00, 21-30</span></code></pre>
+<p>附：在这个任务中，我们假设时间总是正确的，并不需要过滤掉像 “45:67” 这样错误的时间字符串。稍后我们也会处理这个问题。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\d\d[:-]\d\d/g</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<h2 id="量词-和-n"><a href="#量词-和-n" class="headerlink" title="量词 +,*,? 和 {n}"></a>量词 <code>+,*,?</code> 和 <code>{n}</code></h2><h3 id="任务-15"><a href="#任务-15" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>如何找到省略号 “…”?</p>
+<p>创建一个正则表达式来查找省略号：连续 3（或更多）个点。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\.{3,}/g</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"Hello!... How goes?....."</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ..., .....</span></code></pre>
+</li>
+<li><p>针对 HTML 颜色的正则表达式</p>
+<p>创建一个正则表达式来搜寻格式为 <code>#ABCDEF</code> 的 HTML 颜色值：首个字符 <code>#</code> 以及接下来的六位十六进制字符。</p>
+<p>一个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/#[0-9a-f]{6}\b/gi</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2 #12345678"</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// #121212,#AA00ef</span></code></pre>
+<p>P.S. 在这个任务中，我们不需要其他的颜色格式，比如 <code>#123</code> 或 <code>rgb(1,2,3)</code> 等。</p>
 </li>
 </ol>
 ]]></content>
@@ -16794,10 +16983,10 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
+        <tag>html</tag>
+        <tag>css</tag>
         <tag>js</tag>
         <tag>notes</tag>
-        <tag>css</tag>
-        <tag>html</tag>
       </tags>
   </entry>
   <entry>
@@ -16909,8 +17098,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -16956,8 +17145,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -16996,8 +17185,8 @@ window<span class="token punctuation">.</span>onload <span class="token operator
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -17262,8 +17451,8 @@ p<span class="token punctuation">.</span><span class="token function">then</span
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>
@@ -17302,8 +17491,8 @@ h1 </span><span class="token punctuation">{</span>
         <category>前端</category>
       </categories>
       <tags>
-        <tag>notes</tag>
         <tag>css</tag>
+        <tag>notes</tag>
       </tags>
   </entry>
   <entry>

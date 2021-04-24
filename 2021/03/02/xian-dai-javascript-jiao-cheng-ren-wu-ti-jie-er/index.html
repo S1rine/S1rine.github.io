@@ -262,14 +262,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>23k</span>
+              <span>26k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>21 分钟</span>
+              <span>24 分钟</span>
             </span>
 
         </div>
@@ -1326,6 +1326,152 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
 <span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
+<h2 id="JavaScript-动画"><a href="#JavaScript-动画" class="headerlink" title="JavaScript 动画"></a>JavaScript 动画</h2><h3 id="任务-11"><a href="#任务-11" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>为弹跳的球设置动画</p>
+<p>做一个弹跳的球。点击查看应有的效果：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/animate-ball/solution/" style="display: block; border: 0px; width: 798px; height: 250px;"></iframe>
+
+<p><a href="https://plnkr.co/edit/8NZsuZsiZveDBR2C?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>timing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token function">timing</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> timeFraction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bounce</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> result<span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> a <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">,</span> b <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timeFraction <span class="token operator">>=</span> <span class="token punctuation">(</span><span class="token number">7</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">-</span> <span class="token number">6</span> <span class="token operator">*</span> a <span class="token operator">-</span> <span class="token number">11</span> <span class="token operator">*</span> timeFraction<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+ball<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> to <span class="token operator">=</span> field<span class="token punctuation">.</span>clientHeight <span class="token operator">-</span> ball<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>bounce<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">draw</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> to <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">'px'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>设置动画使球向右移动</p>
+<p>让球向右移动。像这样：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/animate-ball-hops/solution/" style="display: block; border: 0px; width: 798px; height: 250px;"></iframe>
+
+<p>编写动画代码。终止时球到左侧的距离是 <code>100px</code>。</p>
+<p>从前一个任务 <a href="https://zh.javascript.info/task/animate-ball" target="_blank" rel="noopener">为弹跳的球设置动画</a> 的答案开始。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">function</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>timing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">-</span> <span class="token function">timing</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">-</span> timeFraction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">bounce</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> result<span class="token punctuation">;</span> <span class="token number">1</span><span class="token punctuation">;</span> a <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">,</span> b <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>timeFraction <span class="token operator">>=</span> <span class="token punctuation">(</span><span class="token number">7</span> <span class="token operator">-</span> <span class="token number">4</span> <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token operator">-</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">11</span> <span class="token operator">-</span> <span class="token number">6</span> <span class="token operator">*</span> a <span class="token operator">-</span> <span class="token number">11</span> <span class="token operator">*</span> timeFraction<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">quad</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>timeFraction<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+ball<span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> height <span class="token operator">=</span> field<span class="token punctuation">.</span>clientHeight <span class="token operator">-</span> ball<span class="token punctuation">.</span>clientHeight<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> width <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>bounce<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    draw<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> height <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">'px'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+    timing<span class="token punctuation">:</span> <span class="token function">makeEaseOut</span><span class="token punctuation">(</span>quad<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    draw<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>progress<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ball<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> width <span class="token operator">*</span> progress <span class="token operator">+</span> <span class="token string">"px"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+<h2 id="Custom-elements"><a href="#Custom-elements" class="headerlink" title="Custom elements"></a>Custom elements</h2><h3 id="任务-12"><a href="#任务-12" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>计时器元素实例</p>
+<p>我们已经创建了 <code>&lt;time-formatted&gt;</code> 元素用于展示格式化好的时间。</p>
+<p>创建一个 <code>&lt;live-timer&gt;</code> 元素用于展示当前时间：</p>
+<ol>
+<li>这个元素应该在内部使用 <code>&lt;time-formatted&gt;</code>，不要重复实现这个元素的功能。</li>
+<li>每秒钟更新。</li>
+<li>每一秒钟都应该有一个自定义事件 <code>tick</code> 被生成，这个事件的 <code>event.detail</code> 属性带有当前日期。（参考章节 <a href="https://zh.javascript.info/dispatch-events" target="_blank" rel="noopener">创建自定义事件</a> ）。</li>
+</ol>
+<p>使用方式：</p>
+<pre class=" language-markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>live-timer</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>elem<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>live-timer</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+  elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'tick'</span><span class="token punctuation">,</span> event <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>detail<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<p>例子：</p>
+<iframe class="code-result__iframe" data-trusted="1" src="https://zh.js.cx/task/live-timer/solution/" style="display: block; border: 0px; width: 798px; height: 40px;"></iframe>
+
+<p><a href="https://plnkr.co/edit/5h3EC2BIlTuOlhJZ?p=preview" target="_blank" rel="noopener">打开一个任务沙箱。</a></p>
+<blockquote>
+<p>请注意：</p>
+<ol>
+<li>在元素被从文档移除的时候，我们会清除 <code>setInterval</code> 的 timer。这非常重要，否则即使我们不再需要它了，它仍然会继续计时。这样浏览器就不能清除这个元素占用和被这个元素引用的内存了。</li>
+<li>我们可以通过 <code>elem.date</code> 属性得到当前时间。类所有的方法和属性天生就是元素的方法和属性。</li>
+</ol>
+<p><a href="https://plnkr.co/edit/hhtl31PgIAqhULc8?p=preview" target="_blank" rel="noopener">使用沙箱打开解决方案。</a></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="词边界：-b"><a href="#词边界：-b" class="headerlink" title="词边界：\b"></a>词边界：\b</h2><h3 id="任务-13"><a href="#任务-13" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>查找时间</p>
+<p>时间的格式是：<code>hours:minutes</code>。小时和分钟都是两位数，如 <code>09:00</code>。</p>
+<p>编写正则表达式在字符串 <code>Breakfast at 09:00 in the room 123:456.</code> 中查找时间。</p>
+<p>P.S. 在这个任务里没有必要校验时间的正确性，所以 <code>25:99</code> 也可算做有效的结果。</p>
+<p>P.P.S. 正则表达式不能匹配 <code>123:456</code>。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'Breakfast at 09:00 in the room 123:456.'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> reg <span class="token operator">=</span> <span class="token regex">/\b\d\d:\d\d\b/g</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> res <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<h2 id="集合和范围-…"><a href="#集合和范围-…" class="headerlink" title="集合和范围 […]"></a>集合和范围 […]</h2><h3 id="任务-14"><a href="#任务-14" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>Java[^script]</p>
+<p>我们有一个正则表达式 <code>/Java[^script]/</code>。</p>
+<p>它会和字符串 <code>Java</code> 中的任何一部分匹配吗？会和字符串 <code>JavaScript</code> 任何一部分匹配吗？</p>
+<p>不匹配 <code>Java</code> ，匹配 <code>JavaS</code> 。</p>
+</li>
+<li><p>找到 hh: mm 或者 hh-mm 形式的时间字符串</p>
+<p>时间可以通过 <code>hours:minutes</code> 或者 <code>hours-minutes</code> 格式来表示。小时和分钟都有两个数字：<code>09:00</code> 或者 <code>21-30</code>。</p>
+<p>写一个正则表达式来找到时间：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/your regexp/g</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"Breakfast at 09:00. Dinner at 21-30"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 09:00, 21-30</span></code></pre>
+<p>附：在这个任务中，我们假设时间总是正确的，并不需要过滤掉像 “45:67” 这样错误的时间字符串。稍后我们也会处理这个问题。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\d\d[:-]\d\d/g</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ol>
+<h2 id="量词-和-n"><a href="#量词-和-n" class="headerlink" title="量词 +,*,? 和 {n}"></a>量词 <code>+,*,?</code> 和 <code>{n}</code></h2><h3 id="任务-15"><a href="#任务-15" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>如何找到省略号 “…”?</p>
+<p>创建一个正则表达式来查找省略号：连续 3（或更多）个点。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\.{3,}/g</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"Hello!... How goes?....."</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ..., .....</span></code></pre>
+</li>
+<li><p>针对 HTML 颜色的正则表达式</p>
+<p>创建一个正则表达式来搜寻格式为 <code>#ABCDEF</code> 的 HTML 颜色值：首个字符 <code>#</code> 以及接下来的六位十六进制字符。</p>
+<p>一个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/#[0-9a-f]{6}\b/gi</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2 #12345678"</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">// #121212,#AA00ef</span></code></pre>
+<p>P.S. 在这个任务中，我们不需要其他的颜色格式，比如 <code>#123</code> 或 <code>rgb(1,2,3)</code> 等。</p>
+</li>
+</ol>
 
     </div>
 
@@ -1410,7 +1556,7 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-8"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-sessionStorage"><span class="nav-text">LocalStorage, sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-9"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-动画"><span class="nav-text">CSS 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-10"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-8"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-sessionStorage"><span class="nav-text">LocalStorage, sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-9"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-动画"><span class="nav-text">CSS 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-10"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-动画"><span class="nav-text">JavaScript 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-11"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Custom-elements"><span class="nav-text">Custom elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-12"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词边界：-b"><span class="nav-text">词边界：\b</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-13"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合和范围-…"><span class="nav-text">集合和范围 […]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-14"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量词-和-n"><span class="nav-text">量词 +,*,? 和 {n}</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-15"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1426,7 +1572,7 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">82</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1439,7 +1585,7 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1542,13 +1688,13 @@ flyjet<span class="token punctuation">.</span>onclick <span class="token operato
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">386k</span>
+    <span title="站点总字数">390k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:51</span>
+    <span title="站点阅读时长">5:54</span>
 </div>
 
         
