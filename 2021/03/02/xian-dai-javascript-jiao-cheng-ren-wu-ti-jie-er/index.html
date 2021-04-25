@@ -262,7 +262,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>26k</span>
+              <span>27k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1472,6 +1472,36 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>P.S. 在这个任务中，我们不需要其他的颜色格式，比如 <code>#123</code> 或 <code>rgb(1,2,3)</code> 等。</p>
 </li>
 </ol>
+<h2 id="贪婪量词和惰性量词"><a href="#贪婪量词和惰性量词" class="headerlink" title="贪婪量词和惰性量词"></a>贪婪量词和惰性量词</h2><h3 id="任务-16"><a href="#任务-16" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>对于 /d+? d+?/ 的匹配</p>
+<p>以下匹配的结果是什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span> <span class="token string">"123 456"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/\d+? \d+?/g</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>结果是：<code>123 4</code>。</p>
+<p>首先，懒惰模式 <code>\d+?</code> 尝试去获取尽可能少的字符，但当它检测到空格，就得出匹配结果 <code>123</code>。</p>
+<p>然后，第二个 <code>\d+?</code> 就只获取一个字符，因为这就已足够了。</p>
+</li>
+<li><p>查找 HTML 注释</p>
+<p>找出文本中的所有注释：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/&lt;!--[\s\S]*?-->/g</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token template-string"><span class="token string">`... &lt;!-- My -- comment
+ test --> ..  &lt;!----> ..
+`</span></span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '&lt;!-- My -- comment \n test -->', '&lt;!---->'</span></code></pre>
+</li>
+<li><p>寻找 HTML 标签</p>
+<p>创建一个正则表达式语句来寻找所有具有其属性的（闭合或非闭合）HTML 标签。</p>
+<p>用例：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/&lt;[^&lt;>]+>/g</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 参考解法</span>
+<span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/&lt;\w.*?>/g</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'&lt;> &lt;a href="/"> &lt;input type="radio" checked> &lt;b>'</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>reg<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// '&lt;a href="/">', '&lt;input type="radio" checked>', '&lt;b>'</span></code></pre>
+<p>假设不包含 <code>&lt;</code> 和 <code>&gt;</code>（也包括引号），这将会简单许多。</p>
+</li>
+</ol>
 
     </div>
 
@@ -1556,7 +1586,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-8"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-sessionStorage"><span class="nav-text">LocalStorage, sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-9"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-动画"><span class="nav-text">CSS 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-10"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-动画"><span class="nav-text">JavaScript 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-11"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Custom-elements"><span class="nav-text">Custom elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-12"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词边界：-b"><span class="nav-text">词边界：\b</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-13"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合和范围-…"><span class="nav-text">集合和范围 […]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-14"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量词-和-n"><span class="nav-text">量词 +,*,? 和 {n}</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-15"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现代-JavaScript-教程任务题解二"><span class="nav-text">现代 JavaScript 教程任务题解二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#鼠标拖放事件"><span class="nav-text">鼠标拖放事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键盘：keydown-和-keyup"><span class="nav-text">键盘：keydown 和 keyup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-1"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动"><span class="nav-text">滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-2"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单属性和方法"><span class="nav-text">表单属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-3"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚焦：focus-blur"><span class="nav-text">聚焦：focus/blur</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-4"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单：事件和方法提交"><span class="nav-text">表单：事件和方法提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-5"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源加载：onload-onerror"><span class="nav-text">资源加载：onload, onerror</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-6"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayBuffer，二进制数组"><span class="nav-text">ArrayBuffer，二进制数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-7"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-text">Fetch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-8"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LocalStorage-sessionStorage"><span class="nav-text">LocalStorage, sessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-9"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-动画"><span class="nav-text">CSS 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-10"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-动画"><span class="nav-text">JavaScript 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-11"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Custom-elements"><span class="nav-text">Custom elements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-12"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词边界：-b"><span class="nav-text">词边界：\b</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-13"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合和范围-…"><span class="nav-text">集合和范围 […]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-14"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量词-和-n"><span class="nav-text">量词 +,*,? 和 {n}</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-15"><span class="nav-text">任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪婪量词和惰性量词"><span class="nav-text">贪婪量词和惰性量词</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务-16"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -1572,7 +1602,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1688,13 +1718,13 @@ console<span class="token punctuation">.</span><span class="token function">log<
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">390k</span>
+    <span title="站点总字数">392k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:54</span>
+    <span title="站点阅读时长">5:56</span>
 </div>
 
         
