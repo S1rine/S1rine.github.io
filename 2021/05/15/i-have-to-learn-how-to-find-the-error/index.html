@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="无语的一晚无语到想要直接用中文写…… 因为最近在啃 React ，翻到了某站一个关于 React、TypeScript 的教程。作者给出的API接口是用 Docker 镜像做的。我就顺手看了之前下的 Docker 视频。大概学了 Docker 和 docker-compose ，然后把作者的项目拉到土豆机上跑。跑起来问题很大……">
+<meta name="keywords" content="docker,nginx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="I have to learn how too find the error">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="无语的一晚无语到想要直接用中文写…… 因为最近在啃 React ，翻到了某站一个关于 React、TypeScript 的教程。作者给出的API接口是用 Docker 镜像做的。我就顺手看了之前下的 Docker 视频。大概学了 Docker 和 docker-compose ，然后把作者的项目拉到土豆机上跑。跑起来问题很大……">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;image-20210516155436430.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;image-20210516155456248.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;image-20210516155341450.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;image-20210516155259221.png">
+<meta property="og:updated_time" content="2021-05-15T15:37:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2021&#x2F;05&#x2F;15&#x2F;i-have-to-learn-how-to-find-the-error&#x2F;image-20210516155436430.png">
+
+<link rel="canonical" href="https://s1rine.github.io/2021/05/15/i-have-to-learn-how-to-find-the-error/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>I have to learn how too find the error | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2021/05/15/i-have-to-learn-how-to-find-the-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          I have to learn how too find the error
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-15 23:37:50" itemprop="dateCreated datePublished" datetime="2021-05-15T23:37:50+08:00">2021-05-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="无语的一晚"><a href="#无语的一晚" class="headerlink" title="无语的一晚"></a>无语的一晚</h2><p>无语到想要直接用中文写……</p>
+<p>因为最近在啃 React ，翻到了某站一个关于 React、TypeScript 的教程。作者给出的API接口是用 Docker 镜像做的。我就顺手看了之前下的 Docker 视频。大概学了 Docker 和 docker-compose ，然后把作者的项目拉到土豆机上跑。跑起来问题很大……</p>
+<a id="more"></a>
+
+<h2 id="200！但报错"><a href="#200！但报错" class="headerlink" title="200！但报错"></a>200！但报错</h2><p>首先我自以为服务正常启动了，因为启动时敲了参数 -d ，后台运行。没有看到日志输出状况。然后我访问土豆机的公网地址，想看一下swagger文档，发现有个 <code>swagger-ui-bundle.js</code> 文件一直报错。</p>
+<p>错误显示为 <code>net::ERR_CONTENT_LENGTH_MISMATCH 200 (OK)</code> 。</p>
+<p>我搜了一下，怎么说的都有，有说磁盘空间不够的，有说加载时间太长超时被阻止了，有说nginx配置不对的。我折腾了半天，发现问题是……作者自己把nginx配置写错了，少写了分号。这还是我查看了 <code>error.log</code> 才发现……</p>
+<h2 id="自行编译-go-🈶"><a href="#自行编译-go-🈶" class="headerlink" title="自行编译 go 🈶"></a>自行编译 go 🈶</h2><p>然后问题来了，swagger文档无法正常读取接口数据，因为作者写死了地址是 localhost ，而我是在公网访问。于是我就只能自己去把作者的 go 代码拉到土豆机上自己尝试编译。</p>
+<p>具体代码逻辑不研究，我大概看了下导入导出模块之类的规则，然后找了一下 swagger 定义的地方。这中间我还手贱删掉了一行代码，因为我自以为它不需要…… 当然，事实是没删也没用，docs还是得我自己整出来。</p>
+<p>修改好了地址，我尝试编译。第一次编译的时候下载模块信息很多，我自以为成功了…… 翻了半天没看到编译产物，又迷茫了很久。于是再次编译看了一下输出。发现一个校验模块的中文翻译库无法找到。我就只能各种搜索如何正确引入。但是找不到例子，我就只能去看 github 上官方的文件。于是我发现作者的引入路径弄错了一个大写，不知道是更新所致还是本来就写错了。</p>
+<h2 id="成功编译？"><a href="#成功编译？" class="headerlink" title="成功编译？"></a>成功编译？</h2><p>因为我是单独拉一个文件夹放后端源码，编译后我copy到了根目录，然后火速 <code>docker-compose up</code> 。问题又来了。</p>
+<p>简单讲，第一，我没有引入 swagger 文档需要的 json 数据。第二，目录中本来就没有 json 数据。我需要下载 swag 库进行docs生成。这个下载又废了我九牛二虎之力，下载是从 github 上下，但是下载了之后我也看不出到底成功没，反正二进制文件是没有的，command 也是 not find。于是我从 github 上下了预编译的二进制文件自己扔进 <code>/usr/bin</code> 。再生成文档。</p>
+<h2 id="万事俱备-个屁"><a href="#万事俱备-个屁" class="headerlink" title="万事俱备(个屁)"></a>万事俱备(个屁)</h2><p>看起来只欠东风了，我跑起 docker ，再一看，还是疯狂 200 但报错。但这个我大胆猜测是因为依赖文件太大了。(也是因为我不想再看了)因为我多次刷新后终究是刷出来了。</p>
+<h2 id="研究-viper"><a href="#研究-viper" class="headerlink" title="研究 viper"></a>研究 viper</h2><p>成功读出接口文档后，我测了一下登录接口，报了500错误。打开土豆机的输出日志看了看，有问题。于是我又回想起了启动时 go 报错无法连接 mysql 。我以为它已经自动重连上了，然而并没有。经过我一番排查，config 无法读取本地的数据库配置值，导致连接不成功。</p>
+<p>简单总结，作者把 env.yaml 加入了 git 的忽略文件中，同时我还发现了 docs 即上方那个 swagger 的文档也被忽略了。配置文件忽略就算了，swagger 文档也忽略掉什么意思……好歹给个模板在这儿吧。</p>
+<p>然后自己新建配置文件让 viper 读取。</p>
+<h2 id="“admin-admins-doesn’t-exists”"><a href="#“admin-admins-doesn’t-exists”" class="headerlink" title="“admin.admins doesn’t exists”"></a>“admin.admins doesn’t exists”</h2><p>再跑，还是报错。看了一下是提示数据表不存在。我以为启动就会自动建表，还是我太年轻太天真。查了一下，自动建表需要调用 <code>AutoMigrate</code> 方法。搜索了一下，发现作者确实写了自动建表，但需要自行加参数调用一次。……</p>
+<h2 id="按序执行"><a href="#按序执行" class="headerlink" title="按序执行"></a>按序执行</h2><p>中途我想让 docker-compose 的三个任务按顺序执行。比如 go 需要连接数据库，但是数据库启动得慢，我想让数据库先启动好再让 go 去连接。然后我试了一下用 <code>wait-for-it.sh</code> 脚本。</p>
+<p>问题又来了，首先是 permision denied ，这个好说，修改一下权限就好。</p>
+<p>然后再执行，提示 <code>wait-for-it.sh</code> 不存在。我：？</p>
+<p>思考一番后，放弃了这个脚本。直接使用 depends_on 字段。但是依然跑不了。</p>
+<h2 id="读取变量"><a href="#读取变量" class="headerlink" title="读取变量"></a>读取变量</h2><p>又是一番排查，问题来了，因为没有读取到数据库变量配置。</p>
+<p><img src="/2021/05/15/i-have-to-learn-how-to-find-the-error/image-20210516155436430.png" alt="image-20210516155436430"></p>
+<p>把 env.yaml 映射到容器内。解决。然后还是报错。</p>
+<p><img src="/2021/05/15/i-have-to-learn-how-to-find-the-error/image-20210516155456248.png" alt="image-20210516155456248"></p>
+<p>go 尝试连接 127.0.0.1:3306 的数据库，但是 connection refused 。查询了一下，因为这里 go 和 mysql 配置到了同一个网络下，应该用容器名称来进行DNS解析实现局域网访问。但是我觉得问题应该不在这里，毕竟 mysql 也映射到了本地3306端口的。</p>
+<p><img src="/2021/05/15/i-have-to-learn-how-to-find-the-error/image-20210516155341450.png" alt="image-20210516155341450"></p>
+<p>我觉得问题应该还是数据库拒绝了访问。查了一下此类问题，大抵都是说修改用户访问权限一类的，但是我基本上复制来的代码都报了语法错误。最终在<a href="https://blog.csdn.net/zllovewln/article/details/110653401" target="_blank" rel="noopener">这个地方</a>我看到了一个可能是问题关键的点。每个user都对应一个可访问host，我进入mysql 容器，查询了一下，果然发现问题。</p>
+<p><img src="/2021/05/15/i-have-to-learn-how-to-find-the-error/image-20210516155259221.png" alt="image-20210516155259221"></p>
+<p>很无奈，delete 语句写了半天没写对，还得查一下怎么写。</p>
+<p>root用户存在两条记录，一条是通配符，一条限定了 localhost 。我想问题就出在这里，导致了局域网的访问被拒绝。删掉那条限定本地的记录后，再跑服务，就没有报错了。</p>
+<p>又报错了……哈哈，我选择放弃。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+              <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/11/why-can-t-i-update-the-view/" rel="prev" title="why can't I update the view">
+      <i class="fa fa-chevron-left"></i> why can't I update the view
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无语的一晚"><span class="nav-text">无语的一晚</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#200！但报错"><span class="nav-text">200！但报错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自行编译-go-🈶"><span class="nav-text">自行编译 go 🈶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成功编译？"><span class="nav-text">成功编译？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万事俱备-个屁"><span class="nav-text">万事俱备(个屁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究-viper"><span class="nav-text">研究 viper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“admin-admins-doesn’t-exists”"><span class="nav-text">“admin.admins doesn’t exists”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按序执行"><span class="nav-text">按序执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取变量"><span class="nav-text">读取变量</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">401k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:05</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

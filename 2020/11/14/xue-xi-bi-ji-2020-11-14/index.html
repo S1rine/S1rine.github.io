@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="学习笔记 2020-11-14">
+<meta name="keywords" content="notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记 2020 11 14">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2020&#x2F;11&#x2F;14&#x2F;xue-xi-bi-ji-2020-11-14&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="学习笔记 2020-11-14">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2020&#x2F;11&#x2F;14&#x2F;xue-xi-bi-ji-2020-11-14&#x2F;image-20201114085706671.png">
+<meta property="og:updated_time" content="2020-11-14T00:40:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2020&#x2F;11&#x2F;14&#x2F;xue-xi-bi-ji-2020-11-14&#x2F;image-20201114085706671.png">
+
+<link rel="canonical" href="https://s1rine.github.io/2020/11/14/xue-xi-bi-ji-2020-11-14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>学习笔记 2020 11 14 | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2020/11/14/xue-xi-bi-ji-2020-11-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习笔记 2020 11 14
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-14 08:40:19" itemprop="dateCreated datePublished" datetime="2020-11-14T08:40:19+08:00">2020-11-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="学习笔记-2020-11-14"><a href="#学习笔记-2020-11-14" class="headerlink" title="学习笔记 2020-11-14"></a>学习笔记 2020-11-14</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM2-和-DOM3"><a href="#DOM2-和-DOM3" class="headerlink" title="DOM2 和 DOM3"></a>DOM2 和 DOM3</h3><h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><h5 id="元素尺寸"><a href="#元素尺寸" class="headerlink" title="元素尺寸"></a>元素尺寸</h5><ol>
+<li><p>滚动尺寸</p>
+<p>滚动尺寸提供了元素内容滚动距离的信息。有些元素，比如 <code>&lt;html&gt;</code> 无须任何代码就可以自动滚动，而其他元素需要使用 CSS 的 overflow 属性令其滚动。滚动尺寸相关属性有 4 个：</p>
+<ul>
+<li>scrollHeight，没有滚动条出现时，元素内容的总高度。</li>
+<li>scrollLeft，内容区左侧隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollTop，内容区顶部隐藏的像素数，设置这个属性可以改变元素的滚动位置。</li>
+<li>scrollWidth，没有滚动条出现时，元素内容的总宽度。</li>
+</ul>
+<p><img src="/2020/11/14/xue-xi-bi-ji-2020-11-14/image-20201114085706671.png" alt="image-20201114085706671"></p>
+<p>scrollWidth 和 scrollHeight 可以用来确定给定元素内容的实际尺寸。</p>
+<p>scrollWidth 和 scrollHeight 与 clientWidth 和 clientHeight 之间的关系在不需要滚动的文档上是分不清的。如果文档尺寸超过视口尺寸，scrollWidth 和 scrollHeight 表示文档内容的宽高，clientWidth 和 clientHeight 等于视口宽高。</p>
+</li>
+<li><p>确定元素尺寸</p>
+<p>浏览器在每个元素上都暴露了 getBoundingClientRect() 方法，返回一个 DOMRect 对象，包含 6 个属性： left、top、right、bottom、height 和 width 。这些属性给出了元素在页面中相对于视口的位置。</p>
+</li>
+</ol>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><p>DOM2 Traversal and Range 模块定义了两个类型用于辅助顺序遍历 DOM 结构。这两个类型—— NodeIterator 和 TreeWalker ——从某个起点开始执行对 DOM 结构的深度优先遍历。</p>
+<h5 id="NodeIterator"><a href="#NodeIterator" class="headerlink" title="NodeIterator"></a>NodeIterator</h5><p>NodeIterator 可以通过 document.createNodeIterator() 方法创建其实例。接收 4 个参数：</p>
+<ul>
+<li>root，作为遍历根节点的节点。</li>
+<li>whatToShow，数值代码，表示应该访问哪些节点。</li>
+<li>filter，NodeFilter 对象或函数，表示是否接收或跳过特定节点。</li>
+<li>entityReferenceExpansion，布尔值，表示是否扩展实体引用。这个参数在 HTML 文档中没有效果，因为实体引用永不扩展。</li>
+</ul>
+<p>whatToShow 参数是一个位掩码，通过应用一个或多个过滤器来指定访问哪些节点。这个参数对应的常量是在 NodeFilter 类型中定义的。</p>
+<ul>
+<li>NodeFilter.SHOW_ALL，所有节点。</li>
+<li>NodeFilter.SHOW_ELEMENT，元素节点。</li>
+<li>NodeFilter.SHOW_ATTRIBUTE，属性节点。由于 DOM 的结构，因此实际上用不上。</li>
+<li>NodeFilter.SHOW_TEXT，文本节点。</li>
+<li>NodeFilter.SHOW_CDATA_SECTION，CData 区块节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_ENTITY_REFERENCE，实体引用节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_ENTITY，实体节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_PROCESSING_INSTRUCTION，处理指令节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_COMMENT，注释节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT，文档节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT_TYPE，文档类型节点。</li>
+<li>NodeFilter.SHOW_DOCUMENT_FRAGMENT，文档片段节点。不是在 HTML 页面中使用的。</li>
+<li>NodeFilter.SHOW_NOTATION，记号节点。不是在 HTML 页面中使用的。</li>
+</ul>
+<p>除了第一个，其余的可以组合使用，按位或来组合多个选项。</p>
+<p>filter 参数可以用来指定自定义 NodeFilter 对象，或者一个作为节点过滤器的函数。NodeFilter 对象只有一个方法 acceptNode() ，如果给定节点应该访问就返回 NodeFilter.FILTER_ACCEPT，否则返回 NodeFilter.FILTER_SKIP。因为 NodeFilter 是一个抽象类型，所以不可能创建它的实例。只要创建一个包含 acceptNode() 的对象，然后把它传给createNodeIterator() 就可以了。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 只接收 p 元素的节点过滤器对象</span>
+<span class="token keyword">let</span> filter <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">acceptNode</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> node<span class="token punctuation">.</span>tagName<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'p'</span>
+      <span class="token operator">?</span> NodeFilter<span class="token punctuation">.</span>FILTER_ACCEPT
+      <span class="token punctuation">:</span> NodeFilter<span class="token punctuation">.</span>FILTER_SKIP<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 或是以下形式</span>
+<span class="token keyword">let</span> filter <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> node<span class="token punctuation">.</span>tagName<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'p'</span>
+    <span class="token operator">?</span> NodeFilter<span class="token punctuation">.</span>FILTER_ACCEPT
+    <span class="token punctuation">:</span> NodeFilter<span class="token punctuation">.</span>FILTER_SKIP<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> iterator <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createNodeIterator</span><span class="token punctuation">(</span>
+  root<span class="token punctuation">,</span>
+  NodeFilter<span class="token punctuation">.</span>SHOW_ELEMENT<span class="token punctuation">,</span>
+  filter<span class="token punctuation">,</span>
+  <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>NodeIterator 的两个主要方法是：</p>
+<ul>
+<li>nextNode()，在 DOM 子树中以深度优先方式进前一步。</li>
+<li>previousNode()，后退一步。</li>
+</ul>
+<h5 id="TreeWalker"><a href="#TreeWalker" class="headerlink" title="TreeWalker"></a>TreeWalker</h5><p>TreeWalker 比 NodeIterator 多了以下方法：</p>
+<ul>
+<li>parentNode()</li>
+<li>firstChild()</li>
+<li>lastChild()</li>
+<li>nextSibling()</li>
+<li>previousSibling()</li>
+</ul>
+<p>调用 document.createTreeWalker() 创建 TreeWalker 对象。接收类似的参数。</p>
+<p>不同的是，filter 除了可以返回原本的两种值，还可以返回 NodeFilter.FILTER_REJECT。</p>
+<p>在这个对象中，NodeFilter.FILTER_SKIP 表示跳过节点，访问子树的下一个节点，而 NodeFilter.FILTER_REJECT 表示跳过该节点以及该节点的整个子树。</p>
+<p>TreeWalker 类型也有一个名为 currentNode 的属性，表示遍历过程中上一次返回的节点。</p>
+<h4 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h4><p>DOM2 Traversal and Range 模块定义了范围接口。</p>
+<h5 id="DOM-范围"><a href="#DOM-范围" class="headerlink" title="DOM 范围"></a>DOM 范围</h5><p>使用 document.createRange() 方法创建 DOM 范围对象。新建的范围对象与创建它的文档关联的，不能在其他文档中使用。</p>
+<p>每个范围都是 Range 类型的实例，拥有相应的属性和方法。</p>
+<ul>
+<li>startContainer，范围起点所在的节点 ( 选区中第一个子节点的父节点 )</li>
+<li>startOffset，范围起点在 startContainer 中的偏移量。</li>
+<li>endContainer，范围终点所在的节点 ( 选区中最后一个子节点的父节点 )</li>
+<li>endOffset，范围起点在 startContainer 中的偏移量。</li>
+<li>commonAncestorContainer，文档中以 startContainer 和 endContainer 为后代的最深的节点。</li>
+</ul>
+<p>这些属性会在范围被放到文档中特定位置时获得相应的值。</p>
+<h5 id="简单选择"><a href="#简单选择" class="headerlink" title="简单选择"></a>简单选择</h5><p>使用 selectNode() 或 selectNodeContents() 方法范围选择文档中某个部分。接收一个节点作为参数。selectNode() 方法选择整个节点，包括其后代节点，而 selectNodeContents() 只选择节点的后代。</p>
+<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>p1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span>Hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span> world!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> range1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  range2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  p1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'p1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+range1<span class="token punctuation">.</span><span class="token function">selectNode</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+range2<span class="token punctuation">.</span><span class="token function">selectNodeContents</span><span class="token punctuation">(</span>p1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>range1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>range2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// Range: {</span>
+<span class="token comment" spellcheck="true">//   collapsed: false</span>
+<span class="token comment" spellcheck="true">//   commonAncestorContainer: body</span>
+<span class="token comment" spellcheck="true">//   endContainer: body</span>
+<span class="token comment" spellcheck="true">//   endOffset: 2</span>
+<span class="token comment" spellcheck="true">//   startContainer: body</span>
+<span class="token comment" spellcheck="true">//   startOffset: 1</span>
+<span class="token comment" spellcheck="true">//   __proto__: Range</span>
+<span class="token comment" spellcheck="true">// }</span>
+<span class="token comment" spellcheck="true">// Range: {</span>
+<span class="token comment" spellcheck="true">//   collapsed: false</span>
+<span class="token comment" spellcheck="true">//   commonAncestorContainer: p#p1</span>
+<span class="token comment" spellcheck="true">//   endContainer: p#p1</span>
+<span class="token comment" spellcheck="true">//   endOffset: 2</span>
+<span class="token comment" spellcheck="true">//   startContainer: p#p1</span>
+<span class="token comment" spellcheck="true">//   startOffset: 0</span>
+<span class="token comment" spellcheck="true">//   __proto__: Range</span>
+<span class="token comment" spellcheck="true">// }</span></code></pre>
+<p>还可以在范围上调用方法：</p>
+<ul>
+<li><p>setStartBefore(<em>refNode</em>)，把范围的起点设置到 <em>refNode</em> 之前，从而让 <em>refNode</em> 成为选</p>
+<p>区的第一个子节点。startContainer 属性被设置为 refNode.parentNode，而 startOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引。</p>
+</li>
+<li><p>setStartAfter(<em>refNode</em>)，把范围的起点设置到 <em>refNode</em> 之后，从而将 <em>refNode</em> 排除在选</p>
+<p>区之外，让其下一个同胞节点成为选区的第一个子节点。startContainer 属性被设置为</p>
+<p>refNode.parentNode，startOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合</p>
+<p>中的索引加 1。</p>
+</li>
+<li><p>setEndBefore(<em>refNode</em>)，把范围的终点设置到 <em>refNode</em> 之前，从而将 <em>refNode</em> 排除在选区之外、让其上一个同胞节点成为选区的最后一个子节点。endContainer 属性被设置为 refNode. parentNode，endOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引。</p>
+</li>
+<li><p>setEndAfter(<em>refNode</em>)，把范围的终点设置到 <em>refNode</em> 之后，从而让 <em>refNode</em> 成为选区的</p>
+<p>最后一个子节点。endContainer 属性被设置为 refNode.parentNode，endOffset 属性被设置为 <em>refNode</em> 在其父节点 childNodes 集合中的索引加 1。</p>
+</li>
+</ul>
+<h5 id="复杂选择"><a href="#复杂选择" class="headerlink" title="复杂选择"></a>复杂选择</h5><p>使用 setStart() 和 setEnd() 方法，接收两个参数：参照节点和偏移量。对 setStart() 来说，参照节点会成为 startContainer，而偏移量会赋值给 startOffset。 对 setEnd() 而言，参照节点会成为 endContainer，而偏移量会赋值给 endOffset。</p>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>函数会选择最新的内容码？</p>
+<p>函数 sayHi 使用外部变量。当函数运行时，将使用哪个值？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hi, "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+name <span class="token operator">=</span> <span class="token string">"Pete"</span><span class="token punctuation">;</span>
+
+<span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 会显示什么："John" 还是 "Pete"？</span></code></pre>
+<p>这种情况在浏览器和服务器端开发中都很常见。一个函数可能被计划在创建之后一段时间后才执行，例如在用户行为或网络请求之后。</p>
+<p>因此，问题是：它会接收最新的修改吗？</p>
+<p>会。</p>
+</li>
+<li><p>哪些变量可用呢？</p>
+<p>下面的 <code>makeWorker</code> 函数创建了另一个函数并返回该函数。可以在其他地方调用这个新函数。</p>
+<p>它是否可以从它被创建的位置或调用位置（或两者）访问外部变量？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">makeWorker</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">"Pete"</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> name <span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// create a function</span>
+<span class="token keyword">let</span> work <span class="token operator">=</span> <span class="token function">makeWorker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// call it</span>
+<span class="token function">work</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 会显示什么？</span></code></pre>
+<p>会显示哪个值？“Pete” 还是 “John”？</p>
+<p>“Pete”。</p>
+</li>
+<li><p>Counter 是独立的吗？</p>
+<p>在这儿我们用相同的 <code>makeCounter</code> 函数创建了两个计数器（counters）：<code>counter</code> 和 <code>counter2</code>。</p>
+<p>它们是独立的吗？第二个 counter 会显示什么？<code>0,1</code> 或 <code>2,3</code> 还是其他？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> count<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> counter <span class="token operator">=</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> counter2 <span class="token operator">=</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">counter2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">counter2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>独立的，第二个会显示 0 1 。</p>
+</li>
+<li><p>Counter 对象</p>
+<p>这里通过构造函数创建了一个 counter 对象。</p>
+<p>它能正常工作吗？它会显示什么呢？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span>up <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">++</span>count<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>down <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">--</span>count<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> counter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> counter<span class="token punctuation">.</span><span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> counter<span class="token punctuation">.</span><span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> counter<span class="token punctuation">.</span><span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span></code></pre>
+<p>能。1 2 1。</p>
+</li>
+<li><p>if 内的函数</p>
+<p>看看下面这个代码。最后一行代码的执行结果是什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> phrase <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> user <span class="token operator">=</span> <span class="token string">"John"</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>phrase<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>user<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>报错。</p>
+</li>
+<li><p>闭包 sum</p>
+<p>编写一个像 <code>sum(a)(b) = a+b</code> 这样工作的 <code>sum</code> 函数。</p>
+<p>是的，就是这种通过双括号的方式（并不是错误）。</p>
+<p>举个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">4</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x <span class="token operator">+</span> y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>变量可见吗</p>
+<p>下面这段代码的结果会是什么？</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ?</span>
+
+  <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>P.S. 这个任务有一个陷阱。解决方案并不明显。</p>
+<p>报错。因为函数内部包含 x 。虽然还未定义，但已经不会去外部寻找 x 。</p>
+</li>
+<li><p>通过函数筛选</p>
+<p>我们有一个内建的数组方法 <code>arr.filter(f)</code>。它通过函数 <code>f</code> 过滤元素。如果它返回 <code>true</code>，那么该元素会被返回到结果数组中。</p>
+<p>制造一系列“即用型”过滤器：</p>
+<ul>
+<li><code>inBetween(a, b)</code> —— 在 <code>a</code> 和 <code>b</code> 之间或与它们相等（包括）。</li>
+<li><code>inArray([...])</code> —— 包含在给定的数组中。</li>
+</ul>
+<p>用法如下所示：</p>
+<ul>
+<li><code>arr.filter(inBetween(3,6))</code> —— 只挑选范围在 3 到 6 的值。</li>
+<li><code>arr.filter(inArray([1,2,3]))</code> —— 只挑选与 <code>[1,2,3]</code> 中的元素匹配的元素。</li>
+</ul>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">/* .. inBetween 和 inArray 的代码 */</span>
+<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token function">inBetween</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3,4,5,6</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token function">inArray</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1,2</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">inBetween</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> item <span class="token operator">>=</span> a <span class="token operator">&amp;&amp;</span> item <span class="token operator">&lt;=</span> b<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">inArray</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>按字段排序</p>
+<p>我们有一组要排序的对象：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> users <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"John"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span> surname<span class="token punctuation">:</span> <span class="token string">"Johnson"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"Pete"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">18</span><span class="token punctuation">,</span> surname<span class="token punctuation">:</span> <span class="token string">"Peterson"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"Ann"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span> surname<span class="token punctuation">:</span> <span class="token string">"Hathaway"</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
+<p>通常的做法应该是这样的：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 通过 name (Ann, John, Pete)</span>
+users<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a<span class="token punctuation">.</span>name <span class="token operator">></span> b<span class="token punctuation">.</span>name <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 通过 age (Pete, Ann, John)</span>
+users<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> a<span class="token punctuation">.</span>age <span class="token operator">></span> b<span class="token punctuation">.</span>age <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>我们可以让它更加简洁吗，比如这样？</p>
+<pre class=" language-javascript"><code class="language-javascript">users<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token function">byField</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+users<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token function">byField</span><span class="token punctuation">(</span><span class="token string">'age'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>这样我们就只需要写 <code>byField(fieldName)</code>，而不是写一个函数。</p>
+<p>编写函数 <code>byField</code> 来实现这个需求。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">byField</span><span class="token punctuation">(</span>fieldName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>a<span class="token punctuation">[</span>fieldName<span class="token punctuation">]</span> <span class="token operator">></span> b<span class="token punctuation">[</span>fieldName<span class="token punctuation">]</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token punctuation">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>函数大军</p>
+<p>下列的代码创建了一个 <code>shooters</code> 数组。</p>
+<p>每个函数都应该输出其编号。但好像出了点问题……</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">makeArmy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> shooters <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> shooter <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 创建一个 shooter 函数，</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span> i <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 应该显示其编号</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    shooters<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>shooter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将此 shooter 函数添加到数组中</span>
+    i<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// ……返回 shooters 数组</span>
+  <span class="token keyword">return</span> shooters<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> army <span class="token operator">=</span> <span class="token function">makeArmy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// ……所有的 shooter 显示的都是 10，而不是它们的编号 0, 1, 2, 3...</span>
+army<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 编号为 0 的 shooter 显示的是 10</span>
+army<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 编号为 1 的 shooter 显示的是 10</span>
+army<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 10，其他的也是这样。</span></code></pre>
+<p>为什么所有的 shooter 显示的都是同样的值？</p>
+<p>修改代码以使得代码能够按照我们预期的那样工作。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">makeArmy</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> shooters <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> j <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> shooter <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment" spellcheck="true">// 创建一个 shooter 函数，</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 应该显示其编号</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    shooters<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>shooter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将此 shooter 函数添加到数组中</span>
+    i<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// ……返回 shooters 数组</span>
+  <span class="token keyword">return</span> shooters<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/13/xue-xi-bi-ji-2020-11-13/" rel="prev" title="学习笔记 2020 11 13">
+      <i class="fa fa-chevron-left"></i> 学习笔记 2020 11 13
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/15/xue-xi-bi-ji-2020-11-15/" rel="next" title="学习笔记 2020 11 15">
+      学习笔记 2020 11 15 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习笔记-2020-11-14"><span class="nav-text">学习笔记 2020-11-14</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="nav-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM2-和-DOM3"><span class="nav-text">DOM2 和 DOM3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#样式"><span class="nav-text">样式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#元素尺寸"><span class="nav-text">元素尺寸</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历"><span class="nav-text">遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NodeIterator"><span class="nav-text">NodeIterator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TreeWalker"><span class="nav-text">TreeWalker</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范围"><span class="nav-text">范围</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DOM-范围"><span class="nav-text">DOM 范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简单选择"><span class="nav-text">简单选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂选择"><span class="nav-text">复杂选择</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现代-JavaScript-教程"><span class="nav-text">现代 JavaScript 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">401k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:05</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

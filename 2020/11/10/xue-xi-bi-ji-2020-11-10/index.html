@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="学习笔记 2020-11-10">
+<meta name="keywords" content="notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记 2020 11 10">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2020&#x2F;11&#x2F;10&#x2F;xue-xi-bi-ji-2020-11-10&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="学习笔记 2020-11-10">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-11-10T00:43:51.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://s1rine.github.io/2020/11/10/xue-xi-bi-ji-2020-11-10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>学习笔记 2020 11 10 | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2020/11/10/xue-xi-bi-ji-2020-11-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习笔记 2020 11 10
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 08:43:51" itemprop="dateCreated datePublished" datetime="2020-11-10T08:43:51+08:00">2020-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="学习笔记-2020-11-10"><a href="#学习笔记-2020-11-10" class="headerlink" title="学习笔记 2020-11-10"></a>学习笔记 2020-11-10</h1><a id="more"></a>
+
+<h2 id="JavaScript-高级程序设计-第4版-阅读记录"><a href="#JavaScript-高级程序设计-第4版-阅读记录" class="headerlink" title="JavaScript 高级程序设计(第4版) 阅读记录"></a>JavaScript 高级程序设计(第4版) 阅读记录</h2><h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><h4 id="MutationObserver-接口"><a href="#MutationObserver-接口" class="headerlink" title="MutationObserver 接口"></a>MutationObserver 接口</h4><h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><ol>
+<li><p>回调与 MutationRecord</p>
+<p>每个回调都会收到一个 MutationRecord 实例的数组。包含发生了什么变化，DOM 的哪一部分受到了影响。因为回调执行之前可能同时发生多个满足观察条件的事件，所以每次执行回调都会传入一个包含按顺序入队的 MutationRecord 实例的数组。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span> 
+ <span class="token punctuation">(</span>mutationRecords<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mutationRecords<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [MutationRecord]:</span>
+<span class="token comment" spellcheck="true">//  [</span>
+<span class="token comment" spellcheck="true">//   0: {</span>
+<span class="token comment" spellcheck="true">//     MutationRecord,</span>
+<span class="token comment" spellcheck="true">//     addedNodes: NodeList [],</span>
+<span class="token comment" spellcheck="true">//     attributeName: "foo",</span>
+<span class="token comment" spellcheck="true">//     attributeNamespace: null,</span>
+<span class="token comment" spellcheck="true">//     nextSibling: null,</span>
+<span class="token comment" spellcheck="true">//     oldValue: null,</span>
+<span class="token comment" spellcheck="true">//     previousSibling: null,</span>
+<span class="token comment" spellcheck="true">//     removedNodes: NodeList [],</span>
+<span class="token comment" spellcheck="true">//     target: body,</span>
+<span class="token comment" spellcheck="true">//     type: "attributes",</span>
+<span class="token comment" spellcheck="true">//     __proto__: MutationRecord,</span>
+<span class="token comment" spellcheck="true">//     length: 1</span>
+<span class="token comment" spellcheck="true">//   },</span>
+<span class="token comment" spellcheck="true">//   __proto__: Array(0),</span>
+<span class="token comment" spellcheck="true">//  ]</span>
+
+<span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span> 
+ <span class="token punctuation">(</span>mutationRecords<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mutationRecords<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">setAttributeNS</span><span class="token punctuation">(</span><span class="token string">'baz'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// [ </span>
+<span class="token comment" spellcheck="true">//   { </span>
+<span class="token comment" spellcheck="true">//     addedNodes: NodeList [], </span>
+<span class="token comment" spellcheck="true">//     attributeName: "foo", </span>
+<span class="token comment" spellcheck="true">//     attributeNamespace: "baz", </span>
+<span class="token comment" spellcheck="true">//     nextSibling: null, </span>
+<span class="token comment" spellcheck="true">//     oldValue: null, </span>
+<span class="token comment" spellcheck="true">//     previousSibling: null </span>
+<span class="token comment" spellcheck="true">//     removedNodes: NodeList [], </span>
+<span class="token comment" spellcheck="true">//     target: body </span>
+<span class="token comment" spellcheck="true">//     type: "attributes" </span>
+<span class="token comment" spellcheck="true">//   } </span>
+<span class="token comment" spellcheck="true">// ]</span>
+
+<span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span>mutationRecords <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mutationRecords<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'baz'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [MutationRecord, MutationRecord, MutationRecord]</span></code></pre>
+<p>MutationRecord 实例的属性如下表：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>target</td>
+<td>被修改影响的目标节点</td>
+</tr>
+<tr>
+<td>type</td>
+<td>字符串，表示变化的类型：”attributes”、”characterData”或”childList”</td>
+</tr>
+<tr>
+<td>oldValue</td>
+<td>如果在 MutationObserverInit 对象中启用（attributeOldValue 或 characterData OldValue 为 true），”attributes”或”characterData”的变化事件会设置这个属性为被替代的值 “childList”类型的变化始终将这个属性设置为 null。</td>
+</tr>
+<tr>
+<td>attributeName</td>
+<td>对于”attributes”类型的变化，这里保存被修改属性的名字。其他变化事件会将这个属性设置为 null</td>
+</tr>
+<tr>
+<td>attributeNamespace</td>
+<td>对于使用了命名空间的”attributes”类型的变化，这里保存被修改属性的名字。对于使用了命名空间的”attributes”类型的变化，这里保存被修改属性的名字</td>
+</tr>
+<tr>
+<td>addedNodes</td>
+<td>对于”childList”类型的变化，返回包含变化中添加节点的 NodeList。默认为空 NodeList。</td>
+</tr>
+<tr>
+<td>removedNodes</td>
+<td>对于”childList”类型的变化，返回包含变化中删除节点的 NodeList。默认为空 NodeList。</td>
+</tr>
+<tr>
+<td>previousSibling</td>
+<td>对于”childList”类型的变化，返回变化节点的前一个同胞 Node。默认为 null。</td>
+</tr>
+<tr>
+<td>nextSibling</td>
+<td>对于”childList”类型的变化，返回变化节点的后一个同胞 Node。默认为 null。</td>
+</tr>
+</tbody></table>
+<p>传给回调函数的第二个参数是观察变化的 MutationObserver 的实例。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span> 
+ <span class="token punctuation">(</span>mutationRecords<span class="token punctuation">,</span> mutationObserver<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mutationRecords<span class="token punctuation">,</span>
+mutationObserver<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true">// [MutationRecord], MutationObserver</span></code></pre>
+</li>
+<li><p>disconnect() 方法</p>
+<p>默认情况下，只要被观察的元素不被垃圾回收，回调就不会被终止。调用 disconnect() 方法提前终止执行回调。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'&lt;body> attributes changed'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//（没有日志输出）</span></code></pre>
+<p>调用后，已经加入任务队列的回调也会被抛弃。</p>
+<p>如果想执行已经入列的回调，可以使用 setTimeout() 。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'&lt;body> attributes changed'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  observer<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// &lt;body> attributes changed</span></code></pre>
+</li>
+<li><p>复用 MutationObserver</p>
+<p>多次调用 observe() 方法，可以复用一个 MutationObserver 对象观察多个不同的目标节点。此时， MutationRecord 的 target 属性可以标识发生变化事件的目标节点。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span>mutationRecords <span class="token operator">=</span><span class="token operator">></span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mutationRecords<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x <span class="token operator">=</span><span class="token operator">></span> x<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 向页面主体添加两个子节点</span>
+<span class="token keyword">let</span> childA <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  childB <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>childA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>childB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 观察两个子节点</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>childA<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>childB<span class="token punctuation">,</span> <span class="token punctuation">{</span> attributes<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 修改两个子节点的属性</span>
+childA<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+childB<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// [&lt;div>, &lt;span>]</span></code></pre>
+<p>此时调用 disconnect() 方法会停止观察所有目标。</p>
+</li>
+<li><p>重用 MutationObserver</p>
+<p>调用过 disconnect() 的 MutationObserver 还可以重新使用，只需要关联到新的目标节点。</p>
+</li>
+</ol>
+<h5 id="MutationObserverInit-与观察范围"><a href="#MutationObserverInit-与观察范围" class="headerlink" title="MutationObserverInit 与观察范围"></a>MutationObserverInit 与观察范围</h5><p>MutationObserverInit 对象用于控制对目标节点的观察范围。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subtree</td>
+<td>布尔值，表示除了目标节点，是否观察目标节点的子树（后代）。如果是 false，则只观察目标节点的变化；如果是 true，则观察目标节点及其整个子树。默认为 false。</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>布尔值，表示是否观察目标节点的属性变化。默认为 false</td>
+</tr>
+<tr>
+<td>attributeFilter</td>
+<td>字符串数组，表示要观察哪些属性的变化。把这个值设置为 true 也会将 attributes 的值转换为 true。默认为观察所有属性</td>
+</tr>
+<tr>
+<td>attributeOldValue</td>
+<td>布尔值，表示 MutationRecord 是否记录变化之前的属性值。把这个值设置为 true 也会将 attributes 的值转换为 true。默认为 false。</td>
+</tr>
+<tr>
+<td>characterData</td>
+<td>布尔值，表示修改字符数据是否触发变化事件。默认为 false。</td>
+</tr>
+<tr>
+<td>characterDataOldValue</td>
+<td>布尔值，表示 MutationRecord 是否记录变化之前的字符数据。把这个值设置为 true 也会将 characterData 的值转换为 true。默认为 false。</td>
+</tr>
+<tr>
+<td>childList</td>
+<td>布尔值，表示修改目标节点的子节点是否触发变化事件。默认为 false。</td>
+</tr>
+</tbody></table>
+<p>默认情况下，观察范围限定为一个元素及其子节点的变化。设置 subtree 可以将观察范围拓展到这个元素的子树，即所有后代节点。被观察子树的节点被移出子树之后仍然能够触发变化事件。</p>
+<h5 id="异步回调与记录队列"><a href="#异步回调与记录队列" class="headerlink" title="异步回调与记录队列"></a>异步回调与记录队列</h5><p>MutationObserver 接口出于性能考虑而涉及，核心是异步回调与记录队列模型。为了在大量变化事件发生时不影响性能，每次变化的信息会保存在 MutationRecord 实例中，然后添加到记录队列。这个队列对每个 MutationObserver 实例都是唯一的，是所有 DOM 变化事件的有序列表。</p>
+<ol>
+<li><p>记录队列</p>
+<p>每次 MutationRecord 被添加到 MutationObserver 的记录队列时，仅当之前没有已排期的微任务回调时，才会将观察者注册的回调作为微任务调度到任务队列上。</p>
+<p>不过在回调的微任务异步执行期间，有可能又会发生更多变化事件。因此被调用的回调会接收到一个 MutationRecord 实例的数组，顺序为它们进入记录队列的顺序。回调要负责处理这个数组的每一个实例，因为函数退出之后这些实现就不存在了。回调执行后，这些 MutationRecord 就用不着了。因此记录队列会被清空。</p>
+</li>
+<li><p>takeRecords() 方法</p>
+<p>调用 MutationObserver 实例的 takeRecords() 方法可以清空记录队列，取出并返回其中的所有 MutationRecord 实例。</p>
+</li>
+</ol>
+<h5 id="性能、内存与垃圾回收"><a href="#性能、内存与垃圾回收" class="headerlink" title="性能、内存与垃圾回收"></a>性能、内存与垃圾回收</h5><p>将变化回调委托给微任务来执行可以保证事件同步触发，同时避免随之而来的混乱。为 MutationObserver 而实现的记录队列，可以保证即使变化事件被爆发式地触发，也不会显著地拖慢浏览器。</p>
+<ol>
+<li><p>MutationObserver 的引用</p>
+<p>MutationObserver 实例与目标节点之间的引用关系是非对称的。MutationObserver 拥有对要观察的目标节点的弱引用。因为是弱引用，所以不会妨碍垃圾回收程序回收目标节点。</p>
+<p>然而，目标节点却拥有对 MutationObserver 的强引用。如果目标节点从 DOM 中被移除，随后被垃圾回收，则关联的 MutationObserver 也会被垃圾回收。</p>
+</li>
+<li><p>MutationRecord 的引用</p>
+<p>记录队列中的每个 MutationRecord 的实例至少包含对已有 DOM 节点的一个引用。如果变化是 childList 类型，则会包含多个节点的引用。记录队列和回调处理的默认行为是耗尽这个队列，处理每个 MutationRecord ，然后让它们超出作用域并被垃圾回收。</p>
+<p>有时候可能需要保存某个观察者的完整变化记录。保存这些 MutationRecord 实例，也就会保存它们引用的节点，因而会妨碍这些节点被回收。如果需要尽快地释放内存，建议从每个 MutationRecord 中抽取出最有用的信息，然后保存到一个新对象中，最后抛弃 MutationRecord。</p>
+</li>
+</ol>
+<h2 id="现代-JavaScript-教程"><a href="#现代-JavaScript-教程" class="headerlink" title="现代 JavaScript 教程"></a>现代 JavaScript 教程</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><p>创建日期</p>
+<p>创建一个 <code>Date</code> 对象，日期是：Feb 20, 2012, 3:12am。时区是当地时区。</p>
+<p>使用 <code>alert</code> 显示结果。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> time <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">'2012-02-20 3:12'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li><p>显示星期数</p>
+<p>编写一个函数 <code>getWeekDay(date)</code> 以短格式来显示一个日期的星期数：‘MO’，‘TU’，‘WE’，‘TH’，‘FR’，‘SA’，‘SU’。</p>
+<p>例如：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 3 Jan 2012</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">getWeekDay</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// 应该输出 "TU"</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getWeekDay</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> day <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>day<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'MO'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'TU'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'WE'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">4</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'TH'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">5</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'FR'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">6</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'SA'</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
+      <span class="token keyword">return</span> <span class="token string">'SU'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>欧洲的星期表示方法</p>
+<p>欧洲国家的星期计算是从星期一（数字 1）开始的，然后是星期二（数字 2），直到星期日（数字 7）。编写一个函数 <code>getLocalDay(date)</code>，并返回日期的欧洲式星期数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 3 Jan 2012</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">getLocalDay</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">// 星期二，应该显示 2</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getLocalDay</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> day <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> day <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token number">7</span> <span class="token punctuation">:</span> day<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>许多天之前是哪个月几号？</p>
+<p>写一个函数 <code>getDateAgo(date, days)</code>，返回特定日期 <code>date</code> 往前 <code>days</code> 天是哪个月的哪一天。</p>
+<p>例如，假设今天是 20 号，那么 <code>getDateAgo(new Date(), 1)</code> 的结果应该是 19 号，<code>getDateAgo(new Date(), 2)</code> 的结果应该是 18 号。</p>
+<p>跨月、年也应该是正确输出：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2015</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">getDateAgo</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 1, (1 Jan 2015)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">getDateAgo</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 31, (31 Dec 2014)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">getDateAgo</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> <span class="token number">365</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 2, (2 Jan 2014)</span></code></pre>
+<p>P.S. 函数不应该修改给定的 <code>date</code> 值。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getDateAgo</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> date<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> num <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">3600</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 参考解决方案</span>
+<span class="token keyword">function</span> <span class="token function">getDateAgo</span><span class="token punctuation">(</span>date<span class="token punctuation">,</span> days<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> dateCopy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  dateCopy<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> days<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> dateCopy<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>某月的最后一天</p>
+<p>写一个函数 <code>getLastDayOfMonth(year, month)</code> 返回 month 月的最后一天。有时候是 30，有时是 31，甚至在二月的时候会是 28/29。</p>
+<p>参数：</p>
+<ul>
+<li><code>year</code> —— 四位数的年份，比如 2012。</li>
+<li><code>month</code> —— 月份，从 0 到 11。</li>
+</ul>
+<p>举个例子，<code>getLastDayOfMonth(2012, 1) = 29</code>（闰年，二月）</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getLastDayOfMonth</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> month<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>year<span class="token punctuation">,</span> month <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> date<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>今天过去了多少秒？</p>
+<p>写一个函数 <code>getSecondsToday()</code>，返回今天已经过去了多少秒？</p>
+<p>例如：如果现在是 <code>10:00 am</code>，并且没有夏令时转换，那么：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">getSecondsToday</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">36000</span> <span class="token comment" spellcheck="true">// (3600 * 10)</span></code></pre>
+<p>该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getSecondsToday</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> day <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> hour <span class="token operator">=</span> day<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> minute <span class="token operator">=</span> day<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> second <span class="token operator">=</span> day<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> hour <span class="token operator">*</span> <span class="token number">3600</span> <span class="token operator">+</span> minute <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">+</span> second<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 参考解决方案</span>
+<span class="token keyword">function</span> <span class="token function">getSecondsToday</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// 使用当前的 day/month/year 创建一个对象</span>
+  <span class="token keyword">let</span> today <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> diff <span class="token operator">=</span> now <span class="token operator">-</span> today<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// ms difference</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>diff <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// make seconds</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>距离明天还有多少秒？</p>
+<p>写一个函数 <code>getSecondsToTomorrow()</code>，返回距离明天的秒数。</p>
+<p>例如，现在是 <code>23:00</code>，那么：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">getSecondsToTomorrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">3600</span></code></pre>
+<p>P.S. 该函数应该在任意一天都能正确运行。那意味着，它不应具有“今天”的硬编码值。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">getSecondsToTomorrow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> tomorrow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> diff <span class="token operator">=</span> tomorrow <span class="token operator">-</span> now<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span>diff <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>格式化相对日期</p>
+<p>写一个函数 <code>formatDate(date)</code>，能够对 <code>date</code> 进行如下格式化：</p>
+<ul>
+<li>如果 <code>date</code> 距离现在不到 1 秒，输出 <code>"right now"</code>。</li>
+<li>否则，如果 <code>date</code> 距离现在不到 1 分钟，输出 <code>"n sec. ago"</code>。</li>
+<li>否则，如果不到 1 小时，输出 <code>"m min. ago"</code>。</li>
+<li>否则，以 <code>"DD.MM.YY HH:mm"</code> 格式输出完整日期。即：<code>"day.month.year hours:minutes"</code>，全部以两位数格式表示，例如：<code>31.12.16 10:00</code>。</li>
+</ul>
+<p>举个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "right now"</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">30</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "30 sec. ago"</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">5</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "5 min. ago"</span>
+
+<span class="token comment" spellcheck="true">// 昨天的日期，例如 31.12.16 20:00</span>
+<span class="token function">alert</span><span class="token punctuation">(</span> <span class="token function">formatDate</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span> <span class="token operator">-</span> <span class="token number">86400</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">formatDate</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> diff <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span>now <span class="token operator">-</span> date<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> hour <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>diff <span class="token operator">/</span> <span class="token number">3600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> minute <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token punctuation">(</span>diff <span class="token operator">-</span> hour <span class="token operator">*</span> <span class="token number">3600</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> second <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>diff <span class="token operator">%</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>hour<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">format</span><span class="token punctuation">(</span>
+      date<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>minute<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>minute<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> min. ago`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>second<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>second<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> sec. ago`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`right now`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">format</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  num <span class="token operator">=</span> <span class="token string">'0'</span> <span class="token operator">+</span> num<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> num<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/09/xue-xi-bi-ji-2020-11-09/" rel="prev" title="学习笔记 2020 11 09">
+      <i class="fa fa-chevron-left"></i> 学习笔记 2020 11 09
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/11/xue-xi-bi-ji-2020-11-11/" rel="next" title="学习笔记 2020 11 11">
+      学习笔记 2020 11 11 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习笔记-2020-11-10"><span class="nav-text">学习笔记 2020-11-10</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-高级程序设计-第4版-阅读记录"><span class="nav-text">JavaScript 高级程序设计(第4版) 阅读记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM"><span class="nav-text">DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MutationObserver-接口"><span class="nav-text">MutationObserver 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本用法"><span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MutationObserverInit-与观察范围"><span class="nav-text">MutationObserverInit 与观察范围</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#异步回调与记录队列"><span class="nav-text">异步回调与记录队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#性能、内存与垃圾回收"><span class="nav-text">性能、内存与垃圾回收</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现代-JavaScript-教程"><span class="nav-text">现代 JavaScript 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-text">任务</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">401k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:05</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

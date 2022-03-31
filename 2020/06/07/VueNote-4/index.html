@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Vue笔记 ④📃 正文① Vue 单文件组件1.1 style 中的 scoped在 Vue 的单文件组件中，有 template , script, style 三种标签。其中的 style 有一个 scoped 属性。在文档中的解释为  当 style  标签有 scoped 属性时，它的 CSS 只作用于当前组件中的元素。这类似于 Shadow DOM 中的样式封装。  实际产生的效果为，">
+<meta name="keywords" content="notes,vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VueNote-4">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2020&#x2F;06&#x2F;07&#x2F;vuenote-4&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="Vue笔记 ④📃 正文① Vue 单文件组件1.1 style 中的 scoped在 Vue 的单文件组件中，有 template , script, style 三种标签。其中的 style 有一个 scoped 属性。在文档中的解释为  当 style  标签有 scoped 属性时，它的 CSS 只作用于当前组件中的元素。这类似于 Shadow DOM 中的样式封装。  实际产生的效果为，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-07T13:57:21.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://s1rine.github.io/2020/06/07/vuenote-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>VueNote-4 | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2020/06/07/vuenote-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VueNote-4
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-07 21:57:21" itemprop="dateCreated datePublished" datetime="2020-06-07T21:57:21+08:00">2020-06-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Vue笔记-④"><a href="#Vue笔记-④" class="headerlink" title="Vue笔记 ④"></a>Vue笔记 ④</h1><h2 id="📃-正文"><a href="#📃-正文" class="headerlink" title="📃 正文"></a>📃 正文</h2><h3 id="①-Vue-单文件组件"><a href="#①-Vue-单文件组件" class="headerlink" title="① Vue 单文件组件"></a>① Vue 单文件组件</h3><h4 id="1-1-style-中的-scoped"><a href="#1-1-style-中的-scoped" class="headerlink" title="1.1 style 中的 scoped"></a>1.1 style 中的 scoped</h4><p>在 <code>Vue</code> 的单文件组件中，有 <code>template</code> , <code>script</code>, <code>style</code> 三种标签。其中的 <code>style</code> 有一个 <code>scoped</code> 属性。在文档中的解释为</p>
+<blockquote>
+<p>当 <code>style</code>  标签有 <code>scoped</code> 属性时，它的 <code>CSS</code> 只作用于当前组件中的元素。这类似于 <code>Shadow DOM</code> 中的样式封装。</p>
+</blockquote>
+<p>实际产生的效果为，当前页面的某些元素都会生成一个独特属性，而我们写的样式都会匹配这个独特的属性来保持不被其余组件影响。</p>
+<a id="more"></a>
+
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
+<span class="token selector"><span class="token class">.example</span> </span><span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>hi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<p>转换为：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+<span class="token selector"><span class="token class">.example</span><span class="token attribute">[data-v-f3f3eg9]</span> </span><span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example<span class="token punctuation">"</span></span> <span class="token attr-name">data-v-f3f3eg9</span><span class="token punctuation">></span></span>hi<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span></code></pre>
+<p>但实际上，这个独特属性只会出现在当前页面的直接使用的标签上，也就是我们使用的组件的最外层父元素。那么想要根据转换规则，是无法匹配到这个组件的内部元素的。想要冲破这个规则而不取消 <code>scoped</code> 属性，就需要深度作用选择器。</p>
+<p>原生中可以编写以下代码来使样式作用变深。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">></span></span><span class="token style language-css">
+<span class="token selector"><span class="token class">.a</span> >>> <span class="token class">.b</span> </span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* ... */</span> <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span></code></pre>
+<p>转换为：</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.a</span><span class="token attribute">[data-v-f3f3eg9]</span> <span class="token class">.b</span> </span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* ... */</span> <span class="token punctuation">}</span></code></pre>
+<p>那么就可以达到我们想要的效果，<code>css</code> 预处理器也许无法解析这种语法，可以用 <code>/deep/</code> 和 <code>::v-deep</code> 来代替。</p>
+<h4 id="1-2-Node-API-服务器配置"><a href="#1-2-Node-API-服务器配置" class="headerlink" title="1.2  Node API 服务器配置"></a>1.2  Node API 服务器配置</h4><h5 id="1-2-1-想要偷懒的开始"><a href="#1-2-1-想要偷懒的开始" class="headerlink" title="1.2.1 想要偷懒的开始"></a>1.2.1 想要偷懒的开始</h5><p>写项目的时候，因为在本地跑的话，要开 <code>MySQL</code> 服务还要开后端一个服务，我觉得烦且占用资源。所以准备配置到我的小霸王机器上。</p>
+<h5 id="1-2-2-面向搜索引擎的经过"><a href="#1-2-2-面向搜索引擎的经过" class="headerlink" title="1.2.2 面向搜索引擎的经过"></a>1.2.2 面向搜索引擎的经过</h5><p>因为原先在小霸王里装好了宝塔 <code>Linux</code> 面板，所以直接去搜索 <code>pm2</code> 管理器，但是我随手点击安装的其他软件都装好了， <code>pm2</code> 管理器还是跟没装似的。于是搜索了一番，打印出安装时的日志信息一看，发现无法连接到 <code>github</code> ，于是照着这个方法去搜索，又是更改 <code>github</code> 的 <code>ip</code> 地址，又是配置 <code>git</code> 的账号信息，又是设置代理。</p>
+<p><strong>通通没有用</strong></p>
+<p>于是又仔细查看了一下报错信息，发现显示 <code>443</code> 错误。我自己想了一下，可能是没有放行端口的原因，于是去控制台把出入的 <code>443</code> 端口都放了一下。验证出来是出行的端口的问题。</p>
+<h5 id="1-2-3-安装好的结果"><a href="#1-2-3-安装好的结果" class="headerlink" title="1.2.3 安装好的结果"></a>1.2.3 安装好的结果</h5><p>安装好以后还是没有正常运行，因为新建的项目无法进行映射，也查不到什么有用的信息……</p>
+<p>于是在可以连通 <code>github</code> 的情况下，我只好自己用 <code>npm</code> 下载了 <code>forever</code> 来运行，懒得下 <code>pm2</code> 再弄了。</p>
+<h4 id="1-3-token-的使用"><a href="#1-3-token-的使用" class="headerlink" title="1.3  token 的使用"></a>1.3  token 的使用</h4><p><code>token</code> 这个东西，我也是经历了从完全弄不懂到目前大概知道作用的情况了，这一次学着写后台管理系统，也用到了 <code>token</code> 。大概写一下新了解到的东西。</p>
+<h5 id="1-3-1-持久性-会话期间存储机制"><a href="#1-3-1-持久性-会话期间存储机制" class="headerlink" title="1.3.1 持久性/会话期间存储机制"></a>1.3.1 持久性/会话期间存储机制</h5><p>在获取 <code>token</code> 之后是需要临时保存住这个字符串来使用的，而我一开始想到的是存储在 <code>localstorage</code> 中，然后又想着，一直存在里头，每次打开不都直接登上了吗？</p>
+<p>虽然之前写了点项目使用过 <code>token</code> ，但当时那个项目的登陆机制是乞丐版的，于是我也就没在意。</p>
+<p>这次了解到 <code>token</code> 可以存储在 <code>sessionStorage</code> 中来进行会话期间的账户验证。可以保证这个 <code>token</code> 只在当前网站打开期间生效。</p>
+<h4 id="1-4-非登陆状态的访问限制"><a href="#1-4-非登陆状态的访问限制" class="headerlink" title="1.4 非登陆状态的访问限制"></a>1.4 非登陆状态的访问限制</h4><p>一个非常常见的需求，即在非登陆状态下对非登陆页面的访问限制。可以使用路由导航守卫来控制访问权限。</p>
+<p>在未登录的状态下，是没有 <code>token</code> 的，那么可以使用 <code>router.beforeEach</code> 来控制。</p>
+<pre class=" language-javascript"><code class="language-javascript">router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// to 代表将要访问的路径</span>
+  <span class="token comment" spellcheck="true">// from 代表从哪个路径而来</span>
+  <span class="token comment" spellcheck="true">// next 为一个函数为接下来跳转</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">===</span> <span class="token string">'/login'</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> token <span class="token operator">=</span> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>token<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="1-5-vscode-语法格式化与-eslint-冲突问题"><a href="#1-5-vscode-语法格式化与-eslint-冲突问题" class="headerlink" title="1.5 vscode 语法格式化与 eslint 冲突问题"></a>1.5 vscode 语法格式化与 eslint 冲突问题</h4><p>在写代码的时候，<code>eslint</code> 有一些规则比较苛刻，例如字符串只能用单引号表示，不能有行尾空格，每个文件最后需要起一个新行。</p>
+<p>那么在 <code>vscode</code> 的自动格式化与 <code>eslint</code> 产生冲突的时候需要对其中一方进行配置， <code>eslint</code> 的配置文件一般都会在项目创建时自动生成。这里提一下 <code>vscode</code> 的配置文件。</p>
+<p>可以在项目根目录新建一个文件 <code>.prettierrc</code> 来进行配置。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//格式化时不会自动添加分号</span>
+    <span class="token string">"semi"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">//格式化时生成单引号</span>
+    <span class="token string">"singleQuote"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">//单行所允许的字符长度 若超过则会自动换行</span>
+    <span class="token string">"printWidth"</span><span class="token punctuation">:</span> <span class="token number">200</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="1-6-路由跳转的参数注入"><a href="#1-6-路由跳转的参数注入" class="headerlink" title="1.6 路由跳转的参数注入"></a>1.6 路由跳转的参数注入</h4><p>在使用路由跳转到某个页面的时候，有时候需要在路径中放入一个 <code>id</code> 来获取指定的数据，此时可以在路由配置时，指定 <code>props</code> 为 <code>true</code> 来表明参数的注入，然后就可以在组件中使用 <code>props</code> 来接收这个参数。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/categories/edit/:id'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/views/CategoryEdit.vue'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  props<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'CategoryEdit'</span><span class="token punctuation">,</span>
+  props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    id<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>然后 <code>id</code> 就可以作为一个变量直接使用</p>
+<h3 id="②-项目优化"><a href="#②-项目优化" class="headerlink" title="② 项目优化"></a>② 项目优化</h3><h4 id="2-1-项目优化策略"><a href="#2-1-项目优化策略" class="headerlink" title="2.1 项目优化策略"></a>2.1 项目优化策略</h4><h5 id="2-1-1-生成打包报告"><a href="#2-1-1-生成打包报告" class="headerlink" title="2.1.1 生成打包报告"></a>2.1.1 生成打包报告</h5><p>打包时，为了直观地发现项目中存在的问题，可以在打包时生成报告。生成报告的方式有两种：</p>
+<h6 id="①-通过命令行参数的形式生成报告"><a href="#①-通过命令行参数的形式生成报告" class="headerlink" title="① 通过命令行参数的形式生成报告"></a>① 通过命令行参数的形式生成报告</h6><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 通过 vue-cli 的命令选项可以生成打包报告</span>
+<span class="token comment" spellcheck="true">// --report 选项可以生成 report.html 以帮助分析包内容</span>
+vue<span class="token operator">-</span>cli<span class="token operator">-</span>service build <span class="token operator">--</span>report</code></pre>
+<h6 id="②-通过可视化的UI面板直接查看报告"><a href="#②-通过可视化的UI面板直接查看报告" class="headerlink" title="② 通过可视化的UI面板直接查看报告"></a>② 通过可视化的UI面板直接查看报告</h6><p>在可视化的UI面板中，通过<strong>控制台</strong>和<strong>分析</strong>面板，可以方便地看到项目中存在的问题。</p>
+<h5 id="2-1-2-为开发模式与发布模式指定不同的打包入口"><a href="#2-1-2-为开发模式与发布模式指定不同的打包入口" class="headerlink" title="2.1.2 为开发模式与发布模式指定不同的打包入口"></a>2.1.2 为开发模式与发布模式指定不同的打包入口</h5><p>默认情况下，Vue 项目的开发模式与发布模式，公用同一个打包的入口文件 (src/main.js)。为了将项目的开发过程与发布过程分离，我们可以为两种模式各自指定打包的入口文件，即：</p>
+<p>① 开发模式的入口文件为 src/main-dev.js</p>
+<p>② 发布模式的入口文件为 src/main-prod.js</p>
+<p>在 <code>vue.config.js</code> 导出的配置对象中，新增 <code>configureWebpack</code> 或 <code>chainWebpack</code> 节点， 来自定义 <code>webpack</code> 的打包配置。</p>
+<p>在这里， <code>configureWebpack</code> 和 <code>chainWebpack</code> 的作用相同，唯一的区别就是它们修改 <code>webpack</code> 配置的方式不同：</p>
+<p>① <code>chainWebpack</code> 通过链式编程的形式，来修改默认的 <code>webpack</code> 配置。</p>
+<p>② <code>configureWebpack</code> 通过操作对象的形式，来修改默认的 <code>webpack</code> 配置。</p>
+<h5 id="2-1-2-第三方库启用CDN"><a href="#2-1-2-第三方库启用CDN" class="headerlink" title="2.1.2 第三方库启用CDN"></a>2.1.2 第三方库启用CDN</h5><p>默认情况下，通过 import 语法导入的第三方依赖包，最终会被打包到同一个文件中，从而导致打包成功后，单文件体积过大的问题。</p>
+<p>为了解决上述问题，可以通过 webpack 的 externals 节点，来配置并加载外部的 CDN 资源。凡是声明在 externals 中的第三方依赖包，都不会被打包。</p>
+<h5 id="2-1-3-Element-UI-组件按需加载"><a href="#2-1-3-Element-UI-组件按需加载" class="headerlink" title="2.1.3 Element-UI 组件按需加载"></a>2.1.3 Element-UI 组件按需加载</h5><p>注释掉 <code>element-UI</code> 的按需引入插件的导入，引入 <code>cdn</code> 链接导入 <code>js</code> 和 <code>css</code> 即可。</p>
+<h5 id="2-1-4-路由懒加载"><a href="#2-1-4-路由懒加载" class="headerlink" title="2.1.4 路由懒加载"></a>2.1.4 路由懒加载</h5><p>路由懒加载即为在路由指定组件的时候用函数的形式来引入组件。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'@/components/Login.vue'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>若是想要将部分组件打包在一起可以这样指定:</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/* webpackChunkName: "group-foo" */</span><span class="token string">'@/components/Login.vue'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">{</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/test'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token comment" spellcheck="true">/* webpackChunkName: "group-foo" */</span><span class="token string">'@/components/test.vue'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<h5 id="2-1-5-首页内容定制"><a href="#2-1-5-首页内容定制" class="headerlink" title="2.1.5 首页内容定制"></a>2.1.5 首页内容定制</h5><p>在 <code>vue.config.js</code> 中给 <code>html</code> 插件写入一个属性来控制 <code>index.html</code> 的内容</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//生产模式</span>
+config<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span>args <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>isProd <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> args<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>&lt;%= htmlWebpackPlugin.options.isProd ? '' : 'dev - ' %>电商后台管理系统 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">if(htmlWebpackPlugin.options.isProd)</span> <span class="token attr-name">{</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>%</span> <span class="token attr-name">}</span> <span class="token attr-name">%</span><span class="token punctuation">></span></span></code></pre>
+<p><code>vue-cli</code> 中配置 <code>webpack</code> 配置项<a href="https://cli.vuejs.org/zh/config/#vue-config-js" target="_blank" rel="noopener">参考</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+              <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/14/vuenote-3/" rel="prev" title="VueNote-3">
+      <i class="fa fa-chevron-left"></i> VueNote-3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/10/10/xue-xi-bi-ji-2020-10-10/" rel="next" title="学习笔记 2020 10 10">
+      学习笔记 2020 10 10 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue笔记-④"><span class="nav-text">Vue笔记 ④</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#📃-正文"><span class="nav-text">📃 正文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#①-Vue-单文件组件"><span class="nav-text">① Vue 单文件组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-style-中的-scoped"><span class="nav-text">1.1 style 中的 scoped</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Node-API-服务器配置"><span class="nav-text">1.2  Node API 服务器配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-1-想要偷懒的开始"><span class="nav-text">1.2.1 想要偷懒的开始</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-2-面向搜索引擎的经过"><span class="nav-text">1.2.2 面向搜索引擎的经过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-3-安装好的结果"><span class="nav-text">1.2.3 安装好的结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-token-的使用"><span class="nav-text">1.3  token 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-持久性-会话期间存储机制"><span class="nav-text">1.3.1 持久性/会话期间存储机制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-非登陆状态的访问限制"><span class="nav-text">1.4 非登陆状态的访问限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-vscode-语法格式化与-eslint-冲突问题"><span class="nav-text">1.5 vscode 语法格式化与 eslint 冲突问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-路由跳转的参数注入"><span class="nav-text">1.6 路由跳转的参数注入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#②-项目优化"><span class="nav-text">② 项目优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-项目优化策略"><span class="nav-text">2.1 项目优化策略</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-生成打包报告"><span class="nav-text">2.1.1 生成打包报告</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#①-通过命令行参数的形式生成报告"><span class="nav-text">① 通过命令行参数的形式生成报告</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#②-通过可视化的UI面板直接查看报告"><span class="nav-text">② 通过可视化的UI面板直接查看报告</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-为开发模式与发布模式指定不同的打包入口"><span class="nav-text">2.1.2 为开发模式与发布模式指定不同的打包入口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-第三方库启用CDN"><span class="nav-text">2.1.2 第三方库启用CDN</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-Element-UI-组件按需加载"><span class="nav-text">2.1.3 Element-UI 组件按需加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-4-路由懒加载"><span class="nav-text">2.1.4 路由懒加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-5-首页内容定制"><span class="nav-text">2.1.5 首页内容定制</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">401k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:05</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
