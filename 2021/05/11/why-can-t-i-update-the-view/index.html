@@ -283,17 +283,17 @@
   data: string;
   isCompleted: boolean;
 }
-const [todoList, setTodoList] = useState<TodoType[]>([]);</code></pre>
+const [todoList, setTodoList] = useState<todotype[]>([]);</todotype[]></code></pre>
 <p>I create a function called <code>handleChange</code> to get the id.</p>
-<pre class=" language-tsx"><code class="language-tsx">const handleChange = (id: number) => {
-  todoList.forEach(todo => {
+<pre class=" language-tsx"><code class="language-tsx">const handleChange = (id: number) =&gt; {
+  todoList.forEach(todo =&gt; {
     if (todo.id === id) todo.isCompleted = !todo.isCompleted;
   });
   setTodoList([...todoList]);
 };</code></pre>
 <p>The code above is running correctly. I can traverse the array to find the todo and change its property. Then I use the <code>setTodoList</code> to update. I pass a new array to it because we know object and array is a reference value. React can’t find the difference when I pass the previous object or array. I know that and I always be careful for that. But I can’t understand why this code below can’t update the state and render again.</p>
-<pre class=" language-tsx"><code class="language-tsx">setTodoList(todoList => {
-  todoList.forEach(todo => {
+<pre class=" language-tsx"><code class="language-tsx">setTodoList(todoList =&gt; {
+  todoList.forEach(todo =&gt; {
     if (todo.id === id) todo.isCompleted = !todo.isCompleted;
   });
   return [...todoList];
@@ -301,20 +301,20 @@ const [todoList, setTodoList] = useState<TodoType[]>([]);</code></pre>
 <p>I just pass a function to it. I can get the previous value as a props in this function and I can also traverse it to update the todo then return a new array. But this just can’t!</p>
 <h2 id="How-to-fix"><a href="#How-to-fix" class="headerlink" title="How to fix"></a>How to fix</h2><p>I am so sad because I don’t know.</p>
 <h2 id="Here-new-problem-is"><a href="#Here-new-problem-is" class="headerlink" title="Here new problem is"></a>Here new problem is</h2><p>Here is a new problem with <code>setState</code> hook. </p>
-<pre class=" language-tsx"><code class="language-tsx">const [bookList, setBookList] = useState<Ibook[]>([]);</code></pre>
+<pre class=" language-tsx"><code class="language-tsx">const [bookList, setBookList] = useState<ibook[]>([]);</ibook[]></code></pre>
 <p>There is a state called book-list and <code>Ibook</code> is not important. I want change the list when I do something. Then I write a function to trigger the <code>setBookList</code> to update the state.</p>
-<pre class=" language-tsx"><code class="language-tsx">const handleCount = (id: number, count: number) => (
-    e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
-  ) => {
-    setBookList(bookList =>
-      bookList.map(book => {
+<pre class=" language-tsx"><code class="language-tsx">const handleCount = (id: number, count: number) =&gt; (
+    e: MouseEvent<htmlbuttonelement, globalthis.mouseevent>
+  ) =&gt; {
+    setBookList(bookList =&gt;
+      bookList.map(book =&gt; {
         if (book.id === id) {
           book.count += count;
         }
         return book;
       })
     );
-  };</code></pre>
+  };</htmlbuttonelement,></code></pre>
 <p>Then we can see the count of the book add or minus 2 in one time. Here the parameter count I only set 1 or -1. I set the breakpoint to see what happens. But I can’t find the reason why the code in the line 7 execute twice and others won’t.</p>
 <h3 id="The-reason"><a href="#The-reason" class="headerlink" title="The reason"></a>The reason</h3><p>I finally know why the count increment trigger twice. It is because the strict mode.</p>
 
@@ -417,7 +417,7 @@ const [todoList, setTodoList] = useState<TodoType[]>([]);</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -430,7 +430,7 @@ const [todoList, setTodoList] = useState<TodoType[]>([]);</code></pre>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -533,13 +533,13 @@ const [todoList, setTodoList] = useState<TodoType[]>([]);</code></pre>
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">401k</span>
+    <span title="站点总字数">418k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:05</span>
+    <span title="站点阅读时长">6:20</span>
 </div>
 
         

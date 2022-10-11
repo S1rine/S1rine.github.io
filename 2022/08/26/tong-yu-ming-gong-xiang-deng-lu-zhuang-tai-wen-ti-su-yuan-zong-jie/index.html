@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="同域名共享登录状态问题溯源&amp;amp;总结需求存在 A 和 B 两个挂载在同一个域名下的系统，希望可以一次登录、处处通行，指域名下共享登录状态。两个系统均为 papaya模板项目，走标准的内置中间件 papaya-cas登录流程。问题现状是，两个系统配置了相同的 session key，配置了同一个 redis client ，出现了登录状态共享但没完全共享的问题，表现为 A 系统登录后，B 系统需">
+<meta name="keywords" content="js,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同域名共享登录状态问题溯源&amp;总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="同域名共享登录状态问题溯源&amp;amp;总结需求存在 A 和 B 两个挂载在同一个域名下的系统，希望可以一次登录、处处通行，指域名下共享登录状态。两个系统均为 papaya模板项目，走标准的内置中间件 papaya-cas登录流程。问题现状是，两个系统配置了相同的 session key，配置了同一个 redis client ，出现了登录状态共享但没完全共享的问题，表现为 A 系统登录后，B 系统需">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661398207698-207bfc2f-9758-46c4-bf23-1cf17ed23362.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661399497316-a776619f-0f22-484d-8131-6ac550470e2b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661408415835-ade89c18-727b-4b68-ba80-3eda5a81105d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661482771878-a9bb05d3-61e3-4847-8c7f-8c5242bdb6a7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661483901699-6cef97f0-858e-47ff-80ae-10d80b808da3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661483877406-9e477eff-1673-482b-bc41-1e9a8e6c7e5e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661484087410-cd62e174-f9b2-4608-b443-21c11733ca5d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661488926034-871991c6-e22f-4325-829b-e27080125412.png">
+<meta property="og:updated_time" content="2022-08-26T10:30:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;26&#x2F;tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie&#x2F;1661398207698-207bfc2f-9758-46c4-bf23-1cf17ed23362.png">
+
+<link rel="canonical" href="https://s1rine.github.io/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>同域名共享登录状态问题溯源&总结 | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          同域名共享登录状态问题溯源&总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-26 18:30:00" itemprop="dateCreated datePublished" datetime="2022-08-26T18:30:00+08:00">2022-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="同域名共享登录状态问题溯源-amp-总结"><a href="#同域名共享登录状态问题溯源-amp-总结" class="headerlink" title="同域名共享登录状态问题溯源&amp;总结"></a>同域名共享登录状态问题溯源&amp;总结</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>存在 A 和 B 两个挂载在同一个域名下的系统，希望可以一次登录、处处通行，指域名下共享登录状态。两个系统均为 <code>papaya</code>模板项目，走标准的内置中间件 <code>papaya-cas</code>登录流程。<br>问题现状是，两个系统配置了相同的 <code>session key</code>，配置了同一个 <code>redis client</code> ，出现了登录状态共享但没完全共享的问题，表现为 A 系统登录后，B 系统需要重新走登录流程，已登录的情况下就会出现自动 <code>302</code>重定向并跳转回来的情况，未登录就会直接跳到登录页面。但是 <code>cookie</code>确实是同一个。下面列出问题如何溯源以及解决，先介绍一下前置的信息。</p>
+<blockquote>
+<p>文中不会详细介绍部分基础知识，如 session/cookie、koa、中间件等知识</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="登录流程"><a href="#登录流程" class="headerlink" title="登录流程"></a>登录流程</h2><p>先看下 <code>papaya-cas</code>中间件是如何实现登录登出的。该模块有一份<a href="http://git.caimi-inc.com/client/papaya-cas" target="_blank" rel="noopener">官方文档</a>可供参考，但是让人感觉不够直观，接下来做一下梳理。<br>每一个系统并没有单独实现登录这个功能，而是统一重定向到了 <a href="http://cas.wacai.com" target="_blank" rel="noopener">https://cas.wacai.com/login</a>  这个网站并携带一个原系统地址的 <code>service</code> 参数。<br>例如本地运行了一个 <code>http://localhost:3000</code> 的服务，打开时可以感知的就是系统自动跳转到了 <code>https://cas.wacai.com/login?service=http://localhost:3000</code> ，点击登录后又跳转回了 <code>http://localhost:3000</code>，而此时该服务上就可以拿到登录信息。<br>这里推荐一个 chrome 插件: <code>HTTP Status</code>，可以方便地看到每个网站打开后的 HTTP 请求链路以及状态。</p>
+<h3 id="未登录-gt-登录"><a href="#未登录-gt-登录" class="headerlink" title="未登录 -> 登录"></a>未登录 -&gt; 登录</h3><p>当我们运行一个未登录的系统，请求链路如图所示：</p>
+<p><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661398207698-207bfc2f-9758-46c4-bf23-1cf17ed23362.png" alt="image.png"></p>
+<p>可以看到，在正常请求后，会被重定向至 cas 服务网站。下面简单看下这一段的代码逻辑：</p>
+<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 检验参数</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+  <span class="token keyword">return</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ticket <span class="token operator">=</span> ctx<span class="token punctuation">.</span>query<span class="token punctuation">.</span>ticket
+    <span class="token comment" spellcheck="true">// 读取 session，判定无登录状态</span>
+    <span class="token comment" spellcheck="true">// 重新登录</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ticket<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token function">formatcasUrl</span><span class="token punctuation">(</span>casBaseURI<span class="token punctuation">,</span> <span class="token string">'login'</span><span class="token punctuation">,</span> logInService<span class="token punctuation">,</span> queryOtherParams<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>先忽略其他的代码逻辑，只看中间件中判定无登录状态后的操作，看是否携带了 <code>ticket</code>，我们的请求中很显然没有这个参数，于是进入重定向逻辑，根据 <code>casBaseURI</code> 即 <code>https://cas.wacai.com</code> 和服务参数，重定向至登录页面。<br>这里登录的具体逻辑大致猜测为登录接口传递用户账号和密码，服务端校验后确认登录成功，这里基本没有疑问，但是如何保持住登录状态呢？如何把这个状态传递回对应的页面呢？捋清楚逻辑后再看官方文档的图就可以理解，其实是通过一个凭证 <code>ticket</code>的传递，可以再看下点击登录后的请求链路。</p>
+<p><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661399497316-a776619f-0f22-484d-8131-6ac550470e2b.png" alt="image.png"></p>
+<p>先看个大概，请求从登录网站重定向到了原系统，原系统一番操作后再次重定向至自身。<br>点开中间的重定向看一下：</p>
+<p><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661408415835-ade89c18-727b-4b68-ba80-3eda5a81105d.png" alt="image.png"><br>跳转回来的 url 上携带了一个 <code>ticket</code> 参数，对照官方文档提的流程，可以明白登录状态依靠 <code>ticket</code> 作为登录凭证，此时的重定向请求再次打入原系统的 node 层并进入 <code>papaya-cas</code> 中间件，对照上方未登录的代码流程，我们依然是未登录状态，但此时拿到了 <code>ticket</code> 参数，可以跳过重定向走至后续的逻辑：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 重新登录</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ticket<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 存在 ticket 不会进入这里</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 验证ticket的有效性，即登录状态</span>
+<span class="token keyword">let</span> body <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">validate</span><span class="token punctuation">(</span><span class="token punctuation">{</span> casBaseURI<span class="token punctuation">,</span> ticket<span class="token punctuation">,</span> service<span class="token punctuation">:</span> logInService <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">[</span>isLogin<span class="token punctuation">,</span> userEmail<span class="token punctuation">,</span> wupsUid <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">]</span> <span class="token operator">=</span> body<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isLogin <span class="token operator">!==</span> <span class="token string">'yes'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 失败的情况下</span>
+  <span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token function">formatcasUrl</span><span class="token punctuation">(</span>casBaseURI<span class="token punctuation">,</span> <span class="token string">'login'</span><span class="token punctuation">,</span> logInService<span class="token punctuation">,</span> queryOtherParams<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 拿到 session 所需保存的信息并存储</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+
+  ctx<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span>logInService<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>再次省略了具体的代码细节，只看一下大概的流程。<code>ticket</code>参数有值因此进入了后续的校验，<code>papaya-cas</code> 会使用这个凭证向登录服务发起校验请求，校验会给出一个结果表明是否有效以及登录的用户邮箱。失败的话需要再次重定向回登录页面进行登录。成功的情况下就可以走向后续的流程，发起请求等等操作获取 session 中需要存储的信息，写入 session 并存储至外部 store (这一部分放在后面 session 介绍)。接着再重定向，发起一个新请求运行网站。逻辑如下：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 已经登录</span>
+<span class="token keyword">const</span> userName <span class="token operator">=</span> ctx<span class="token punctuation">.</span>session<span class="token punctuation">.</span>userName
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>userName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 单用户登录逻辑，省略</span>
+
+  <span class="token comment" spellcheck="true">// 保持登录状态</span>
+  ctx<span class="token punctuation">.</span>session<span class="token punctuation">.</span>last_accessed_at <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>因此重定向回来之前已经在 <code>ctx.session</code> 中写入了用户名，所以此时会进入已登录逻辑，记录一些信息，并调用 <code>next</code> 进行后续逻辑，也就是通过了登录校验。</p>
+<h3 id="登录-gt-退出登录"><a href="#登录-gt-退出登录" class="headerlink" title="登录 -> 退出登录"></a>登录 -&gt; 退出登录</h3><p>这里介绍的是主动退出登录的逻辑，一般是用户手动点击退出的交互位置，在系统中一般是跳转至 <code>http://your-service.com/logout</code> ，这个请求会进入 <code>papaya-cas</code> 的登出逻辑。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 登出</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>logoutUrl <span class="token operator">&amp;&amp;</span> ctx<span class="token punctuation">.</span>path <span class="token operator">===</span> logoutUrl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span>session <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">return</span> ctx<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token function">formatcasUrl</span><span class="token punctuation">(</span>casBaseURI<span class="token punctuation">,</span> <span class="token string">'logout'</span><span class="token punctuation">,</span> logOutService<span class="token punctuation">,</span> queryOtherParams<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>逻辑非常简单，请求的 <code>path</code> 命中登出时，清空 <code>session</code> (对网站的影响就是清空了 <code>cookie</code> )，并重定向至登录网站的登出服务，用于真正的登录服务的登出操作，后续登录服务的逻辑大致猜测为根据登录时设置到 <code>https://cas.wacai.com</code>的<code>cookie</code> 和 <code>service</code> 查找登录用户，失效对应派发的凭证，并清除该 <code>cookie</code> 实现登出。表现在各个系统的话就是旧凭证不再有效，且 <code>cookie</code> 清空无法查询到登录信息，被判定为未登录状态。登录服务网站实现登出后又再次重定向回原网站，将后续的处理逻辑又交还给了原网站。</p>
+<h2 id="koa-session"><a href="#koa-session" class="headerlink" title="koa-session"></a>koa-session</h2><blockquote>
+<p><a href="https://github.com/koajs/session" target="_blank" rel="noopener">官方文档</a> </p>
+</blockquote>
+<p>很显然 <code>papaya-cas</code> 的逻辑判断依赖了 <code>ctx.session</code> 来确认已有的登录信息，而这个对象来自于 <code>koa-session</code> ，<code>papaya</code> 模版项目中使用了封装的二方包 <code>@wac/koa-session</code> ，是因为 <code>koa-session</code> 可提供外部存储机制，二方包中封装了一个提供所需方法的外部存储对象，用于将用户信息存储至 <code>redis</code> ，而用户浏览器只存储去 <code>redis</code> 拿数据的 <code>key</code> ，在 <code>koa-session</code> 中称作 <code>externalKey</code> 。<br>在网站请求进入中间件时先进入 <code>koa-session</code> ，根据请求携带的 <code>cookie</code> 读取为 <code>session</code> ，后续的中间件读取并处理即可。逻辑上没有什么问题，那么看下无法实现登录共享的问题出在哪里。</p>
+<h3 id="单步调试"><a href="#单步调试" class="headerlink" title="单步调试"></a>单步调试</h3><p>直观的排错方式就是使用单步调试，一步步跟着程序走来找到问题所在的位置。<br>直接看到的结果是 B 系统登录后，A 系统重走了登录流程，A B 已经正确共享了 <code>cookie</code> ，那么被判定为未登录的原因在哪？根据登录流程的梳理，很有可能是 <code>ctx.session</code> 中不存在用户信息，接下来先确定这个点。<br>在本地同时启动 AB 两个系统，选择 A 系统来做单步调试，那么首先需要在排查的位置打上断点，这里选择了在 <code>papaya-cas</code> 中打了几个断点：<br><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661482771878-a9bb05d3-61e3-4847-8c7f-8c5242bdb6a7.png" alt="image.png"><br>行号 96 与 121 处打了两个断点，确认一下 <code>ctx.session</code>的信息以及流程走向。<br>接下来用 <code>vscode</code> 的 <code>debug terminal</code> 启动 A 系统，直接启动 B 系统就可以。A  系统启动时会触发调试，但因为断点位置没有走到，所以直接启动了。<br>两个系统都编译好后，先打开 B 系统做一个登录，确认 <code>cookie</code> 设置上。<br><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661483901699-6cef97f0-858e-47ff-80ae-10d80b808da3.png" alt="image.png"><br>登录后可以看到已经在 <code>localhost</code> 下设置好了 <code>cookie</code> ，接着打开 A 系统，不出意外，这个请求会被断点拦截。先走到 96 行的断点处，左侧的变量节目可以查看当前上下文中的变量运行在此时的值，让我们确认一下浏览器中的请求是否携带了 <code>cookie</code> 。<br><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661483877406-9e477eff-1673-482b-bc41-1e9a8e6c7e5e.png" alt="image.png"><br>可以看到， A 系统请求携带的 <code>cookie</code> 和 B 系统登录后的 <code>cookie</code> 一致，接着看下断点处的变量值。此处 <code>ctx.session.userName</code>变成了 <code>undefined</code> ，因为 <code>ctx.session</code> 中根本没有任何用户信息。<br><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661484087410-cd62e174-f9b2-4608-b443-21c11733ca5d.png" alt="image.png"><br>可以预料到，没有用户信息会再判断是否携带 <code>ticket</code>，如果携带就进行登录状态的校验来决定是否通过，但这次请求并不是从登录服务网站重定向过来，因此直接进入了 122 行的重定向，跳向了登录服务网站进行登录。<br>走到这里可以明白了，问题出在 <code>ctx.session</code> 上，明明携带了 <code>cookie</code> ，为什么没有读取到用户信息。下面再调试一下 <code>koa-session</code> 部分，梳理一下 <code>session</code> 读取的逻辑。<br>AB 系统的服务类似，统一采用了二方封装包进行 <code>session</code> 管理，本质上是给 <code>koa-session</code> 提供了一个外部存储对象用于读取设置 <code>redis</code>上的 <code>session</code> 信息，这一部分不详细展开，简而言之就是本文所讨论的系统对于 <code>koa-session</code> 都采用了外部存储的形式，将真正的信息存储在外部，浏览器的 <code>cookie</code> 只是读取外部信息的凭证。在配置的时候会传入 <code>redis client</code> 的配置信息，配置信息相同就可以读取到同一份数据。<br>先看一下 <code>koa-session</code> 的初始化：</p>
+<pre class=" language-javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>opts<span class="token punctuation">,</span> app<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// ... 参数校验，省略细节</span>
+
+  opts <span class="token operator">=</span> <span class="token function">formatOpts</span><span class="token punctuation">(</span>opts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">extendContext</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>context<span class="token punctuation">,</span> opts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">session</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> sess <span class="token operator">=</span> ctx<span class="token punctuation">[</span>CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sess<span class="token punctuation">.</span>store<span class="token punctuation">)</span> <span class="token keyword">await</span> sess<span class="token punctuation">.</span><span class="token function">initFromExternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>opts<span class="token punctuation">.</span>autoCommit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> sess<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">extendContext</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> opts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperties</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">[</span>_CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span>_CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">[</span>_CONTEXT_SESSION<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ContextSession</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> opts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span>_CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    session<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span>CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token keyword">set</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">[</span>CONTEXT_SESSION<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>总体流程并不复杂，初始化时先对配置参数调用 <code>formatOpts</code>，大致理解为类型校验和默认值设置。接着处理了应用的上下文，<code>extendContext</code> 本质是对 <code>ctx</code> 做一些访问处理，读取 <code>ctx.session</code>时可以访问到正确的值。<br><code>const sess = ctx[CONTEXT_SESSION];</code>也进入了访问处理，存在则读取，不存在就新建一个 <code>ContextSession</code>对象，读取 <code>ctx.session</code> 时也是来读取了这个对象。取到 <code>sess</code> 后看看是不是设置了外部存储，是的话从外部存储来初始化 <code>session</code> 的值，按照配置，我们的系统也会进入 <code>initFromExternal</code> 函数。看一下函数逻辑：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token function">initFromExternal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> ctx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>ctx<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> opts <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>opts<span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/** 从 cookie 中读取外部存储凭证 */</span>
+  <span class="token keyword">let</span> externalKey <span class="token operator">=</span> ctx<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span>key<span class="token punctuation">,</span> opts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/** 不存在外部凭证时新建一个空 session */</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>externalKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// create a new `externalKey`</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">/** 取到外部凭证时向外部存储发起查询，拿到需要的值 */</span>
+  <span class="token keyword">const</span> json <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>externalKey<span class="token punctuation">,</span> opts<span class="token punctuation">.</span>maxAge<span class="token punctuation">,</span> <span class="token punctuation">{</span> rolling<span class="token punctuation">:</span> opts<span class="token punctuation">.</span>rolling <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">/** 将最新的值更新到 session 当中 */</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> externalKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>这里依然是省略了大部分细节以及一些不会涉及到的逻辑，主要流程在注释中，首先从 <code>cookies</code> 中读取外部存储的凭证，用来到外部存储拿 <code>session</code> 中(写入 <code>session</code> 时会更新到外部存储上)，接着更新到 <code>ctx.session</code>上，流程上也没有问题。但依照前面调试到结果来看，这里的流程走向可能是不如预期的，并没有写入 <code>session</code> 而是新建了一个。在行号 9 处打个断点，查看一下 <code>externalKey</code> 是否取到。<br><img src="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/1661488926034-871991c6-e22f-4325-829b-e27080125412.png" alt="image.png"><br>走到此处，查看变量值，会发现执行完 <code>ctx.cookies.get</code> 的值居然是 <code>undefined</code> ，也就是没有取到 <code>cookie</code>，不难推测后续的逻辑因为不存在外部凭证，也就返回了一个空 <code>session</code> ，那么也就不存在用户信息，被判定为未登录。接下来具体的逻辑就要查看 <code>ctx.cookies.get</code> 方法。<br>先说 <code>ctx.cookies</code> 这个属性，它来自 <code>koa</code> :</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">get</span> <span class="token function">cookies</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">[</span>COOKIES<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">[</span>COOKIES<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cookies</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>req<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>res<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      keys<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>app<span class="token punctuation">.</span>keys<span class="token punctuation">,</span>
+      secure<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>request<span class="token punctuation">.</span>secure
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">[</span>COOKIES<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>在取 <code>cookies</code> 时，有则返回，无则新建。<code>Cookies</code> 类来自 npm 包 <code>cookies</code> ，到这个包里查看一下新建和读取的逻辑。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">Cookies</span><span class="token punctuation">(</span>request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>keys <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Keygrip</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>keys<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+Cookies<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token keyword">get</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> opts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> sigName <span class="token operator">=</span> name <span class="token operator">+</span> <span class="token string">".sig"</span>
+    <span class="token punctuation">,</span> signed <span class="token operator">=</span> opts <span class="token operator">&amp;&amp;</span> opts<span class="token punctuation">.</span>signed <span class="token operator">!==</span> undefined <span class="token operator">?</span> opts<span class="token punctuation">.</span>signed <span class="token punctuation">:</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>keys
+
+  <span class="token keyword">const</span> header <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>request<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">"cookie"</span><span class="token punctuation">]</span>
+  <span class="token keyword">const</span> match <span class="token operator">=</span> header<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token function">getPattern</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> value <span class="token operator">=</span> match<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>opts <span class="token operator">||</span> <span class="token operator">!</span>signed<span class="token punctuation">)</span> <span class="token keyword">return</span> value
+
+  <span class="token keyword">const</span> remote <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>sigName<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>remote<span class="token punctuation">)</span> <span class="token keyword">return</span>
+
+  <span class="token keyword">const</span> data <span class="token operator">=</span> name <span class="token operator">+</span> <span class="token string">"="</span> <span class="token operator">+</span> value
+  <span class="token keyword">const</span> index <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>keys<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> remote<span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span>sigName<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>path<span class="token punctuation">:</span> <span class="token string">"/"</span><span class="token punctuation">,</span> signed<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>依然是省略了一些不必要的细节代码，先看构造函数，使用 <code>Keygrip</code>对 <code>options.keys</code> 进行处理，这个包用于对传入数据进行签名以及验证，例如对 <code>cookie</code> 进行签名，再对签名进行验证。签名的参数就是 <code>new Keygrip(options.keys)</code>，对照 <code>Cookies</code> 实例化的地方可以看出这个 <code>keys</code> 来自于 <code>koa</code> 应用的 <code>app.keys</code>，而 AB 系统的 <code>app.keys</code> 则是各自的应用名。<br>再看取 <code>cookie</code> 的逻辑，整体流程是从 <code>headers</code> 中取出 <code>cookie</code> ，再使用匹配取出对应 <code>name</code> 的值，如果设置了不需要签名，那么直接返回这个值即可，否则需要继续取出 <code>cookie</code> 中的签名，调用 <code>this.keys</code> 即签名工具的 <code>index</code> 方法，传入原 <code>cookie</code> 值和签名，得到一个索引值，如果这个索引值小于 0 ，一般来说小于 0 代表未查找到，那么清空 <code>cookie</code> 中的签名值，然后就退出了函数。但如果索引值大于等于 0 ，就把对应 <code>name</code>的 <code>cookie</code> 值也就是我们的 <code>externalKey</code> 返回，也就是在前面提到的 <code>koa-session</code> 中拿到，就可以去外部存储取到用户信息写入 <code>session</code>，后续判定登录流程就可以走通。<br>走到这一步大概逻辑已经理顺了，因为在 AB 系统中配置的 <code>session</code> 中间件没有设置 <code>signed</code> 参数，默认值为 <code>true</code>，可以合理推测取 <code>cookie</code> 时会比对原 <code>cookie</code> 值与签名是否一致，不一致的话会清空签名，且不返回值，也就是没有拿到 <code>cookie</code>，接下来只要看看写 <code>cookie</code> 的函数逻辑以及 <code>this.keys.index</code> 的逻辑来验证这个想法即可。</p>
+<pre class=" language-javascript"><code class="language-javascript">Cookies<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token keyword">set</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">,</span> opts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> cookie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cookie</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">,</span> opts<span class="token punctuation">)</span>
+    <span class="token punctuation">,</span> signed <span class="token operator">=</span> opts <span class="token operator">&amp;&amp;</span> opts<span class="token punctuation">.</span>signed <span class="token operator">!==</span> undefined <span class="token operator">?</span> opts<span class="token punctuation">.</span>signed <span class="token punctuation">:</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>keys
+
+  <span class="token function">pushCookie</span><span class="token punctuation">(</span>headers<span class="token punctuation">,</span> cookie<span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>opts <span class="token operator">&amp;&amp;</span> signed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cookie<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>keys<span class="token punctuation">.</span><span class="token function">sign</span><span class="token punctuation">(</span>cookie<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    cookie<span class="token punctuation">.</span>name <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">".sig"</span>
+    <span class="token function">pushCookie</span><span class="token punctuation">(</span>headers<span class="token punctuation">,</span> cookie<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>省略了一部分细节，写 <code>cookie</code>的操作是在登录成功后，会给 <code>ctx.session</code> 写入一部分信息，最终会来到 <code>this.cookies.set(xxx, yyy)</code> 这样的操作。写 <code>cookie</code> 的流程很清晰，首先新建一个根据 <code>name &amp; value</code> 的 <code>cookie</code>，将它用 <code>pushCookie</code> 操作写入 <code>header</code>，如果设置了需要签名，那么会给写入的 <code>cookie</code> 如名字为 <code>foo</code> ，再写入一个 <code>foo.sig</code> 的 <code>cookie</code> 项，它的值是用 <code>foo</code> 的 <code>cookie</code> 进行签名，也就是调用了 <code>this.keys.sign</code>来进行签名，随后写入 <code>header</code>。对照前面请求时携带的 <code>cookie</code> 以及登录后的 <code>cookie</code> 可以发现这个逻辑是没有问题，AB 两个系统都有两条 <code>cookie</code>。<br>而 <code>keys.index &amp; keys.sign</code> 的逻辑参考文档也好，查看源码也好，可以知道它的签名逻辑就是拿 keys 数组的第一项作为签名参数，验证逻辑就是比对所有 key，找到一个 key 可以使得签名后的值与待验证的值相等，那么返回这个索引，一般来说，验证没问题的话返回的索引值会等于 0。-1 代表没有一个 key 可以让待验证的值通过，也就是验证失败。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>走到这一步，整体的逻辑已经清楚了。A B 系统都会对 <code>cookie</code> 进行加密，共享 <code>cookie</code> 后，B 系统登录时写入了新的 <code>cookie&amp;cookie.sig</code> ，这个签名值是 B 系统独有的，因为共享所以一起携带给了 A 系统，A 系统打开时取 <code>cookie</code> 会走签名验证的流程，它的签名参数和 B 系统不一样，签名的结果也就不一样，那么就无法通过签名验证，被认定 <code>cookie</code> 失效，那么无法取到 <code>session</code> 值，也就被认定未登录。<br>因此想要实现登录状态共享的第一步是确保 <code>cookie</code> 同值共享，且外部存储取的客户端是同一个，确保可以取到同一个用户信息。或者不采用外部存储，直接存储在 <code>cookie</code> 上(会比较大)。第二步是签名参数确保一致，或者强制关闭签名，来确保取 <code>cookie</code> 正确。</p>
+<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><ol>
+<li>AB 系统的 <code>app.keys</code> 取同一个值</li>
+<li><code>session({ ... })</code> 配置设置 <code>signed: false</code></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/05/g6-tan-suo-xiao-jie/" rel="prev" title="g6探索小结">
+      <i class="fa fa-chevron-left"></i> g6探索小结
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#同域名共享登录状态问题溯源-amp-总结"><span class="nav-text">同域名共享登录状态问题溯源&amp;总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录流程"><span class="nav-text">登录流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未登录-gt-登录"><span class="nav-text">未登录 -&gt; 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录-gt-退出登录"><span class="nav-text">登录 -&gt; 退出登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#koa-session"><span class="nav-text">koa-session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单步调试"><span class="nav-text">单步调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决"><span class="nav-text">如何解决</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">418k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:20</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

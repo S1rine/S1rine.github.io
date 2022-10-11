@@ -295,10 +295,10 @@
 <span class="token comment" spellcheck="true">// this component has the same styles as Section but it renders an aside</span>
 <span class="token keyword">const</span> Aside <span class="token operator">=</span> Section<span class="token punctuation">.</span><span class="token function">withComponent</span><span class="token punctuation">(</span><span class="token string">'aside'</span><span class="token punctuation">)</span>
 <span class="token function">render</span><span class="token punctuation">(</span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Section</span><span class="token punctuation">></span></span>This is a section<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Section</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Aside</span><span class="token punctuation">></span></span>This is an aside<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Aside</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Section</span><span class="token punctuation">&gt;</span></span>This is a section<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Section</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Aside</span><span class="token punctuation">&gt;</span></span>This is an aside<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Aside</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 <span class="token punctuation">)</span></code></pre>
 <p>这个问题也许可以在 <code>styled-components</code> 官网翻阅解决，因为 <code>emotion</code> 应该就是基于这个库的。但我没有再钻研这个，而是发现了另一个问题。关于样式嵌套。</p>
 <p>嵌套一向是 CSS 预编译器的拿手好戏。在 <code>styled-components</code> 中的普通嵌套也完全没问题 。但是对于我们创建出的样式组件就难以在 native 环境下完成嵌套。需要额外安装一个 babel 插件来实现。那么问题来了，如何在 CRA 的定制模板中修改 babel 配置？</p>
@@ -408,7 +408,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -421,7 +421,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -524,13 +524,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">401k</span>
+    <span title="站点总字数">418k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:05</span>
+    <span title="站点阅读时长">6:20</span>
 </div>
 
         

@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-128x128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://s1rine.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="g6探索小结g6简介G6 是一个简单、易用、完备的图可视化引擎，它在高定制能力的基础上，提供了一系列设计优雅、便于使用的图可视化解决方案。能帮助开发者搭建属于自己的图可视化、图分析、或图编辑器应用。">
+<meta name="keywords" content="js,React,G6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="g6探索小结">
+<meta property="og:url" content="https:&#x2F;&#x2F;s1rine.github.io&#x2F;2022&#x2F;08&#x2F;05&#x2F;g6-tan-suo-xiao-jie&#x2F;index.html">
+<meta property="og:site_name" content="Drowning me">
+<meta property="og:description" content="g6探索小结g6简介G6 是一个简单、易用、完备的图可视化引擎，它在高定制能力的基础上，提供了一系列设计优雅、便于使用的图可视化解决方案。能帮助开发者搭建属于自己的图可视化、图分析、或图编辑器应用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-08-05T10:30:00.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://s1rine.github.io/2022/08/05/g6-tan-suo-xiao-jie/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>g6探索小结 | Drowning me</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Drowning me</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">沉没</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://s1rine.github.io/2022/08/05/g6-tan-suo-xiao-jie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Sirine">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Drowning me">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          g6探索小结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-05 18:30:00" itemprop="dateCreated datePublished" datetime="2022-08-05T18:30:00+08:00">2022-08-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="g6探索小结"><a href="#g6探索小结" class="headerlink" title="g6探索小结"></a>g6探索小结</h1><h2 id="g6简介"><a href="#g6简介" class="headerlink" title="g6简介"></a>g6简介</h2><p>G6 是一个简单、易用、完备的图可视化引擎，它在高定制能力的基础上，提供了一系列设计优雅、便于使用的图可视化解决方案。能帮助开发者搭建属于自己的图可视化、图分析、或图编辑器应用。</p>
+<a id="more"></a>
+<p><a href="https://g6.antv.vision/zh" target="_blank" rel="noopener">官方文档</a></p>
+<p><a href="https://g6.antv.vision/zh/docs/manual/getting-started" target="_blank" rel="noopener">快速上手</a></p>
+<p><a href="https://g6.antv.vision/zh/docs/manual/tutorial/preface" target="_blank" rel="noopener">入门教程</a></p>
+<h2 id="目标功能"><a href="#目标功能" class="headerlink" title="目标功能"></a>目标功能</h2><ol>
+<li>节点支持iconfont</li>
+<li>节点颜色可在外部触发修改</li>
+<li>节点支持收缩展开隐藏后续部分</li>
+</ol>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><h3 id="节点支持iconfont"><a href="#节点支持iconfont" class="headerlink" title="节点支持iconfont"></a>节点支持iconfont</h3><p>这个功能g6内置可实现，但仅限于类似阿里的iconfont库的使用方式。</p>
+<p>原理为将icon图定制为字体文件，设置对应的字体来展示。g6内置了一类形状为text，可以设置字体以及文字内容，完美贴合了iconfont的使用方式。</p>
+<p><a href="https://g6.antv.vision/zh/docs/manual/advanced/iconfont" target="_blank" rel="noopener">官方文档参考</a></p>
+<p>首先在iconfont平台选好需要的icon图标，新建一个项目来收纳集合。目前没有看到哪里还提供在线地址，因此需要把文件下载到本地，在本次的需求中需要在物料内部实现，因此无法直接作为打包后的资源放置，需要一起参与打包。打包时可能会遇到woff2字体无法打包的问题，因为loader无法识别，查看了打包工具的配置就可以知道，url-loader的配置不识别该文件类型。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  test<span class="token punctuation">:</span> <span class="token regex">/\.(png|jpg|svg|woff|eot|ttf)$/</span><span class="token punctuation">,</span>
+  loaders<span class="token punctuation">:</span> <span class="token string">'url-loader'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<p>在iconfont的项目设置中可以配置下载后生成的文件类型，配置loader支持的字体类型就可以。<br>可以打包进物料后，在样式文件内部引用下载后的iconfont.css，使用时需要注册一个新的节点类型来使用。</p>
+<pre class=" language-javascript"><code class="language-javascript">G6<span class="token punctuation">.</span><span class="token function">registerNode</span><span class="token punctuation">(</span><span class="token string">'iconfont'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">draw</span><span class="token punctuation">(</span>cfg<span class="token punctuation">,</span> group<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> keyShape <span class="token operator">=</span> group<span class="token punctuation">.</span><span class="token function">addShape</span><span class="token punctuation">(</span><span class="token string">'text'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      attrs<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        y<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        fontFamily<span class="token punctuation">:</span> <span class="token string">'iconfont'</span><span class="token punctuation">,</span>
+        textAlign<span class="token punctuation">:</span> <span class="token string">'center'</span><span class="token punctuation">,</span>
+        textBaseline<span class="token punctuation">:</span> <span class="token string">'middle'</span><span class="token punctuation">,</span>
+        text<span class="token punctuation">:</span> cfg<span class="token punctuation">.</span>text<span class="token punctuation">,</span>
+        fontSize<span class="token punctuation">:</span> cfg<span class="token punctuation">.</span>size<span class="token punctuation">,</span>
+        <span class="token operator">...</span>style<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token string">'text-shape1'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> keyShape<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  update<span class="token punctuation">:</span> undefined
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'rect'</span><span class="token punctuation">)</span></code></pre>
+<ol>
+<li><p>先看注册节点的使用，G6上挂载的registerNode方法支持注册自定义节点，配置项中的draw方法定义了该节点如何绘制渲染。每个节点由多个形状组成，G6内置了path、rect、circle、text等形状，所有形状包含在一个group中，所以需要将形状添加到节点默认的group上，调用group.addShape时配置项包含形状名(用于后续操作中区分不同形状)，形状的属性，例如该形状在group中的位置，以及各形状对应的属性，text形状需要设置字体、内容等，此处为了实现iconfont类型，字体统一设置为iconfont，text则为该形状的文字，需要设置为该图标的content，可以直接在iconfont平台的项目内进行代码复制，但要注意复制下来的代码如<code>&amp;#xe8cb;</code>，需要修改为<code>\ue8cb</code>使用。</p>
+</li>
+<li><p>需要注意上面示例的节点继承了G6内置的<code>rect</code>节点，因此需要覆盖<code>update</code>方法为<code>undefined</code>，强制节点更新调用<code>draw</code>方法，否则节点更新时会产生意料以外的情况。</p>
+</li>
+<li><p>画布第一次绘制iconfont节点时会出现图标消失的情况，拖动等使画布重新绘制的操作会修正这一行为，但需要避免第一次绘制为空的情况，官方推荐的操作为：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 在 graph.render() 之后调用以下语句：</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+graph<span class="token punctuation">.</span><span class="token function">paint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>但这一操作对我的项目并不起作用，修改<code>paint</code>方法为<code>refresh</code>即可。</p>
+<h3 id="节点颜色可在外部触发修改"><a href="#节点颜色可在外部触发修改" class="headerlink" title="节点颜色可在外部触发修改"></a>节点颜色可在外部触发修改</h3><p>G6内置节点的颜色配置为配置项中<code>style</code>内的<code>fill</code>属性，例如：</p>
+<pre class=" language-javascript"><code class="language-javascript">graph<span class="token punctuation">.</span><span class="token function">node</span><span class="token punctuation">(</span>node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token punctuation">{</span>
+ type<span class="token punctuation">:</span> <span class="token string">'iconfont'</span><span class="token punctuation">,</span>
+ style<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   fill<span class="token punctuation">:</span> <span class="token string">'green'</span><span class="token punctuation">,</span>
+   stroke<span class="token punctuation">:</span> <span class="token string">'red'</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>示例中调用了<code>graph.node</code>方法，该方法可较灵活的配置节点属性，每个节点渲染时会执行该函数，可根据条件配置不同的节点属性，这里设置了节点类型为<code>iconfont</code>，内部填充色为绿色，外部描边色为红色。<br>想要实现外部触发修改的功能只需要修改节点的配置信息，并实现它的更新。节点上有个<code>update</code>方法支持差量更新配置项，外部逻辑触发时查找到对应的节点调用<code>udpate</code>即可。</p>
+<pre class=" language-javascript"><code class="language-javascript">preItems<span class="token punctuation">.</span>current<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+item<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+ style<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+   <span class="token operator">...</span>model<span class="token punctuation">.</span>_originStyle
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+preItems<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+graph<span class="token punctuation">.</span><span class="token function">getNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> id <span class="token operator">=</span> model<span class="token punctuation">.</span>id
+<span class="token keyword">if</span> <span class="token punctuation">(</span>id<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>inputValue<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ model<span class="token punctuation">.</span>_originStyle <span class="token operator">=</span> model<span class="token punctuation">.</span>style
+ node<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   style<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+     fill<span class="token punctuation">:</span> <span class="token string">'green'</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span>
+ preItems<span class="token punctuation">.</span>current<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>以上逻辑是使用preItem进行上一次被更新的节点缓存，每次执行时首先恢复上一次节点的样式，再查找graph上的节点判断是否符合条件，符合条件的记录下它现有的样式用于恢复，然后更新，并缓存节点。</p>
+<h3 id="节点支持收缩展开隐藏后续部分"><a href="#节点支持收缩展开隐藏后续部分" class="headerlink" title="节点支持收缩展开隐藏后续部分"></a>节点支持收缩展开隐藏后续部分</h3><p>G6内置的树图实现了收缩展开部分，但在该需求中数据结构不符合树的特性，无法使用树图，但希望某个节点以及后续节点符合树时，可以收缩该节点以及后续部分。</p>
+<h4 id="简易版本"><a href="#简易版本" class="headerlink" title="简易版本"></a>简易版本</h4><p>收缩实现的功能包括后续节点的移除或隐藏，以及画布节点的布局。<br>graph上有removeItem/hideItem/showItem方法可用，简易实现中先采用隐藏和展示。<br>画布的重新布局只需要调用graph.layout。<br>思路是监听节点的点击事件，在点击时获取节点所对应的所有目标节点，将它们隐藏，并递归隐藏后续所有的节点。完成后调用graph.layout进行重新布局。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> handleCollapse <span class="token operator">=</span> <span class="token punctuation">(</span>item<span class="token punctuation">,</span> collapsed<span class="token punctuation">,</span> cb<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">/** 读取该节点作为源节点的所有目标节点 */</span>
+<span class="token keyword">const</span> targets <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getNeighbors</span><span class="token punctuation">(</span><span class="token string">'target'</span><span class="token punctuation">)</span>
+<span class="token keyword">typeof</span> cb <span class="token operator">===</span> <span class="token string">'function'</span> <span class="token operator">&amp;&amp;</span> <span class="token function">cb</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/** 遍历当前节点的目标节点，根据状态值判断是隐藏还是展示 */</span>
+targets<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>target <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">/** 如果是隐藏，所有后续节点都需要隐藏。如果是展示，隐藏的后续节点不需要展示 */</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>collapsed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true">/** 隐藏目标节点 */</span>
+   graph<span class="token punctuation">.</span><span class="token function">hideItem</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+   <span class="token comment" spellcheck="true">/** 递归后续的节点 */</span>
+   <span class="token function">handleCollapse</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> collapsed<span class="token punctuation">)</span>
+ <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+   <span class="token keyword">const</span> currentState <span class="token operator">=</span> target<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>collapsed <span class="token operator">||</span> <span class="token boolean">false</span>
+   graph<span class="token punctuation">.</span><span class="token function">showItem</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>currentState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">/** 当前节点是展开状态才递归后续的节点 */</span>
+     <span class="token function">handleCollapse</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> collapsed<span class="token punctuation">)</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+graph<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'node:click'</span><span class="token punctuation">,</span> e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> item <span class="token operator">=</span> e<span class="token punctuation">.</span>item
+<span class="token comment" spellcheck="true">/** 读取点击节点的数据，修改状态值并开始目标节点的处理 */</span>
+<span class="token keyword">const</span> collapsed <span class="token operator">=</span> item<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>collapsed <span class="token operator">||</span> <span class="token boolean">false</span>
+item<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>collapsed <span class="token operator">=</span> <span class="token operator">!</span>collapsed
+<span class="token function">handleCollapse</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> <span class="token operator">!</span>collapsed<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/** 重新布局 */</span>
+graph<span class="token punctuation">.</span><span class="token function">layout</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/** 布局完成后进行点击元素的聚焦，为了处理层级高度或宽度发生大幅度变化的情况 */</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ graph<span class="token punctuation">.</span><span class="token function">focusItem</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+   duration<span class="token punctuation">:</span> <span class="token number">500</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>问题：</p>
+</li>
+<li><p>隐藏和展示的行为比较生硬，不包含过渡和动画效果，这需要在进阶部分里处理;</p>
+</li>
+<li><p>重新布局时会修改同一层次中的节点顺序，因为节点的增删，导致了布局算法计算出的顺序有变动，这不是期望的效果，翻阅文档后可以配置nodeOrder来固定节点的顺序;</p>
+</li>
+<li><p>目前来说只有一个节点及其后代节点构成了一棵树才允许收缩，点击行为可以被条件判断进行拦截，但如何制定这个条件？</p>
+</li>
+<li><p>如何实现第一次绘制某些节点是收缩状态，目前的处理方法：</p>
+<pre class=" language-javascript"><code class="language-javascript">graph<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'afterrender'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">/** 读取当前所有节点遍历查找 */</span>
+<span class="token keyword">const</span> nodes <span class="token operator">=</span> graph<span class="token punctuation">.</span><span class="token function">getNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+nodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">/** 从一个节点出发，每个节点做了一个标记是否被处理过，是的话直接跳过避免冗余操作 */</span>
+ <span class="token keyword">const</span> model <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+ <span class="token keyword">const</span> isChecked <span class="token operator">=</span> model<span class="token punctuation">.</span>_isChecked <span class="token operator">||</span> <span class="token boolean">false</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>isChecked<span class="token punctuation">)</span> <span class="token keyword">return</span>
+ <span class="token keyword">const</span> collapsed <span class="token operator">=</span> model<span class="token punctuation">.</span>collapsed
+ <span class="token comment" spellcheck="true">/** 处理该节点及其所有后代节点，在函数内传递一个回调用于标记节点 */</span>
+ <span class="token function">handleCollapse</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> collapsed<span class="token punctuation">,</span> item <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+   item<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>_isChecked <span class="token operator">=</span> <span class="token boolean">true</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">/** 隐藏完节点重新布局，此行为不会触发afterrender */</span>
+graph<span class="token punctuation">.</span><span class="token function">layout</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h4 id="进阶版本"><a href="#进阶版本" class="headerlink" title="进阶版本"></a>进阶版本</h4><p>期望实现收缩展开的动画，同时条件判断可收缩的节点。</p>
+</li>
+<li><p>收缩展开动画<br>这部分内容可参考G6的树图实现方法，也可以再做优化，因为G6的树图节点移除采用的是删除数据的方式，而前文中收缩展开使用的方式不是修改数据而是隐藏节点。<br>G6的树图与图有一些差异性，先看官方解释：</p>
+<blockquote>
+<p>TreeGraph 是 G6 专门为树图场景打造的图。G6.TreeGraph 与 G6.Graph 最大的区别就是数据结构和内置布局计算。主要考虑：</p>
+<ul>
+<li>数据结构：树图的数据一般是嵌套结构，边的数据隐含在嵌套结构中，并不会特意指定 edge 。此布局要求数据中一个节点需要有 id 和 children 两个数据项，最精简的数据结构如下所示：<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+id<span class="token punctuation">:</span> <span class="token string">'root'</span><span class="token punctuation">,</span>
+children<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+ <span class="token punctuation">{</span>
+   id<span class="token punctuation">:</span> <span class="token string">'subTree1'</span><span class="token punctuation">,</span>
+   children<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">{</span>
+   id<span class="token punctuation">:</span> <span class="token string">'subTree2'</span><span class="token punctuation">,</span>
+   children<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+布局特殊性：</li>
+<li>树图的布局算法一般是不改变源数据的，而是重新生成一份数据，将源数据作为新数据的一个属性。如果每次都需要做次遍历转换数据到节点和边的数据增加了用户的实现复杂度。</li>
+<li>树图的每次新增/删除/展开/收缩节点，都需要重新计算布局。遍历一份结构化数据对应到图上每个节点去做更新操作，也很麻烦。<br>树类中处理了很多额外逻辑，包括数据结构转化为边-节点、布局计算，甚至包括收缩展开的处理也都包在了里面，且节点收缩展开还都有内置的动画。下面捋一下树类的运行逻辑。<br>树类的前置使用与普通的图类没有太大差别，主要在赋值data后render中，树类重写了render方法。</li>
+</ul>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">layout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'fitView'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>简化代码后可以看到，render的核心就是调用layout方法。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">layout</span><span class="token punctuation">(</span>fitView<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> layoutMethod <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'layoutMethod'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> layoutData <span class="token operator">=</span> layoutMethod <span class="token operator">?</span> <span class="token function">layoutMethod</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'layout'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> data<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">innerUpdateChild</span><span class="token punctuation">(</span>layoutData<span class="token punctuation">,</span> undefined<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// ...</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">layoutAnimate</span><span class="token punctuation">(</span>layoutData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>代码简化后看逻辑，读取传递进来的data，读取当前的布局算法，对数据进行布局计算，随后调用innerUpdateChild，最后调用layoutAnimate使用布局数据进行收缩展开的动画。核心内容是innerUpdateChild和layoutAnimate。<br>在树类的布局算法中，会根据数据的collapsed属性来判断后续数据是否需要，如果一个节点是收缩状态的，它的children就是空数组，完全不需要渲染后续的结构。这样布局计算完就是当前展示状态所需的节点信息，接下来需要进行画布上的节点移除和移动，移动需要起点和终点信息，因此需要innerUpdateChild来收集这些信息。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">innerUpdateChild</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> parent<span class="token punctuation">,</span> animate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> current <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 若子树不存在，整体添加即可</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>current<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ self<span class="token punctuation">.</span><span class="token function">innerAddChild</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> parent<span class="token punctuation">,</span> animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 递归更新新节点下所有子节点</span>
+<span class="token function">each</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>children <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>child<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">innerUpdateChild</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> current<span class="token punctuation">,</span> animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 用现在节点的children实例来删除移除的子节点</span>
+<span class="token comment" spellcheck="true">/** 用画布上已有的节点比对调用布局算法计算后的节点
+*  若是布局算法计算后的节点中已不存在该节点，表明需要移除这个节点
+*  将当前节点的位置信息和节点传递进删除的函数，该函数会递归删除所有后代节点
+*  删除的操作只是将节点缓存进一个数组，并标记每个节点需要移动的终点，即最初传递的节点位置信息
+*  起点则是该节点此时所在的位置。
+*/</span>
+<span class="token keyword">const</span> children <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span>'children<span class="token punctuation">)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> child <span class="token operator">=</span> children<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>TreeGraph<span class="token punctuation">.</span><span class="token function">indexOfChild</span><span class="token punctuation">(</span>data<span class="token punctuation">.</span>children <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> child<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">innerRemoveChild</span><span class="token punctuation">(</span>
+         child<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+         <span class="token punctuation">{</span>
+           x<span class="token punctuation">:</span> data<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+           y<span class="token punctuation">:</span> data<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+         <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         animate<span class="token punctuation">,</span>
+       <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token comment" spellcheck="true">// 更新父节点下缓存的子节点 item 实例列表</span>
+       children<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/** 除去要删除的节点，许多节点需要移动位置，记录节点此时的位置作为起点，
+*  终点存储在布局计算完的节点数据中
+*/</span>
+<span class="token keyword">let</span> oriX<span class="token punctuation">;</span>
+<span class="token keyword">let</span> oriY<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>current<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ oriX <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+ oriY <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> current<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>animate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">// 如果有动画，先缓存节点运动再更新节点</span>
+ current<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+   x<span class="token punctuation">:</span> model<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+   y<span class="token punctuation">:</span> model<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+current<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'model'</span><span class="token punctuation">,</span> data<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>oriX <span class="token operator">!==</span> data<span class="token punctuation">.</span>x <span class="token operator">||</span> oriY <span class="token operator">!==</span> data<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ current<span class="token punctuation">.</span><span class="token function">updatePosition</span><span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token punctuation">:</span> data<span class="token punctuation">.</span>x<span class="token punctuation">,</span> y<span class="token punctuation">:</span> data<span class="token punctuation">.</span>y <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>完成每个需要移动的节点起点和终点位置计算后，需要进行动画。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">layoutAnimate</span><span class="token punctuation">(</span>
+data<span class="token punctuation">,</span>
+onFrame<span class="token punctuation">,</span>
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> self <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> animateCfg <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'animateCfg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>
+ <span class="token punctuation">(</span>ratio<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true">/** 遍历树，每个节点进行动画操作 */</span>
+   <span class="token function">traverseTree</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> child <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">/** 每个节点读取originAttrs或自身所在位置，根据当前动画进度计算位移 */</span>
+     <span class="token keyword">const</span> node <span class="token operator">=</span> self<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">let</span> origin <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token keyword">const</span> model <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'model'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+       <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>origin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         origin <span class="token operator">=</span> <span class="token punctuation">{</span>
+           x<span class="token punctuation">:</span> model<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+           y<span class="token punctuation">:</span> model<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+         <span class="token punctuation">}</span><span class="token punctuation">;</span>
+         node<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">,</span> origin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+
+       model<span class="token punctuation">.</span>x <span class="token operator">=</span> origin<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>x <span class="token operator">-</span> origin<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">*</span> ratio<span class="token punctuation">;</span>
+       model<span class="token punctuation">.</span>y <span class="token operator">=</span> origin<span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>y <span class="token operator">-</span> origin<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">*</span> ratio<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">/** 每个要被移除的节点要从from移动到to */</span>
+   <span class="token function">each</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'removeList'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+     <span class="token keyword">const</span> model <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">const</span> <span class="token keyword">from</span> <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">const</span> to <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'to'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     model<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token keyword">from</span><span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>x <span class="token operator">-</span> <span class="token keyword">from</span><span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">*</span> ratio<span class="token punctuation">;</span>
+     model<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token keyword">from</span><span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token keyword">from</span><span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">*</span> ratio<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">/** 更新完当前动画进度下每个节点的位置信息后，需要更新所有节点和边的位置 */</span>
+   self<span class="token punctuation">.</span><span class="token function">refreshPositions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+ <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true">// ...</span>
+   callback<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+     <span class="token comment" spellcheck="true">/** 动画完成的回调 */</span>
+     <span class="token function">each</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token function">getNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+       node<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token comment" spellcheck="true">/** 将完成动画的待删除节点全部删除 */</span>
+     <span class="token function">each</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'removeList'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> node <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+       self<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     self<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'removeList'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token comment" spellcheck="true">// ...</span>
+ <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>最后是节点展开时的添加函数</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">innerAddChild</span><span class="token punctuation">(</span>treeData<span class="token punctuation">,</span> parent<span class="token punctuation">,</span> animate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">const</span> model <span class="token operator">=</span> treeData<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">/** 添加节点 */</span>
+<span class="token keyword">const</span> node <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span><span class="token string">'node'</span><span class="token punctuation">,</span> model<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">/** 挂载父子关系，并读取父节点要移动的起点位置或父节点的位置 */</span>
+ node<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'parent'</span><span class="token punctuation">,</span> parent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">const</span> origin <span class="token operator">=</span> parent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>origin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   node<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">,</span> origin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+   <span class="token keyword">const</span> parentModel <span class="token operator">=</span> parent<span class="token punctuation">.</span><span class="token function">getModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   node<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'originAttrs'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+     x<span class="token punctuation">:</span> parentModel<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+     y<span class="token punctuation">:</span> parentModel<span class="token punctuation">.</span>y<span class="token punctuation">,</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">const</span> childrenList <span class="token operator">=</span> parent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'children'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>childrenList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   parent<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">'children'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>node<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+   childrenList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true">/** 为父子添加一条边 */</span>
+ <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addItem</span><span class="token punctuation">(</span>
+   <span class="token string">'edge'</span><span class="token punctuation">,</span>
+   <span class="token punctuation">{</span>
+     source<span class="token punctuation">:</span> parent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+     target<span class="token punctuation">:</span> node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+     id<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>parent<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>node<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span>
+   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token boolean">false</span><span class="token punctuation">,</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">/** 递归后代继续添加数据 */</span>
+<span class="token comment" spellcheck="true">// 渲染到视图上应参考布局的children, 避免多绘制了收起的节点</span>
+<span class="token function">each</span><span class="token punctuation">(</span>treeData<span class="token punctuation">.</span>children <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> child <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+ <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">innerAddChild</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> node<span class="token punctuation">,</span> animate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> node<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>以上是树图更新的一个大体逻辑，总结下来就是重新绘制时使用数据进行布局计算得到新的数据，布局算法中会处理collapsed字段，被收起的节点不会有后代节点。新的数据代表了后续画布需要绘制完成的样子。此时画布中图的结构还未更新，比对新数据和旧数据，找出要删除的节点，并记录下每个节点需要移动的起点和终点，完成后进行动画，实现过渡移动效果，结束后删除所有需要被删除的节点，清理中间过程产生的数据，完成一次布局。<br>因此，想要实现过渡的移动动画，重点是找到移动的起点和终点。一般的，我们会把节点位置信息交给布局算法来处理，图类中布局算法和渲染是集成在一起的，无法抽离。<br>G6提供了单独的布局方法，我们可以新建一个类，实现自己的render方法，单独维护一套用以计算终点的布局数据。在收缩时，在布局数据中隐藏不需要的节点，进行布局计算，拿到新的数据，比对画布的数据计算出起点和终点，完成动画，动画结束后更新画布的节点数据。展开类似，因为只是隐藏展示节点，不涉及到新增和删除。<br>具体实现：<br>待更新</p>
+</li>
+<li><p>条件判断树<br>完整需求是在一个图中如何找出一些节点，这些节点及其后代节点构成了一棵树。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js/" rel="tag"><i class="fa fa-tag"></i> js</a>
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+              <a href="/tags/G6/" rel="tag"><i class="fa fa-tag"></i> G6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/15/i-have-to-learn-how-to-find-the-error/" rel="prev" title="I have to learn how too find the error">
+      <i class="fa fa-chevron-left"></i> I have to learn how too find the error
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/26/tong-yu-ming-gong-xiang-deng-lu-zhuang-tai-wen-ti-su-yuan-zong-jie/" rel="next" title="同域名共享登录状态问题溯源&总结">
+      同域名共享登录状态问题溯源&总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#g6探索小结"><span class="nav-text">g6探索小结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#g6简介"><span class="nav-text">g6简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标功能"><span class="nav-text">目标功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点支持iconfont"><span class="nav-text">节点支持iconfont</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点颜色可在外部触发修改"><span class="nav-text">节点颜色可在外部触发修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点支持收缩展开隐藏后续部分"><span class="nav-text">节点支持收缩展开隐藏后续部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简易版本"><span class="nav-text">简易版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进阶版本"><span class="nav-text">进阶版本</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sirine"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Sirine</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/S1rine" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;S1rine" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:sirine@foxmail.com" title="E-Mail → mailto:sirine@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sirine</span>
+
+  
+    <div>
+   <span id="sitetime"></span>
+
+   <span id="year" style="display:none">2019</span>
+   <span id="month" style="display:none">11</span>
+   <span id="day" style="display:none">7</span>
+   <span id="hour" style="display:none">15</span>
+   <span id="minute" style="display:none">0</span>
+   <span id="second" style="display:none">0</span>
+	<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+		var year = document.getElementById("year").innerHTML;
+		var month = document.getElementById("month").innerHTML;
+		var day = document.getElementById("day").innerHTML;
+		var hour = document.getElementById("hour").innerHTML;
+		var minute = document.getElementById("minute").innerHTML;
+		var second = document.getElementById("second").innerHTML;//北京时间2018-2-13 00:00:00
+		var t1 = Date.UTC(year,month,day,hour,minute,second);
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		if(diffYears==0){
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		} else{
+		document.getElementById("sitetime").innerHTML=" 网站已经运行了  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+		}
+	}
+	//siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
+	siteTime();
+	</script>
+</div>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">418k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:20</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
